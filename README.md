@@ -17,3 +17,7 @@ start steps
 - [ ] create user overview page
 - [ ] ...
 
+
+
+Code by
+Steve (Xenoxinius) and Talisa @tallyvanv
