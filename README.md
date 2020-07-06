@@ -8,3 +8,12 @@ https://www.re-trace.io
 
 
 This github is for the re-trace.io platform used to track building materials, waste streams etc (see website for more info)
+
+start steps
+
+- [x] create repo with README
+- [x] create Laravel project
+- [ ] setup database
+- [ ] create user overview page
+- [ ] ...
+
