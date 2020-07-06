@@ -15,6 +15,8 @@ class Processor extends Migration
     {
         Schema::create('processor', function (Blueprint $table) {
             $table->id();
+            $table->string('location');
+            $table->string('contactInfo');
         });
     }
 
