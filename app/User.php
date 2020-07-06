@@ -11,6 +11,22 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
