@@ -20,4 +20,4 @@ start steps
 
 
 Code by
-Steve (Xenoxinius) and Talisa @tallyvanv
+Steve (Xenoxinius) and [Talisa](https://github.com/tallyvanv)
