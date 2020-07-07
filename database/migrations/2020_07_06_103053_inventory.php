@@ -15,6 +15,12 @@ class Inventory extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->id();
+            $table->string("location");
+            $table->string("measuring state");
+            $table->string("material list");
+            $table->integer("surface");
+            $table->string("image");
+            $table->string("plan");
         });
     }
 
