@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
@@ -10973,14 +10975,7 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
- html, body {
-     background-image: url("public/images/double-bubble.png");
-     color: #636b6f;
-     font-family: 'Nunito', sans-serif;
-     font-weight: 200;
-     height: 100vh;
-     margin: 0;
- }
+
 .full-height {
     height: 100vh;
 }

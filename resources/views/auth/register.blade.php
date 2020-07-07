@@ -39,19 +39,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" id="usertype">
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('type') }}</label>
 
                             <div class="col-md-6">
                                 <input id="type" type="checkbox"  name="type" value="Business">
 
                                 <label for="type">Business</label>
-
                                 <br>
                                 <input id="type2" type="checkbox"  name="type" value="Private">
                                 <label for="type2">Private</label>
-
-
 
                                 @error('type')
                                 <span class="invalid-feedback" role="alert">
@@ -97,3 +94,4 @@
     </div>
 </div>
 @endsection
+
