@@ -15,6 +15,10 @@ class Material extends Migration
     {
         Schema::create('material', function (Blueprint $table) {
             $table->id();
+            $table->string("location");
+            $table->integer("quantity");
+            $table->dateTime("date");
+            $table->string("material");
         });
     }
 

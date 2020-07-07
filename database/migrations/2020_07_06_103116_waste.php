@@ -16,6 +16,9 @@ class Waste extends Migration
         Schema::create('waste', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
+            $table->string("material");
+            $table->string("processor");
+            $table->dateTime('date');
 
         });
     }
