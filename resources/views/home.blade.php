@@ -6,4 +6,5 @@
     <a id="newBuilding" href="{{ route('building') }}">add New Building</a>
 
 
+
 @endsection
