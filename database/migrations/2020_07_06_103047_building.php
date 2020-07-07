@@ -15,6 +15,17 @@ class Building extends Migration
     {
         Schema::create('building', function (Blueprint $table) {
             $table->id();
+            $table->string("address1");
+            $table->string("address2");
+            $table->string("city");
+            $table->integer("postcode");
+            $table->string("measuringState");
+            $table->string("materialList");
+            $table->integer("surface");
+            $table->string("image");
+            $table->string("plan")->default('');
+
+
         });
     }
 
