@@ -63,11 +63,18 @@
     <div class="content">
         <div class="title m-b-md">
             re-trace.io
+
+
         </div>
         <h3> building platform</h3>
 
+
+
         <div class="links">
             <a href="https://re-trace.io" target="_blank">start-it website</a>
+            @auth
+                <a href="{{route('home')}}">User homePage</a>
+            @endauth
         </div>
     </div>
 </div>
