@@ -20,7 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::get('/dashboard', 'DashboardController@index')->name('dash');
 
