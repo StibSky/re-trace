@@ -10,9 +10,25 @@ class Building extends Model
 
     protected $table = "building";
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status): void
+    {
+        $this->status = $status;
+    }
+
     protected $fillable = [
-        'address1', 'address2','city', 'postcode', 'measuringState', 'materialList', 'surface',
-        'image', 'plan'
+        'address1', 'address2','city', 'postcode', 'quantity', 'materialList', 'surface',
+        'image', 'plan', 'status'
     ];
 
     /**
@@ -82,17 +98,17 @@ class Building extends Model
     /**
      * @return mixed
      */
-    public function getMeasuringState()
+    public function getQuantity()
     {
-        return $this->measuringState;
+        return $this->quantity;
     }
 
     /**
-     * @param mixed $measuringState
+     * @param mixed $quantity
      */
-    public function setMeasuringState($measuringState): void
+    public function setQuantity($quantity): void
     {
-        $this->measuringState = $measuringState;
+        $this->quantity = $quantity;
     }
 
     /**

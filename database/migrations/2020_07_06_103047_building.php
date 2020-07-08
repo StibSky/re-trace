@@ -19,10 +19,11 @@ class Building extends Migration
             $table->string("address2");
             $table->string("city");
             $table->integer("postcode");
-            $table->string("measuringState");
+            $table->integer("quantity");
             $table->string("materialList");
             $table->integer("surface");
             $table->string("image");
+            $table->string("status");
             $table->string("plan")->default('');
 
 

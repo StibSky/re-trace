@@ -21,9 +21,19 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputPostCode">Post code:</label>
-                    <input type="text" class="form-control" id="inputPostCode" id="inputPostCode">
+                    <input type="text" class="form-control" id="inputPostCode" name="inputPostCode">
                 </div>
             </div>
+            <label for="inputImage">Image:</label>
+            <input type="text" class="form-control" id="inputImage" name="inputImage">
+            <label for="inputPlan">Plan:</label>
+            <input type="text" class="form-control" id="inputPlan" name="inputPlan">
+            <label for="inputMaterialList">Material list:</label>
+            <input type="text" class="form-control" id="inputMaterialList" name="inputMaterialList">
+            <label for="inputQuantity">Quantity:</label>
+            <input type="text" class="form-control" id="inputQuantity" name="inputQuantity">
+            <label for="inputSurface">Surface:</label>
+            <input type="text" class="form-control" id="inputSurface" name="inputSurface">
             <label for="buildingStatus">Building status:</label><br>
             <input type="text" id="buildingStatus" name="buildingStatus"><br>
             <br>
