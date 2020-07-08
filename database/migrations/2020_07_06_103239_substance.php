@@ -15,6 +15,7 @@ class Substance extends Migration
     {
         Schema::create('substance', function (Blueprint $table) {
             $table->id();
+            $table->integer("article_number");
         });
     }
 

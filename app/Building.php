@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Building extends Model
 {
     public $timestamps = false;
-
     protected $table = "building";
 
     /**
@@ -19,6 +18,22 @@ class Building extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+
+    /**
+     * @param mixed $userid
+     */
+    public function setUserid($userid): void
+    {
+        $this->userid = $userid;
+    }
+
+    /**
      * @param mixed $status
      */
     public function setStatus($status): void
@@ -26,9 +41,25 @@ class Building extends Model
         $this->status = $status;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
     protected $fillable = [
         'address1', 'address2','city', 'postcode', 'quantity', 'materialList', 'surface',
-        'image', 'plan', 'status'
+        'image', 'plan','type', 'status', 'userid'
     ];
 
     /**

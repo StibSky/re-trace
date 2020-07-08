@@ -19,12 +19,14 @@ class Building extends Migration
             $table->string("address2");
             $table->string("city");
             $table->integer("postcode");
-            $table->integer("quantity");
-            $table->string("materialList");
-            $table->integer("surface");
-            $table->string("image");
-            $table->string("status");
-            $table->string("plan")->default('');
+            $table->string("type");
+            $table->integer("quantity")->nullable();
+            $table->string("materialList")->nullable();
+            $table->integer("surface")->nullable();
+            $table->string("image")->nullable();
+            $table->string("status")->nullable();
+            $table->string("plan")->nullable();
+
             $table->bigInteger('userid')->nullable()->unsigned();
         });
 
