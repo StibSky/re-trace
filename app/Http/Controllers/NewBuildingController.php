@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class newBuildingController extends Controller
 {
@@ -12,11 +13,11 @@ class newBuildingController extends Controller
         return view('new-building.new-building');
     }
 
-    public function addBuilding() {
+    public function addBuilding(Request $request) {
         if (isset($_POST['submitNewBuilding'])){
             $building = new Building();
-            $building->setAddress1("test");
-            $building->setAddress2("test");
+            $building->setAddress1($request->input('inputAddress'));
+            $building->setAddress2($request->input('inputAddress'));
             $building->setCity("test");
             $building->setImage("test");
             $building->setPlan("plannetje");
@@ -26,6 +27,10 @@ class newBuildingController extends Controller
 
             $building->setSurface("200");
             $building->save();
+
+
+
+
         }
         return redirect()->route('home');
     }
