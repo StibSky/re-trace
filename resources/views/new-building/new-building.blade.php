@@ -11,21 +11,21 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Address line 2:</label>
-                <input type="text" class="form-control" id="inputAddress2"
+                <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
                        placeholder="Apartment, studio, or floor">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">City:</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <input type="text" class="form-control" id="inputCity" name="inputCity">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputZip">Post code:</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <label for="inputPostCode">Post code:</label>
+                    <input type="text" class="form-control" id="inputPostCode" id="inputPostCode">
                 </div>
             </div>
-            <label for="buildingstatus">Building status:</label><br>
-            <input type="text" id="buildingstatus" name="buildingstatus"><br>
+            <label for="buildingStatus">Building status:</label><br>
+            <input type="text" id="buildingStatus" name="buildingStatus"><br>
             <br>
             <button type="submit"  class="btn-success" name="submitNewBuilding">Submit </button>
         </form>
