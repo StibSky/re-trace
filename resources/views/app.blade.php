@@ -20,14 +20,8 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="title m-b-md">
-            re-trace.io
-
-
+            <img src="{{ asset('images/re_logo.png') }}" class="img-circle" alt="">
         </div>
-        <h3> building platform</h3>
-
-
-
         <div class="links">
             <a href="https://re-trace.io" target="_blank">start-it website</a>
             @auth

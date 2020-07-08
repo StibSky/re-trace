@@ -1,0 +1,12 @@
+#userInfo {
+    height: 50em;
+}
+
+#newProject, #newSearch {
+    margin-left: 2em;
+    height: 23em;
+}
+
+#newSearch {
+    margin-top: 4em;
+}

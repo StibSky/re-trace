@@ -1,30 +1,31 @@
 @extends('layouts.app')
-
+@section('stylesheet')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
-
-            <div class="col-6 card p-2 mx-2">
-                <div class="row no-gutters">
-                    <div class="col-auto">
-                        <img src="{{ asset('images/kaora.jpeg') }}" class="img-circle" alt="">
+            <div class="col-6 px-2 card" id="userInfo">
+                <div class="row no-gutters d-flex">
+                    <div class="col-auto d-flex flex-center">
+                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="img-circle" alt="">
                     </div>
-                    <div class="col">
-                        <div class="card-block px-2">
-                            <h4 class="card-title">Welcome {{ Auth::user()->name }}</h4>
+                    <div class="col pl-4 d-flex flex-center">
+                        <div>
+                            <h4>Hi {{ Auth::user()->name }}</h4>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-6 mx-2">
+            <div class="col-6 float-right">
                 <div class="row">
-                    <div class="col-12 card">
+                    <div class="col-12 p-2 card d-flex flex-center" id="newProject">
                         <a id="newBuilding" href="{{ route('building') }}">add New Project</a>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 card">
+                    <div class="col-12 p-2 card" id="newSearch">
                         3
                     </div>
                 </div>
