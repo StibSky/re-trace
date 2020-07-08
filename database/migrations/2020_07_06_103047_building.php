@@ -25,8 +25,14 @@ class Building extends Migration
             $table->string("image");
             $table->string("status");
             $table->string("plan")->default('');
+            $table->bigInteger('userid')->nullable()->unsigned();
+        });
 
-
+        Schema::table('building', function (Blueprint $table) {
+            $table->foreign('userid')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
