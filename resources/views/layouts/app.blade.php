@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #F6F9FF">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{url('/images/retracelogo.png')}}" alt="Image"/>

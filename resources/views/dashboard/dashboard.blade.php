@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm card">
                 <h2>House</h2>
                 <figure><img width="200em" height="200em"></figure>
                 <p>house description</p>
@@ -13,7 +13,7 @@
                     praesentium provident quod reiciendis rem reprehenderit similique temporibus ullam unde ut velit
                     vitae voluptatum.</p>
             </div>
-            <div class="col-sm">
+            <div class="col-sm card">
                 <h2>Information</h2>
                 <ul>
                     <li>Location</li>
@@ -24,7 +24,7 @@
                     <li>Pictures</li>
                 </ul>
             </div>
-            <div class="col-sm">
+            <div class="col-sm card">
                 <h2>Material Streams</h2>
                 <ul>
                     <li>Stone</li>
@@ -40,7 +40,7 @@
                     <li>Remainder</li>
                 </ul>
             </div>
-                <div class="col-sm">
+                <div class="col-sm card">
 
                     <h2>Waste Streams</h2>
                     <ul>
