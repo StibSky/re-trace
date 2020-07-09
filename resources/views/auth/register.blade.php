@@ -43,11 +43,11 @@
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('type') }}</label>
 
                             <div class="col-md-6">
-                                <input id="type" type="checkbox"  name="type" value="Business">
+                                <input id="type" type="radio"  name="type" value="Business">
 
                                 <label for="type">Business</label>
                                 <br>
-                                <input id="type2" type="checkbox"  name="type" value="Private">
+                                <input id="type2" type="radio"  name="type" value="Private" checked>
                                 <label for="type2">Private</label>
 
                                 @error('type')

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
+    private $id;
     public $timestamps = false;
-    protected $table = "building";
+   protected $table = "building";
 
     /**
      * @return mixed
@@ -204,6 +205,10 @@ class Building extends Model
     public function setPlan($plan): void
     {
         $this->plan = $plan;
+    }
+    public function User()
+    {
+        return $this->belongsTo('App\User');
     }
 
 }
