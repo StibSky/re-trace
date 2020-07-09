@@ -8,23 +8,40 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->first_name;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $first_name
      */
-    public function setName($name): void
+    public function setFirstName($first_name): void
     {
-        $this->name = $name;
+        $this->first_name = $first_name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * @param mixed $last_name
+     */
+    public function setLastName($last_name): void
+    {
+        $this->last_name = $last_name;
+    }
+
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +49,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type'
+        'first_name', 'last_name', 'email', 'password', 'type'
     ];
 
     /**
