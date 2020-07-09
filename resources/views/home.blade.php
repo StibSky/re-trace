@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-6 px-2 card" id="userInfo">
+            <div class="col-6 px-2 card" id="userInfo" style="background-color: rgb(243,191,186)">
                 <div class="row no-gutters d-flex">
                     <div class="col-auto d-flex flex-center pl-4 pt-4">
                         <img src="{{ asset('images/coolbuilding.jpg') }}" class="img-circle" alt="">
@@ -25,7 +25,7 @@
             </div>
             <div class="col-6 float-right">
                 <div class="row">
-                    <div class="col-12 p-2 card d-flex" id="newProject">
+                    <div class="col-12 p-2 card d-flex" id="newProject" style="background-color: rgb(187,206,205)">
                         <a id="newBuilding" href="{{ route('building') }}"><h4>Add New Project</h4></a>
                         <ul>
                             @foreach($buildings as $building)
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 p-2 card" id="newSearch">
+                    <div class="col-12 p-2 card" id="newSearch" style="background-color: rgb(187,206,205)">
                         <form class="example" action="action_page.php">
                             <label>
                                 <input type="text" placeholder="Search.." name="search">

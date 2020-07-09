@@ -25,6 +25,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+
+
+        //linking User to Building, Useful for looping over all Buildings with specific user id
     {
         $userBuilding = Building::with('user')
             ->where('userid', Auth::id())
