@@ -12,6 +12,7 @@
     <!-- Styles -->
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheer" href="{{ asset('css/logolanding.css') }}">
 </head>
 @extends('layouts.app')
 
@@ -19,7 +20,7 @@
 <body>
 <div class="flex-center position-ref full-height">
     <div class="content">
-        <div class="title m-b-md">
+        <div class="title m-b-md" id="logo">
             <img src="{{ asset('images/re_logo.png') }}" class="img-circle" alt="">
         </div>
         <div class="links">

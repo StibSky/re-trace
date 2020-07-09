@@ -18,6 +18,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row no-gutters d-flex">
+                    <div class="col-12 d-flex pl-4 pt-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur aut culpa dignissimos distinctio dolore explicabo hic id incidunt iste maiores minima nemo odit placeat quae repellat sed sunt, tempore vero voluptatibus? Ab, alias amet asperiores consequatur doloribus eligendi esse est eum harum id nisi officia quidem quis, saepe voluptatum!</p>
+                    </div>
+                </div>
             </div>
 
             <div class="col-6 float-right">
