@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-4 d-flex flex-center">
                         <div>
-                            <h4>Hi {{ Auth::user()->name }}</h4>
+                            <h4>Hi {{ Auth::user()->first_name }}</h4>
                         </div>
                     </div>
                 </div>
