@@ -206,6 +206,9 @@ class Building extends Model
     {
         $this->plan = $plan;
     }
+
+
+    // relation to User, necessary for one to many relationship
     public function User()
     {
         return $this->belongsTo('App\User');

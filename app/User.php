@@ -71,6 +71,7 @@ class User extends Authenticatable
     ];
 
 
+    // relation to Building, necessary for one to many relationship
     public function Building()
     {
         return $this->hasMany('App\Building');
