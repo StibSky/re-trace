@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('buildingUpdate') }}" target="_blank" method="post">
+        <form action="{{ route('buildingUpdate') }}" method="post">
             @csrf
             <h2>Address</h2>
             <div class="form-group">

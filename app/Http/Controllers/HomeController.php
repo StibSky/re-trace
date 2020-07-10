@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->where('userid', Auth::id())
             ->get();
 
-        return view('home', [
+        return view('profile-page.home', [
             'buildings' => $userBuilding,
         ]);
     }
