@@ -43,7 +43,7 @@
                             <label>
                                 <input type="text" placeholder="Search.." name="search">
                             </label>
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <button type="submit"><i class="fa fa-search"> submit</i></button>
                         </form>
                     </div>
                 </div>
