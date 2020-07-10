@@ -70,7 +70,8 @@
 
 
     <div class="container text-center">
-        <form class="form-signin" method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
             <img class="mb-4" src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
             <h1 class="h3 mb-3 font-weight-normal">Re-trace.io</h1>
             <div class="form-group row d-flex justify-content-center">
