@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
+@font-face {
+    font-family: "CustomFont";
+    src: url("public/fonts/CircularStd-Book.ttf");
+}
+
 @charset "UTF-8";
 
 /*!
@@ -68,7 +73,7 @@ section {
 
 body {
     margin: 0;
-    font-family: "Nunito", sans-serif;
+    font-family: "CustomFont", sans-serif;
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.6;
@@ -5020,7 +5025,7 @@ input[type=button].btn-block {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #F6F9FF;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;

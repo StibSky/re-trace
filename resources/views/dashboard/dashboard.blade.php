@@ -1,11 +1,13 @@
 @extends('layouts.app')
-
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm">
-                <h2>House</h2>
-                <figure><img width="200em" height="200em"></figure>
+            <div class="col-sm card p-4">
+                <h3>House</h3>
+                <figure><img width="200em" height="200em" src="{{ asset('images/coolbuilding.jpg') }}"></figure>
                 <p>house description</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aliquid asperiores
                     aspernatur atque beatae culpa delectus dolorem doloribus earum eum excepturi facilis illum impedit
@@ -13,8 +15,8 @@
                     praesentium provident quod reiciendis rem reprehenderit similique temporibus ullam unde ut velit
                     vitae voluptatum.</p>
             </div>
-            <div class="col-sm">
-                <h2>Information</h2>
+            <div class="col-sm card p-4">
+                <h3>Information</h3>
                 <ul>
                     <li>Location</li>
                     <li>Measuring State</li>
@@ -24,8 +26,8 @@
                     <li>Pictures</li>
                 </ul>
             </div>
-            <div class="col-sm">
-                <h2>Material Streams</h2>
+            <div class="col-sm card p-4">
+                <h3>Material Streams</h3>
                 <ul>
                     <li>Stone</li>
                     <li>Wood</li>
@@ -40,9 +42,9 @@
                     <li>Remainder</li>
                 </ul>
             </div>
-                <div class="col-sm">
+                <div class="col-sm card p-4">
 
-                    <h2>Waste Streams</h2>
+                    <h3>Waste Streams</h3>
                     <ul>
                         <li>Stone</li>
                         <li>Wood</li>
