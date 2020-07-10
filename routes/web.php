@@ -22,8 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/buildingUpdate', 'NewBuildingController@addBuilding')->name('buildingUpdate');
-Route::get('/dashboard', 'DashboardController@index')->name('dash');
-
+Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
+Route::get('/updateBuilding', 'NewBuildingController@updateBuildingIndex')->name('updateBuilding');
 
 //->middleware('auth')
 
