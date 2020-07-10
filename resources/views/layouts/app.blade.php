@@ -11,14 +11,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    @yield('stylesheet')
+@yield('stylesheet')
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -89,4 +90,28 @@
     </main>
 </div>
 </body>
+<!-- Site footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p class="text-justify">Re-trace.io Building Platform</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+
+
+            <div>
+                <ul class="social-icons">
+                    <li><a class="socialmedia" href="https://www.instagram.com/re_trace.io/" target="_blank"><i class="fa fa-socialmedia"><img src="{{url('/images/instagram.png')}}" width="25px" height="auto"></i></a></li>
+                    <li><a class="linkedin" href="https://www.linkedin.com/company/re-trace-io/" target="_blank"><i class="fa fa-linkedin"><img src="{{url('/images/linkedIn.png')}}" width="25px" height="auto"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>
