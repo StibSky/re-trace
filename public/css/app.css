@@ -11016,3 +11016,11 @@ a.text-dark:focus {
     margin-bottom: 30px;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 15rem;    /* Footer height */
+}
