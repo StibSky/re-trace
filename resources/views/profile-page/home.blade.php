@@ -19,7 +19,7 @@
                 </div>
                 <div class="row no-gutters d-flex">
                     <div class="col-12 d-flex pl-4 pt-4">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur aut culpa dignissimos distinctio dolore explicabo hic id incidunt iste maiores minima nemo odit placeat quae repellat sed sunt, tempore vero voluptatibus? Ab, alias amet asperiores consequatur doloribus eligendi esse est eum harum id nisi officia quidem quis, saepe voluptatum!</p>
+                        <p>this is placeholder text for your building info, you can edit this later.</p>
                     </div>
                   <!--  <a href="{{route('updateBuilding')}}">Edit information</a> -->
                 </div>
@@ -45,6 +45,15 @@
                             </label>
                             <button type="submit"><i class="fa fa-search"> submit</i></button>
                         </form>
+                        <ul>
+
+                            @foreach($substances as $substance)
+                                <li>
+                                    <p> {{ $substance->name }}</p>
+                                    <p> {{$substance->comments}}</p>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
