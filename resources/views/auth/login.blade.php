@@ -102,12 +102,21 @@
                 </div>
             </div>
             <div class="form-group row d-flex justify-content-center">
+                <div class="w-25 text-right">
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" id="forgot-password" href="{{ route('password.request') }}">
+                            {{ __('Forgot Password?') }}
+                        </a>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group row d-flex justify-content-center">
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" name="remember"
                            id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
+                        Keep me logged in
                     </label>
                 </div>
             </div>
@@ -118,17 +127,7 @@
                     </button>
                 </div>
             </div>
-
-            <div class="form-group row d-flex justify-content-center">
-                <div class="w-25 text-right">
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link" id="forgot-password" href="{{ route('password.request') }}">
-                            {{ __('Forgot Password?') }}
-                        </a>
-                    @endif
-                </div>
-            </div>
-            <p class="mt-5 mb-3">Don't have an account? <a href="{{ route('register') }}">{{ __('Register') }}</a></p>
+            <p class="mt-5 mb-3">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
         </form>
     </div>
 @endsection
