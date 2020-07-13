@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 p-2 card" id="newSearch" style="background-color: rgb(187,206,205)">
-                        <form class="example" action="action_page.php">
+                        <form class="example" action="#">
                             <label>
                                 <input type="text" placeholder="Search.." name="search">
                             </label>
