@@ -4,6 +4,11 @@
     <div class="container">
         <form action="{{ route('buildingUpdate') }}" method="post">
             @csrf
+            <h2>Project name</h2>
+            <div class="form-group">
+                <label for="projectName">Name:</label>
+                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="1234 Main St">
+            </div>
             <h2>Address</h2>
             <div class="form-group">
                 <label for="inputAddress">Address:</label>

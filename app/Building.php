@@ -6,6 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
+
+    /**
+     * @return mixed
+     */
+    public function getProjectName()
+    {
+        return $this->projectName;
+    }
+
+    /**
+     * @param mixed $projectName
+     */
+    public function setProjectName($projectName): void
+    {
+        $this->projectName = $projectName;
+    }
     private $id;
     public $timestamps = false;
    protected $table = "building";
@@ -60,7 +76,7 @@ class Building extends Model
 
     protected $fillable = [
         'address1', 'address2','city', 'postcode', 'quantity', 'materialList', 'surface',
-        'image', 'plan','type', 'status', 'userid'
+        'image', 'plan','type', 'status', 'userid', 'projectName'
     ];
 
     /**
