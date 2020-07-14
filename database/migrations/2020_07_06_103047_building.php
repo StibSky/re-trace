@@ -15,7 +15,6 @@ class Building extends Migration
     {
         Schema::create('building', function (Blueprint $table) {
             $table->id()->unsigned();
-            $table->string("projectName");
             $table->string("address1");
             $table->string("address2");
             $table->string("city");
