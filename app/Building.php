@@ -8,7 +8,7 @@ class Building extends Model
 {
     private $id;
     public $timestamps = false;
-   protected $table = "building";
+    protected $table = "building";
 
     /**
      * @return mixed
