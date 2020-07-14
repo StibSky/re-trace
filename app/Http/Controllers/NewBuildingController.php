@@ -23,6 +23,7 @@ class newBuildingController extends Controller
     public function addBuilding(Request $request) {
         $building = new Building();
         if (isset($_POST['submitNewBuilding'])){
+            $building->setProjectName($request->input('projectName'));
             $building->setAddress1($request->input('inputAddress'));
             $building->setAddress2($request->input('inputAddress2'));
             $building->setCity($request->input('inputCity'));
