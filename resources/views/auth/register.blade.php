@@ -160,11 +160,15 @@
 
                 <div class="col-md-6">
                     <input id="type" type="radio"  name="type" value="Business">
-
                     <label for="type">Business</label>
-                    <input id="type2" type="radio"  name="type" value="Private" checked>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="When you're a single home owner">
+                        ?
+                    </button>
+                    <input id="type2" type="radio"  name="type" value="Private">
                     <label for="type2">Private</label>
-
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="When you're a developer or recycling plant">
+                        ?
+                    </button>
                     @error('type')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

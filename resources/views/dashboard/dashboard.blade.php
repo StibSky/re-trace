@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm card p-4">
-                <h3>{{ $project["projectName"] }}</h3>
+                <h3>{{ $project["projectName"] ?? 'Project name' }}</h3>
                 <figure><img width="200em" height="200em" src="{{ asset('images/coolbuilding.jpg') }}"></figure>
                 <p>Type: {{ $project["type"] }}</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aliquid asperiores

@@ -14,7 +14,7 @@ class AddProjectname extends Migration
     public function up()
     {
         Schema::table('building', function (Blueprint $table) {
-            $table->string("projectName");
+            $table->string("projectName")->nullable();
         });
     }
 

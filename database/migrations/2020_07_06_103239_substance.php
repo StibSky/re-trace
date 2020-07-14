@@ -20,9 +20,9 @@ class Substance extends Migration
             $table->integer("code");
             $table->string("name");
             $table->string("nature_of_materials");
-            $table->integer("specific_weight_in_kg/m3");
-            $table->integer("weight_in_kg/m3");
-            $table->string("comments");
+            $table->integer("specific_weight_in_kg_m3");
+            $table->integer("weight_in_kg_m3");
+            $table->string("comments")->nullable();
 
         });
     }
