@@ -18,9 +18,12 @@
             <div class="col-sm card p-4">
                 <h3>Information</h3>
                 <ul>
-                    <li>Location:<br>
-                        {{ $project["address1"] }}<br>
-                        {{ $project["address2"] }}</li>
+                    <li>Location:
+                        <ul>
+                    <li>{{ $project["address1"] }}</li>
+                    <li>{{ $project["address2"] }}</li>
+                    </ul>
+                    </li>
                     <li>Measuring State</li>
                     <li>Material list</li>
                     <li>Surface</li>

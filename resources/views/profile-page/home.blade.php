@@ -31,7 +31,7 @@
                         <ul>
                             @foreach($buildings as $building)
                                 <li>
-                                    <a href="{{route('dash', $building->id)}}"> {{ $building->address1 }}</a>
+                                    <a href="{{route('dash', $building->id)}}"> {{ $building->projectName }}</a>
                                 </li>
                             @endforeach
                         </ul>
