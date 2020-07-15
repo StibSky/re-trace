@@ -17,8 +17,8 @@ class Images extends Migration
             $table->id();
             $table->bigInteger("buildid")->nullable()->unsigned();
             $table->string("image");
-            $table->dateTime("created_at")->nullable();
-            $table->dateTime("updated_at")->nullable();
+            $table->dateTime("created_at");
+            $table->dateTime("updated_at");
         });
 
         Schema::table('image', function (Blueprint $table) {
