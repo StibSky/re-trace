@@ -33,14 +33,14 @@ class newBuildingController extends Controller
             $building->setType($request->input('type'));
             $user = Auth::user();
             $building->setUserid($user->id);
-
+            $building->save();
             $image->setImage($request->input('projectImage'));
             $image->setCreatedAt(date("Y-m-d H:i:s"));
             $image->setBuildid($building->getId());
 
 
             $image->save();
-            $building->save();
+
         }
 
         //this if statement is not in production
