@@ -55,12 +55,12 @@
                 <div class="col-md-6">
                     <input id="type" type="radio"  name="type" value="Business">
                     <label for="type">Business</label>
-                    <button class="custom-tooltip text-center" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a single home owner">
+                    <button class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a single home owner">
                         ?
                     </button>
                     <input id="type2" type="radio"  name="type" value="Private">
                     <label for="type2">Private</label>
-                    <button class="custom-tooltip text-center" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a developer or recycling plant">
+                    <button class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a developer or recycling plant">
                         ?
                     </button>
                     @error('type')
