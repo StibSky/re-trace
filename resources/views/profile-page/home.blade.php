@@ -46,13 +46,7 @@
                             <button type="submit"><i class="fa fa-search"> submit</i></button>
                         </form>
                         <ul>
-
-                            @foreach($substances as $substance)
-                                <li>
-                                    <p> {{ $substance->name }}</p>
-                                    <p> {{$substance->comments}}</p>
-                                </li>
-                            @endforeach
+                            
                         </ul>
                     </div>
                 </div>
