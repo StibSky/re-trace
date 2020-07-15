@@ -36,6 +36,7 @@ class newBuildingController extends Controller
 
             $image->setImage($request->input('projectImage'));
             $image->setCreatedAt(date("Y-m-d H:i:s"));
+            $image->setBuildid($building->getId());
 
 
             $image->save();

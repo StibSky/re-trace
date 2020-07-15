@@ -23,7 +23,7 @@ class Building extends Model
         $this->projectName = $projectName;
     }
 
-    private $id;
+
     public $timestamps = false;
     protected $table = "building";
 
@@ -102,6 +102,14 @@ class Building extends Model
     public function getAddress2()
     {
         return $this->address2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
