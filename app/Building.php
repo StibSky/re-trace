@@ -22,6 +22,7 @@ class Building extends Model
     {
         $this->projectName = $projectName;
     }
+
     private $id;
     public $timestamps = false;
     protected $table = "building";
@@ -75,8 +76,8 @@ class Building extends Model
     }
 
     protected $fillable = [
-        'address1', 'address2','city', 'postcode', 'quantity', 'materialList', 'surface',
-        'image', 'plan','type', 'status', 'userid', 'projectName'
+        'address1', 'address2', 'city', 'postcode', 'quantity', 'materialList', 'surface',
+        'image', 'plan', 'type', 'status', 'userid', 'projectName'
     ];
 
     /**
@@ -230,4 +231,8 @@ class Building extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function Image()
+    {
+        return $this->hasMany('App\Image');
+    }
 }

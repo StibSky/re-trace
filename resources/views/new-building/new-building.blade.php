@@ -4,10 +4,14 @@
     <div class="container">
         <form action="{{ route('buildingUpdate') }}" method="post">
             @csrf
-            <h2>Project name</h2>
+            <h2>Project info</h2>
             <div class="form-group">
                 <label for="projectName">Name:</label>
                 <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding">
+            </div>
+            <div class="form-group">
+                <label for="projectImage">image url:</label>
+                <input type="text" class="form-control" id="projectImage" name="projectImage" placeholder="http://building.png">
             </div>
             <h2>Address</h2>
             <div class="form-group">

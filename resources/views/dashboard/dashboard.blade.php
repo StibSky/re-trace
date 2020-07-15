@@ -7,13 +7,9 @@
         <div class="row">
             <div class="col-sm card p-4">
                 <h3>{{ $project["projectName"] ?? 'Project name' }}</h3>
-                <figure><img width="200em" height="200em" src="{{ asset('images/coolbuilding.jpg') }}"></figure>
+                <figure><img width="200em" height="200em" src="{{$image->image}}"></figure>
                 <p>Type: {{ $project["type"] }}</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aliquid asperiores
-                    aspernatur atque beatae culpa delectus dolorem doloribus earum eum excepturi facilis illum impedit
-                    inventore, ipsam, itaque laudantium molestias natus necessitatibus obcaecati odio omnis perspiciatis
-                    praesentium provident quod reiciendis rem reprehenderit similique temporibus ullam unde ut velit
-                    vitae voluptatum.</p>
+                <p>Here will come the information about your project.</p>
             </div>
             <div class="col-sm card p-4">
                 <h3>Information</h3>
@@ -67,4 +63,11 @@
                 </div>
             </div>
         </div>
+    <div class="card-body">
+        <form action="{{ route('upload') }}"method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="userfile" />
+            <input type="submit" value="upload"/>
+        </form>
+    </div>
 @endsection

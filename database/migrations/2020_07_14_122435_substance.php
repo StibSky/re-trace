@@ -15,6 +15,9 @@ class Substance extends Migration
     {
         Schema::create('substance', function (Blueprint $table) {
             $table->id();
+            //is not an integer at the moment
+            //ints to doubles
+            //nullable
             $table->integer("article_number");
             $table->string("stream");
             $table->integer("code");

@@ -17,8 +17,8 @@ class Plan extends Migration
             $table->id();
             $table->bigInteger("buildid")->nullable()->unsigned();
             $table->string("plan");
-            $table->dateTime("created_at");
-            $table->dateTime("updated_at");
+            $table->dateTime("created_at")->nullable();
+            $table->dateTime("updated_at")->nullable();
         });
 
         Schema::table('plan', function (Blueprint $table) {

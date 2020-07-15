@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Building;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class newBuildingController extends Controller
 
     public function addBuilding(Request $request) {
         $building = new Building();
+        $image = new Image();
         if (isset($_POST['submitNewBuilding'])){
             $building->setProjectName($request->input('projectName'));
             $building->setAddress1($request->input('inputAddress'));
@@ -31,8 +33,16 @@ class newBuildingController extends Controller
             $building->setType($request->input('type'));
             $user = Auth::user();
             $building->setUserid($user->id);
+
+            $image->setImage($request->input('projectImage'));
+            $image->setCreatedAt(date("Y-m-d H:i:s"));
+
+
+            $image->save();
             $building->save();
         }
+
+        //this if statement is not in production
         if (isset($_POST['submitBuildingInfo'])) {
             $building = Building::where('userid', Auth::id())->first();
             $building->setImage($request->input('buildingImage'));
