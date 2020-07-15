@@ -61,7 +61,9 @@
                     </button>
                 </div>
             </div>
-            <p class="mt-5 mb-3">Don't have an account? <a href="{{ route('register') }}">Sign up</a></p>
+            <hr class="w-25">
+            <p class="mt-2 mb-1">Don't have an account?</p> <br>
+            <button id="redirect-button" class="btn btn-primary" href="{{ route('register') }}">Sign up</button>
         </form>
     </div>
     <script type="text/javascript" language="JavaScript">

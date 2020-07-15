@@ -55,14 +55,14 @@
                 <div class="col-md-6">
                     <input id="type" type="radio"  name="type" value="Business">
                     <label for="type">Business</label>
-                    <span class="custom-tooltip" data-toggle="tooltip" data-placement="bottom" title="When you're a single home owner">
+                    <button class="custom-tooltip text-center" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a single home owner">
                         ?
-                    </span>
+                    </button>
                     <input id="type2" type="radio"  name="type" value="Private">
                     <label for="type2">Private</label>
-                    <span class="custom-tooltip" data-toggle="tooltip" data-placement="bottom" title="When you're a developer or recycling plant">
+                    <button class="custom-tooltip text-center" tabindex="-1" data-toggle="tooltip" data-placement="bottom" title="When you're a developer or recycling plant">
                         ?
-                    </span>
+                    </button>
                     @error('type')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

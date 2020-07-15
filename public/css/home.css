@@ -10,3 +10,10 @@
 #newSearch {
     margin-top: 4em;
 }
+
+#add-button {
+    width: 14vw;
+    background-color: rgb(243,191,186);
+    border-color: rgb(243,191,186);
+    color: black;
+}
