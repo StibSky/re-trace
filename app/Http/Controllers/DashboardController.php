@@ -14,7 +14,9 @@ class DashboardController extends Controller
         $project = Building::all()->find($id);
         //$image = Image::where('buildid', $id);
         $image = Image::all()->find($id);
-        
+
+        var_dump($image->image);
+
 
         return view('dashboard.dashboard', [
             'project' => $project,

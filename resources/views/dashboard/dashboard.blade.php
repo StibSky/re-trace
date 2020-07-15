@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm card p-4">
                 <h3>{{ $project["projectName"] ?? 'Project name' }}</h3>
-                <figure><img width="200em" height="200em" src="{{$image["image"]}}"></figure>
+                <figure><img width="200em" height="200em" src="{{$image->image}}"></figure>
                 <p>Type: {{ $project["type"] }}</p>
                 <p>Here will come the information about your project.</p>
             </div>
