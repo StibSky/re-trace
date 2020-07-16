@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
 @section('content')
     <div class="container">
         <form action="{{ route('buildingUpdate') }}" method="post">
@@ -39,7 +41,7 @@
                 </div>
             </div>
             <br>
-            <button type="submit"  class="btn-success" name="submitNewBuilding">Submit </button>
+            <button type="submit"  id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit </button>
         </form>
     </div>
 @endsection

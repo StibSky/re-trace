@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
 @section('content')
     <div class="container">
@@ -27,30 +28,34 @@
             <div class="col-6 float-right">
                 <div class="row">
                     <div class="col-12 p-2 card d-flex" id="newProject">
-                        <div class="card-title mt-1 ml-1"><h4>My projects</h4></div>
+                        <div class="card-title mt-3 ml-3"><h3>My projects</h3></div>
                         <div class="card-body">
                             <ul>
                                 @foreach($buildings as $building)
-                                    <li>
-                                        <a href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                    <li class="mb-1 d-flex justify-content-between">
+                                        <a  id="project-names" href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                        <div>
+                                            <a class="btn btn-primary" id="edit-button" href="#">Edit</a>
+                                            <a class="btn btn-primary" id="delete-button" href="#">Delete</a>
+                                        </div>
                                     </li>
+                                    <hr>
                                 @endforeach
                             </ul>
                         </div>
-                        <a class="btn btn-primary" id="add-button" href="{{ route('building') }}">Add New Project</a>
+                        <a class="btn btn-primary mb-2 ml-2" id="add-button" href="{{ route('building') }}">Add New Project</a>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 p-2 card" id="newSearch">
-                        <form class="example" action="#">
-                            <label>
-                                <input type="text" placeholder="Search.." name="search">
-                            </label>
-                            <button type="submit"><i class="fa fa-search"> submit</i></button>
+                    <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
+                        <form class="form">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 20px; border-radius: 40px;" id="mysearch">
+                                <div class="input-group-addon py-1" style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;" id="search-btn"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
                         </form>
-                        <ul>
-
-                        </ul>
                     </div>
                 </div>
             </div>
