@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
 use App\Substance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,5 +39,10 @@ class UpdateAdminController extends Controller
             $substance->setCode($request->input('is_hazardous'));
             $substance->save();
         }
+    }
+    public function addSubstance(){
+        $substance = new Substance();
+
+
     }
 }
