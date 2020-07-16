@@ -19,6 +19,7 @@ class UpdateAdminController extends Controller
 
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '7')->get();
 
+
         return view('adminDatabase.admindb', [
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
@@ -40,6 +41,7 @@ class UpdateAdminController extends Controller
             $substance->setParent($request->input('parent'));
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
+
             $substance->save();
 
             //$parent = Substance::where();

@@ -123,8 +123,9 @@
                     </div>
                 </div>
             </div>
+        </footer>
     </div>
-    </footer>
+
     @yield('script')
 </div>
 

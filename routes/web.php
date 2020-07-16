@@ -39,7 +39,6 @@ Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb','UpdateAdminController@update')->name('saveAdmin');
 
 
-
 //->middleware('auth')
 
 
