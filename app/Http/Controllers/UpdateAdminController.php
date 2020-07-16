@@ -28,9 +28,4 @@ class UpdateAdminController extends Controller
     {
 
     }
-    public function addSubstance(){
-        $substance = new Substance();
-
-
-    }
 }
