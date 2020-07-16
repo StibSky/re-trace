@@ -26,6 +26,7 @@ class UpdateAdminController extends Controller
         ]);
     }
 
+
     public function update(Request $request)
     {
         $substance = new Substance();
@@ -45,5 +46,4 @@ class UpdateAdminController extends Controller
             $substance->setParent($parent->code);
         }
     }
-
 }
