@@ -32,18 +32,17 @@ class UpdateAdminController extends Controller
         $substance = new Substance();
         if (isset($_POST['addSubstance'])) {
             $substance->setName($request->input('name'));
-            //$substance->setNameNl($request->input('name_nl'));
-            //$substance->setNameFr($request->input('name_fr'));
+            $substance->setNameNl($request->input('name_nl'));
+            $substance->setNameFr($request->input('name_fr'));
             $substance->setSpecificWeight($request->input('specific_weight'));
             $substance->setCode($request->input('code'));
-            //$substance->setCode($request->input('comments'));
-
+            $substance->setComments($request->input('comments'));
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
             $substance->save();
 
-            $parent = Substance::where();
-            $substance->setParent($parent->code);
+            //$parent = Substance::where();
+            //$substance->setParent($parent->code);
         }
     }
 }
