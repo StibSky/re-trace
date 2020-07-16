@@ -11,7 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-@yield('stylesheet')
+    @yield('head-script')
+
 
 <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    @yield('stylesheet')
 
 </head>
 
@@ -123,7 +125,9 @@
             </div>
     </div>
     </footer>
+    @yield('script')
 </div>
+
 </body>
 <!-- Site footer -->
 
