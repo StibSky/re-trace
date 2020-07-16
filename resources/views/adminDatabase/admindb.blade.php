@@ -78,21 +78,21 @@
 
 
 
-                            <option value="{{ isset($_POST['addSubstance']) ? $headCategory->id : $headCategory->name }}" class="categoryOptions">
+                            <option value="{{ $headCategory->id }}" class="categoryOptions">
                                 {{ $headCategory->code . " " .$headCategory->name }}
                             </option>
 
                     @endforeach
                     @foreach($subCategories1 as $subCategory1)
 
-                        <option value="{{ isset($_POST['addSubstance']) ? $subCategory1->id : $subCategory1->name}}" class="categoryOptions">
+                        <option value="{{ $subCategory1->id }}" class="categoryOptions">
                             ---{{$subCategory1->code . " " .$subCategory1->name }}
                         </option>
 
                     @endforeach
                     @foreach($subCategories2 as $subCategory2)
 
-                        <option value="{{ isset($_POST['addSubstance']) ? $subCategory2->id : $subCategory2->name }}" class="categoryOptions">
+                        <option value="{{ $subCategory2->id }}" class="categoryOptions">
                             ------{{ $subCategory2->code . " " .$subCategory2->name }}
                         </option>
 
@@ -112,12 +112,12 @@
             $('#filterCategories').change(function() {
                 var filter = $(this).val();
                 $('.categoryOptions').each(function() {
-                    if ($(this).text().match(filter)) {
+                    if ($(this).text().toLocaleLowerCase().includes(filter.toLowerCase())) {
                         $(this).show();
                     } else {
                         $(this).hide();
                     }
-                    $('#categorySelect').text().match(filter);
+                    $('#categorySelect').text().toLocaleLowerCase().includes(filter.toLowerCase());
                 })
             })
         })
