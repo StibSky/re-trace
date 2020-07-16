@@ -26,6 +26,7 @@ class UpdateAdminController extends Controller
         ]);
     }
 
+
     public function update(Request $request)
     {
         $substance = new Substance();
@@ -39,10 +40,5 @@ class UpdateAdminController extends Controller
             $substance->setCode($request->input('is_hazardous'));
             $substance->save();
         }
-    }
-    public function addSubstance(){
-        $substance = new Substance();
-
-
     }
 }
