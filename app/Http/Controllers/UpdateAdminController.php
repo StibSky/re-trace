@@ -20,6 +20,7 @@ class UpdateAdminController extends Controller
 
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '7')->get();
 
+
         $unit = Unit::all();
 
         return view('adminDatabase.admindb', [
@@ -44,6 +45,10 @@ class UpdateAdminController extends Controller
             $substance->setParent($request->input('parent'));
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
+
+
+            $substance->save();
+
             if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 7) {
                 $substance->save();
                 return redirect()->back()->with('success', 'IT WORKS!');
