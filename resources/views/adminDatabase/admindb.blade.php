@@ -112,12 +112,12 @@
             $('#filterCategories').change(function() {
                 var filter = $(this).val();
                 $('.categoryOptions').each(function() {
-                    if ($(this).text().toLocaleLowerCase().includes(filter.toLowerCase())) {
+                    if ($(this).text().toLowerCase().includes(filter.toLowerCase())) {
                         $(this).show();
                     } else {
                         $(this).hide();
                     }
-                    $('#categorySelect').text().toLocaleLowerCase().includes(filter.toLowerCase());
+                    $('#categorySelect').text().toLowerCase().includes(filter.toLowerCase());
                 })
             })
         })
