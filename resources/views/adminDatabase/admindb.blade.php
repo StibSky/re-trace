@@ -14,7 +14,7 @@
                     {{ session()->get('error') }}
                 </div>
             @endif
-        <form action="{{ route('saveAdmin') }}" method="post">
+        <form action="{{ route('saveAdmin') }}" method="post" name="substanceForm">
             @csrf
             <h2>Basic Info</h2>
             <div class="form-group">
@@ -69,31 +69,32 @@
             </div>
             <h2>Select Parent</h2>
             <label>
-                <select name="parent">
-                    <option value="{{ null }}">
+                <input type="text" name="filter" id="filterCategories"/>
+                <select name="parent" id="categorySelect">
+                    <option value="{{ null }}" class="headCategory">
                         NO PARENT/NEW CATEGORY
                     </option>
                     @foreach($headCategories as $headCategory)
 
 
 
-                            <option value="{{ $headCategory->id }}">
+                            <option value="{{ isset($_POST['addSubstance']) ? $headCategory->id : $headCategory->name }}" class="categoryOptions">
                                 {{ $headCategory->code . " " .$headCategory->name }}
                             </option>
 
                     @endforeach
                     @foreach($subCategories1 as $subCategory1)
 
-                            <option value="{{ $subCategory1->id }}">
-                                ---{{$subCategory1->code . " " .$subCategory1->name }}
-                            </option>
+                        <option value="{{ isset($_POST['addSubstance']) ? $subCategory1->id : $subCategory1->name}}" class="categoryOptions">
+                            ---{{$subCategory1->code . " " .$subCategory1->name }}
+                        </option>
 
                     @endforeach
                     @foreach($subCategories2 as $subCategory2)
 
-                            <option value="{{ $subCategory2->id }}">
-                                ------{{ $subCategory2->code . " " .$subCategory2->name }}
-                            </option>
+                        <option value="{{ isset($_POST['addSubstance']) ? $subCategory2->id : $subCategory2->name }}" class="categoryOptions">
+                            ------{{ $subCategory2->code . " " .$subCategory2->name }}
+                        </option>
 
                     @endforeach
 
@@ -106,5 +107,19 @@
     </div>
 @endsection
 @section('script')
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#filterCategories').change(function() {
+                var filter = $(this).val();
+                $('.categoryOptions').each(function() {
+                    if ($(this).text().match(filter)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                    $('#categorySelect').text().match(filter);
+                })
+            })
+        })
+    </script>
 @endsection
