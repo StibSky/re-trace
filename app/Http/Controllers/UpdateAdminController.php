@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\DB;
 class UpdateAdminController extends Controller
 {
     public function index()
-
     {
-
-
+        
         return view('adminDatabase.admindb');
     }
 
