@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Substance;
+use App\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,10 +20,13 @@ class UpdateAdminController extends Controller
 
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '7')->get();
 
+        $unit = Unit::all();
+
         return view('adminDatabase.admindb', [
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
-            'subCategories2' => $subCategory2
+            'subCategories2' => $subCategory2,
+            'units' => $unit,
         ]);
     }
 

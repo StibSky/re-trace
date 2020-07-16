@@ -38,16 +38,27 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputCity">Unit ID:</label>
-                    <input type="text" class="form-control" id="inputCity" name="unit_id">
+                    <label for="unit_id">Unit ID:</label>
+                    <select name="unit_id" id="unit_id">
+                        @foreach($units as $unit)
+                            <option value="{{ $unit->id }}">
+                                {{ $unit->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPostCode">Is hazardous:</label>
-                    <input type="text" class="form-control" id="inputPostCode" name="is_hazardous">
+                <div class="form-group col-md-6">
+                    <label for="is_hazardous">Is hazardous:</label>
+                    <select name="is_hazardous" id="is_hazardous">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="headCode">Code</label>
-                    <input type="text" class="form-control" id="headCode" name="code"
+                    <label for="code">Code</label>
+                    <input type="text" class="form-control" id="code" name="code"
                            placeholder="1701">
                 </div>
                 <div class="form-group">
@@ -59,8 +70,8 @@
             <h2>Select Parent</h2>
             <label>
                 <select name="parent">
-                    <option value="0">
-                        ----
+                    <option value="{{ null }}">
+                        NO PARENT/NEW CATEGORY
                     </option>
                     @foreach($headCategories as $headCategory)
 
@@ -89,27 +100,6 @@
 
                 </select>
             </label>
-            <h3>OR</h3>
-            <h2>Make new head category</h2>
-            <div class="form-group">
-                <label for="headName">Name</label>
-                <input type="text" class="form-control" name="headName" placeholder="Stonelike materials">
-            </div>
-            <div class="form-group">
-                <label for="headName_nl">Nederlandse Naam</label>
-                <input type="text" class="form-control" name="headName_nl"
-                       placeholder="Steenachtige materialen">
-            </div>
-            <div class="form-group">
-                <label for="headName_fr">Franse naam</label>
-                <input type="text" class="form-control" name="headName_fr"
-                       placeholder="Matériaux pierreux">
-            </div>
-            <div class="form-group">
-                <label for="headCode">Code</label>
-                <input type="text" class="form-control" id="headCode" name="headCode"
-                       placeholder="1701">
-            </div>
 
             <button type="submit" id="add-button" class="btn btn-primary" name="addSubstance">Submit</button>
         </form>
