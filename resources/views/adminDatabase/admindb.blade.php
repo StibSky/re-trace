@@ -48,17 +48,17 @@
             <h2>Address</h2>
             <div class="form-group">
                 <label for="type">Specific weight</label>
-                <input type="text" class="form-control" id="type" name="type"
+                <input type="text" class="form-control" id="type" name="specific_weight"
                        placeholder="if applicable">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputCity">City:</label>
-                    <input type="text" class="form-control" id="inputCity" name="inputCity">
+                    <label for="inputCity">Unit ID:</label>
+                    <input type="text" class="form-control" id="inputCity" name="unit_id">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputPostCode">Post code:</label>
-                    <input type="text" class="form-control" id="inputPostCode" name="inputPostCode">
+                    <label for="inputPostCode">Is hazardous:</label>
+                    <input type="text" class="form-control" id="inputPostCode" name="is_hazardous">
                 </div>
             </div>
             <br>
