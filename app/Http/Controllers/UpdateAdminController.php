@@ -40,9 +40,5 @@ class UpdateAdminController extends Controller
             $substance->save();
         }
     }
-    public function addSubstance(){
-        $substance = new Substance();
 
-
-    }
 }
