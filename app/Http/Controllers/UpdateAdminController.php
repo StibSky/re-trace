@@ -46,9 +46,11 @@ class UpdateAdminController extends Controller
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
 
+            if ($substance->getName()==null) {
+                return redirect()->back()->with('error', 'please fill in a name');
+            }
             if ($substance->getSpecificWeight()==null) {
                 return redirect()->back()->with('error', 'please fill in a weight (0 if you dont know)');
-
             }
             if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 9) {
                 $substance->save();
