@@ -35,6 +35,11 @@ Route::post('/upload', function (Request $request ){
     return redirect()->route('home');
 })->name('upload');
 
+Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
+Route::post('/saveadmindb','UpdateAdminController@update')->name('saveAdmin');
+
+
+
 //->middleware('auth')
 
 
