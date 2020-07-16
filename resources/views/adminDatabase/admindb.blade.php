@@ -50,8 +50,8 @@
                 <div class="form-group col-md-6">
                     <label for="is_hazardous">Is hazardous:</label>
                     <select name="is_hazardous" id="is_hazardous">
-                        <option value="1">Yes</option>
                         <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
             </div>
@@ -112,12 +112,12 @@
             $('#filterCategories').change(function() {
                 var filter = $(this).val();
                 $('.categoryOptions').each(function() {
-                    if ($(this).text().toLocaleLowerCase().includes(filter.toLowerCase())) {
+                    if ($(this).text().toLowerCase().includes(filter.toLowerCase())) {
                         $(this).show();
                     } else {
                         $(this).hide();
                     }
-                    $('#categorySelect').text().toLocaleLowerCase().includes(filter.toLowerCase());
+                    $('#categorySelect').text().toLowerCase().includes(filter.toLowerCase());
                 })
             })
         })
