@@ -18,7 +18,7 @@ class Substance extends Migration
             $table->string("name");
             $table->string("name_nl")->nullable();
             $table->string("name_fr")->nullable();
-            $table->double('specific_weight');
+            $table->double('specific_weight')->nullable();
             $table->string("code");
             $table->unsignedBigInteger("parent")->nullable();
             $table->unsignedBigInteger("unit_id");

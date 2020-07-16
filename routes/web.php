@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +37,7 @@ Route::post('/upload', function (Request $request ){
 })->name('upload');
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
-Route::post('/saveadmindb','UpdateAdminController@update')->name('saveAdmin');
-
+Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');;
 
 //->middleware('auth')
 
