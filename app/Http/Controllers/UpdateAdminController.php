@@ -55,7 +55,7 @@ class UpdateAdminController extends Controller
                 return redirect()->back()->with('success', 'IT WORKS!');
             }
             else {
-                return redirect()->back()->with('error', 'Code must be 4, 6 or 7 characters long');
+                return redirect()->back()->with('error', 'Code must be 4, 6 or 9 characters long');
             }
 
 
