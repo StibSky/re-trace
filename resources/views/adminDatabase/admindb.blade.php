@@ -10,20 +10,30 @@
             <label>
                 <select>
                     @foreach($headCategories as $headCategory)
-                        @foreach($subCategories1 as $subCategory1)
-                            @foreach($subCategories2 as $subCategory2)
-                    <option>
-                        {{ $headCategory->name }}
-                    </option>
-                                <option>
-                                    ---{{ $subCategory1->name }}
-                                </option>
-                                <option>
-                                    ------{{ $subCategory2->name }}
-                                </option>
-                            @endforeach
-                        @endforeach
+
+
+
+                            <option>
+                                {{ $headCategory->code . " " .$headCategory->name }}
+                            </option>
+
                     @endforeach
+                    @foreach($subCategories1 as $subCategory1)
+
+                            <option>
+                                ---{{$subCategory1->code . " " .$subCategory1->name }}
+                            </option>
+
+                    @endforeach
+                    @foreach($subCategories2 as $subCategory2)
+
+                            <option>
+                                ------{{ $subCategory2->code . " " .$subCategory2->name }}
+                            </option>
+
+                    @endforeach
+
+
                 </select>
             </label>
             <div class="form-group">
