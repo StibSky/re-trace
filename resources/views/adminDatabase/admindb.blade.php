@@ -48,7 +48,7 @@
             </div>
             <h2>Select Parent</h2>
             <label>
-                <select>
+                <select name="parent">
                     <option value="0">
                         ----
                     </option>

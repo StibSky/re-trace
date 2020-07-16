@@ -37,6 +37,7 @@ class UpdateAdminController extends Controller
             $substance->setSpecificWeight($request->input('specific_weight'));
             $substance->setCode($request->input('code'));
             $substance->setComments($request->input('comments'));
+            $substance->setParent($request->input('parent'));
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
             $substance->save();
