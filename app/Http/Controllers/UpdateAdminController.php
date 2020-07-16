@@ -50,7 +50,7 @@ class UpdateAdminController extends Controller
                 return redirect()->back()->with('error', 'please fill in a weight (0 if you dont know)');
 
             }
-            if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 7) {
+            if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 9) {
                 $substance->save();
                 return redirect()->back()->with('success', 'IT WORKS!');
             }
