@@ -50,8 +50,8 @@
                 <div class="form-group col-md-6">
                     <label for="is_hazardous">Is hazardous:</label>
                     <select name="is_hazardous" id="is_hazardous">
-                        <option value="1">Yes</option>
                         <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </div>
             </div>
