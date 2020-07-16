@@ -13,7 +13,9 @@ class UpdateAdminController extends Controller
     {
         $substance = Substance::all();
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
+
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
+
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '7')->get();
 
         return view('adminDatabase.admindb', [
@@ -23,8 +25,18 @@ class UpdateAdminController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
-
+        $substance = new Substance();
+        if (isset($_POST['addSubstance'])){
+            $substance->setName($request->input('name'));
+            $substance->setNameNl($request->input('name_nl'));
+            $substance->setNameFr($request->input('name_fr'));
+            $substance->setSpecificWeight($request->input('specific_weight'));
+            $substance->setCode($request->input('code'));
+            $substance->setCode($request->input('comments'));
+            $substance->setCode($request->input('is_hazardous'));
+            $substance->save();
+        }
     }
 }
