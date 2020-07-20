@@ -28,7 +28,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <div class="col-12 d-flex pl-4 pt-4">
                         <p>this is placeholder text for your building info, you can edit this later.</p>
                     </div>
-                <!--  <a href="{{route('updateBuilding')}}">Edit information</a> -->
                 </div>
             </div>
             <div class="col-sm-6 col-12 p-2 card d-flex" id="projectInfo">

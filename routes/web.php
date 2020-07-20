@@ -28,7 +28,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
-Route::post('/buildingUpdate', 'NewBuildingController@addBuilding')->name('buildingUpdate');
+Route::post('/newBuilding', 'NewBuildingController@addBuilding')->name('newBuilding');
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/updateBuilding', 'NewBuildingController@updateBuildingIndex')->name('updateBuilding');
