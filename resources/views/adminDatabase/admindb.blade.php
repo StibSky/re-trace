@@ -75,13 +75,9 @@
                         NO PARENT/NEW CATEGORY
                     </option>
                     @foreach($headCategories as $headCategory)
-
-
-
                             <option value="{{ $headCategory->id }}" class="categoryOptions">
                                 {{ $headCategory->code . " " .$headCategory->name }}
                             </option>
-
                     @endforeach
                     @foreach($subCategories1 as $subCategory1)
 

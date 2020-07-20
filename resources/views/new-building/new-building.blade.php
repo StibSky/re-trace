@@ -3,6 +3,11 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
+    @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+    @endif
     <div class="container">
         <form action="{{ route('buildingUpdate') }}" method="post">
             @csrf
@@ -13,12 +18,14 @@
             </div>
             <div class="form-group">
                 <label for="projectImage">image url:</label>
-                <input type="text" class="form-control" id="projectImage" name="projectImage" placeholder="http://building.png">
+                <input type="text" class="form-control" id="projectImage" name="projectImage"
+                       placeholder="http://building.png">
             </div>
             <h2>Address</h2>
             <div class="form-group">
                 <label for="inputAddress">Address:</label>
-                <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="1234 Main St">
+                <input type="text" class="form-control" id="inputAddress" name="inputAddress"
+                       placeholder="1234 Main St">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Address line 2:</label>
@@ -41,7 +48,16 @@
                 </div>
             </div>
             <br>
-            <button type="submit"  id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit </button>
+            <button type="submit" id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit</button>
         </form>
+
+        <br>
+        <br>
+        <br>
+        <p >Didn't want to create a new project?</p>
+        <a type="submit" id="add-button" class="btn btn-primary " name="submitNewBuilding"
+           href="{{route('home')}}">Back
+            to profile </a>
+
     </div>
 @endsection
