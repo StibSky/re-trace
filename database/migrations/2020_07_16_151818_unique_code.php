@@ -15,7 +15,7 @@ class UniqueCode extends Migration
 
         Schema::create('substance', function (Blueprint $table)
         {
-            $table->string("code")->unique();
+            $table->string("code")->unique()->change;
         });
     }
 
