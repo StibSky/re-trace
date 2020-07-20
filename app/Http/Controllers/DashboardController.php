@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    /*
+     * This controller is used to display information on the User profile
+     * It is linked to the Image and Building Database
+     */
     public function index($id)
     {
         $project = Building::all()->find($id);

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    /*
+    * image class with getters and setters for properties
+    * foreign key to building
+    */
+
     /**
      * @return mixed
      */

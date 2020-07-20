@@ -1,4 +1,8 @@
 <!doctype html>
+<!--
+MAIN blade. used to set layout of most pages, includes header and footer
+sets up the navbar and yields the content of the other pages
+-->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">

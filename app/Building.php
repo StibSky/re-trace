@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Building extends Model
 {
 
+    /*
+     * building class with getters and setters for properties
+     * foreign keys to users and image at the bottom
+     */
+
     /**
      * @return mixed
      */

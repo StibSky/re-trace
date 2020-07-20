@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Substance extends Model
 {
+
+    /*
+    * substance class with getters and setters for properties
+    * foreign keys to unit
+    */
     private $id;
     public $timestamps = false;
     protected $table = "substance";

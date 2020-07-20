@@ -8,6 +8,9 @@
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 @endsection
 @section('content')
+    <!--
+HOMEPAGE for users, users find their projects here and functionality to upload files/materiallists
+-->
     <div class="container">
         <div class="d-flex flex-md-row flex-column align-items-center">
             <div class="col-sm-6 col-12 px-2 card" id="userInfo">
