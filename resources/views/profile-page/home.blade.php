@@ -3,11 +3,13 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
+@section('head-script')
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
-
-            <div class="col-6 px-2 card" id="userInfo">
+            <div class="col-6 col-sm-12 px-2 card" id="userInfo">
                 <div class="row no-gutters d-flex">
                     <div class="col-auto d-flex flex-center pl-4 pt-4">
                         <img src="{{ asset('images/coolbuilding.jpg') }}" class="img-circle" alt="">
