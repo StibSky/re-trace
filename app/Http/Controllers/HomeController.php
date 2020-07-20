@@ -34,13 +34,19 @@ class HomeController extends Controller
             ->where('userid', Auth::id())
             ->get();
 
+        $firstbuilding = Building::with('user')
+            ->where('userid', Auth::id())
+            ->first();
+
         //gets all the infor out the substances database
         $substances = DB::table('substance')->get();
+
 
 
         return view('profile-page.home', [
             'buildings' => $userBuilding,
             'substances' => $substances,
+            'firstbuilding' => $firstbuilding
 
         ]);
     }

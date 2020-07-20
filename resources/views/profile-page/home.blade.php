@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
 @section('content')
     <!--
@@ -25,7 +26,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <div class="col-12 d-flex pl-4 pt-4">
                         <p>this is placeholder text for your building info, you can edit this later.</p>
                     </div>
-                  <!--  <a href="{{route('newBuilding')}}">Edit information</a> -->
+                <!--  <a href="{{route('newBuilding')}}">Edit information</a> -->
                 </div>
             </div>
             <div class="col-6 float-right">
@@ -36,7 +37,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             <ul>
                                 @foreach($buildings as $building)
                                     <li class="mb-1 d-flex justify-content-between">
-                                        <a  id="project-names" href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                        <a id="project-names"
+                                           href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                         <div>
                                             <a class="btn btn-primary" id="edit-button" href="#">Edit</a>
                                             <a class="btn btn-primary" id="delete-button" href="#">Delete</a>
@@ -46,21 +48,41 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 @endforeach
                             </ul>
                         </div>
-                        <a class="btn btn-primary mb-2 ml-2" id="add-button" href="{{ route('building') }}">Add New Project</a>
+                        <a class="btn btn-primary mb-2 ml-2" id="add-button" href="{{ route('building') }}">Add New
+                            Project</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
                         <form class="form">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 20px; border-radius: 40px;" id="mysearch">
-                                <div class="input-group-addon py-1" style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;" id="search-btn"><i class="fa fa-search"></i></button>
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                                       style="padding-left: 20px; border-radius: 40px;" id="mysearch">
+                                <div class="input-group-addon py-1"
+                                     style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                            id="search-btn"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <h2>Basic Progress Bar</h2>
+            <div class="progress">
+                @if (!isset($firstbuilding->projectName))
+                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="15"
+                         aria-valuemin="0" aria-valuemax="100" style="width:15%">
+                        15% Completed Profile
+                    </div>
+                    @else
+                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="25"
+                         aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                        25% Completed Profile
+                    </div>
+                @endif
             </div>
         </div>
     </div>
