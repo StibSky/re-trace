@@ -8,6 +8,7 @@ use App\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class UpdateAdminController extends Controller
 {
@@ -71,6 +72,9 @@ class UpdateAdminController extends Controller
             }
             if ($substance->getSpecificWeight()==null) {
                 return redirect()->back()->with('error', 'please fill in a weight (0 if you dont know)');
+            }
+            if (Substance::where('code', $substance->getCode())->first()) {
+                return redirect()->back()->with('error', 'this code already exists');
             }
             if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 9) {
                 $substance->save();

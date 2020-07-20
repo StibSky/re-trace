@@ -64,7 +64,9 @@
             <hr class="w-25">
             <p class="mt-2 mb-1">Don't have an account?</p> <br>
         </form>
-        <a  id="redirect-button" class="btn btn-primary" href="{{ route('register') }}">Sign up</a>
+
+        <a id="redirect-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+
     </div>
     <script type="text/javascript" language="JavaScript">
         document.forms['myform'].elements['mytextfield'].focus();
