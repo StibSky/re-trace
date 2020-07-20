@@ -3,6 +3,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 @section('content')
+    <!--
+   blade for admin page completely used to fill in the substance database
+   makes use of jquery for custom dropdown menu
+-->
     <div class="container">
         @if(session()->has('success'))
             <div class="alert alert-success">

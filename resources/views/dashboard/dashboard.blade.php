@@ -3,6 +3,10 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
+    <!--
+blade for the specific user projects
+uses dynamic linking
+-->
     <div class="container">
         <div class="row">
             <div class="col-sm card p-4">

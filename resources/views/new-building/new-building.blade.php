@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
+    <!--
+blade for adding a new building/project to a User
+-->
     @if(session()->has('error'))
         <div class="alert alert-danger">
             {{ session()->get('error') }}

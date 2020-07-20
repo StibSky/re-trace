@@ -9,6 +9,11 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
+    /*
+    * user class with getters and setters for properties
+    * foreign keys to building
+    */
+
     /**
      * @return mixed
      */

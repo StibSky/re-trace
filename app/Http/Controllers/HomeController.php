@@ -28,12 +28,13 @@ class HomeController extends Controller
     public function index()
 
 
-        //linking User to Building, Useful for looping over all Buildings with specific user id
+        //referencing foreign key
     {
         $userBuilding = Building::with('user')
             ->where('userid', Auth::id())
             ->get();
 
+        //gets all the infor out the substances database
         $substances = DB::table('substance')->get();
 
 

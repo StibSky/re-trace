@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <!--
+the landing page, this is where you go to when you click home as a logged in user (otherwise you get directed to the login page)
+-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,7 +15,7 @@
     <!-- Styles -->
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheer" href="{{ asset('css/logolanding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logolanding.css') }}">
 </head>
 @extends('layouts.app')
 

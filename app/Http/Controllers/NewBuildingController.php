@@ -11,16 +11,29 @@ use Symfony\Component\Console\Input\Input;
 
 class newBuildingController extends Controller
 {
+
+    //used to load the page
     public function index()
     {
         return view('new-building.new-building');
     }
 
+    /* would be used to edit building information
+    ===================================================================================================
+    THIS FUNCTION IS CURRENTLY UNUSED AND SHOULD BE DELETED IF THIS REMAINS THE CASE
+    ===================================================================================================
+ */
     public function updateBuildingIndex()
     {
         return view('new-building.updateBuilding');
     }
 
+
+    /*function to add new "projects" to the database
+    =====================================================================================================
+    IMAGE IS AN URL AND SHOULD CHANGE TO AN UPLOADABLE PICTURE
+    =====================================================================================================
+    */
     public function addBuilding(Request $request)
     {
         $building = new Building();
@@ -34,6 +47,9 @@ class newBuildingController extends Controller
             $building->setType($request->input('type'));
             $user = Auth::user();
             $building->setUserid($user->id);
+
+            //error handling for user, redirects back to the same page with error message
+            //check the blades to find out more about error syntax
             if ($building->getProjectName() == null) {
                 return redirect()->back()->with('error', 'please fill in a name');
             }
@@ -52,6 +68,8 @@ class newBuildingController extends Controller
             if ($building->getType() == null) {
                 return redirect()->back()->with('error', 'please fill in type');
             }
+
+            //VERY important to look at order of save() statements, can only do a get once the sets are saved
             $building->save();
             $image->setImage($request->input('projectImage'));
             $image->setCreatedAt(date("Y-m-d H:i:s"));
@@ -61,7 +79,10 @@ class newBuildingController extends Controller
 
         }
 
-        //this if statement is not in production
+        /*===================================================================================================
+        THIS IF IS CURRENTLY UNUSED AND SHOULD BE DELETED IF THIS REMAINS THE CASE
+          ===================================================================================================
+        */
         if (isset($_POST['submitBuildingInfo'])) {
             $building = Building::where('userid', Auth::id())->first();
             $building->setImage($request->input('buildingImage'));

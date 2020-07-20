@@ -29,8 +29,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/buildingUpdate', 'NewBuildingController@addBuilding')->name('buildingUpdate');
+//route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/updateBuilding', 'NewBuildingController@updateBuildingIndex')->name('updateBuilding');
+//route to upload files,
+//==========================================
+//MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
+//=========================================
 Route::post('/upload', function (Request $request ){
     $request->userfile->store('userFiles','public');
     return redirect()->route('home');

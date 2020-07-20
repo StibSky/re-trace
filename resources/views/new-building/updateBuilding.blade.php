@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <!--
+=============================================
+BLADE FOR UPDATING BUILDING CURRENTLY UNUSED
+=============================================
+-->
     <div class="container">
         <form action="{{ route('buildingUpdate') }}" target="_blank" method="post">
             @csrf

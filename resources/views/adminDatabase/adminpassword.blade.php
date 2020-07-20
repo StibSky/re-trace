@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <!--
+   ============================================================================
+   CURRENTLY UNUSED DELETE IF THIS REMAINS
+   ============================================================================
+-->
     <form action="{{ route('checkpass') }}" method="post" name="checkPass">
     @csrf
         <label for="adminpassword">password</label>

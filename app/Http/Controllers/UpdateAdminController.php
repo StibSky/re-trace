@@ -13,11 +13,19 @@ use Symfony\Component\Console\Input\Input;
 class UpdateAdminController extends Controller
 {
 
+    /*   ===================================================================================================
+            THIS FUNCTION IS CURRENTLY UNUSED AND SHOULD BE DELETED IF THIS REMAINS THE CASE
+         ===================================================================================================
+    */
     public function adminpassword()
     {
         return view('adminDatabase.adminpassword');
     }
 
+    /*   ===================================================================================================
+        THIS FUNCTION IS CURRENTLY UNUSED AND SHOULD BE DELETED IF THIS REMAINS THE CASE
+     ===================================================================================================
+*/
     public function checkpass(Request $request) {
         if (isset($_POST['submitPass'])) {
             if ($request->input('adminpassword') == 1159) {
@@ -30,6 +38,15 @@ class UpdateAdminController extends Controller
 
     }
 
+
+    /*
+     * Divides the substance database into 3 main categories, this way it is easier
+     * to trace what kind of material you are dealing with
+     *
+     *     /*   ===================================================================================================
+            FIND A WAY TO DEAL WITH MAGIC NUMBERS
+         ===================================================================================================
+    */
     public function index()
     {
         $substance = Substance::all();
@@ -51,6 +68,11 @@ class UpdateAdminController extends Controller
     }
 
 
+    /*
+     * This function fills in the Substance database
+     * makes use of Unit foreign key
+     * error handling for each field that is explicitly required
+     */
     public function update(Request $request)
     {
         $substance = new Substance();
