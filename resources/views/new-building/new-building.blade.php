@@ -12,7 +12,7 @@ blade for adding a new building/project to a User
         </div>
     @endif
     <div class="container">
-        <form action="{{ route('buildingUpdate') }}" method="post">
+        <form action="{{ route('newBuilding') }}" method="post">
             @csrf
             <h2>Project info</h2>
             <div class="form-group">
