@@ -1,36 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <form action="{{ route('buildingUpdate') }}" method="post">
+    <!--
+blade for adding a new building/project to a User
+-->
+    @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+    @endif
+    <div class="container d-flex justify-content-center flex-column align-items-center">
+        <h3>Hi {{ Auth::user()->first_name }}</h3>
+        <h3>Please give your project a name</h3>
+        <form action="{{ route('newBuilding') }}" method="post">
             @csrf
-            <h2>Address</h2>
             <div class="form-group">
-                <label for="inputAddress">Address:</label>
-                <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="1234 Main St">
+                <label for="projectName">Name:</label>
+                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding">
             </div>
-            <div class="form-group">
-                <label for="inputAddress2">Address line 2:</label>
-                <input type="text" class="form-control" id="inputAddress2" name="inputAddress2"
-                       placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-group">
-                <label for="type">Type</label>
-                <input type="text" class="form-control" id="type" name="type"
-                       placeholder="type">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">City:</label>
-                    <input type="text" class="form-control" id="inputCity" name="inputCity">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPostCode">Post code:</label>
-                    <input type="text" class="form-control" id="inputPostCode" name="inputPostCode">
-                </div>
-            </div>
-            <br>
-            <button type="submit"  class="btn-success" name="submitNewBuilding">Submit </button>
+
+            <button type="submit" id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit</button>
+>>>>>>> Stashed changes
         </form>
     </div>
 @endsection
