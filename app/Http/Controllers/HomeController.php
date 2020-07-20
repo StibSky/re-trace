@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         $userBuilding = Building::with('user')
             ->where('userid', Auth::id())
-            ->get();
+            ->simplePaginate(5);
 
         $substances = DB::table('substance')->get();
 
