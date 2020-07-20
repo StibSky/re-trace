@@ -1,10 +1,5 @@
-#userInfo {
-    height: 50em;
-}
-
-#newProject, #newSearch {
-    margin-left: 2em;
-    height: 41em;
+#projectInfo, #userInfo {
+    height: 70vh;
 }
 
 #newSearch {
@@ -14,21 +9,21 @@
 }
 
 #add-button {
-    width: 14vw;
+    width: 10em;
     background-color: rgb(243,191,186);
     border-color: rgb(243,191,186);
     color: black;
 }
 
 #edit-button {
-    width: 5vw;
+    width: 5em;
     background-color: rgb(187, 206, 205);
     border-color: rgb(187, 206, 205);
     color: black;
 }
 
 #delete-button {
-    width: 5vw;
+    width: 5em;
     background-color: rgb(243,191,186);
     border-color: rgb(243,191,186);
     color: black;
