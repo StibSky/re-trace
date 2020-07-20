@@ -65,6 +65,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </div>--}}
             </div>
         </div>
+
     </div>
 
 @endsection
