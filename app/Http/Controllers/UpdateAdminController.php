@@ -11,6 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateAdminController extends Controller
 {
+
+    public function adminpassword()
+    {
+        return view('adminDatabase.adminpassword');
+    }
+
+    public function checkpass(Request $request) {
+        if (isset($_POST['submitPass'])) {
+            if ($request->input('adminpassword') == 1159) {
+                return view('profile-page.home');
+            }
+            else {
+                return redirect()->back();
+            }
+        }
+
+    }
+
     public function index()
     {
         $substance = Substance::all();
@@ -46,6 +64,8 @@ class UpdateAdminController extends Controller
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
 
+
+
             if ($substance->getName()==null) {
                 return redirect()->back()->with('error', 'please fill in a name');
             }
@@ -65,5 +85,7 @@ class UpdateAdminController extends Controller
             //$parent = Substance::where();
             //$substance->setParent($parent->code);
         }
+
     }
+
 }
