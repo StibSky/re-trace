@@ -19,7 +19,7 @@ class UpdateAdminController extends Controller
 
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
 
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '7')->get();
+        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();
 
 
         $unit = Unit::all();
