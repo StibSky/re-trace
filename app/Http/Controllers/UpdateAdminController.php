@@ -22,7 +22,7 @@ class UpdateAdminController extends Controller
     */
     public function index()
     {
-        if(Auth::user()->type == 'admin') {
+        if(Auth::user()->type != 'admin') {
             return redirect()->back();
         }
         $substance = Substance::all();
