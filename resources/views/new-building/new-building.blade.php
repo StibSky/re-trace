@@ -36,9 +36,14 @@ blade for adding a new building/project to a User
                        placeholder="Apartment, studio, or floor">
             </div>
             <div class="form-group">
-                <label for="type">Type</label>
-                <input type="text" class="form-control" id="type" name="type"
-                       placeholder="type">
+                <label for="type">Type:</label>
+                <select name="type" id="type">
+                    <option value="single house">Single house</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="row house">Row house</option>
+                    <option value="multiple housing">Multiple housing</option>
+                    <option value="commercial building">Commercial building</option>
+                </select>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

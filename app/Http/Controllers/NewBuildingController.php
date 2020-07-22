@@ -91,5 +91,15 @@ class newBuildingController extends Controller
         return redirect()->route('home');
     }
 
+    public function deleteBuilding()
+    {
+        $building = Building::find($_POST['deleteBuilding'])->first();
+
+        Building::destroy($_POST['deleteBuilding']);
+
+        $building->save();
+
+        return redirect()->route('home');
+    }
 
 }
