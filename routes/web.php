@@ -44,6 +44,7 @@ Route::post('/upload', function (Request $request ){
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
 Route::post('/checkpass', 'UpdateAdminController@checkpass')->name('checkpass');
+
 Route::get('/adminpassword', 'UpdateAdminController@adminpassword')->name('adminpassword');
 
 //
