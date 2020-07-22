@@ -40,15 +40,43 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <div>
                                     @if(Auth::user()->type == 'admin')
-                                    <a class="btn btn-primary" id="edit-button" href="{{ route('editBuilding', $building->id) }}"> edit</a>
+                                        <a class="btn btn-primary" id="edit-button"
+                                           href="{{ route('editBuilding', $building->id) }}"> edit</a>
+                                        <button data-toggle="modal"
+                                                data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
+                                                id="delete-button">Delete
+                                        </button>
                                     @endif
-                                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                        @csrf
-                                        <button value="{{ $building->id }}" class="btn btn-primary" name="deleteBuilding" id="delete-button">Delete</button>
-                                    </form>
                                 </div>
                             </li>
                             <hr>
+                            <div id="myModal" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title">Are you sure you want to delete?</h4>
+
+                                        </div>
+                                        <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <button value="{{ $building->id }}" class="btn btn-primary"
+                                                        name="deleteBuilding" id="delete-button">Yes, delete project
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">No
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
                         @endforeach
                         <div class="d-flex">
                             {{ $buildings->links() }}
@@ -87,5 +115,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
         </div>
     </div>
+
 
 @endsection
