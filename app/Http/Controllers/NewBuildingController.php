@@ -102,4 +102,12 @@ class newBuildingController extends Controller
         return redirect()->route('home');
     }
 
+    public function editBuilding()
+    {
+        //$building = Building::find($_POST['editBuilding'])->first();
+
+        return redirect()->back();
+
+    }
+
 }
