@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
+use App\Substance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -102,12 +103,23 @@ class newBuildingController extends Controller
         return redirect()->route('home');
     }
 
-    public function editBuilding()
+    public function editBuilding($id)
     {
-        //$building = Building::find($_POST['editBuilding'])->first();
+        $substance = Substance::all();
+        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
-        return redirect()->back();
+        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
 
+        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();
+
+        $project = Building::all()->find($id);
+        return view('new-building.editbuilding', [
+            'project' => $project,
+            'headCategories' => $headCategory,
+            'subCategories1' => $subCategory1,
+            'subCategories2' => $subCategory2]);
     }
 
+
 }
+
