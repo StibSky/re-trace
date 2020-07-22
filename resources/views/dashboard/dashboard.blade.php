@@ -36,37 +36,10 @@ uses dynamic linking
             </div>
             <div class="col-sm card p-4">
                 <h3>Material Streams</h3>
-                <ul>
-                    <li>Stone</li>
-                    <li>Wood</li>
-                    <li>Synthetic material</li>
-                    <li>Glass</li>
-                    <li>Bitumen</li>
-                    <li>Metals</li>
-                    <li>Soil</li>
-                    <li>Isolation</li>
-                    <li>Plaster</li>
-                    <li>CellConcrete</li>
-                    <li>Remainder</li>
-                </ul>
             </div>
                 <div class="col-sm card p-4">
 
                     <h3>Waste Streams</h3>
-                    <ul>
-                        <li>Stone</li>
-                        <li>Wood</li>
-                        <li>Synthetic material</li>
-                        <li>Glass</li>
-                        <li>Bitumen</li>
-                        <li>Metals</li>
-                        <li>Soil</li>
-                        <li>Isolation</li>
-                        <li>Plaster</li>
-                        <li>CellConcrete</li>
-                        <li>Remainder</li>
-                    </ul>
-
                 </div>
             </div>
         </div>

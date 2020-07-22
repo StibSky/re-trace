@@ -30,6 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/newBuilding', 'NewBuildingController@addBuilding')->name('newBuilding');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
+Route::post('/editBuilding', 'NewBuildingController@editBuilding')->name('editBuilding');
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
@@ -45,8 +46,7 @@ Route::post('/upload', function (Request $request ){
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
-Route::post('/checkpass', 'UpdateAdminController@checkpass')->name('checkpass');
-Route::get('/adminpassword', 'UpdateAdminController@adminpassword')->name('adminpassword');
+
 
 //
 
