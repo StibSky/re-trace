@@ -39,10 +39,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <a id="project-names"
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <div>
-                                    <form action="{{ route('editBuilding', $building) }}" method="post">
-                                        @csrf
-                                        <button value="{{ $building->id }}" class="btn btn-primary" name="deleteBuilding" id="edit-button">Edit</button>
-                                    </form>
+                                    <a class="btn btn-primary" id="edit-button" href="{{ route('editBuilding', $building->id) }}"> edit</a>
                                     <form action="{{ route('deleteBuilding', $building) }}" method="post">
                                         @csrf
                                         <button value="{{ $building->id }}" class="btn btn-primary" name="deleteBuilding" id="delete-button">Delete</button>

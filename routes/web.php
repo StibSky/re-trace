@@ -30,11 +30,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/newBuilding', 'NewBuildingController@addBuilding')->name('newBuilding');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
-Route::post('/editBuilding', 'NewBuildingController@editBuilding')->name('editBuilding');
+Route::get('/editBuilding/{id}', 'NewBuildingController@editBuilding')->name('editBuilding');
+Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
+
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
-Route::get('/updateBuilding', 'NewBuildingController@updateBuildingIndex')->name('updateBuilding');
 //route to upload files,
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
