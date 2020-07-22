@@ -56,10 +56,7 @@ class newBuildingController extends Controller
                 return redirect()->back()->with('error', 'please fill in a name');
             }
             if ($building->getAddress1() == null) {
-                return redirect()->back()->with('error', 'please fill in both address fields');
-            }
-            if ($building->getAddress2() == null) {
-                return redirect()->back()->with('error', 'please fill in both address fields');
+                return redirect()->back()->with('error', 'please fill in address field 1');
             }
             if ($building->getCity() == null) {
                 return redirect()->back()->with('error', 'please fill in city');
