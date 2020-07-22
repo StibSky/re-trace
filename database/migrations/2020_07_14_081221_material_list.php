@@ -17,8 +17,8 @@ class MaterialList extends Migration
             $table->id();
             $table->bigInteger("buildid")->nullable()->unsigned();
             $table->string("material");
-            $table->dateTime("created_at")->nullable();
-            $table->dateTime("updated_at")->nullable();
+            $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
+            $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
         });
 
         Schema::table('materialList', function (Blueprint $table) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
+use App\Materiallist;
 use App\Substance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -105,12 +106,18 @@ class newBuildingController extends Controller
 
     public function editBuilding($id)
     {
+        $buildingMaterial = new Materiallist();
+        $buildingMaterial->setBuildid($id);
+        //THIS IS A SHIT IDEA CHANGE IT ASAP
+        $buildingMaterial->setMaterial("nothing");
+        $buildingMaterial->save();
         $substance = Substance::all();
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
 
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();
+
 
         $project = Building::all()->find($id);
         return view('new-building.editbuilding', [
@@ -120,6 +127,13 @@ class newBuildingController extends Controller
             'subCategories2' => $subCategory2]);
     }
 
+    public function saveEdit(Request $request) {
+        //THIS IS A SHIT IDEA CHANGE IT ASAP
+        $buildingMaterial = Materiallist::where('material', 'nothing')->first();
+        $buildingMaterial->setMaterial($request->input('material'));
+        $buildingMaterial->save();
 
+        return redirect()->back();
+    }
 }
 
