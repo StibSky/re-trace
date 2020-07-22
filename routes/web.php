@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (Auth::check()) {
         return view('app');
-    }
-    else {
+    } else {
         return view('auth.login');
     }
 });
@@ -40,13 +39,15 @@ Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
 //=========================================
-Route::post('/upload', function (Request $request ){
-    $request->userfile->store('userFiles','public');
+Route::post('/upload', function (Request $request) {
+    $request->userfile->store('userFiles', 'public');
     return redirect()->route('home');
 })->name('upload');
 
+
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
+
 
 
 //

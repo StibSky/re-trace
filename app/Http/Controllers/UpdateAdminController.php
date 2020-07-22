@@ -22,6 +22,9 @@ class UpdateAdminController extends Controller
     */
     public function index()
     {
+        if(Auth::user()->type == 'admin') {
+            return redirect()->back();
+        }
         $substance = Substance::all();
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
