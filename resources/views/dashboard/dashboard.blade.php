@@ -10,24 +10,18 @@ uses dynamic linking
     <div class="container">
         <div class="d-flex flex-lg-row flex-column align-items-center">
             <div class="col-12 col-md-6 col-lg card p-4">
-                <div class="">
-                    <div class="card-title">
-                        <h3>{{ $project->projectName ?? 'Project name' }}</h3>
-                    </div>
-                    <div class="card-body">
-                        <figure><img width="200em" height="200em"
-                                     src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
-                        </figure>
-                        <p>Type: {{ $project["type"] }}</p>
-                        <p>Here will come the information about your project.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" id="add-button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#myModal">
-                            Upload more files or images
-                        </button>
-                    </div>
+                <div class="card-title">
+                    <h3>{{ $project->projectName ?? 'Project name' }}</h3>
                 </div>
+                <figure><img width="200em" height="200em"
+                             src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
+                </figure>
+                <p>Type: {{ $project["type"] }}</p>
+                <p>Here will come the information about your project.</p>
+                <button type="button" id="add-button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal">
+                    Upload more files or images
+                </button>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
                 <h3>Information</h3>
