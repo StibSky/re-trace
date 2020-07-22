@@ -14,6 +14,9 @@ uses dynamic linking
                 <figure><img width="200em" height="200em" src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}"></figure>
                 <p>Type: {{ $project["type"] }}</p>
                 <p>Here will come the information about your project.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Upload more files or images
+                </button>
             </div>
             <div class="col-sm card p-4">
                 <h3>Information</h3>
@@ -67,11 +70,35 @@ uses dynamic linking
                 </div>
             </div>
         </div>
-    <div class="card-body">
+{{--    <div class="card-body">
         <form action="{{ route('upload') }}"method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" name="userfile" />
             <input type="submit" value="upload"/>
         </form>
+    </div>--}}
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Please upload a new file or image</h4>
+
+                </div>
+                <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="file" name="userfile">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="upload"/>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
+
 @endsection
