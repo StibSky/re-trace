@@ -28,9 +28,6 @@ the landing page, this is where you go to when you click home as a logged in use
         </div>
         <div class="links">
             <a href="https://re-trace.io" target="_blank">start-it website</a>
-            @auth
-                <a href="{{route('home')}}">User homePage</a>
-            @endauth
         </div>
     </div>
 </div>
