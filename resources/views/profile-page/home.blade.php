@@ -33,6 +33,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             <div class="col-sm-6 col-12 p-2 card d-flex" id="projectInfo">
                 <div class="card-title mt-3 ml-3"><h3>My projects</h3></div>
                 <div class="card-body">
+                    @if(count($buildings) == 0)
+                        <h5> - Please add your first project to progress your profile</h5>
+                    @endif
                     <ul>
                         @foreach($buildings as $building)
                             <li class="mb-1 d-flex justify-content-between">
