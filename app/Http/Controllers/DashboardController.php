@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
+use App\Materiallist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,11 +19,12 @@ class DashboardController extends Controller
         $project = Building::all()->find($id);
         $image = Image::where('buildid', $id)->first();
        // $image = Image::all()->find($id);
-
+        $buildingmaterial = Materiallist::where('buildid', $id)->get();
 
         return view('dashboard.dashboard', [
             'project' => $project,
-            'image' => $image
+            'image' => $image,
+            'buildingmaterial' => $buildingmaterial
         ]);
     }
 }

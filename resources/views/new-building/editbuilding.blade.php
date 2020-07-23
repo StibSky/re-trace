@@ -5,9 +5,19 @@
 @section('content')
 
     <div class="container">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         <form action="{{ route('saveEdit') }}" method="post" name="substanceForm">
             @csrf
-            <h3> ADD MATERIAL STREAMS</h3>
+            <h3> ADD MATERIAL STREAMS for {{ $project->projectName }}</h3>
             <label> pick material
                 <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                 <input value="{{$buildingId}}" type="hidden" name="buildingId"/>

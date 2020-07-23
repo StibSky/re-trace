@@ -114,7 +114,7 @@ class newBuildingController extends Controller
             'project' => $project,
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
-            'subCategories2' => $subCategory2]);
+            'subCategories2' => $subCategory2,]);
     }
 
     public function saveEdit(Request $request) {
@@ -123,8 +123,21 @@ class newBuildingController extends Controller
         $buildingMaterial = new Materiallist();
         $buildingMaterial->setMaterial($request->input('material'));
         $buildingMaterial->setBuildid($request->input('buildingId'));
-        $buildingMaterial->save();
-        return redirect()->back();
+        $inputBuildId = $request->input('buildingId');
+        $checkMaterial = DB::table('materialList')
+            ->where('buildid', $inputBuildId)
+            ->where('material', $request->input('material'))
+            ->first();
+
+        //Materiallist::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
+        if ($checkMaterial === null) {
+            $buildingMaterial->save();
+            return redirect()->back()->with('success', 'Material added successfully!');
+        }
+        else {
+            return redirect()->back()->with('error', 'You already selected this material');
+        }
+
     }
 }
 

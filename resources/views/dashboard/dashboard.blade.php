@@ -41,6 +41,13 @@ uses dynamic linking
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
                 <h3>Material Streams</h3>
+                @if(!empty($buildingmaterial))
+                    <ul>
+                        @foreach($buildingmaterial as $material)
+                            <li>{{ $material->material }}</li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
 
