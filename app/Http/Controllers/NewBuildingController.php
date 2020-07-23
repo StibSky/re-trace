@@ -74,8 +74,6 @@ class newBuildingController extends Controller
             $image->setCreatedAt(date("Y-m-d H:i:s"));
             $image->setBuildid($building->getId());
             $image->save();
-
-
         }
 
         /*===================================================================================================
@@ -103,12 +101,6 @@ class newBuildingController extends Controller
 
     public function editBuilding($id)
     {
-        $buildingMaterial = new Materiallist();
-        $buildingMaterial->setBuildid($id);
-        //THIS IS A SHIT IDEA CHANGE IT ASAP
-        $buildingMaterial->setMaterial("nothing");
-        $buildingMaterial->save();
-        $substance = Substance::all();
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
@@ -118,6 +110,7 @@ class newBuildingController extends Controller
 
         $project = Building::all()->find($id);
         return view('new-building.editbuilding', [
+            'buildingId' => $id,
             'project' => $project,
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
@@ -125,11 +118,12 @@ class newBuildingController extends Controller
     }
 
     public function saveEdit(Request $request) {
-        //THIS IS A SHIT IDEA CHANGE IT ASAP
-        $buildingMaterial = Materiallist::where('material', 'nothing')->first();
+        //check phan
+        /** @var Materiallist $buildingMaterial */
+        $buildingMaterial = new Materiallist();
         $buildingMaterial->setMaterial($request->input('material'));
+        $buildingMaterial->setBuildid($request->input('buildingId'));
         $buildingMaterial->save();
-
         return redirect()->back();
     }
 }

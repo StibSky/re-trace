@@ -10,6 +10,7 @@
             <h3> ADD MATERIAL STREAMS</h3>
             <label> pick material
                 <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
+                <input value="{{$buildingId}}" type="hidden" name="buildingId"/>
                 <select name="material" id="categorySelect">
                     @foreach($headCategories as $headCategory)
                         <option value="{{ $headCategory->name }}" class="categoryOptions">

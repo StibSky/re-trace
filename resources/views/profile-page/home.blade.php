@@ -26,7 +26,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
                 <div class="row no-gutters d-flex">
                     <div class="col-12 d-flex pl-4 pt-4">
-                        <p>this is placeholder text for your building info, you can edit this later.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
