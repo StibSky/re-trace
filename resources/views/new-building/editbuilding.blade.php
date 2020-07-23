@@ -18,31 +18,35 @@
         <form action="{{ route('saveEdit') }}" method="post" name="substanceForm">
             @csrf
             <h3> ADD MATERIAL STREAMS for {{ $project->projectName }}</h3>
-            <label> pick material
+            <label>Pick material:
                 <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                 <input value="{{$buildingId}}" type="hidden" name="buildingId"/>
-                <select name="material" id="categorySelect">
+                <select name="substance" id="categorySelect">
                     @foreach($headCategories as $headCategory)
-                        <option value="{{ $headCategory->name }}" class="categoryOptions">
+                        <option value="{{ $headCategory->id }}" class="categoryOptions">
                             {{ $headCategory->code . " " .$headCategory->name }}
                         </option>
                     @endforeach
                     @foreach($subCategories1 as $subCategory1)
 
-                        <option value="{{ $subCategory1->name }}" class="categoryOptions">
+                        <option value="{{ $subCategory1->id }}" class="categoryOptions">
                             ---{{$subCategory1->code . " " .$subCategory1->name }}
                         </option>
 
                     @endforeach
                     @foreach($subCategories2 as $subCategory2)
 
-                        <option value="{{ $subCategory2->name }}" class="categoryOptions">
+                        <option value="{{ $subCategory2->id }}" class="categoryOptions">
                             ------{{ $subCategory2->code . " " .$subCategory2->name }}
                         </option>
 
                     @endforeach
                 </select>
+
             </label>
+            <br>
+            <label for="quantity">Quantity: </label>
+                <input type="text" name="quantity" placeholder="insert quantity"/>
             <br>
             <button type="submit" id="add-button" class="btn btn-primary" name="saveEdit">Submit</button>
         </form>

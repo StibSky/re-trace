@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Building;
 use App\Image;
 use App\Materiallist;
+use App\Substance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,12 +21,19 @@ class DashboardController extends Controller
         $project = Building::all()->find($id);
         $image = Image::where('buildid', $id)->first();
        // $image = Image::all()->find($id);
-        $buildingmaterial = Materiallist::where('buildid', $id)->get();
+        $materials = Materiallist::where('buildid', $id)->get();
+
+        $buildingSubstances = [];
+
+        foreach($materials as $material) {
+            array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
+        }
+
 
         return view('dashboard.dashboard', [
             'project' => $project,
             'image' => $image,
-            'buildingmaterial' => $buildingmaterial
+            'buildingSubstances' => $buildingSubstances
         ]);
     }
 }

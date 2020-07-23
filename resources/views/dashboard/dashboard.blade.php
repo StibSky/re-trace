@@ -41,10 +41,10 @@ uses dynamic linking
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
                 <h3>Material Streams</h3>
-                @if(!empty($buildingmaterial))
+                @if(count($buildingSubstances) > 0)
                     <ul>
-                        @foreach($buildingmaterial as $material)
-                            <li>{{ $material->material }}</li>
+                        @foreach($buildingSubstances as $buildingSubstance)
+                            <li>{{ $buildingSubstance[0]['name'] }}</li>
                         @endforeach
                     </ul>
                 @endif

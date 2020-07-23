@@ -15,8 +15,9 @@ class MaterialList extends Migration
     {
         Schema::create('materialList', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("substanceId")->nullable()->unsigned();
             $table->bigInteger("buildid")->nullable()->unsigned();
-            $table->string("material");
+            $table->integer("quantity");
             $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
             $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
         });
@@ -26,8 +27,11 @@ class MaterialList extends Migration
                 ->references('id')
                 ->on('building')
                 ->onDelete('cascade');
+            $table->foreign('substanceId')
+                ->references('id')
+                ->on('substance')
+                ->onDelete('cascade');
         });
-
     }
 
     /**

@@ -201,4 +201,9 @@ class Substance extends Model
     {
         return $this->belongsTo('App\Substance');
     }
+
+    public function Materiallist()
+    {
+        return $this->belongsTo('App\Substance');
+    }
 }

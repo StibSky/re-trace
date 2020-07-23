@@ -121,12 +121,13 @@ class newBuildingController extends Controller
         //check phan
         /** @var Materiallist $buildingMaterial */
         $buildingMaterial = new Materiallist();
-        $buildingMaterial->setMaterial($request->input('material'));
+        $buildingMaterial->setSubstanceId($request->input('substance'));
         $buildingMaterial->setBuildid($request->input('buildingId'));
+        $buildingMaterial->setQuantity($request->input('quantity'));
         $inputBuildId = $request->input('buildingId');
         $checkMaterial = DB::table('materialList')
             ->where('buildid', $inputBuildId)
-            ->where('material', $request->input('material'))
+            ->where('substanceId', $request->input('substance'))
             ->first();
 
         //Materiallist::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
