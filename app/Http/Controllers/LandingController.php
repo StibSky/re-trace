@@ -10,7 +10,7 @@ class LandingController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('app');

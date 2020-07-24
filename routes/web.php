@@ -41,10 +41,10 @@ Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('admin
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
 //=========================================
-Route::post('/upload', function (Request $request) {
+/*Route::post('/upload', function (Request $request) {
     $request->userfile->store('userFiles', 'public');
     return redirect()->route('home');
-})->name('upload');
+})->name('upload');*/
 
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
