@@ -79,7 +79,7 @@ sets up the navbar and yields the content of the other pages
                                             {{ __('Logout') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            Userpage
+                                            My profile
                                         </a>
 
 
@@ -101,19 +101,16 @@ sets up the navbar and yields the content of the other pages
         </div>
         <footer class="site-footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <h6>About</h6>
-                        <p class="text-justify">Re-trace.io Building Platform</p>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-sm-12 col-md-6 col-lg">
+                        <div class="links">
+                            <a href="https://re-trace.io" target="_blank">About</a>
+                        </div>
                     </div>
-                </div>
-                <hr>
-            </div>
-            <div class="container">
-                <div class="row">
-
-
-                    <div>
+                    <div class="col-sm-12 col-md-6 col-lg">
+                        <p class="text-center">&copy; 2020 - Re-trace.io</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg">
                         <ul class="social-icons">
                             <li><a class="socialmedia" href="https://www.instagram.com/re_trace.io/" target="_blank"><i
                                         class="fa fa-socialmedia"><img src="{{url('/images/instagram.png')}}"
@@ -126,6 +123,7 @@ sets up the navbar and yields the content of the other pages
                         </ul>
                     </div>
                 </div>
+                <hr>
             </div>
         </footer>
     </div>

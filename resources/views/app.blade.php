@@ -15,19 +15,17 @@ the landing page, this is where you go to when you click home as a logged in use
     <!-- Styles -->
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/logolanding.css') }}">
 </head>
 @extends('layouts.app')
 
 @section('content')
 <body>
-<div class="flex-center position-ref full-height">
-    <div class="content">
-        <div class="title m-b-md" id="logo">
-            <img src="{{ asset('images/re_logo.png') }}" class="img-circle" alt="">
-        </div>
-        <div class="links">
-            <a href="https://re-trace.io" target="_blank">About</a>
+<div class="container d-flex">
+    <div class="justify-content-center">
+        <div class="content">
+            <div class="title m-b-md" id="logo">
+                <img src="{{ asset('images/re_logo.png') }}" class="w-75" alt="">
+            </div>
         </div>
     </div>
 </div>

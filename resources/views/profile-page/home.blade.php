@@ -15,8 +15,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="d-flex flex-md-row flex-column align-items-center">
             <div class="col-sm-6 col-12 px-2 card" id="userInfo">
                 <div class="row no-gutters d-flex">
-                    <div class="col-auto d-flex flex-center pl-4 pt-4">
-                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="img-circle" alt="">
+                    <div class="col-auto d-flex pl-4 pt-4">
+                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
                     </div>
                     <div class="col-4 d-flex flex-center">
                         <div>
@@ -26,7 +26,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
                 <div class="row no-gutters d-flex">
                     <div class="col-12 d-flex flex-column pl-4 pt-4">
-                        <h4>Personal details</h4>
+                        <h5>Personal details</h5>
                         <ul>
                             <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
                             <li>Email address: {{ Auth::user()->email }}</li>
@@ -36,7 +36,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
             </div>
             <div class="col-sm-6 col-12 p-2 card d-flex" id="projectInfo">
-                <div class="card-title mt-3 ml-3"><h3>My projects</h3></div>
+                <div class="card-title mt-3 ml-3"><h4>My projects</h4></div>
                 <div class="card-body">
                     @if(count($buildings) == 0)
                         <h5> - Please add your first project to progress your profile</h5>

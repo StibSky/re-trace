@@ -11,36 +11,35 @@ uses dynamic linking
         <div class="d-flex flex-lg-row flex-column align-items-center">
             <div class="col-12 col-md-6 col-lg card p-4">
                 <div class="card-title">
-                    <h3>{{ $project->projectName ?? 'Project name' }}</h3>
+                    <h4>{{ $project->projectName ?? 'Project name' }}</h4>
                 </div>
-                <figure><img width="200em" height="200em"
+                <figure><img class="w-100"
                              src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
                 </figure>
                 <p>Type: {{ $project["type"] }}</p>
                 <p>Here will come the information about your project.</p>
                 <button type="button" id="add-button" class="btn btn-primary" data-toggle="modal"
                         data-target="#myModal">
-                    Upload more files or images
+                    Upload files
                 </button>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
-                <h3>Information</h3>
+                <h4>Information</h4>
                 <ul>
-                    <li>Location:
+                    <li>Location: {{ $project["address1"] }}
                         <ul>
-                            <li>{{ $project["address1"] }}</li>
                             <li>{{ $project["address2"] }}</li>
                         </ul>
                     </li>
-                    <li>Measuring State</li>
+{{--                    <li>Measuring State</li>
                     <li>Material list</li>
                     <li>Surface</li>
                     <li>Plans</li>
-                    <li>Pictures</li>
+                    <li>Pictures</li>--}}
                 </ul>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
-                <h3>Material Streams</h3>
+                <h4>Waste Streams</h4>
                 @if(count($buildingSubstances) > 0)
                     <ul>
                         @foreach($buildingSubstances as $buildingSubstance)
@@ -48,10 +47,6 @@ uses dynamic linking
                         @endforeach
                     </ul>
                 @endif
-            </div>
-            <div class="col-12 col-md-6 col-lg card p-4">
-
-                <h3>Waste Streams</h3>
             </div>
         </div>
     </div>
