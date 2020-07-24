@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     if (Auth::check()) {
         return view('app');
     } else {
         return view('auth.login');
     }
-});
+});*/
 
 Auth::routes();
 
+Route::get('/', array('before' => 'auth', 'uses' => 'LandingController@index'));
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/newBuilding', 'NewBuildingController@addBuilding')->name('newBuilding');
