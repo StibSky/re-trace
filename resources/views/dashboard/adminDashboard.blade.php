@@ -11,7 +11,7 @@
             <ul>
                 @foreach($privateBuildings as $privateBuilding)
                     @for($i = 0; $i < count($privateBuilding); $i++)
-                        <li>projectName: "{{ $privateBuilding[$i]['projectName'] }}" <br> type:
+                        <li>projectName: " <a href="{{route('dash', $privateBuilding[$i]->id)}}">{{ $privateBuilding[$i]['projectName'] }}</a> " <br> type:
                             "{{$privateBuilding[$i]['type']}}"
                         </li>
                     @endfor
@@ -27,7 +27,7 @@
             <ul>
                 @foreach($businessBuildings as $businessBuilding)
                     @for($i = 0; $i < count($businessBuilding); $i++)
-                        <li>projectName: "{{ $businessBuilding[$i]['projectName'] }}" <br> type:
+                        <li>projectName: "<a href="{{route('dash', $businessBuilding[$i]->id)}}">{{ $businessBuilding[$i]['projectName'] }} </a>" <br> type:
                             "{{$businessBuilding[$i]['type']}}"
                         </li>
                     @endfor
