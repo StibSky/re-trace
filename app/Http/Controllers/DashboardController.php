@@ -6,6 +6,7 @@ use App\Building;
 use App\Image;
 use App\Materiallist;
 use App\Substance;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +35,15 @@ class DashboardController extends Controller
             'project' => $project,
             'image' => $image,
             'buildingSubstances' => $buildingSubstances
+        ]);
+    }
+
+    public function adminDashboard() {
+        $privateUsers = User::where('type', 'Private');
+        $businessUsers =User::where('type', 'Business');
+        return view('dashboard.adminDashboard', [
+            'private' => $privateUsers,
+            'business' => $businessUsers
         ]);
     }
 }

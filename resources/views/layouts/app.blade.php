@@ -79,7 +79,7 @@ sets up the navbar and yields the content of the other pages
                                             {{ __('Logout') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            Homepage
+                                            Userpage
                                         </a>
 
 
