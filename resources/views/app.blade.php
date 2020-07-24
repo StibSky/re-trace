@@ -27,7 +27,7 @@ the landing page, this is where you go to when you click home as a logged in use
             <img src="{{ asset('images/re_logo.png') }}" class="img-circle" alt="">
         </div>
         <div class="links">
-            <a href="https://re-trace.io" target="_blank">start-it website</a>
+            <a href="https://re-trace.io" target="_blank">About</a>
         </div>
     </div>
 </div>

@@ -33,7 +33,7 @@ sets up the navbar and yields the content of the other pages
 <div id="page-container">
     <div id="content-wrap">
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: white">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{url('/images/retracelogo.png')}}" alt="Image"/>
@@ -79,7 +79,7 @@ sets up the navbar and yields the content of the other pages
                                             {{ __('Logout') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            Homepage
+                                            Userpage
                                         </a>
 
 

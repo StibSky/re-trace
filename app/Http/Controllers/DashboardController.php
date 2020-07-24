@@ -6,6 +6,7 @@ use App\Building;
 use App\Image;
 use App\Materiallist;
 use App\Substance;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,12 +21,12 @@ class DashboardController extends Controller
     {
         $project = Building::all()->find($id);
         $image = Image::where('buildid', $id)->first();
-       // $image = Image::all()->find($id);
+        // $image = Image::all()->find($id);
         $materials = Materiallist::where('buildid', $id)->get();
 
         $buildingSubstances = [];
 
-        foreach($materials as $material) {
+        foreach ($materials as $material) {
             array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
         }
 
@@ -34,6 +35,27 @@ class DashboardController extends Controller
             'project' => $project,
             'image' => $image,
             'buildingSubstances' => $buildingSubstances
+        ]);
+    }
+
+    public function adminDashboard()
+    {
+        $privateUsers = User::where('type', 'Private')->get();
+        $businessUsers = User::where('type', 'Business')->get();
+        $privateBuildings = [];
+        foreach ($privateUsers as $privateUser) {
+            array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
+        }
+        $businessBuildings = [];
+        foreach ($businessUsers as $businessUser) {
+            array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
+        }
+
+        return view('dashboard.adminDashboard', [
+            'privates' => $privateUsers,
+            'privateBuildings' => $privateBuildings,
+            'businesses' => $businessUsers,
+            'businessBuildings' => $businessBuildings
         ]);
     }
 }
