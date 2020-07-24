@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
-class newBuildingController extends Controller
+class NewBuildingController extends Controller
 {
 
     //used to load the page

@@ -1,6 +1,9 @@
 .card {
     margin-left: 2em;
     height: 60vh;
+    background-color: rgb(226, 230, 240);
+    border-color: rgb(226, 230, 240);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #add-button {
@@ -8,4 +11,5 @@
     background-color: rgb(243,191,186);
     border-color: rgb(243,191,186);
     color: black;
+    border-radius: 100px;
 }

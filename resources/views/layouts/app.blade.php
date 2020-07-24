@@ -33,7 +33,7 @@ sets up the navbar and yields the content of the other pages
 <div id="page-container">
     <div id="content-wrap">
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #F6F9FF">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{url('/images/retracelogo.png')}}" alt="Image"/>

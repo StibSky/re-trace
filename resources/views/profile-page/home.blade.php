@@ -101,7 +101,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </div>--}}
             </div>
         </div>
-        <div class="container">
+        <div class="container mt-3">
             <h2>Basic Progress Bar</h2>
             <div class="progress">
                 @if (!isset($firstbuilding->projectName))

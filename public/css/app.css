@@ -5026,9 +5026,9 @@ input[type=button].btn-block {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #F6F9FF;
+    background-color: rgb(226, 230, 240);
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid rgb(226, 230, 240);
     border-radius: 0.25rem;
 }
 
