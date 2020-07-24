@@ -21,12 +21,12 @@ class DashboardController extends Controller
     {
         $project = Building::all()->find($id);
         $image = Image::where('buildid', $id)->first();
-       // $image = Image::all()->find($id);
+        // $image = Image::all()->find($id);
         $materials = Materiallist::where('buildid', $id)->get();
 
         $buildingSubstances = [];
 
-        foreach($materials as $material) {
+        foreach ($materials as $material) {
             array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
         }
 
@@ -38,12 +38,24 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function adminDashboard() {
-        $privateUsers = User::where('type', 'Private');
-        $businessUsers =User::where('type', 'Business');
+    public function adminDashboard()
+    {
+        $privateUsers = User::where('type', 'Private')->get();
+        $businessUsers = User::where('type', 'Business')->get();
+        $privateBuildings = [];
+        foreach ($privateUsers as $privateUser) {
+            array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
+        }
+        $businessBuildings = [];
+        foreach ($businessUsers as $businessUser) {
+            array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
+        }
+
         return view('dashboard.adminDashboard', [
-            'private' => $privateUsers,
-            'business' => $businessUsers
+            'privates' => $privateUsers,
+            'privateBuildings' => $privateBuildings,
+            'businesses' => $businessUsers,
+            'businessBuildings' => $businessBuildings
         ]);
     }
 }
