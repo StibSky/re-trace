@@ -17,7 +17,6 @@ uses dynamic linking
                              src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
                 </figure>
                 <p>Type: {{ $project["type"] }}</p>
-                <p>Here will come the information about your project.</p>
                 <button type="button" id="add-button" class="btn btn-primary" data-toggle="modal"
                         data-target="#myModal">
                     Upload files
