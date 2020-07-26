@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/home_old.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
@@ -48,11 +48,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <div>
                                     @if(Auth::user()->type == 'admin')
-                                        <a class="btn btn-primary" id="edit-button"
+                                        <a class="btn btn-primary" id="secondary-button-small"
                                            href="{{ route('editBuilding', $building->id) }}"> edit</a>
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
-                                                id="delete-button">Delete
+                                                id="main-button-small">Delete
                                         </button>
                                     @endif
                                 </div>

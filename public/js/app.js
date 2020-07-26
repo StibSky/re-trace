@@ -49922,6 +49922,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/footer.scss":
+/*!************************************!*\
+  !*** ./resources/sass/footer.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/home.scss":
 /*!**********************************!*\
   !*** ./resources/sass/home.scss ***!
@@ -49945,9 +49956,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/master.scss ***!
-  \********************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/footer.scss ./resources/sass/master.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49956,6 +49967,7 @@ __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/app.scss 
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/home.scss */"./resources/sass/home.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/auth.scss */"./resources/sass/auth.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/footer.scss */"./resources/sass/footer.scss");
 module.exports = __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/master.scss */"./resources/sass/master.scss");
 
 

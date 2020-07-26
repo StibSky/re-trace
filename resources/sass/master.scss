@@ -1,28 +1,95 @@
+@import 'variables';
+
 // Universal elements + bootstrap overrides
 
 body {
-    background-color: rgb(226, 230, 240);
+    background-color: $retrace-blue;
+
+    ul {
+        padding: 0;
+        list-style: none;
+    }
 
     .card {
         box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgb(226, 230, 240);
-        border-color: rgb(226, 230, 240);
+        background-color: $retrace-blue;
+        border-color: $retrace-blue;
     }
 
 
     #main-button {
         width: 14vw;
-        background-color: rgb(243,191,186);
-        border-color: rgb(243,191,186);
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
         color: black;
         border-radius: 100px;
     }
 
     #secondary-button {
         width: 14vw;
-        background-color: rgb(187, 206, 205);
-        border-color: rgb(187, 206, 205);
+        background-color: $retrace-green;
+        border-color: $retrace-green;
         color: black;
         border-radius: 100px;
+    }
+
+    #main-button-small {
+        width: 5vw;
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
+        color: black;
+        border-radius: 100px;
+    }
+
+    #secondary-button-small {
+        width: 5vw;
+        background-color: $retrace-green;
+        border-color: $retrace-green;
+        color: black;
+        border-radius: 100px;
+    }
+
+    .full-height {
+        height: 100vh;
+    }
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .position-ref {
+        position: relative;
+    }
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+    .content {
+        text-align: center;
+    }
+    .title {
+        font-size: 84px;
+    }
+    .links > a {
+        color: #636b6f;
+        padding: 0 25px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    .m-b-md {
+        margin-bottom: 30px;
+    }
+
+    #page-container {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    #content-wrap {
+        padding-bottom: 15rem;    /* Footer height */
     }
 }

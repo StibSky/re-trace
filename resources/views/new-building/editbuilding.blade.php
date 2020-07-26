@@ -2,9 +2,6 @@
 @section('head-script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
-@section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/editbuilding_old.css') }}"
-@endsection
 @section('content')
 
     <div class="container">
@@ -51,7 +48,7 @@
             <label for="quantity">Quantity: </label>
                 <input type="text" name="quantity" placeholder="insert quantity"/>
             <br>
-            <button type="submit" id="submit-button" class="btn btn-primary" name="saveEdit">Submit</button>
+            <button type="submit" id="main-button" class="btn btn-primary" name="saveEdit">Submit</button>
         </form>
 
         @endsection

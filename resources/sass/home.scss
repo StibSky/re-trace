@@ -1,2 +1,44 @@
-// Universal elements + bootstrap overrides
+@import 'variables';
 
+#projectInfo, #userInfo {
+    height: 70vh;
+}
+
+#userInfo {
+    margin-right: 1em;
+}
+
+#projectInfo {
+    margin-left: 1em;
+}
+
+#newSearch {
+    margin-left: 2em;
+    margin-top: 3em;
+    height: 6em;
+}
+
+#project-names {
+    font-size: 18px;
+}
+#mysearch {
+    width: 20vw;
+}
+#mysearch:focus + .input-group-addon {
+    z-index: 10;
+}
+
+#search-btn {
+    background-color: rgb(255, 182, 193);
+    border-color: rgb(255, 182, 193);
+}
+#search-btn:hover {
+    cursor: pointer;
+    /*color: gold;*/
+    background-color: rgb(243,191,186);
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}

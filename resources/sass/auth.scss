@@ -1,9 +1,11 @@
+@import 'variables';
+
 #forgot-password {
     font-size: small;
 }
 
 #custom-tooltip {
-    background-color: rgb(243,191,186);
+    background-color: $retrace-pink;
     border-radius: 50%;
     outline: 0;
     -webkit-box-shadow: none;
