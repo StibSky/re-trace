@@ -45,35 +45,35 @@ body #secondary-button-small {
   border-radius: 100px;
 }
 
-body .full-height {
+.full-height {
   height: 100vh;
 }
 
-body .flex-center {
+.flex-center {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-body .position-ref {
+.position-ref {
   position: relative;
 }
 
-body .top-right {
+.top-right {
   position: absolute;
   right: 10px;
   top: 18px;
 }
 
-body .content {
+.content {
   text-align: center;
 }
 
-body .title {
+.title {
   font-size: 84px;
 }
 
-body .links > a {
+.links > a {
   color: #636b6f;
   padding: 0 25px;
   font-size: 13px;
@@ -83,16 +83,16 @@ body .links > a {
   text-transform: uppercase;
 }
 
-body .m-b-md {
+.m-b-md {
   margin-bottom: 30px;
 }
 
-body #page-container {
+#page-container {
   position: relative;
   min-height: 100vh;
 }
 
-body #content-wrap {
+#content-wrap {
   padding-bottom: 15rem;
   /* Footer height */
 }
