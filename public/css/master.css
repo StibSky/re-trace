@@ -1,0 +1,20 @@
+#main-button {
+  width: 14vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  color: black;
+  border-radius: 100px;
+}
+
+#secondary-button {
+  width: 14vw;
+  background-color: #bbcecd;
+  border-color: #bbcecd;
+  color: black;
+  border-radius: 100px;
+}
+
+body {
+  background-color: #e2e6f0;
+}
+

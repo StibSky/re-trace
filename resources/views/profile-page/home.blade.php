@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home_old.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
@@ -91,7 +91,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </div>
                     </ul>
                 </div>
-                <a class="btn btn-primary mb-2 ml-5" id="add-button" href="{{ route('building') }}">Add New Project</a>
+                <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
                 {{--                <div class="row">
                                     <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
                                         <form class="form">

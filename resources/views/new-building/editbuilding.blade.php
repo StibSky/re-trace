@@ -3,7 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/editbuilding.css') }}"
+    <link rel="stylesheet" href="{{ asset('css/editbuilding_old.css') }}"
 @endsection
 @section('content')
 
