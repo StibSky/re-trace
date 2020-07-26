@@ -1,7 +1,3 @@
-.card {
-    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 #projectInfo, #userInfo {
     height: 70vh;
 }

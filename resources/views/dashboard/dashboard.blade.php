@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/dashboard_old.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
     <!--
@@ -18,7 +18,7 @@ uses dynamic linking
                 </figure>
                 <p>Type: {{ $project["type"] }}</p>
                 <p>Here will come the information about your project.</p>
-                <button type="button" id="add-button" class="btn btn-primary" data-toggle="modal"
+                <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
                         data-target="#myModal">
                     Upload files
                 </button>

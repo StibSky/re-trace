@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/auth_old.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 @endsection
 @section('content')
     <!--
@@ -101,7 +101,7 @@
             </div>
             <div class="form-group row d-flex justify-content-center">
                 <div>
-                    <button type="submit" class="btn btn-primary" id="auth-button">
+                    <button type="submit" class="btn btn-primary" id="main-button">
                         {{ __('Register') }}
                     </button>
                 </div>

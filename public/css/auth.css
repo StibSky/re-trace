@@ -1,0 +1,13 @@
+#forgot-password {
+  font-size: small;
+}
+
+#custom-tooltip {
+  background-color: #f3bfba;
+  border-radius: 50%;
+  outline: 0;
+  box-shadow: none;
+  color: white;
+  border: none;
+}
+

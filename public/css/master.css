@@ -1,4 +1,14 @@
-#main-button {
+body {
+  background-color: #e2e6f0;
+}
+
+body .card {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #e2e6f0;
+  border-color: #e2e6f0;
+}
+
+body #main-button {
   width: 14vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
@@ -6,15 +16,11 @@
   border-radius: 100px;
 }
 
-#secondary-button {
+body #secondary-button {
   width: 14vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: black;
   border-radius: 100px;
-}
-
-body {
-  background-color: #e2e6f0;
 }
 

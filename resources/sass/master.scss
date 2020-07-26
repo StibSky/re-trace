@@ -1,21 +1,28 @@
 // Universal elements + bootstrap overrides
 
-#main-button {
-    width: 14vw;
-    background-color: rgb(243,191,186);
-    border-color: rgb(243,191,186);
-    color: black;
-    border-radius: 100px;
-}
-
-.secondary-button {
-    width: 14vw;
-    background-color: rgb(187, 206, 205);
-    border-color: rgb(187, 206, 205);
-    color: black;
-    border-radius: 100px;
-}
-
 body {
     background-color: rgb(226, 230, 240);
+
+    .card {
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: rgb(226, 230, 240);
+        border-color: rgb(226, 230, 240);
+    }
+
+
+    #main-button {
+        width: 14vw;
+        background-color: rgb(243,191,186);
+        border-color: rgb(243,191,186);
+        color: black;
+        border-radius: 100px;
+    }
+
+    #secondary-button {
+        width: 14vw;
+        background-color: rgb(187, 206, 205);
+        border-color: rgb(187, 206, 205);
+        color: black;
+        border-radius: 100px;
+    }
 }
