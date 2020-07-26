@@ -48,11 +48,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <div>
                                     @if(Auth::user()->type == 'admin')
-                                        <a class="btn btn-primary" id="edit-button"
+                                        <a class="btn btn-primary" id="secondary-button-small"
                                            href="{{ route('editBuilding', $building->id) }}"> edit</a>
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
-                                                id="delete-button">Delete
+                                                id="main-button-small">Delete
                                         </button>
                                     @endif
                                 </div>
@@ -91,7 +91,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </div>
                     </ul>
                 </div>
-                <a class="btn btn-primary mb-2 ml-5" id="add-button" href="{{ route('building') }}">Add New Project</a>
+                <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
                 {{--                <div class="row">
                                     <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
                                         <form class="form">

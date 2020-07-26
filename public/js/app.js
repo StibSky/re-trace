@@ -49907,7 +49907,11 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/Users/talisavandevelde/retrace/resources/sass/auth.scss'\n    at /Users/talisavandevelde/retrace/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at /Users/talisavandevelde/retrace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+=======
+// removed by extract-text-webpack-plugin
+>>>>>>> sass
 
 /***/ }),
 
@@ -49918,7 +49922,22 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/Users/talisavandevelde/retrace/resources/sass/dashboard.scss'\n    at /Users/talisavandevelde/retrace/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at /Users/talisavandevelde/retrace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+=======
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/footer.scss":
+/*!************************************!*\
+  !*** ./resources/sass/footer.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+>>>>>>> sass
 
 /***/ }),
 
@@ -49929,7 +49948,11 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/Users/talisavandevelde/retrace/resources/sass/home.scss'\n    at /Users/talisavandevelde/retrace/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at /Users/talisavandevelde/retrace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+=======
+// removed by extract-text-webpack-plugin
+>>>>>>> sass
 
 /***/ }),
 
@@ -49940,14 +49963,24 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/Users/talisavandevelde/retrace/resources/sass/master.scss'\n    at /Users/talisavandevelde/retrace/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/talisavandevelde/retrace/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at /Users/talisavandevelde/retrace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+=======
+// removed by extract-text-webpack-plugin
+>>>>>>> sass
 
 /***/ }),
 
 /***/ 0:
+<<<<<<< HEAD
 /*!********************************************************************************************************************************************************************************!*\
   !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/master.scss ***!
   \********************************************************************************************************************************************************************************/
+=======
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/footer.scss ./resources/sass/master.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
+>>>>>>> sass
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49956,6 +49989,10 @@ __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/app.scss 
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/home.scss */"./resources/sass/home.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/auth.scss */"./resources/sass/auth.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+<<<<<<< HEAD
+=======
+__webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/footer.scss */"./resources/sass/footer.scss");
+>>>>>>> sass
 module.exports = __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/master.scss */"./resources/sass/master.scss");
 
 

@@ -1,29 +1,13 @@
 #forgot-password {
-    font-size: small;
-}
-
-#auth-button {
-    width: 14vw;
-    background-color: rgb(243,191,186);
-    border-color: rgb(243,191,186);
-    color: black;
-    border-radius: 100px;
-}
-
-#redirect-button {
-    width: 14vw;
-    background-color: rgb(187, 206, 205);
-    border-color: rgb(187, 206, 205);
-    color: black;
-    border-radius: 100px;
+  font-size: small;
 }
 
 #custom-tooltip {
-    background-color: rgb(243,191,186);
-    border-radius: 50%;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: white;
-    border: none;
+  background-color: #f3bfba;
+  border-radius: 50%;
+  outline: 0;
+  box-shadow: none;
+  color: white;
+  border: none;
 }
+

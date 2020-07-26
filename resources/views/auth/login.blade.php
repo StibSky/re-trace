@@ -60,7 +60,7 @@
             </div>
             <div class="form-group row d-flex justify-content-center">
                 <div>
-                    <button type="submit" class="btn btn-primary" id="auth-button">
+                    <button type="submit" class="btn btn-primary" id="main-button">
                         {{ __('Login') }}
                     </button>
                 </div>
@@ -69,7 +69,7 @@
             <p class="mt-2 mb-1">Don't have an account?</p> <br>
         </form>
 
-        <a id="redirect-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+        <a id="secondary-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
 
     </div>
     <script type="text/javascript" language="JavaScript">

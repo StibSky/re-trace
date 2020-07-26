@@ -101,7 +101,7 @@
             </div>
             <div class="form-group row d-flex justify-content-center">
                 <div>
-                    <button type="submit" class="btn btn-primary" id="auth-button">
+                    <button type="submit" class="btn btn-primary" id="main-button">
                         {{ __('Register') }}
                     </button>
                 </div>
