@@ -12,6 +12,21 @@
 HOMEPAGE for users, users find their projects here and functionality to upload files/materiallists
 -->
     <div class="container">
+        @if(session('verified'))
+            <div class="alert alert-success">
+                You've successfully verified your email!
+            </div>
+        @endif
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         <div class="d-flex flex-md-row flex-column align-items-center">
             <div class="col-sm-6 col-12 px-2 card" id="userInfo">
                 <div class="row no-gutters d-flex">
