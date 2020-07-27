@@ -13,6 +13,7 @@
                 @foreach($privateBuildings as $privateBuilding)
                    @for($i = 0; $i < count($privateBuilding); $i++)
                         @if($private->id ==$privateBuilding[$i]['userid'] )
+
                         <li>projectName: " <a
                                 href="{{route('dash', $privateBuilding[$i]->id)}}">{{ $privateBuilding[$i]['projectName'] }}</a>
                             " <br> type:
