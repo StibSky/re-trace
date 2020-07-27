@@ -40,6 +40,7 @@ class DashboardController extends Controller
 
     public function adminDashboard()
     {
+        //dashboardcontroller for administrators to see user info
         if(Auth::user()->type != 'admin') {
             return redirect()->back();
         }
