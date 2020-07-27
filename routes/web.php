@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
     }
 });*/
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', array('before' => 'auth', 'uses' => 'LandingController@index'));
 Route::get('/home', 'HomeController@index')->name('home');
