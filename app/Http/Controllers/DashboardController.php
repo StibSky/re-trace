@@ -40,6 +40,9 @@ class DashboardController extends Controller
 
     public function adminDashboard()
     {
+        if(Auth::user()->type != 'admin') {
+            return redirect()->back();
+        }
         $privateUsers = User::where('type', 'Private')->get();
         $businessUsers = User::where('type', 'Business')->get();
         $privateBuildings = [];
