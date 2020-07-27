@@ -21,7 +21,7 @@ the landing page, this is where you go to when you click home as a logged in use
 @section('content')
 <body>
 <div class="container d-flex">
-    <div class="justify-content-center">
+    <div class="justify-content-center mt-5">
         <div class="content">
             <div class="title m-b-md" id="logo">
                 <img src="{{ asset('images/re_logo.png') }}" class="w-75" alt="">

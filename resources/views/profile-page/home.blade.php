@@ -48,8 +48,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <div>
                                     @if(Auth::user()->type == 'admin')
-                                        <a class="btn btn-primary" id="secondary-button-small"
-                                           href="{{ route('editBuilding', $building->id) }}"> edit</a>
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
                                                 id="main-button-small">Delete
