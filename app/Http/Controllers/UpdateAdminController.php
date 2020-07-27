@@ -30,7 +30,7 @@ class UpdateAdminController extends Controller
 
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
 
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();
+        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '10')->get();
 
 
         $unit = Unit::all();
@@ -74,12 +74,12 @@ class UpdateAdminController extends Controller
             if (Substance::where('code', $substance->getCode())->first()) {
                 return redirect()->back()->with('error', 'this code already exists');
             }
-            if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 9) {
+            if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 10) {
                 $substance->save();
                 return redirect()->back()->with('success', 'IT WORKS!');
             }
             else {
-                return redirect()->back()->with('error', 'Code must be 4, 6 or 9 characters long');
+                return redirect()->back()->with('error', 'Code must be 4, 6 or 10 characters long');
             }
 
 

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
     }
 });*/
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/', array('before' => 'auth', 'uses' => 'LandingController@index'));
 Route::get('/home', 'HomeController@index')->name('home');
@@ -36,7 +36,7 @@ Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
-Route::get('/adminDashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
+Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
 //route to upload files,
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT

@@ -125,7 +125,7 @@ class NewBuildingController extends Controller
         $buildingMaterial->setBuildid($request->input('buildingId'));
         $buildingMaterial->setQuantity($request->input('quantity'));
         $inputBuildId = $request->input('buildingId');
-        $checkMaterial = DB::table('materialList')
+        $checkMaterial = DB::table('materiallist')
             ->where('buildid', $inputBuildId)
             ->where('substanceId', $request->input('substance'))
             ->first();
