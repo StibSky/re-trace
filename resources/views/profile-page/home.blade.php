@@ -25,8 +25,13 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     </div>
                 </div>
                 <div class="row no-gutters d-flex">
-                    <div class="col-12 d-flex pl-4 pt-4">
-                        <p></p>
+                    <div class="col-12 d-flex flex-column pl-4 pt-4">
+                        <h4>Personal details</h4>
+                        <ul>
+                            <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                            <li>Email address: {{ Auth::user()->email }}</li>
+                            <li>Profile Type: {{ Auth::user()->type }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>

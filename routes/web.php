@@ -36,7 +36,7 @@ Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
-Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
+Route::get('/adminDashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
 //route to upload files,
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
