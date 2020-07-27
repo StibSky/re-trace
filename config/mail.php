@@ -42,9 +42,9 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'host' => env('MAIL_HOST', 'smtp.mailprotect.be'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'STARTTLS        '),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
@@ -78,6 +78,14 @@ return [
         ],
     ],
 
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -90,8 +98,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'steve.keersmaekers@re-trace.io'),
-        'name' => env('MAIL_FROM_NAME', 'Re-trace'),
+        'address' => env('MAIL_FROM_ADDRESS', 'talisa.vandevelde@re-trace.io'),
+        'name' => env('MAIL_FROM_NAME', 'Re-trace.io'),
     ],
 
     /*
