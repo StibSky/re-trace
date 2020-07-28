@@ -69,11 +69,13 @@ uses dynamic linking
                 <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
+{{--                        <input type="text" name="name">--}}
                         <input type="file" name="userfile">
+                        <input value="{{ $project->id }}" type="hidden" name="projectId"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <input type="submit" value="upload"/>
+                        <input type="submit" value="upload" name="upload"/>
                     </div>
                 </form>
             </div>
