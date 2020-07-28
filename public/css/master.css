@@ -14,6 +14,7 @@ body .card {
 }
 
 body #main-button {
+  font-weight: bold;
   width: 14vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
@@ -22,6 +23,7 @@ body #main-button {
 }
 
 body #secondary-button {
+  font-weight: bold;
   width: 14vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
@@ -30,6 +32,7 @@ body #secondary-button {
 }
 
 body #main-button-small {
+  font-weight: bold;
   width: 5vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
@@ -38,6 +41,7 @@ body #main-button-small {
 }
 
 body #secondary-button-small {
+  font-weight: bold;
   width: 5vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
