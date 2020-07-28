@@ -74,16 +74,19 @@ sets up the navbar and yields the content of the other pages
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
                                             My profile
                                         </a>
-
-
+                                        <a class="dropdown-item" href="https://re-trace.io" target="_blank">
+                                            About
+                                        </a>
+                                        <div  style="border-top: 1px solid lightslategray;">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                              onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        </div>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                               style="display: none;">
                                             @csrf
