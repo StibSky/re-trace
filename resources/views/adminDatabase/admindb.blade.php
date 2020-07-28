@@ -62,6 +62,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="code">Code</label>
+                    <p style="color: red"><strong>only fill this in when selecting NO PARENT/NEW CATEGORY, can only be 4 number code</strong></p>
                     <input type="text" class="form-control" id="code" name="code"
                            placeholder="1701">
                 </div>
