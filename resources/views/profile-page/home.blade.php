@@ -61,11 +61,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </div>
                             </li>
                             <hr>
-                            <div id="myModal" class="modal fade">
+                            <div id="myModal" class="modal fade" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content">
+                                    <div class="modal-content text-left">
                                         <div class="modal-header">
-                                            <button type="button" class="close text-left pl-0" data-dismiss="modal" aria-hidden="true">X
+                                            <button type="button" class="close" data-dismiss="modal">X
                                             </button>
                                             <h4 class="modal-title">Are you sure you want to delete?</h4>
                                         </div>
