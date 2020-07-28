@@ -33,7 +33,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/building', 'NewBuildingController@index')->name('building');
 Route::post('/newBuilding', 'NewBuildingController@addBuilding')->name('newBuilding');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
-Route::get('/editBuilding/{id}', 'NewBuildingController@editBuilding')->name('editBuilding');
+Route::get('/addStreams/{id}', 'NewBuildingController@addStreams')->name('addstreams');
 Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 

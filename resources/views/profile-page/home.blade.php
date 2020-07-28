@@ -65,22 +65,21 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
+                                            <button type="button" class="close text-left pl-0" data-dismiss="modal" aria-hidden="true">X
                                             </button>
                                             <h4 class="modal-title">Are you sure you want to delete?</h4>
-
                                         </div>
                                         <form action="{{ route('deleteBuilding', $building) }}" method="post">
                                             @csrf
                                             <div class="modal-body">
                                                 <button value="{{ $building->id }}" class="btn btn-primary"
-                                                        name="deleteBuilding" id="delete-button">Yes, delete project
+                                                        name="deleteBuilding" id="main-button">Yes, delete project
+                                                </button>
+                                                <button type="button" class="btn btn-default" id="secondary-button-small" data-dismiss="modal">No
                                                 </button>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">No
-                                                </button>
+
                                             </div>
                                         </form>
                                     </div>

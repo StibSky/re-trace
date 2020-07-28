@@ -22,7 +22,7 @@ uses dynamic linking
                     Upload files
                 </button>
                 <a class="btn btn-primary mt-3" id="secondary-button"
-                   href="{{ route('editBuilding', $project->id) }}">Add streams</a>
+                   href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
                 <h4>Information</h4>

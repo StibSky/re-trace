@@ -99,7 +99,7 @@ class NewBuildingController extends Controller
         return redirect()->route('home');
     }
 
-    public function editBuilding($id)
+    public function addStreams($id)
     {
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
@@ -109,7 +109,7 @@ class NewBuildingController extends Controller
 
 
         $project = Building::all()->find($id);
-        return view('new-building.editbuilding', [
+        return view('new-building.addstreams', [
             'buildingId' => $id,
             'project' => $project,
             'headCategories' => $headCategory,
