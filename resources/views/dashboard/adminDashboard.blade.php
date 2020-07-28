@@ -24,7 +24,6 @@
                 @endforeach
             </ul>
         @endif
-
     @endforeach
     <h3>business users</h3>
     @foreach($businesses as $business)
