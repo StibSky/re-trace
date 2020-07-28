@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="form-group row d-flex justify-content-center">
-                <div class="form-check mb-3">
+                <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember"
                            id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -66,10 +66,11 @@
                 </div>
             </div>
             <hr class="w-25">
-            <p class="mt-2 mb-1">Don't have an account?</p> <br>
         </form>
-
-        <a id="secondary-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+        <div>
+            <p>Don't have an account?</p> <br>
+            <a id="secondary-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </div>
 
     </div>
     <script type="text/javascript" language="JavaScript">
