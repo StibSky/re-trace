@@ -22,7 +22,7 @@ class UpdateAdminController extends Controller
     */
     public function index()
     {
-        if(Auth::user()->type != 'admin') {
+        if (Auth::user()->type != 'admin') {
             return redirect()->back();
         }
         $substance = Substance::all();
@@ -57,18 +57,40 @@ class UpdateAdminController extends Controller
             $substance->setNameNl($request->input('name_nl'));
             $substance->setNameFr($request->input('name_fr'));
             $substance->setSpecificWeight($request->input('specific_weight'));
-            $substance->setCode($request->input('code'));
             $substance->setComments($request->input('comment'));
             $substance->setParent($request->input('parent'));
             $substance->setIsHazardous($request->input('is_hazardous'));
             $substance->setUnitId($request->input('unit_id'));
 
 
+            //AUTOMATIC NUMBERING PROGRESS
+            if (($substance->getParent()) != null) {
+                $parentCode = Substance::where('id', $substance->getParent())->first()->code;
+                $parentId = Substance::where('id', $substance->getParent())->first()->id;
+            }else {
+                $parentCode = 0;
+                $substance->setCode($request->input('code'));
+            }
 
-            if ($substance->getName()==null) {
+            if (strlen($parentCode) == 6) {
+                if ((Substance::where('parent', $parentId)->orderby('id','DESC')->first()) == null){
+                    $substance->setCode(($parentCode *10000) +1); }
+                else {
+                    $child = (Substance::where('parent', $parentId)->orderby('id', 'DESC')->first()->code) + 1;
+                    $substance->setCode($child);
+                }
+            } elseif (strlen($parentCode) == 4) {
+                if ((Substance::where('parent', $parentId)->orderby('id','DESC')->first()) == null){
+                    $substance->setCode(($parentCode *100) +1);
+                } else {
+                    $child = (Substance::where('parent', $parentId)->orderby('id', 'DESC')->first()->code) + 1;
+                    $substance->setCode($child);
+                }
+            }
+            if ($substance->getName() == null) {
                 return redirect()->back()->with('error', 'please fill in a name');
             }
-            if ($substance->getSpecificWeight()==null) {
+            if ($substance->getSpecificWeight() == null) {
                 return redirect()->back()->with('error', 'please fill in a weight (0 if you dont know)');
             }
             if (Substance::where('code', $substance->getCode())->first()) {
@@ -77,13 +99,9 @@ class UpdateAdminController extends Controller
             if (strlen($substance->getCode()) == 4 or strlen($substance->getCode()) == 6 or strlen($substance->getCode()) == 10) {
                 $substance->save();
                 return redirect()->back()->with('success', 'IT WORKS!');
-            }
-            else {
+            } else {
                 return redirect()->back()->with('error', 'Code must be 4, 6 or 10 characters long');
             }
-
-
-
             //$parent = Substance::where();
             //$substance->setParent($parent->code);
         }
