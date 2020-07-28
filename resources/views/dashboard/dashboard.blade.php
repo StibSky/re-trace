@@ -58,7 +58,7 @@ uses dynamic linking
                 <input type="submit" value="upload"/>
             </form>
         </div>--}}
-{{--    <div id="myModal" class="modal fade">
+    <div id="myModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -80,6 +80,6 @@ uses dynamic linking
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-    </div>--}}
+    </div>
 
 @endsection
