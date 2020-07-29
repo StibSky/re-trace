@@ -16,14 +16,19 @@ body {
         border-color: $retrace-light-blue;
     }
 
-
     #main-button {
+        color: white;
         font-weight: bold;
         width: 14vw;
         background-color: $retrace-pink;
         border-color: $retrace-pink;
-        color: black;
         border-radius: 100px;
+    }
+
+    #main-button:hover, #main-button-small:hover {
+        color: $retrace-pink;
+        background-color: $retrace-sand;
+        border-color: $retrace-sand;
     }
 
     #secondary-button {
@@ -31,8 +36,14 @@ body {
         width: 14vw;
         background-color: $retrace-green;
         border-color: $retrace-green;
-        color: black;
+        color: white;
         border-radius: 100px;
+    }
+
+    #secondary-button:hover, #secondary-button-small:hover {
+        color: black;
+        background-color: $retrace-sand;
+        border-color: $retrace-sand;
     }
 
     #main-button-small {
@@ -40,7 +51,7 @@ body {
         width: 5vw;
         background-color: $retrace-pink;
         border-color: $retrace-pink;
-        color: black;
+        color: white;
         border-radius: 100px;
     }
 
@@ -49,7 +60,7 @@ body {
         width: 5vw;
         background-color: $retrace-green;
         border-color: $retrace-green;
-        color: black;
+        color: white;
         border-radius: 100px;
     }
 }

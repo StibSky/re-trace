@@ -253,4 +253,9 @@ class Building extends Model
     {
         return $this->hasMany('App\Materiallist');
     }
+
+    public function UploadedFile()
+    {
+        return $this->hasMany('App\UploadedFile');
+    }
 }

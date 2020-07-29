@@ -16,7 +16,6 @@ return [
     */
 
     'default' => env('COMBELL_DB_CONNECTION', 'remoteconnection'),
-    'web' => env('COMBELL_DB_CONNECTION', 'remoteconnection'),
 
     /*
     |--------------------------------------------------------------------------

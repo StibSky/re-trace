@@ -14,12 +14,19 @@ body .card {
 }
 
 body #main-button {
+  color: white;
   font-weight: bold;
   width: 14vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
-  color: black;
   border-radius: 100px;
+}
+
+body #main-button:hover,
+body #main-button-small:hover {
+  color: #f3bfba;
+  background-color: #ffffee;
+  border-color: #ffffee;
 }
 
 body #secondary-button {
@@ -27,8 +34,15 @@ body #secondary-button {
   width: 14vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
-  color: black;
+  color: white;
   border-radius: 100px;
+}
+
+body #secondary-button:hover,
+body #secondary-button-small:hover {
+  color: black;
+  background-color: #ffffee;
+  border-color: #ffffee;
 }
 
 body #main-button-small {
@@ -36,7 +50,7 @@ body #main-button-small {
   width: 5vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
-  color: black;
+  color: white;
   border-radius: 100px;
 }
 
@@ -45,7 +59,7 @@ body #secondary-button-small {
   width: 5vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
-  color: black;
+  color: white;
   border-radius: 100px;
 }
 
