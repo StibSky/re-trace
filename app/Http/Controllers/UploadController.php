@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
 use App\UploadedFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,9 @@ class UploadController extends Controller
         $file = new UploadedFile();
 
         if (isset($_POST['upload'])) {
-            $file->setName($request->userfile->getClientOriginalName());
-            $file->setType($request->userfile->getClientOriginalExtension());
+            $file->setName(($request->input("name"))? $request->input("name") : $request->userfile->getClientOriginalName());
+            $file->setFormat($request->userfile->getClientOriginalExtension());
+            $file->setType($request->input("type"));
             $user = Auth::user();
             $file->setUserId($user->id);
             $file->setProjectId($request->input("projectId"));
@@ -24,7 +26,9 @@ class UploadController extends Controller
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
 
-        $request->userfile->store('userFiles/'.$firstname."_".$lastname , 'public');
+        $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
+
+        $request->userfile->store('userFiles/'.$firstname."_".$lastname."/".$projectFolder , 'public');
         return redirect()->route('home');
     }
 }

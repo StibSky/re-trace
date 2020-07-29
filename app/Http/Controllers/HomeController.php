@@ -46,7 +46,6 @@ class HomeController extends Controller
             'buildings' => $userBuilding,
             'substances' => $substances,
             'firstbuilding' => $firstbuilding
-
         ]);
     }
 }

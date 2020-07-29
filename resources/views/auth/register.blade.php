@@ -56,7 +56,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="form-group row d-flex flex-nowrap justify-content-center">
+            <div class="form-group row d-flex flex-nowrap justify-content-center mb-0">
                 <label for="type" class="sr-only">{{ __('type') }}</label>
 
                 <div class="col-md-6">
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="form-group row d-flex justify-content-center">
-                <div>
+                <div class="mt-3">
                     <button type="submit" class="btn btn-primary" id="main-button">
                         {{ __('Register') }}
                     </button>

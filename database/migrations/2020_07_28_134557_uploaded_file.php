@@ -17,6 +17,7 @@ class UploadedFile extends Migration
             $table->id()->unsigned();
             $table->string("name");
             $table->integer("size")->nullable();
+            $table->string("format");
             $table->string("type");
             $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
             $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));

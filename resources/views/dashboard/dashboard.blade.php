@@ -71,6 +71,19 @@ uses dynamic linking
                     <div class="modal-body">
 {{--                        <input type="text" name="name">--}}
                         <input type="file" name="userfile">
+                        <input type="text" name="name">
+                        <br>
+                        <label for="type">Select file type:</label>
+                        <select name="type">
+                            <option value="Measuring state">Measuring state</option>
+                            <option value="Location">Location</option>
+                            <option value="Surface">Surface</option>
+                            <option value="Volume">Volume</option>
+                            <option value="Material list">Material list</option>
+                            <option value="Plans">Plans</option>
+                            <option value="Photos exterior">Photos exterior</option>
+                            <option value="Photos interior">Photos interior</option>
+                        </select>
                         <input value="{{ $project->id }}" type="hidden" name="projectId"/>
                     </div>
                     <div class="modal-footer">
