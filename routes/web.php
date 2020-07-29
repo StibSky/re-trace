@@ -50,7 +50,11 @@ Route::post('/upload', 'UploadController@upload')->name('upload');
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
 
-
+Route::get( '/verify-test', function () {
+    // Get a user for demo purposes
+    $user = App\User::find(1);
+    return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
+});
 
 //array('before' => 'auth', 'uses' => 'HomeController@index')
 

@@ -55,14 +55,14 @@ blade for adding a new building/project to a User
                 </div>
             </div>
             <br>
-            <button type="submit" id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit</button>
+            <button type="submit" id="main-button" class="btn btn-primary" name="submitNewBuilding">Submit</button>
         </form>
 
         <br>
         <br>
         <br>
         <p >Didn't want to create a new project?</p>
-        <a type="submit" id="add-button" class="btn btn-primary " name="submitNewBuilding"
+        <a type="submit" id="main-button" class="btn btn-primary " name="submitNewBuilding"
            href="{{route('home')}}">Back
             to profile </a>
 
