@@ -21,6 +21,8 @@ uses dynamic linking
                         data-target="#myModal">
                     Upload files
                 </button>
+                <a id="main-button" class="btn btn-primary"
+                   href="{{route('viewFiles', $project->id)}}"> View files</a>
                 <a class="btn btn-primary mt-3" id="secondary-button"
                    href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>
