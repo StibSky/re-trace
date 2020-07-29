@@ -8,6 +8,16 @@ body {
     ul {
         padding: 0;
         list-style: none;
+        li {
+            a {
+                color: $retrace-grey;
+            }
+
+            a:hover {
+                color: $retrace-pink;
+                text-decoration: none;
+            }
+        }
     }
 
     .card {
@@ -63,8 +73,13 @@ body {
         color: white;
         border-radius: 100px;
     }
+
+
 }
 
+a span:hover {
+    color: $retrace-pink;
+}
 
 .full-height {
     height: 100vh;

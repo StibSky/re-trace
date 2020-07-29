@@ -108,7 +108,7 @@ sets up the navbar and yields the content of the other pages
                 <div class="row d-flex justify-content-between">
                     <div class="col-sm-12 col-md-6 col-lg">
                         <div class="links">
-                            <a href="https://re-trace.io" target="_blank">About</a>
+                            <a href="https://re-trace.io" target="_blank"><span>About</span></a>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg">
