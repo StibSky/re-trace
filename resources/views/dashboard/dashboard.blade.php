@@ -81,5 +81,10 @@ uses dynamic linking
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
+         aria-valuemin="0" aria-valuemax="100" style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">
+        25% Completed Profile
+    </div>
+
 
 @endsection

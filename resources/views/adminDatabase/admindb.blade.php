@@ -23,21 +23,21 @@
             <h2>Basic Info</h2>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Stonelike materials">
+                <input type="text" class="form-control" name="name" placeholder="Stonelike materials" value="{{old('name')}}">
             </div>
             <div class="form-group">
                 <label for="name_nl">Nederlandse Naam</label>
-                <input type="text" class="form-control" name="name_nl"
+                <input type="text" class="form-control" name="name_nl" value="{{old('name_nl')}}"
                        placeholder="Steenachtige materialen">
             </div>
             <div class="form-group">
                 <label for="name_fr">Franse naam</label>
-                <input type="text" class="form-control" name="name_fr"
+                <input type="text" class="form-control" name="name_fr" value="{{old('name_fr')}}"
                        placeholder="Matériaux pierreux">
             </div>
             <div class="form-group">
                 <label for="type">Specific weight</label>
-                <input type="text" class="form-control" id="type" name="specific_weight"
+                <input type="text" class="form-control" id="type" name="specific_weight"  value="{{old('specific_weight')}}"
                        placeholder="if applicable">
             </div>
             <div class="form-row">
@@ -62,13 +62,14 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="code">Code</label>
-                    <p style="color: red"><strong>only fill this in when selecting NO PARENT/NEW CATEGORY, can only be 4 number code</strong></p>
-                    <input type="text" class="form-control" id="code" name="code"
+                    <input type="text" class="form-control" id="code" name="code"  value="{{old('code')}}"
                            placeholder="1701">
+                    <p style="color: red"><strong>only fill this in when selecting NO PARENT/NEW CATEGORY, can only be 4 number code</strong></p>
+
                 </div>
                 <div class="form-group">
                     <label for="type">Comments</label>
-                    <input type="text" class="form-control" id="type" name="type"
+                    <input type="text" class="form-control" id="type" name="type" value="{{old('comments')}}"
                            placeholder="if applicable">
                 </div>
             </div>

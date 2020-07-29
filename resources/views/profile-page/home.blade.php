@@ -116,15 +116,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <h2><strong>Please add a first project to progress your profile </strong></h2>
                 @else
                    <h2><strong>Your profile is up to date!</strong></h2>
-                    {{--  <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="15"
-                          aria-valuemin="0" aria-valuemax="100" style="width:15%">
-                         15% Completed Profile
-                     </div>
-                 @else
-                     <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100" style="width:25%">
-                         25% Completed Profile
-                     </div>--}}
                 @endif
             </div>
         </div>

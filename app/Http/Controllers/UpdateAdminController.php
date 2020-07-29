@@ -64,7 +64,7 @@ class UpdateAdminController extends Controller
 
 
             if ($substance->getParent()!= null && $request->input('code') != null ) {
-                return redirect()->back()->with('error', 'you cannot select a parent if you fill in a code yourself');
+                return back()->withInput()->with('error', 'you cannot select a parent if you fill in a code yourself');
             }
             //AUTOMATIC NUMBERING PROGRESS
             if (($substance->getParent()) != null && $request->input('code') == null ) {
@@ -91,19 +91,19 @@ class UpdateAdminController extends Controller
                 }
             }
             if ($substance->getName() == null) {
-                return redirect()->back()->with('error', 'please fill in a name');
+                return back()->withInput()->with('error', 'please fill in a name');
             }
             if ($substance->getSpecificWeight() == null) {
-                return redirect()->back()->with('error', 'please fill in a weight (0 if you dont know)');
+                return back()->withInput()->with('error', 'please fill in a weight (0 if you dont know)');
             }
             if (Substance::where('code', $substance->getCode())->first()) {
-                return redirect()->back()->with('error', 'this code already exists');
+                return back()->withInput()->with('error', 'this code already exists');
             }
-            if (strlen($substance->getCode()) == 4) {
+            if (strlen($substance->getCode()) == 4 || strlen($substance->getCode()) == 6 || strlen($substance->getCode()) == 10) {
                 $substance->save();
                 return redirect()->back()->with('success', 'IT WORKS!');
             } else {
-                return redirect()->back()->with('error', 'Code for new stream must be 4 characters long');
+                return back()->withInput()->with('error', 'Code for new stream must be 4 characters long');
             }
             //$parent = Substance::where();
             //$substance->setParent($parent->code);
