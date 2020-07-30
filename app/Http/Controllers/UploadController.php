@@ -20,7 +20,7 @@ class UploadController extends Controller
 
         $originalExtension = $request->userfile->getClientOriginalExtension();
 
-        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename.".".$originalExtension;
+        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
         if (isset($_POST['upload'])) {
             $file->setName($filename);
@@ -62,7 +62,7 @@ class UploadController extends Controller
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-        $targetFile = public_path().'/storage/userFiles/'.$firstname.'_'.$lastname.'/'.$projectFolder.'/'.$filename;
+        $targetFile = storage_path('app/public/userFiles/'.$firstname.'_'.$lastname.'/'.$projectFolder.'/'.$filename);
 
         return response()->download($targetFile);
     }
