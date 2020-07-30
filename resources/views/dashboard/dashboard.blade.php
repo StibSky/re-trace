@@ -7,64 +7,52 @@
 blade for the specific user projects
 uses dynamic linking
 -->
-    <div class="container">
-        @if(session()->has('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
+    <div class="d-flex flex-lg-row flex-column align-items-center">
+        <div class="col-12 col-md-6 col-lg card p-4">
+            <div class="card-title">
+                <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
-        @endif
-        @if(session()->has('error'))
-            <div class="alert alert-danger">
-                {{ session()->get('error') }}
+            <figure><img class="w-100"
+                         src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
+            </figure>
+            <p>Type: {{ $project["type"] }}</p>
+            <div class="row px-3 d-flex justify-content-between">
+                <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal">
+                    Upload files
+                </button>
+                <a id="secondary-button-medium" class="btn btn-primary"
+                   href="{{route('viewFiles', $project->id)}}"> View files</a>
             </div>
-        @endif
-        <div class="d-flex flex-lg-row flex-column align-items-center">
-            <div class="col-12 col-md-6 col-lg card p-4">
-                <div class="card-title">
-                    <h4>{{ $project->projectName ?? 'Project name' }}</h4>
-                </div>
-                <figure><img class="w-100"
-                             src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
-                </figure>
-                <p>Type: {{ $project["type"] }}</p>
-                <div class="row px-3 d-flex justify-content-between">
-                    <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
-                            data-target="#myModal">
-                        Upload files
-                    </button>
-                    <a id="secondary-button-medium" class="btn btn-primary"
-                       href="{{route('viewFiles', $project->id)}}"> View files</a>
-                </div>
-                <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <a class="btn btn-primary mt-3" id="main-button"
-                      href="{{ route('addstreams', $project->id) }}">Add streams</a>
-                </div>
+                   href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>
-            <div class="col-12 col-md-6 col-lg card p-4">
-                <h4>Information</h4>
-                <ul>
-                    <li>Location: {{ $project["address1"] }}
-                        <ul>
-                            <li>{{ $project["address2"] }}</li>
-                        </ul>
-                    </li>
-                    {{--                    <li>Measuring State</li>
-                                        <li>Material list</li>
-                                        <li>Surface</li>
-                                        <li>Plans</li>
-                                        <li>Pictures</li>--}}
-                </ul>
-            </div>
-            <div class="col-12 col-md-6 col-lg card p-4">
-                <h4>Waste Streams</h4>
-                @if(count($buildingSubstances) > 0)
+        </div>
+        <div class="col-12 col-md-6 col-lg card p-4">
+            <h4>Information</h4>
+            <ul>
+                <li>Location: {{ $project["address1"] }}
                     <ul>
-                        @foreach($buildingSubstances as $buildingSubstance)
-                            <li>{{ $buildingSubstance[0]['name'] }}</li>
-                        @endforeach
+                        <li>{{ $project["address2"] }}</li>
                     </ul>
-                @endif
-            </div>
+                </li>
+                {{--                    <li>Measuring State</li>
+                                    <li>Material list</li>
+                                    <li>Surface</li>
+                                    <li>Plans</li>
+                                    <li>Pictures</li>--}}
+            </ul>
+        </div>
+        <div class="col-12 col-md-6 col-lg card p-4">
+            <h4>Waste Streams</h4>
+            @if(count($buildingSubstances) > 0)
+                <ul>
+                    @foreach($buildingSubstances as $buildingSubstance)
+                        <li>{{ $buildingSubstance[0]['name'] }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
     {{--    <div class="card-body">
@@ -113,15 +101,15 @@ uses dynamic linking
         <!-- /.modal-dialog -->
     </div>
 
-  {{--  <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
-        profile</h4>
-    <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
-        <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
-             aria-valuemin="0" aria-valuemax="100" style="width:25%";
-        >
-            25% Completed Profile
-        </div>
-    </div>--}}
+    {{--  <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
+          profile</h4>
+      <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
+          <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
+               aria-valuemin="0" aria-valuemax="100" style="width:25%";
+          >
+              25% Completed Profile
+          </div>
+      </div>--}}
 
 
 @endsection

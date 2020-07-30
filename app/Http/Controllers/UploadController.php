@@ -14,6 +14,10 @@ class UploadController extends Controller
 {
     public function upload(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect('login')->with('error', 'You were inactive for too long and logged out automatically');
+        }
+
         $file = new UploadedFile();
 
         if ($request->userfile != null) {
@@ -50,11 +54,16 @@ class UploadController extends Controller
     {
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
-            ->orderBy("type")
             ->get();
+            //->groupBy("type");
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        //dd();
 
         return view('dashboard.files', [
-            'projectfiles' => $projectfiles
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes
         ]);
 
     }

@@ -21,8 +21,9 @@ class DashboardController extends Controller
     {
 
         if (!Auth::check()) {
-            return redirect()->back();
+            return redirect('login')->with('error', 'You were inactive for too long and logged out automatically');
         }
+
         if (Auth::user()->type == 'admin') {
             Auth::user()->id = Building::where('id', $id)->first()->userid;
         }
