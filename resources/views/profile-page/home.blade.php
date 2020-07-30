@@ -12,6 +12,16 @@
 HOMEPAGE for users, users find their projects here and functionality to upload files/materiallists
 -->
     <div class="container">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         @if(session('verified'))
             <div class="alert alert-success">
                 You've successfully verified your email!
