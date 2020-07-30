@@ -20,7 +20,7 @@ class UploadController extends Controller
             $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
 
             $originalExtension = $request->userfile->getClientOriginalExtension();
-            
+
             $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
             if (isset($_POST['upload'])) {
@@ -50,6 +50,7 @@ class UploadController extends Controller
     {
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
+            ->orderBy("type")
             ->get();
 
         return view('dashboard.files', [

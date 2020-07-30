@@ -27,14 +27,18 @@ uses dynamic linking
                              src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
                 </figure>
                 <p>Type: {{ $project["type"] }}</p>
-                <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#myModal">
-                    Upload files
-                </button>
-                <a id="main-button" class="btn btn-primary"
-                   href="{{route('viewFiles', $project->id)}}"> View files</a>
-                <a class="btn btn-primary mt-3" id="secondary-button"
-                   href="{{ route('addstreams', $project->id) }}">Add streams</a>
+                <div class="row px-3 d-flex justify-content-between">
+                    <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal">
+                        Upload files
+                    </button>
+                    <a id="secondary-button-medium" class="btn btn-primary"
+                       href="{{route('viewFiles', $project->id)}}"> View files</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                <a class="btn btn-primary mt-3" id="main-button"
+                      href="{{ route('addstreams', $project->id) }}">Add streams</a>
+                </div>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
                 <h4>Information</h4>

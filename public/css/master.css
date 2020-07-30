@@ -32,7 +32,8 @@ body #main-button {
 }
 
 body #main-button:hover,
-body #main-button-small:hover {
+body #main-button-small:hover,
+body #main-button-medium:hover {
   color: #f3bfba;
   background-color: #ffffee;
   border-color: #ffffee;
@@ -48,7 +49,8 @@ body #secondary-button {
 }
 
 body #secondary-button:hover,
-body #secondary-button-small:hover {
+body #secondary-button-small:hover,
+body #secondary-button-medium:hover {
   color: black;
   background-color: #ffffee;
   border-color: #ffffee;
@@ -63,9 +65,27 @@ body #main-button-small {
   border-radius: 100px;
 }
 
+body #main-button-medium {
+  font-weight: bold;
+  width: 9vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  color: white;
+  border-radius: 100px;
+}
+
 body #secondary-button-small {
   font-weight: bold;
   width: 5vw;
+  background-color: #bbcecd;
+  border-color: #bbcecd;
+  color: white;
+  border-radius: 100px;
+}
+
+body #secondary-button-medium {
+  font-weight: bold;
+  width: 9vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;

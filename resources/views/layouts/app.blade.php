@@ -134,7 +134,6 @@ sets up the navbar and yields the content of the other pages
 
     @yield('script')
 </div>
-
 </body>
 <!-- Site footer -->
 

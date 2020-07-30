@@ -35,7 +35,7 @@ body {
         border-radius: 100px;
     }
 
-    #main-button:hover, #main-button-small:hover {
+    #main-button:hover, #main-button-small:hover, #main-button-medium:hover {
         color: $retrace-pink;
         background-color: $retrace-sand;
         border-color: $retrace-sand;
@@ -50,7 +50,7 @@ body {
         border-radius: 100px;
     }
 
-    #secondary-button:hover, #secondary-button-small:hover {
+    #secondary-button:hover, #secondary-button-small:hover, #secondary-button-medium:hover {
         color: black;
         background-color: $retrace-sand;
         border-color: $retrace-sand;
@@ -65,9 +65,27 @@ body {
         border-radius: 100px;
     }
 
+    #main-button-medium {
+        font-weight: bold;
+        width: 9vw;
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
+        color: white;
+        border-radius: 100px;
+    }
+
     #secondary-button-small {
         font-weight: bold;
         width: 5vw;
+        background-color: $retrace-green;
+        border-color: $retrace-green;
+        color: white;
+        border-radius: 100px;
+    }
+
+    #secondary-button-medium {
+        font-weight: bold;
+        width: 9vw;
         background-color: $retrace-green;
         border-color: $retrace-green;
         color: white;
