@@ -109,7 +109,7 @@ uses dynamic linking
         <!-- /.modal-dialog -->
     </div>
 
-    <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
+  {{--  <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
         profile</h4>
     <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
         <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
@@ -117,7 +117,7 @@ uses dynamic linking
         >
             25% Completed Profile
         </div>
-    </div>
+    </div>--}}
 
 
 @endsection
