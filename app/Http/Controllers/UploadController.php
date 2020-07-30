@@ -16,11 +16,13 @@ class UploadController extends Controller
     {
         $file = new UploadedFile();
 
-        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+        if ($request->userfile != null) {
+            $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
 
-        $originalExtension = $request->userfile->getClientOriginalExtension();
 
-        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename.".".$originalExtension;
+            $originalExtension = $request->userfile->getClientOriginalExtension();
+
+            $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
         if (isset($_POST['upload'])) {
             $file->setName($filename);
@@ -40,6 +42,10 @@ class UploadController extends Controller
         $request->userfile->storeAs('userFiles/'.$firstname."_".$lastname."/".$projectFolder , $filename, 'public');
 
         return redirect()->route('home');
+        }
+        else {
+            return back()->with('error', 'please select a file');
+        }
     }
 
     public function viewFiles($id)

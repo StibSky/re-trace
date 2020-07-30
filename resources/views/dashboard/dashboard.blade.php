@@ -8,6 +8,11 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="container">
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         <div class="d-flex flex-lg-row flex-column align-items-center">
             <div class="col-12 col-md-6 col-lg card p-4">
                 <div class="card-title">
