@@ -125,7 +125,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                @if (!isset($firstbuilding->projectName))
                     <h2><strong>Please add a first project to progress your profile </strong></h2>
                 @else
-                   <h2><strong>Your profile is up to date!</strong></h2>
+                   <h3><strong>Your profile is up to date! Click your project names to edit and add files</strong></h3>
                 @endif
             </div>
         </div>
