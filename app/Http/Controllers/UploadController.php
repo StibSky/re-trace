@@ -16,9 +16,15 @@ class UploadController extends Controller
     {
         $file = new UploadedFile();
 
+        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+
+        $originalExtension = $request->userfile->getClientOriginalExtension();
+
+        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename.".".$originalExtension;
+
         if (isset($_POST['upload'])) {
-            $file->setName(($request->input("name"))?? $request->userfile->getClientOriginalName());
-            $file->setFormat($request->userfile->getClientOriginalExtension());
+            $file->setName($filename);
+            $file->setFormat($originalExtension);
             $file->setType($request->input("type"));
             $user = Auth::user();
             $file->setUserId($user->id);
@@ -30,12 +36,6 @@ class UploadController extends Controller
         $lastname = Auth::user()->last_name;
 
         $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-
-        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
-
-        $originalExtension = $request->userfile->getClientOriginalExtension();
-
-        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename.".".$originalExtension;
 
         $request->userfile->storeAs('userFiles/'.$firstname."_".$lastname."/".$projectFolder , $filename, 'public');
 
