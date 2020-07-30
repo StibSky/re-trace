@@ -7,6 +7,15 @@ body ul {
   list-style: none;
 }
 
+body ul li a {
+  color: #636b6f;
+}
+
+body ul li a:hover {
+  color: #f3bfba;
+  text-decoration: none;
+}
+
 body .card {
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
@@ -61,6 +70,10 @@ body #secondary-button-small {
   border-color: #bbcecd;
   color: white;
   border-radius: 100px;
+}
+
+a span:hover {
+  color: #f3bfba;
 }
 
 .full-height {

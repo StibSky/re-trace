@@ -11,8 +11,24 @@ class UploadedFile extends Model
     public $timestamps = false;
     protected $table = "uploaded_file";
 
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format): void
+    {
+        $this->format = $format;
+    }
+
     protected $fillable = [
-        'name', 'size', 'type', 'created_at', 'updated_at', 'projectId', 'userId'
+        'name', 'size', 'format', 'type', 'created_at', 'updated_at', 'projectId', 'userId'
     ];
 
     /**

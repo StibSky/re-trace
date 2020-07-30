@@ -40,6 +40,9 @@ Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
+
+Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
+Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
 //route to upload files,
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
@@ -55,7 +58,6 @@ Route::get( '/verify-test', function () {
     $user = App\User::find(1);
     return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
 });
-
 //array('before' => 'auth', 'uses' => 'HomeController@index')
 
 
