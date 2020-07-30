@@ -41,7 +41,7 @@ class UploadController extends Controller
 
         $request->userfile->storeAs('userFiles/'.$firstname."_".$lastname."/".$projectFolder , $filename, 'public');
 
-        return redirect()->route('home');
+        return back()->with('success', 'file uploaded');
         }
         else {
             return back()->with('error', 'please select a file');
