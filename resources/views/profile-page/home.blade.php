@@ -108,9 +108,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             </div>--}}
         </div>
     </div>
-    <div class="container mt-3">
+  {{--  <div class="container mt-3">
         Profile Progress
-        {{--            <div class="progress">--}}
+        --}}{{--            <div class="progress">--}}{{--
         <div>
             @if (!isset($firstbuilding->projectName))
                 <h2><strong>Please add a first project to progress your profile </strong></h2>
@@ -118,7 +118,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 <h3><strong>Your profile is up to date! Click your project names to edit and add files</strong></h3>
             @endif
         </div>
-    </div>
+    </div>--}}
 
 
 @endsection
