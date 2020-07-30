@@ -32,11 +32,11 @@ uses dynamic linking
                             <li>{{ $project["address2"] }}</li>
                         </ul>
                     </li>
-{{--                    <li>Measuring State</li>
-                    <li>Material list</li>
-                    <li>Surface</li>
-                    <li>Plans</li>
-                    <li>Pictures</li>--}}
+                    {{--                    <li>Measuring State</li>
+                                        <li>Material list</li>
+                                        <li>Surface</li>
+                                        <li>Plans</li>
+                                        <li>Pictures</li>--}}
                 </ul>
             </div>
             <div class="col-12 col-md-6 col-lg card p-4">
@@ -69,7 +69,7 @@ uses dynamic linking
                 <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-{{--                        <input type="text" name="name">--}}
+                        {{--                        <input type="text" name="name">--}}
                         <input type="file" name="userfile">
                         <input value="{{ $project->id }}" type="hidden" name="projectId"/>
                     </div>
@@ -83,9 +83,15 @@ uses dynamic linking
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
-         aria-valuemin="0" aria-valuemax="100" style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">
-        25% Completed Profile
+
+    <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
+        profile</h4>
+    <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
+        <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
+             aria-valuemin="0" aria-valuemax="100" style="width:25%";
+        >
+            25% Completed Profile
+        </div>
     </div>
 
 
