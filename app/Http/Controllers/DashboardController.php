@@ -19,6 +19,16 @@ class DashboardController extends Controller
      */
     public function index($id)
     {
+
+        if (!Auth::check()) {
+            return redirect()->back();
+        }
+        if (Auth::user()->type == 'admin') {
+            Auth::user()->id = Building::where('id', $id)->first()->userid;
+        }
+        if (Auth::user()->id != Building::where('id', $id)->first()->userid) {
+            return redirect()->back();
+        }
         $project = Building::all()->find($id);
         $image = Image::where('buildid', $id)->first();
         // $image = Image::all()->find($id);
@@ -41,7 +51,7 @@ class DashboardController extends Controller
     public function adminDashboard()
     {
         //dashboardcontroller for administrators to see user info
-        if(Auth::user()->type != 'admin') {
+        if (Auth::user()->type != 'admin') {
             return redirect()->back();
         }
         $privateUsers = User::where('type', 'Private')->get();
