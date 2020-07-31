@@ -6,11 +6,6 @@
     <!--
 blade for adding a new building/project to a User
 -->
-    @if(session()->has('error'))
-        <div class="alert alert-danger">
-            {{ session()->get('error') }}
-        </div>
-    @endif
     <div class="container">
         <form action="{{ route('newBuilding') }}" method="post">
             @csrf
