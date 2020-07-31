@@ -57,11 +57,14 @@ class UploadController extends Controller
             ->get();
             //->groupBy("type");
 
+        $project = Building::where('id', $id)->first();
+
         $projecttypes = $projectfiles->pluck("type")->unique();
 
         //dd();
 
         return view('dashboard.files', [
+            'project' => $project,
             'projectfiles' => $projectfiles,
             'projecttypes' => $projecttypes
         ]);

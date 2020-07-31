@@ -13,7 +13,7 @@ uses dynamic linking
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
             <figure><img class="w-100"
-                         src="{{ $image->image ?? asset('images/coolbuilding.jpg') }}">
+                         src="{{ asset('images/coolbuilding.jpg') }}">
             </figure>
             <p>Type: {{ $project["type"] }}</p>
             <div class="row px-3 d-flex justify-content-between">
