@@ -15,13 +15,20 @@
             {{ session()->get('error') }}
         </div>
     @endif
+    <h1>Files - {{ $project->projectName }}</h1>
     <ul>
         @foreach($projecttypes as $type)
-            <h4>{{ $type }}</h4>
+            <h4 class="pb-3">{{ $type }}</h4>
             @foreach($projectfiles as $file)
                 @if($file->type == $type)
-                    <li><a href="{{route('downloadFile', $file->id)}}">{{ $file->name }}</a></li>
-                <button>test</button>
+                    <li class="d-flex flex-row justify-content-between pb-2">
+                        <p>{{ $file->name }}</p>
+                        <div class="d-flex flex-row justify-content-end">
+                            <a href="#" class="btn btn-primary" id="secondary-button-medium">View</a>
+                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">Download</a>
+                        </div>
+                    </li>
+                    <hr>
                 @endif
             @endforeach
         @endforeach

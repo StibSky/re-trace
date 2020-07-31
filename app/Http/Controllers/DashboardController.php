@@ -31,7 +31,6 @@ class DashboardController extends Controller
             return redirect()->back();
         }
         $project = Building::all()->find($id);
-        $image = Image::where('buildid', $id)->first();
         // $image = Image::all()->find($id);
         $materials = Materiallist::where('buildid', $id)->get();
 
@@ -44,7 +43,6 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard', [
             'project' => $project,
-            'image' => $image,
             'buildingSubstances' => $buildingSubstances
         ]);
     }
