@@ -43,6 +43,7 @@ Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('admin
 
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
+Route::post('/deleteFile', 'UploadController@deleteFile')->name('deleteFile');
 //route to upload files,
 //==========================================
 //MIGHT WORK DIFFERENT AFTER REDEPLOYMENT

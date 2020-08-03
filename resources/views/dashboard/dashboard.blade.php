@@ -22,7 +22,7 @@ uses dynamic linking
                     Upload files
                 </button>
                 <a id="secondary-button-medium" class="btn btn-primary"
-                   href="{{route('viewFiles', $project->id)}}"> View files</a>
+                   href="{{route('viewFiles', $project->id)}}">View files</a>
             </div>
             <div class="d-flex justify-content-center">
                 <a class="btn btn-primary mt-3" id="main-button"
@@ -43,6 +43,12 @@ uses dynamic linking
                                     <li>Plans</li>
                                     <li>Pictures</li>--}}
             </ul>
+            @if(Auth::user()->type == 'admin')
+                <button data-toggle="modal"
+                        data-target="#deleteModal" class="btn btn-primary" name="deleteBuilding"
+                        id="main-button">Delete building
+                </button>
+            @endif
         </div>
         <div class="col-12 col-md-6 col-lg card p-4">
             <h4>Waste Streams</h4>
@@ -100,6 +106,29 @@ uses dynamic linking
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <div id="deleteModal" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X
+                    </button>
+                    <h4 class="modal-title">Are you sure you want to delete?</h4>
+                </div>
+                <form action="{{ route('deleteBuilding', $project) }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <button value="{{ $project->id }}" class="btn btn-primary"
+                                name="deleteBuilding" id="main-button">Yes, delete project
+                        </button>
+                        <button type="button" class="btn btn-default" id="secondary-button-small"
+                                data-dismiss="modal">No
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </form>
+            </div>
 
     {{--  <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
           profile</h4>

@@ -15,11 +15,6 @@ blade for adding a new building/project to a User
                 <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding">
             </div>
             <div class="form-group">
-                <label for="projectImage">image url:</label>
-                <input type="text" class="form-control" id="projectImage" name="projectImage"
-                       placeholder="http://building.png">
-            </div>
-            <div class="form-group">
                 <label for="inputAddress">Address:</label>
                 <input type="text" class="form-control" id="inputAddress" name="inputAddress"
                        placeholder="1234 Main St">

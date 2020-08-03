@@ -87,4 +87,28 @@ class UploadController extends Controller
 
         return response()->download($targetFile);
     }
+
+    public function deleteFile(Request $request)
+    {
+        $file = UploadedFile::where('id', $request->input("fileId"))->first();
+
+        $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
+        $filename = $file->name;
+
+        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+
+        unlink($targetFile);
+
+        $file->delete();
+
+        return redirect()->back()->with('success', 'File deleted successfully');
+    }
+
+    public function previewFiles()
+    {
+
+    }
 }
