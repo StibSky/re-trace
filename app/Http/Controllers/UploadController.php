@@ -106,9 +106,5 @@ class UploadController extends Controller
 
         return redirect()->back()->with('success', 'File deleted successfully');
     }
-
-    public function previewFiles()
-    {
-
-    }
+    
 }
