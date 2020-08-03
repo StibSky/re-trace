@@ -107,8 +107,20 @@ class UploadController extends Controller
         return redirect()->back()->with('success', 'File deleted successfully');
     }
 
-    public function previewFiles()
+    public function previewFiles($id)
     {
+        $file = UploadedFile::where('id', $id)->first();
+        $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
+        $filename = $file->name;
 
-    }
+        $targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+
+       /* return view('dashboard.previewFiles', [
+            'targetFile' => $targetFile,
+        ]);*/
+        return response()->file($targetFile);
+
+}
 }

@@ -50,7 +50,7 @@
                                 {{--                                    <a href="{{route('deleteFile', $file->id)}}" class="btn btn-primary"
                                                                        id="main-button-medium">Yes, delete file</a>--}}
                             @endif
-                            <a href="#" class="btn btn-primary" id="secondary-button-medium">View</a>
+                            <a href="{{route('previewFiles', $file->id)}}" class="btn btn-primary" id="secondary-button-medium">View</a>
                             <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">Download</a>
                         </div>
                     </li>
