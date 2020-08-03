@@ -33,12 +33,18 @@ return [
     |
     */
 
+    /*
+     ===============================================================================================
+    CURRENTLY USING MAILTRAP BUT THIS REQUIRES A SUBSCRIPTION TO AUTOMAIL
+     ===============================================================================================
+     */
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp-auth.mailprotect.be'),
             'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'encryption' => env('MAIL_ENCRYPTION', 'TLS'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
@@ -72,6 +78,14 @@ return [
         ],
     ],
 
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -84,8 +98,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@re-trace.io'),
+        'name' => env('MAIL_FROM_NAME', 'Re-trace.io'),
     ],
 
     /*

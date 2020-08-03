@@ -1,0 +1,144 @@
+@import 'variables';
+
+// Universal elements + bootstrap overrides
+
+body {
+    background-color: $retrace-light-blue;
+
+    ul {
+        padding: 0;
+        list-style: none;
+        li {
+            a {
+                color: $retrace-grey;
+            }
+
+            a:hover {
+                color: $retrace-pink;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .card {
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: $retrace-light-blue;
+        border-color: $retrace-light-blue;
+    }
+
+    #main-button {
+        color: white;
+        font-weight: bold;
+        width: 14vw;
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
+        border-radius: 100px;
+    }
+
+    #main-button:hover, #main-button-small:hover, #main-button-medium:hover {
+        color: $retrace-pink;
+        background-color: $retrace-sand;
+        border-color: $retrace-sand;
+    }
+
+    #secondary-button {
+        font-weight: bold;
+        width: 14vw;
+        background-color: $retrace-green;
+        border-color: $retrace-green;
+        color: white;
+        border-radius: 100px;
+    }
+
+    #secondary-button:hover, #secondary-button-small:hover, #secondary-button-medium:hover {
+        color: black;
+        background-color: $retrace-sand;
+        border-color: $retrace-sand;
+    }
+
+    #main-button-small {
+        font-weight: bold;
+        width: 5vw;
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
+        color: white;
+        border-radius: 100px;
+    }
+
+    #main-button-medium {
+        font-weight: bold;
+        width: 9vw;
+        background-color: $retrace-pink;
+        border-color: $retrace-pink;
+        color: white;
+        border-radius: 100px;
+    }
+
+    #secondary-button-small {
+        font-weight: bold;
+        width: 5vw;
+        background-color: $retrace-green;
+        border-color: $retrace-green;
+        color: white;
+        border-radius: 100px;
+    }
+
+    #secondary-button-medium {
+        font-weight: bold;
+        width: 9vw;
+        background-color: $retrace-green;
+        border-color: $retrace-green;
+        color: white;
+        border-radius: 100px;
+    }
+
+
+}
+
+a span:hover {
+    color: $retrace-pink;
+}
+
+.full-height {
+    height: 100vh;
+}
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.position-ref {
+    position: relative;
+}
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+.content {
+    text-align: center;
+}
+.title {
+    font-size: 84px;
+}
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 15rem;    /* Footer height */
+}

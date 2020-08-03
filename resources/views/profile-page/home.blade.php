@@ -1,52 +1,124 @@
 @extends('layouts.app')
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+@endsection
+@section('head-script')
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row">
-
-            <div class="col-6 px-2 card" id="userInfo" style="background-color: rgb(243,191,186)">
-                <div class="row no-gutters d-flex">
-                    <div class="col-auto d-flex flex-center pl-4 pt-4">
-                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="img-circle" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-center">
-                        <div>
-                            <h4>Hi {{ Auth::user()->first_name }}</h4>
-                        </div>
-                    </div>
+    <!--
+HOMEPAGE for users, users find their projects here and functionality to upload files/materiallists
+-->
+    @if(session('verified'))
+        <div class="alert alert-success">
+            You've successfully verified your email!
+        </div>
+    @endif
+    <div class="d-flex flex-md-row flex-column align-items-center">
+        <div class="col-sm-6 col-12 px-2 card" id="userInfo">
+            <div class="row no-gutters d-flex">
+                <div class="col-auto d-flex pl-4 pt-4">
+                    <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
                 </div>
-                <div class="row no-gutters d-flex">
-                    <div class="col-12 d-flex pl-4 pt-4">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur aut culpa dignissimos distinctio dolore explicabo hic id incidunt iste maiores minima nemo odit placeat quae repellat sed sunt, tempore vero voluptatibus? Ab, alias amet asperiores consequatur doloribus eligendi esse est eum harum id nisi officia quidem quis, saepe voluptatum!</p>
+                <div class="col-4 d-flex flex-center">
+                    <div>
+                        <h4>Hi {{ Auth::user()->first_name }}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-6 float-right">
-                <div class="row">
-                    <div class="col-12 p-2 card d-flex" id="newProject" style="background-color: rgb(187,206,205)">
-                        <a id="newBuilding" href="{{ route('building') }}"><h4>Add New Project</h4></a>
-                        <ul>
-                            @foreach($buildings as $building)
-                                <li>
-                                    <a href="{{route('dash', $building->id)}}"> {{ $building->address1 }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 p-2 card" id="newSearch" style="background-color: rgb(187,206,205)">
-                        <form class="example" action="action_page.php">
-                            <label>
-                                <input type="text" placeholder="Search.." name="search">
-                            </label>
-                            <button type="submit"><i class="fa fa-search"> submit</i></button>
-                        </form>
-                    </div>
+            <div class="row no-gutters d-flex">
+                <div class="col-12 d-flex flex-column pl-4 pt-4">
+                    <h5>Personal details</h5>
+                    <ul>
+                        <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                        <li>Email address: {{ Auth::user()->email }}</li>
+                        <li>Profile Type: {{ Auth::user()->type }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="col-sm-6 col-12 p-2 card d-flex" id="projectInfo">
+            <div class="card-title mt-3 ml-3"><h4>My projects</h4></div>
+            <div class="card-body">
+                @if(count($buildings) == 0)
+                    <h5> - Please add your first project to progress your profile</h5>
+                @endif
+                <ul>
+                    @foreach($buildings as $building)
+                        <li class="mb-1 d-flex justify-content-between">
+                            <a id="project-names"
+                               href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                            <div>
+                                @if(Auth::user()->type == 'admin')
+                                    <button data-toggle="modal"
+                                            data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
+                                            id="main-button-small">Delete
+                                    </button>
+                                @endif
+                            </div>
+                        </li>
+                        <hr>
+                        <div id="myModal" class="modal fade" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-left">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">X
+                                        </button>
+                                        <h4 class="modal-title">Are you sure you want to delete?</h4>
+                                    </div>
+                                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <button value="{{ $building->id }}" class="btn btn-primary"
+                                                    name="deleteBuilding" id="main-button">Yes, delete project
+                                            </button>
+                                            <button type="button" class="btn btn-default" id="secondary-button-small"
+                                                    data-dismiss="modal">No
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                    @endforeach
+                    <div class="d-flex">
+                        {{ $buildings->links() }}
+                    </div>
+                </ul>
+            </div>
+            <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
+            {{--                <div class="row">
+                                <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
+                                    <form class="form">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 20px; border-radius: 40px;" id="mysearch">
+                                            <div class="input-group-addon py-1" style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;" id="search-btn"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>--}}
+        </div>
     </div>
+  {{--  <div class="container mt-3">
+        Profile Progress
+        --}}{{--            <div class="progress">--}}{{--
+        <div>
+            @if (!isset($firstbuilding->projectName))
+                <h2><strong>Please add a first project to progress your profile </strong></h2>
+            @else
+                <h3><strong>Your profile is up to date! Click your project names to edit and add files</strong></h3>
+            @endif
+        </div>
+    </div>--}}
+
+
 @endsection

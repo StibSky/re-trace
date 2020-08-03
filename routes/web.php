@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     if (Auth::check()) {
         return view('app');
-    }
-    else {
+    } else {
         return view('auth.login');
     }
-});
+});*/
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
+Route::get('/addStreams/{id}', 'NewBuildingController@addStreams')->name('addstreams');
+Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 Route::get('/newBuilding', 'NewBuildingController@step1')->name('building');
 Route::post('/newBuilding', 'NewBuildingController@addStep1')->name('newBuilding');
@@ -34,11 +42,32 @@ Route::get('/newBuilding3', 'NewBuildingController@step3')->name('building3');
 Route::post('/newBuilding3', 'NewBuildingController@addStep3')->name('newBuilding3');
 Route::get('/newBuilding4', 'NewBuildingController@step4')->name('building4');
 Route::post('/newBuilding4', 'NewBuildingController@addStep4')->name('newBuilding4');
+Route::get('/store', 'NewBuildingController@store')->name('store');
+
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
-Route::get('/updateBuilding', 'NewBuildingController@updateBuildingIndex')->name('updateBuilding');
+Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
 
-//->middleware('auth')
+Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
+Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
+Route::get('/previewFiles/{id}', 'UploadController@previewFiles')->name('previewFiles');
+Route::post('/deleteFile', 'UploadController@deleteFile')->name('deleteFile');
+//route to upload files,
+//==========================================
+//MIGHT WORK DIFFERENT AFTER REDEPLOYMENT
+//=========================================
+Route::post('/upload', 'UploadController@upload')->name('upload');
+
+
+Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
+Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
+
+Route::get( '/verify-test', function () {
+    // Get a user for demo purposes
+    $user = App\User::find(1);
+    return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
+});
+//array('before' => 'auth', 'uses' => 'HomeController@index')
 
 
 

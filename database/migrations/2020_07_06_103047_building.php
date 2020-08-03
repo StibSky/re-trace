@@ -14,7 +14,7 @@ class Building extends Migration
     public function up()
     {
         Schema::create('building', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
             $table->string("address1");
             $table->string("address2");
             $table->string("city");

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Material extends Migration
+class NullableImage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class Material extends Migration
      */
     public function up()
     {
-        Schema::create('material', function (Blueprint $table) {
-            $table->id();
-            $table->string("location");
-            $table->integer("quantity");
-            $table->dateTime("date");
-            $table->string("material");
+        Schema::table('image', function (Blueprint $table) {
+            $table->string("image")->nullable()->change();
+
         });
     }
 
@@ -29,7 +26,6 @@ class Material extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('material');
-
+        //
     }
 }

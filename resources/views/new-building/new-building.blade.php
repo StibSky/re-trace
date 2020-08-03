@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('css/dashboard_old.css') }}">
+@endsection
 @section('content')
     <!--
 blade for adding a new building/project to a User
@@ -16,9 +18,19 @@ blade for adding a new building/project to a User
             @csrf
             <div class="form-group">
                 <label for="projectName">Name:</label>
-                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding" value="{{ session()->get('register.name') }}">
+                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding"
+                       value="{{ session()->get('register.name') }}">
             </div>
             <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding">Submit</button>
         </form>
+
+        <br>
+        <br>
+        <br>
+        <p>Didn't want to create a new project?</p>
+        <a id="main-button" class="btn btn-primary "
+           href="{{route('home')}}">Back
+            to profile </a>
+
     </div>
 @endsection

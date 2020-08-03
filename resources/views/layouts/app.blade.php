@@ -1,4 +1,8 @@
 <!doctype html>
+<!--
+MAIN blade. used to set layout of most pages, includes header and footer
+sets up the navbar and yields the content of the other pages
+-->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -7,11 +11,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Re-trace.io</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-@yield('stylesheet')
+@yield('head-script')
+
 
 <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +25,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    @yield('stylesheet')
 
 </head>
 
@@ -27,7 +34,7 @@
 <div id="page-container">
     <div id="content-wrap">
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #F6F9FF">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: white">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{url('/images/retracelogo.png')}}" alt="Image"/>
@@ -67,16 +74,19 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            Homepage
+                                            My profile
                                         </a>
-
-
+                                        <a class="dropdown-item" href="https://re-trace.io" target="_blank">
+                                            About
+                                        </a>
+                                        <div style="border-top: 1px solid lightslategray;">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        </div>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                               style="display: none;">
                                             @csrf
@@ -90,24 +100,33 @@
             </nav>
 
             <main class="py-4">
-                @yield('content')
+                <div class="container">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+                    @yield('content')
+                </div>
             </main>
         </div>
         <footer class="site-footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <h6>About</h6>
-                        <p class="text-justify">Re-trace.io Building Platform</p>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-sm-12 col-md-6 col-lg">
+                        <div class="links">
+                            <a href="https://re-trace.io" target="_blank"><span>About</span></a>
+                        </div>
                     </div>
-                </div>
-                <hr>
-            </div>
-            <div class="container">
-                <div class="row">
-
-
-                    <div>
+                    <div class="col-sm-12 col-md-6 col-lg">
+                        <p class="text-center">&copy; 2020 - Re-trace.io</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg">
                         <ul class="social-icons">
                             <li><a class="socialmedia" href="https://www.instagram.com/re_trace.io/" target="_blank"><i
                                         class="fa fa-socialmedia"><img src="{{url('/images/instagram.png')}}"
@@ -120,9 +139,12 @@
                         </ul>
                     </div>
                 </div>
+                <hr>
             </div>
+        </footer>
     </div>
-    </footer>
+
+    @yield('script')
 </div>
 </body>
 <!-- Site footer -->

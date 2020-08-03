@@ -1,0 +1,150 @@
+body {
+  background-color: #e2e6f0;
+}
+
+body ul {
+  padding: 0;
+  list-style: none;
+}
+
+body ul li a {
+  color: #636b6f;
+}
+
+body ul li a:hover {
+  color: #f3bfba;
+  text-decoration: none;
+}
+
+body .card {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #e2e6f0;
+  border-color: #e2e6f0;
+}
+
+body #main-button {
+  color: white;
+  font-weight: bold;
+  width: 14vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  border-radius: 100px;
+}
+
+body #main-button:hover,
+body #main-button-small:hover,
+body #main-button-medium:hover {
+  color: #f3bfba;
+  background-color: #ffffee;
+  border-color: #ffffee;
+}
+
+body #secondary-button {
+  font-weight: bold;
+  width: 14vw;
+  background-color: #bbcecd;
+  border-color: #bbcecd;
+  color: white;
+  border-radius: 100px;
+}
+
+body #secondary-button:hover,
+body #secondary-button-small:hover,
+body #secondary-button-medium:hover {
+  color: black;
+  background-color: #ffffee;
+  border-color: #ffffee;
+}
+
+body #main-button-small {
+  font-weight: bold;
+  width: 5vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  color: white;
+  border-radius: 100px;
+}
+
+body #main-button-medium {
+  font-weight: bold;
+  width: 9vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  color: white;
+  border-radius: 100px;
+}
+
+body #secondary-button-small {
+  font-weight: bold;
+  width: 5vw;
+  background-color: #bbcecd;
+  border-color: #bbcecd;
+  color: white;
+  border-radius: 100px;
+}
+
+body #secondary-button-medium {
+  font-weight: bold;
+  width: 9vw;
+  background-color: #bbcecd;
+  border-color: #bbcecd;
+  color: white;
+  border-radius: 100px;
+}
+
+a span:hover {
+  color: #f3bfba;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 15rem;
+  /* Footer height */
+}
+

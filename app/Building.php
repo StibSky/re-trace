@@ -6,9 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-    private $id;
+
+    /*
+     * building class with getters and setters for properties
+     * foreign keys to users and image at the bottom
+     */
+
+    /**
+     * @return mixed
+     */
+    public function getProjectName()
+    {
+        return $this->projectName;
+    }
+
+    /**
+     * @param mixed $projectName
+     */
+    public function setProjectName($projectName): void
+    {
+        $this->projectName = $projectName;
+    }
+
+
     public $timestamps = false;
-   protected $table = "building";
+    protected $table = "building";
 
     /**
      * @return mixed
@@ -59,8 +81,8 @@ class Building extends Model
     }
 
     protected $fillable = [
-        'address1', 'address2','city', 'postcode', 'quantity', 'materialList', 'surface',
-        'image', 'plan','type', 'status', 'userid'
+        'address1', 'address2', 'city', 'postcode', 'quantity', 'materialList', 'surface',
+        'image', 'plan', 'type', 'status', 'userid', 'projectName'
     ];
 
     /**
@@ -85,6 +107,14 @@ class Building extends Model
     public function getAddress2()
     {
         return $this->address2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -214,4 +244,18 @@ class Building extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function Image()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function Materiallist()
+    {
+        return $this->hasMany('App\Materiallist');
+    }
+
+    public function UploadedFile()
+    {
+        return $this->hasMany('App\UploadedFile');
+    }
 }

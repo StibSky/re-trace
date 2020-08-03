@@ -6,8 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
+
+    /*
+    * user class with getters and setters for properties
+    * foreign keys to building
+    */
 
     /**
      * @return mixed
@@ -75,6 +80,11 @@ class User extends Authenticatable
     public function Building()
     {
         return $this->hasMany('App\Building');
+    }
+
+    public function UploadedFile()
+    {
+        return $this->hasMany('App\UploadedFile');
     }
 }
 

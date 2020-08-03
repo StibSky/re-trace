@@ -1,10 +1,13 @@
 #forgot-password {
-    font-size: small;
+  font-size: small;
 }
 
-#auth-button {
-    width: 14vw;
-    background-color: rgb(243,191,186);
-    border-color: rgb(243,191,186);
-    color: black;
+#custom-tooltip {
+  background-color: #f3bfba;
+  border-radius: 50%;
+  outline: 0;
+  box-shadow: none;
+  color: white;
+  border: none;
 }
+
