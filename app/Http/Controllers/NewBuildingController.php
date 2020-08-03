@@ -39,7 +39,6 @@ class NewBuildingController extends Controller
     public function addBuilding(Request $request)
     {
         $building = new Building();
-        $image = new Image();
         if (isset($_POST['submitNewBuilding'])) {
             $building->setProjectName($request->input('projectName'));
             $building->setAddress1($request->input('inputAddress'));
@@ -70,10 +69,6 @@ class NewBuildingController extends Controller
 
             //VERY important to look at order of save() statements, can only do a get once the sets are saved
             $building->save();
-            $image->setImage($request->input('projectImage'));
-            $image->setCreatedAt(date("Y-m-d H:i:s"));
-            $image->setBuildid($building->getId());
-            $image->save();
         }
 
         /*===================================================================================================
