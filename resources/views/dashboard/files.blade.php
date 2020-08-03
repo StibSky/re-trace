@@ -51,9 +51,7 @@
                                                                        id="main-button-medium">Yes, delete file</a>--}}
                             @endif
                             <a href="#" class="btn btn-primary" id="secondary-button-medium">View</a>
-                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary"
-                               id="main-button-medium">Download
-                            </a>
+                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">Download</a>
                         </div>
                     </li>
                     <hr>
@@ -61,5 +59,5 @@
             @endforeach
         @endforeach
     </ul>
-    <img src="{{ asset('storage/userFiles/Taloes_Loes/Project/frogdetective.jpg') }}" alt="image here">
+{{--    <img src="{{ asset('storage/userFiles/Taloes_Loes/Project/frogdetective.jpg') }}" alt="image here">--}}
 @endsection
