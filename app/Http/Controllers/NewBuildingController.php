@@ -14,9 +14,6 @@ class newBuildingController extends Controller
     public function step1(Request $request)
     {
         $building = $request->session()->get('building');
-
-        var_dump($building);
-
         return view('new-building.new-building', compact('building'));
     }
 
@@ -47,19 +44,20 @@ class newBuildingController extends Controller
 
     public function addStep1(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:building',
-        ]);
+        if (isset($_POST['submitNewBuilding'])) {
+            $validatedName = $request->input('name');
+        }
+
         if(empty($request->session()->get('building'))){
             $building = new Building();
-            $building->fill($validatedData);
+            $building->setame($validatedName);
             $request->session()->put('building', $building);
         }else{
             $building = $request->session()->get('building');
             $building->fill($validatedData);
             $request->session()->put('building', $building);
         }
-        return redirect('/newBuilding2');
+        return redirect('/building2');
     }
 
     public function step2(Request $request)

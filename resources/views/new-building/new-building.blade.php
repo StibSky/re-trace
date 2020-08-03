@@ -16,11 +16,9 @@ blade for adding a new building/project to a User
             @csrf
             <div class="form-group">
                 <label for="projectName">Name:</label>
-                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding">
+                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="firstBuilding" value="{{ session()->get('register.name') }}">
             </div>
-
-            <button type="submit" id="add-button" class="btn btn-primary" name="submitNewBuilding">Submit</button>
->>>>>>> Stashed changes
+            <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding">Submit</button>
         </form>
     </div>
 @endsection
