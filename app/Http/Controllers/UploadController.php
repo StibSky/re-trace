@@ -61,12 +61,16 @@ class UploadController extends Controller
 
         $projecttypes = $projectfiles->pluck("type")->unique();
 
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
         //dd();
 
         return view('dashboard.files', [
             'project' => $project,
             'projectfiles' => $projectfiles,
-            'projecttypes' => $projecttypes
+            'projecttypes' => $projecttypes,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
         ]);
 
     }

@@ -22,6 +22,9 @@ class UpdateAdminController extends Controller
     */
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect('login')->with('error', 'Please log in and make sure you are admin to access this page');
+        }
         if (Auth::user()->type != 'admin') {
             return redirect()->back();
         }

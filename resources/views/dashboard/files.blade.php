@@ -26,6 +26,7 @@
                         <div class="d-flex flex-row justify-content-end">
                             <a href="#" class="btn btn-primary" id="secondary-button-medium">View</a>
                             <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">Download</a>
+                            <img src="{{asset('/public/userFiles/steve_keersmaekers/Stoes/piraat.jpg')}}">
                         </div>
                     </li>
                     <hr>
