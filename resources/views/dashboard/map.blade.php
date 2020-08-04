@@ -19,7 +19,7 @@
     <script type="text/javascript">
         // Initialize and add the map
         function initMap() {
-            var location = {lat: {!! json_encode($latitude) !!}, lng: {!! json_encode($longitude) !!}} ;
+            var location = {lat: {!! json_encode($lat) !!}, lng: {!! json_encode($lng) !!}} ;
             var map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 4, center: location});
             // The marker, positioned at Uluru

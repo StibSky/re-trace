@@ -16,16 +16,18 @@ class mapController extends Controller
 
         $longName = $decoded['results'][0]['address_components'][0]['long_name'];
         $shortName = $decoded['results'][0]['address_components'][0]['short_name'];
+        $fullAddress = $decoded['results'][0]['formatted_address'];
+        $lat = $decoded['results'][0]['geometry']['location']['lat'];
+        $lng = $decoded['results'][0]['geometry']['location']['lng'];
 
-        $latitude = $decoded['results'][0]['geometry']['location']['lat'];
-        $longitude = $decoded['results'][0]['geometry']['location']['lng'];
-
-        var_dump($latitude);
 
         return view('dashboard.map', [
-            'response' => $response,
-            'latitude' => $latitude,
-            'longitude' => $longitude
+            'response' =>$response,
+            'longName' =>$longName,
+            'shortName' =>$shortName,
+            'fullAddress' =>$fullAddress,
+            'lat' =>$lat,
+            'lng' =>$lng
         ]);
     }
 }
