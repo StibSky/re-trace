@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+Route::get('/maptest', 'mapController@maptest')->name('maptest');
+
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('email/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');

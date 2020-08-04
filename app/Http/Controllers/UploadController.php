@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\UploadedFile;
+use App\User;
 use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,11 +112,12 @@ class UploadController extends Controller
     {
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
-        $firstname = Auth::user()->first_name;
-        $lastname = Auth::user()->last_name;
+        $firstname = User::where('id',$file->userId)->first()->first_name;
+        $lastname = User::where('id',$file->userId)->first()->last_name;
         $filename = $file->name;
 
-        $targetFile = ('storage/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile =  ('storage/app/public/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [
              'targetFile' => $targetFile,
