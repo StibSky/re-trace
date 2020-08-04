@@ -42,7 +42,8 @@ Route::get('/newBuilding3', 'NewBuildingController@step3')->name('building3');
 Route::post('/newBuilding3', 'NewBuildingController@addStep3')->name('newBuilding3');
 Route::get('/newBuilding4', 'NewBuildingController@step4')->name('building4');
 Route::post('/newBuilding4', 'NewBuildingController@addStep4')->name('newBuilding4');
-Route::get('/store', 'NewBuildingController@store')->name('store');
+Route::get('/confirm', 'NewBuildingController@confirm')->name('confirm');
+Route::post('/store', 'NewBuildingController@store')->name('store');
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');

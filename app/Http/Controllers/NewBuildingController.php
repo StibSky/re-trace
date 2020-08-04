@@ -225,14 +225,24 @@ class NewBuildingController extends Controller
                 }
             }
         }
-        return redirect()->route('store');
+        return redirect()->route('confirm');
+    }
+
+    public function confirm(Request $request)
+    {
+        $building = $request->session()->get('building');
+
+        return view('new-building.confirm',
+            ['building' => $building]);
     }
 
     public function store(Request $request)
     {
         $building = $request->session()->get('building');
-
-        $building->save();
+        if (isset($_POST['confirm'])) {
+            $building->save();
+            $request->session()->forget('building');
+        }
 
         return redirect()->route('home')->with('success', 'Project created successfully');
     }

@@ -7,8 +7,8 @@
 blade for adding a new building/project to a User
 -->
     <div class="container d-flex justify-content-center flex-column align-items-center">
+        <img class="mb-4" src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
         <h2>Please give your project's address</h2>
-        <h3>Project name: {{ $building->projectName }}</h3>
         <form  action="{{ route('newBuilding2') }}" method="post">
             @csrf
             <div class="form-group">
@@ -31,9 +31,9 @@ blade for adding a new building/project to a User
                     <input type="text" class="form-control" id="postcode" name="postcode" value="{{ session()->get('building.postcode') }}">
                 </div>
             </div>
-            <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding2">Submit</button>
+            <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding2">Next</button>
         </form>
         <br>
-
+        <a href="{{ url()->previous() }}" id="secondary-button" class="btn btn-primary">Back</a>
     </div>
 @endsection
