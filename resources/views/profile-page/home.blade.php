@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
@@ -94,7 +95,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </ul>
             </div>
             <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
-            {{--                <div class="row">
+                          <div class="row">
                                 <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
                                     <form class="form">
                                         <div class="input-group">
@@ -105,9 +106,35 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         </div>
                                     </form>
                                 </div>
-                            </div>--}}
+                            </div>
         </div>
     </div>
+    <?php use App\Http\Controllers\HomeController; ?>
+    <div class="" id="map"></div>
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
+    </script>
+    <script type="text/javascript">
+        // Initialize and add the map
+        function initMap() {
+            let locationArray = [];
+                @for($i=0; $i < count( $locations ); $i++)
+            var location = {
+                    lat: {!! HomeController::getLat($locations[$i]) !!},
+                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+            locationArray.push(location);
+            @endfor
+
+            console.log(locationArray)
+
+            let map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 8, center: location});
+
+            for(let i = 0; i < locationArray.length; i++) {
+                new google.maps.Marker({position: locationArray[i], map: map});
+            }
+        }
+    </script>
   {{--  <div class="container mt-3">
         Profile Progress
         --}}{{--            <div class="progress">--}}{{--

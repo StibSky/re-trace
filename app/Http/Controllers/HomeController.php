@@ -37,15 +37,38 @@ class HomeController extends Controller
             ->where('userid', Auth::id())
             ->first();
 
-        //gets all the infor out the substances database
+        //gets all the info out the substances database
         $substances = DB::table('substance')->get();
 
+        //map stuff
+        $buildings = Building::where('userid', Auth::user()->id)->get();
+
+        $locations = [];
+
+        foreach ($buildings as $building) {
+            array_push($locations,
+                \GoogleMaps::load('geocoding')
+                    ->setParam (['address' => $building->address1.' '.$building->city.' '.$building->postcode,
+                    ])
+                    ->get()
+            );
+        }
 
 
         return view('profile-page.home', [
             'buildings' => $userBuilding,
             'substances' => $substances,
-            'firstbuilding' => $firstbuilding
+            'firstbuilding' => $firstbuilding,
+            'locations' => $locations
         ]);
+    }
+    public static function getLng($location) {
+        $decodeLocation = json_decode($location, true);
+        return $decodeLocation['results'][0]['geometry']['location']['lng'];
+    }
+
+    public static function getLat($location) {
+        $decodeLocation = json_decode($location, true);
+        return $decodeLocation['results'][0]['geometry']['location']['lat'];
     }
 }
