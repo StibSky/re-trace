@@ -7,21 +7,30 @@
 @section('content')
     <style>
     </style>
-    <div id="map" ></div>
+    <?php use App\Http\Controllers\MapController; ?>
+    <div id="map"></div>
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
     </script>
     <script type="text/javascript">
         // Initialize and add the map
         function initMap() {
-            var location = {lat: {!! json_encode($lat) !!}, lng: {!! json_encode($lng) !!}};
-            var location2 = {lat: {!! json_encode($lat2) !!}, lng: {!! json_encode($lng2) !!}} ;
-            var map = new google.maps.Map(
-                document.getElementById('map'), {zoom: 8, center: location2});
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({position: location, map: map});
-            var marker2 = new google.maps.Marker({position: location2, map: map});
+            let locationArray = [];
+                @for($i=0; $i < count( $locations ); $i++)
+            var location = {
+                    lat: {!! MapController::getLat($locations[$i]) !!},
+                    lng: {!! MapController::getLng($locations[$i]) !!}};
+            locationArray.push(location);
+                @endfor
 
+                console.log(locationArray)
+
+            let map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 8, center: location});
+
+            for(let i = 0; i < locationArray.length; i++) {
+                new google.maps.Marker({position: locationArray[i], map: map});
+            }
         }
     </script>
 @endsection

@@ -6,12 +6,27 @@ use App\Building;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class mapController extends Controller
+class MapController extends Controller
 {
     function maptest() {
-        $building = Building::where('userid', Auth::user()->id)->orderby('id', 'DESC')->first();
+        $buildings = Building::where('userid', Auth::user()->id)->get();
 
-        $response = \GoogleMaps::load('geocoding')
+        $locations = [];
+
+        foreach ($buildings as $building) {
+            array_push($locations,
+                \GoogleMaps::load('geocoding')
+                    ->setParam (['address' => $building->address1.' '.$building->city.' '.$building->postcode,
+                    ])
+                    ->get()
+            );
+        }
+
+/*      $lat = getLat($locations[0]);*/
+
+        //dd($lat);
+
+        /*$response = \GoogleMaps::load('geocoding')
             ->setParam (['address' => $building->address1.' '.$building->city.' '.$building->postcode,
                 ])
             ->get();
@@ -30,18 +45,21 @@ class mapController extends Controller
         $lat = $decoded['results'][0]['geometry']['location']['lat'];
         $lng = $decoded['results'][0]['geometry']['location']['lng'];
         $lat2 = $decodedB['results'][0]['geometry']['location']['lat'];
-        $lng2 = $decodedB['results'][0]['geometry']['location']['lng'];
+        $lng2 = $decodedB['results'][0]['geometry']['location']['lng'];*/
 
 
         return view('dashboard.map', [
-            'response' =>$response,
-            'longName' =>$longName,
-            'shortName' =>$shortName,
-            'fullAddress' =>$fullAddress,
-            'lat' =>$lat,
-            'lng' =>$lng,
-            'lat2' =>$lat2,
-            'lng2' =>$lng2
+            'locations' => $locations,
         ]);
+    }
+
+    public static function getLng($location) {
+        $decodeLocation = json_decode($location, true);
+        return $decodeLocation['results'][0]['geometry']['location']['lng'];
+    }
+
+    public static function getLat($location) {
+        $decodeLocation = json_decode($location, true);
+        return $decodeLocation['results'][0]['geometry']['location']['lat'];
     }
 }
