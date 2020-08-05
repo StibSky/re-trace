@@ -26,17 +26,17 @@ blade for adding a new building/project to a User
                 </tr>
                 <tr>
                     <td class="label">Address supplement (apartment, studio or floor)</td>
-                    <td class="wideField" colspan="3"><input class="field" id="supplement" name="address2"/></td>
+                    <td class="wideField" colspan="3"><input class="field" id="supplement" name="address2" value="{{ session()->get('building.address2') }}"/></td>
                 </tr>
                 <tr>
                     <td class="label">City(*)</td>
-                    <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" name="city"/></td>
+                    <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" name="city" value="{{ session()->get('building.city') }}"/></td>
                 </tr>
                 <tr>
                     <td class="label">Region</td>
                     <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"/></td>
                     <td class="label">Post code(*)</td>
-                    <td class="wideField"><input class="field" id="postal_code" disabled="true" name="postcode"/></td>
+                    <td class="wideField"><input class="field" id="postal_code" disabled="true" name="postcode" value="{{ session()->get('building.postcode') }}"/></td>
                 </tr>
                 <tr>
                     <td class="label">Country</td>
