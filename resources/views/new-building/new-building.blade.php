@@ -14,9 +14,9 @@ blade for adding a new building/project to a User
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-            <h4>Hi, {{ Auth::user()->first_name }}</h4>
+            <h4>Hi {{ Auth::user()->first_name }},</h4>
                 <br>
-                <h4>What is the name of your project?</h4>
+                <h4>what is the name of your project?</h4>
                 <form action="{{ route('newBuilding') }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-group">
