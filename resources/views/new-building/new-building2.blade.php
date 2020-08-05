@@ -8,118 +8,132 @@
 blade for adding a new building/project to a User
 -->
     <div class="container d-flex justify-content-center flex-column align-items-center">
-        <img class="mb-4" src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
-        <h2>Please give your project's address</h2>
-        <form  action="{{ route('newBuilding2') }}" method="post">
-            @csrf
-            <div id="locationField">
-                <input id="autocomplete"
-                       placeholder="Find address"
-                       onFocus="geolocate()"
-                       type="text"/>
+        <div class="card d-flex justify-content-center">
+            <div class="mb-4 text-center card-header">
+                <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
+                <h3><strong>re-trace.io</strong></h3>
             </div>
-            <table id="address" class="mt-4 mb-4">
-                <tr>
-                    <td class="label">Street address(*)</td>
-                    <td class="wideField" colspan="2"><input class="field" id="route" name="street" value="{{ old('street') }}"/></td>
-                    <td class="slimField" colspan="1"><input class="field" id="street_number" name="street_number" value="{{ old('street_number') }}"/></td>
-                </tr>
-                <tr>
-                    <td class="label">Address supplement (apartment, studio or floor)</td>
-                    <td class="wideField" colspan="3"><input class="field" id="supplement" name="address2" value="{{ session()->get('building.address2') }}"/></td>
-                </tr>
-                <tr>
-                    <td class="label">City(*)</td>
-                    <td class="wideField" colspan="3"><input class="field" id="locality" name="city" value="{{ session()->get('building.city') }}"/></td>
-                </tr>
-                <tr>
-                    <td class="label">Region</td>
-                    <td class="slimField"><input class="field" id="administrative_area_level_1" name="region" value="{{ old('region') }}"/></td>
-                    <td class="label">Post code(*)</td>
-                    <td class="wideField"><input class="field" id="postal_code" name="postcode" value="{{ session()->get('building.postcode') }}"/></td>
-                </tr>
-                <tr>
-                    <td class="label">Country</td>
-                    <td class="wideField" colspan="3"><input class="field" id="country" name="country" value="{{ old('country') }}"/></td>
-                </tr>
-            </table>
-            <p>(*)required fields</p>
-            <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding2">Next</button>
-        </form>
-        <br>
-        <a href="{{ url()->previous() }}" id="secondary-button" class="btn btn-primary">Back</a>
-        <script>
-            // This sample uses the Autocomplete widget to help the user select a
-            // place, then it retrieves the address components associated with that
-            // place, and then it populates the form fields with those details.
-            // This sample requires the Places library. Include the libraries=places
-            // parameter when you first load the API. For example:
-            // <script
-            // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+            <div class="card-body text-center">
+                <h4>Hi, {{ Auth::user()->first_name }}</h4>
+                <br>
+                <h4>What's the address of your project?</h4>
+                <form action="{{ route('newBuilding2') }}" method="post" class="mt-5" id="address">
+                    @csrf
+                    <div id="locationField" class="w-100 mb-5 d-flex justify-content-center">
+                        <input autofocus="autofocus" class="text-center" id="autocomplete"
+                               placeholder="SEARCH FOR YOUR ADDRESS HERE"
+                               onFocus="geolocate()"
+                               type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="street" class="sr-only">Street name</label>
+                        <input type="text" class="form-control text-center" id="route" name="street"
+                               value="{{ old('street') }}" placeholder="STREET NAME(*)"/>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6 col-12">
+                            <label for="street_number" class="sr-only">Street number</label>
+                            <input type="text" class="form-control text-center" id="street_number" name="street_number"
+                                   value="{{ old('street_number') }}" placeholder="NR(*)"/>
+                        </div>
+                        <div class="form-group col-sm-6 col-12">
+                            <label for="address2" class="sr-only">Address2</label>
+                            <input type="text" class="form-control text-center" id="street_number" name="street_number"
+                                   value="{{ session()->get('building.address2') }}" placeholder="BUS"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6 col-12">
+                            <label for="city" class="sr-only">City</label>
+                            <input type="text" class="form-control text-center" id="locality" name="city"
+                                   value="{{ session()->get('building.city') }}" placeholder="CITY(*)"/>
+                        </div>
+                        <div class="form-group col-sm-6 col-12">
+                            <label for="postcode" class="sr-only">Postcode</label>
+                            <input type="text" class="form-control text-center" id="postal_code" name="postcode"
+                                   value="{{ session()->get('building.postcode') }}" placeholder="POST CODE(*)"/>
+                        </div>
+                    </div>
+                    <p>(*)required fields</p>
+                    <div class="align-self-center">
+                        <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding2">Next</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ url()->previous() }}"><span><strong>Go Back</strong></span></a>
+            </div>
+        </div>
+        {{--        <script>
+                    // This sample uses the Autocomplete widget to help the user select a
+                    // place, then it retrieves the address components associated with that
+                    // place, and then it populates the form fields with those details.
+                    // This sample requires the Places library. Include the libraries=places
+                    // parameter when you first load the API. For example:
+                    // <script
+                    // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-            var placeSearch, autocomplete;
+                    var placeSearch, autocomplete;
 
-            var componentForm = {
-                street_number: 'short_name',
-                route: 'long_name',
-                locality: 'long_name',
-                administrative_area_level_1: 'short_name',
-                country: 'long_name',
-                postal_code: 'short_name'
-            };
+                    var componentForm = {
+                        street_number: 'short_name',
+                        route: 'long_name',
+                        locality: 'long_name',
+                        postal_code: 'long_name'
+                    };
 
-            function initAutocomplete() {
-                // Create the autocomplete object, restricting the search predictions to
-                // geographical location types.
-                autocomplete = new google.maps.places.Autocomplete(
-                    document.getElementById('autocomplete'), {types: ['geocode']});
+                    function initAutocomplete() {
+                        // Create the autocomplete object, restricting the search predictions to
+                        // geographical location types.
+                        autocomplete = new google.maps.places.Autocomplete(
+                            document.getElementById('autocomplete'), {types: ['geocode']});
 
-                // Avoid paying for data that you don't need by restricting the set of
-                // place fields that are returned to just the address components.
-                autocomplete.setFields(['address_component']);
+                        // Avoid paying for data that you don't need by restricting the set of
+                        // place fields that are returned to just the address components.
+                        autocomplete.setFields(['address_component']);
 
-                // When the user selects an address from the drop-down, populate the
-                // address fields in the form.
-                autocomplete.addListener('place_changed', fillInAddress);
-            }
-
-            function fillInAddress() {
-                // Get the place details from the autocomplete object.
-                var place = autocomplete.getPlace();
-
-                for (var component in componentForm) {
-                    document.getElementById(component).value = '';
-                    document.getElementById(component).disabled = false;
-                }
-
-                // Get each component of the address from the place details,
-                // and then fill-in the corresponding field on the form.
-                for (var i = 0; i < place.address_components.length; i++) {
-                    var addressType = place.address_components[i].types[0];
-                    if (componentForm[addressType]) {
-                        var val = place.address_components[i][componentForm[addressType]];
-                        document.getElementById(addressType).value = val;
+                        // When the user selects an address from the drop-down, populate the
+                        // address fields in the form.
+                        autocomplete.addListener('place_changed', fillInAddress);
                     }
-                }
-            }
 
-            // Bias the autocomplete object to the user's geographical location,
-            // as supplied by the browser's 'navigator.geolocation' object.
-            function geolocate() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var geolocation = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        var circle = new google.maps.Circle(
-                            {center: geolocation, radius: position.coords.accuracy});
-                        autocomplete.setBounds(circle.getBounds());
-                    });
-                }
-            }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&libraries=places&callback=initAutocomplete"
-                defer></script>
+                    function fillInAddress() {
+                        // Get the place details from the autocomplete object.
+                        var place = autocomplete.getPlace();
+
+                        for (var component in componentForm) {
+                            document.getElementById(component).value = '';
+                            document.getElementById(component).disabled = false;
+                        }
+
+                        // Get each component of the address from the place details,
+                        // and then fill-in the corresponding field on the form.
+                        for (var i = 0; i < place.address_components.length; i++) {
+                            var addressType = place.address_components[i].types[0];
+                            if (componentForm[addressType]) {
+                                var val = place.address_components[i][componentForm[addressType]];
+                                document.getElementById(addressType).value = val;
+                            }
+                        }
+                    }
+
+                    // Bias the autocomplete object to the user's geographical location,
+                    // as supplied by the browser's 'navigator.geolocation' object.
+                    function geolocate() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var geolocation = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                };
+                                var circle = new google.maps.Circle(
+                                    {center: geolocation, radius: position.coords.accuracy});
+                                autocomplete.setBounds(circle.getBounds());
+                            });
+                        }
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&libraries=places&callback=initAutocomplete"
+                        defer></script>--}}
     </div>
 @endsection

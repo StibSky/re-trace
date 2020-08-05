@@ -19,7 +19,10 @@ body {
             }
         }
     }
-
+    input {
+        width: 25vw;
+        border: none;
+    }
     .card {
         box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: $retrace-light-blue;
@@ -29,7 +32,7 @@ body {
     #main-button {
         color: white;
         font-weight: bold;
-        width: 14vw;
+        width: 25vw;
         background-color: $retrace-pink;
         border-color: $retrace-pink;
         border-radius: 100px;
@@ -43,7 +46,7 @@ body {
 
     #secondary-button {
         font-weight: bold;
-        width: 14vw;
+        width: 25vw;
         background-color: $retrace-green;
         border-color: $retrace-green;
         color: white;
@@ -95,8 +98,13 @@ body {
 
 }
 
+a span {
+    color: black;
+}
+
 a span:hover {
     color: $retrace-pink;
+    text-decoration: none;
 }
 
 .full-height {
