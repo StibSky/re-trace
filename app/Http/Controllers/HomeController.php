@@ -54,7 +54,6 @@ class HomeController extends Controller
             );
         }
 
-
         return view('profile-page.home', [
             'buildings' => $userBuilding,
             'substances' => $substances,
