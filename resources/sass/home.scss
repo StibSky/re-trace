@@ -2,11 +2,31 @@
 
 #projectInfo, #userInfo {
     height: 70vh;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 }
 
+@media handheld and (max-height: 1300px) {
+    #projectInfo, #userInfo {
+        height: 50vh;
+    }
+}
+/*#userInfo {
+    margin-right: 1em;
+}
+
+#projectInfo {
+    margin-left: 1em;
+}*/
+=======
+    width: 30%;
+>>>>>>> 4d264eefaf4deb38326ff8f36e0193f14e3cc519
+}
+>>>>>>> de5ce09b072d4166bd95cafe659e2934524d60a6
+
 #newSearch {
-    margin-left: 2em;
-    margin-top: 3em;
+
     height: 6em;
 }
 

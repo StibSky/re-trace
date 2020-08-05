@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $userBuilding = Building::with('user')
             ->where('userid', Auth::id())
-            ->simplePaginate(3);
+            ->simplePaginate(1);
 
         $firstbuilding = Building::with('user')
             ->where('userid', Auth::id())
