@@ -10,17 +10,15 @@
   }
 }
 
-#userInfo {
-  margin-right: 1em;
+/*#userInfo {
+    margin-right: 1em;
 }
 
 #projectInfo {
-  margin-left: 1em;
-}
+    margin-left: 1em;
+}*/
 
 #newSearch {
-  margin-left: 2em;
-  margin-top: 3em;
   height: 6em;
 }
 

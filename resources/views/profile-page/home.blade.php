@@ -18,7 +18,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             You've successfully verified your email!
         </div>
     @endif
-    <div class="d-flex flex-md-row flex-column align-items-center">
+    <div class="d-flex flex-md-row flex-column justify-content-between">
         <div class="col-sm-6 col-12 px-2 card" id="userInfo">
             <div class="row no-gutters d-flex">
                 <div class="col-auto d-flex pl-4 pt-4">
@@ -40,8 +40,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6 col-12 p-2 card d-flex" id="projectInfo">
+
             <div class="card-title mt-3 ml-3"><h4>My projects</h4></div>
             <div class="card-body">
                 @if(count($buildings) == 0)
@@ -94,24 +93,35 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         {{ $buildings->links() }}
                     </div>
                 </ul>
+
             </div>
-            <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
-                       {{--   <div class="row">
-                                <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
-                                    <form class="form">
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 20px; border-radius: 40px;" id="mysearch">
-                                            <div class="input-group-addon py-1" style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;" id="search-btn"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>--}}
+            <a class="btn btn-primary ml-2 mb-2" id="main-button" href="{{ route('building') }}">Add New Project</a>
+
+        </div>
+        <div class="col-sm-5 col-12 p-2 card d-flex" id="projectInfo">
+            <div class="row d-flex">
+                <div class="col-12 d-flex align-items-center pl-5" id="newSearch">
+                    <form class="form">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                                   style="padding-left: 20px; border-radius: 40px;" id="mysearch">
+                            <div class="input-group-addon py-1"
+                                 style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                        id="search-btn"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="map" class=" border border-dark mb-5 ml-5 mr-5 rounded"></div>
+            </div>
         </div>
     </div>
-    <?php use App\Http\Controllers\HomeController; ?>
-    <div class="mt-5" id="map"></div>
+
+
+    <?php use App\Http\Controllers\HomeController;
+    use App\Building; ?>
+
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
     </script>
@@ -140,7 +150,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     lat: {!! HomeController::getLat($locations[$i]) !!},
                     lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
-            @endfor
+                @endfor
 
             let map = new google.maps.Map(document.getElementById("map"), {
                     center: ANTWERPEN,
@@ -150,23 +160,29 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     },
                     zoom: 8
                 });
-
-            for(let i = 0; i < locationArray.length; i++) {
-                new google.maps.Marker({position: locationArray[i], label: labels[labelIndex++ % labels.length], map: map});
+                {{-- write a check that only displays buildings with the correct materials --}}
+                {{--            @if((Building::where('projectName', 'fff1234')->first())== null)--}}
+            for (let i = 0; i < locationArray.length; i++) {
+                new google.maps.Marker({
+                    position: locationArray[i],
+                    label: labels[labelIndex++ % labels.length],
+                    map: map
+                });
             }
+            {{--            @endif--}}
         }
     </script>
-  {{--  <div class="container mt-3">
-        Profile Progress
-        --}}{{--            <div class="progress">--}}{{--
-        <div>
-            @if (!isset($firstbuilding->projectName))
-                <h2><strong>Please add a first project to progress your profile </strong></h2>
-            @else
-                <h3><strong>Your profile is up to date! Click your project names to edit and add files</strong></h3>
-            @endif
-        </div>
-    </div>--}}
+    {{--  <div class="container mt-3">
+          Profile Progress
+          --}}{{--            <div class="progress">--}}{{--
+          <div>
+              @if (!isset($firstbuilding->projectName))
+                  <h2><strong>Please add a first project to progress your profile </strong></h2>
+              @else
+                  <h3><strong>Your profile is up to date! Click your project names to edit and add files</strong></h3>
+              @endif
+          </div>
+      </div>--}}
 
 
 @endsection
