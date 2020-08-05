@@ -95,7 +95,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </ul>
             </div>
             <a class="btn btn-primary mb-2 ml-5" id="main-button" href="{{ route('building') }}">Add New Project</a>
-                          <div class="row">
+                       {{--   <div class="row">
                                 <div class="col-12 py-4 card d-flex align-items-center" id="newSearch">
                                     <form class="form">
                                         <div class="input-group">
@@ -106,11 +106,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>--}}
         </div>
     </div>
     <?php use App\Http\Controllers\HomeController; ?>
-    <div class="" id="map"></div>
+    <div class="mt-5" id="map"></div>
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
     </script>
