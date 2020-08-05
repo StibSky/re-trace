@@ -25,7 +25,7 @@ blade for adding a new building/project to a User
                                placeholder="PROJECT NAME"
                                value="{{ session()->get('building.projectName') }}">
                     </div>
-                    <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding">Next</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">

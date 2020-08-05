@@ -14545,6 +14545,17 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component',__webpa
 
 /***/ }),
 
+/***/ "./resources/sass/create_project.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/create_project.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/dashboard.scss":
 /*!***************************************!*\
   !*** ./resources/sass/dashboard.scss ***!
@@ -14601,9 +14612,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component',__webpa
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/footer.scss ./resources/sass/map.scss ./resources/sass/master.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/auth.scss ./resources/sass/dashboard.scss ./resources/sass/footer.scss ./resources/sass/map.scss ./resources/sass/create_project.scss ./resources/sass/master.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14614,6 +14625,7 @@ __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/auth.scss
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/footer.scss */"./resources/sass/footer.scss");
 __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/map.scss */"./resources/sass/map.scss");
+__webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/create_project.scss */"./resources/sass/create_project.scss");
 module.exports = __webpack_require__(/*! /Users/talisavandevelde/retrace/resources/sass/master.scss */"./resources/sass/master.scss");
 
 

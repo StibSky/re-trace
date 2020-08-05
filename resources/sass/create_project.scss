@@ -1,0 +1,32 @@
+@import 'variables';
+
+#buttonSelect {
+    height: 40vh;
+    border: none;
+    background-color: $retrace-light-blue;
+}
+
+#buttonSelect::-moz-focus-inner {
+    border: 0;
+}
+#buttonSelect:focus {
+    outline: none;
+}
+
+#buttonSelect option{
+    width: 25vw;
+    background-color: white;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border: none;
+    color: black;
+    margin: 10px 0;
+}
+
+#buttonSelect option[selected] {
+    background-color: $retrace-pink;
+    color: white;
+}

@@ -30,7 +30,7 @@ body .card {
 body #main-button {
   color: white;
   font-weight: bold;
-  width: 25vw;
+  width: 14vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
@@ -38,7 +38,8 @@ body #main-button {
 
 body #main-button:hover,
 body #main-button-small:hover,
-body #main-button-medium:hover {
+body #main-button-medium:hover,
+body #main-button-wide:hover {
   color: #f3bfba;
   background-color: #ffffee;
   border-color: #ffffee;
@@ -46,7 +47,7 @@ body #main-button-medium:hover {
 
 body #secondary-button {
   font-weight: bold;
-  width: 25vw;
+  width: 14vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;
@@ -94,6 +95,15 @@ body #secondary-button-medium {
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;
+  border-radius: 100px;
+}
+
+body #main-button-wide {
+  color: white;
+  font-weight: bold;
+  width: 25vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
   border-radius: 100px;
 }
 

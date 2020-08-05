@@ -8,19 +8,18 @@
 blade for adding a new building/project to a User
 -->
     <div class="container d-flex justify-content-center flex-column align-items-center">
+        <h3>CREATE A NEW PROJECT</h3>
         <div class="card d-flex justify-content-center">
             <div class="mb-4 text-center card-header">
                 <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>Hi, {{ Auth::user()->first_name }}</h4>
-                <br>
                 <h4>What's the address of your project?</h4>
                 <form action="{{ route('newBuilding2') }}" method="post" class="mt-5" id="address">
                     @csrf
                     <div id="locationField" class="w-100 mb-5 d-flex justify-content-center">
-                        <input autofocus="autofocus" class="text-center" id="autocomplete"
+                        <input class="text-center" id="autocomplete"
                                placeholder="SEARCH FOR YOUR ADDRESS HERE"
                                onFocus="geolocate()"
                                type="text"/>
@@ -38,7 +37,7 @@ blade for adding a new building/project to a User
                         </div>
                         <div class="form-group col-sm-6 col-12">
                             <label for="address2" class="sr-only">Address2</label>
-                            <input type="text" class="form-control text-center" id="street_number" name="street_number"
+                            <input type="text" class="form-control text-center" id="address2" name="address2"
                                    value="{{ session()->get('building.address2') }}" placeholder="BUS"/>
                         </div>
                     </div>
@@ -56,7 +55,7 @@ blade for adding a new building/project to a User
                     </div>
                     <p>(*)required fields</p>
                     <div class="align-self-center">
-                        <button type="submit" id="main-button" class="btn btn-primary" name="newBuilding2">Next</button>
+                        <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding2">Next</button>
                     </div>
                 </form>
             </div>
@@ -64,76 +63,77 @@ blade for adding a new building/project to a User
                 <a href="{{ url()->previous() }}"><span><strong>Go Back</strong></span></a>
             </div>
         </div>
-        {{--        <script>
-                    // This sample uses the Autocomplete widget to help the user select a
-                    // place, then it retrieves the address components associated with that
-                    // place, and then it populates the form fields with those details.
-                    // This sample requires the Places library. Include the libraries=places
-                    // parameter when you first load the API. For example:
-                    // <script
-                    // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        <script>
+            // This sample uses the Autocomplete widget to help the user select a
+            // place, then it retrieves the address components associated with that
+            // place, and then it populates the form fields with those details.
+            // This sample requires the Places library. Include the libraries=places
+            // parameter when you first load the API. For example:
+            // <script
+            // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-                    var placeSearch, autocomplete;
+            var placeSearch, autocomplete;
 
-                    var componentForm = {
-                        street_number: 'short_name',
-                        route: 'long_name',
-                        locality: 'long_name',
-                        postal_code: 'long_name'
-                    };
+            var componentForm = {
+                street_number: 'short_name',
+                route: 'long_name',
+                locality: 'long_name',
+                postal_code: 'long_name'
+            };
 
-                    function initAutocomplete() {
-                        // Create the autocomplete object, restricting the search predictions to
-                        // geographical location types.
-                        autocomplete = new google.maps.places.Autocomplete(
-                            document.getElementById('autocomplete'), {types: ['geocode']});
+            function initAutocomplete() {
+                // Create the autocomplete object, restricting the search predictions to
+                // geographical location types.
+                autocomplete = new google.maps.places.Autocomplete(
+                    document.getElementById('autocomplete'), {types: ['geocode']});
 
-                        // Avoid paying for data that you don't need by restricting the set of
-                        // place fields that are returned to just the address components.
-                        autocomplete.setFields(['address_component']);
+                // Avoid paying for data that you don't need by restricting the set of
+                // place fields that are returned to just the address components.
+                autocomplete.setFields(['address_component']);
 
-                        // When the user selects an address from the drop-down, populate the
-                        // address fields in the form.
-                        autocomplete.addListener('place_changed', fillInAddress);
+                // When the user selects an address from the drop-down, populate the
+                // address fields in the form.
+                autocomplete.addListener('place_changed', fillInAddress);
+            }
+
+            function fillInAddress() {
+                // Get the place details from the autocomplete object.
+                var place = autocomplete.getPlace();
+
+                for (var component in componentForm) {
+                    document.getElementById(component).value = '';
+                    document.getElementById(component).disabled = false;
+                }
+
+                // Get each component of the address from the place details,
+                // and then fill-in the corresponding field on the form.
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = place.address_components[i][componentForm[addressType]];
+                        document.getElementById(addressType).value = val;
                     }
+                }
+            }
 
-                    function fillInAddress() {
-                        // Get the place details from the autocomplete object.
-                        var place = autocomplete.getPlace();
-
-                        for (var component in componentForm) {
-                            document.getElementById(component).value = '';
-                            document.getElementById(component).disabled = false;
-                        }
-
-                        // Get each component of the address from the place details,
-                        // and then fill-in the corresponding field on the form.
-                        for (var i = 0; i < place.address_components.length; i++) {
-                            var addressType = place.address_components[i].types[0];
-                            if (componentForm[addressType]) {
-                                var val = place.address_components[i][componentForm[addressType]];
-                                document.getElementById(addressType).value = val;
-                            }
-                        }
-                    }
-
-                    // Bias the autocomplete object to the user's geographical location,
-                    // as supplied by the browser's 'navigator.geolocation' object.
-                    function geolocate() {
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(function(position) {
-                                var geolocation = {
-                                    lat: position.coords.latitude,
-                                    lng: position.coords.longitude
-                                };
-                                var circle = new google.maps.Circle(
-                                    {center: geolocation, radius: position.coords.accuracy});
-                                autocomplete.setBounds(circle.getBounds());
-                            });
-                        }
-                    }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&libraries=places&callback=initAutocomplete"
-                        defer></script>--}}
+            // Bias the autocomplete object to the user's geographical location,
+            // as supplied by the browser's 'navigator.geolocation' object.
+            function geolocate() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var geolocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        var circle = new google.maps.Circle(
+                            {center: geolocation, radius: position.coords.accuracy});
+                        autocomplete.setBounds(circle.getBounds());
+                    });
+                }
+            }
+        </script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&libraries=places&callback=initAutocomplete"
+            defer></script>
     </div>
 @endsection
