@@ -14,14 +14,14 @@ blade for adding a new building/project to a User
             @csrf
             <div id="locationField">
                 <input id="autocomplete"
-                       placeholder="Enter your address"
+                       placeholder="Find address"
                        onFocus="geolocate()"
                        type="text"/>
             </div>
             <table id="address" class="mt-4 mb-4">
                 <tr>
                     <td class="label">Street address(*)</td>
-                    <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" name="street" value="{{ old('street') }}"/></td>
+                    <td class="wideField" colspan="2"><input class="field" id="route" name="street" value="{{ old('street') }}"/></td>
                     <td class="slimField" colspan="1"><input class="field" id="street_number" name="street_number" value="{{ old('street_number') }}"/></td>
                 </tr>
                 <tr>
@@ -30,17 +30,17 @@ blade for adding a new building/project to a User
                 </tr>
                 <tr>
                     <td class="label">City(*)</td>
-                    <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" name="city" value="{{ session()->get('building.city') }}"/></td>
+                    <td class="wideField" colspan="3"><input class="field" id="locality" name="city" value="{{ session()->get('building.city') }}"/></td>
                 </tr>
                 <tr>
                     <td class="label">Region</td>
-                    <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"/></td>
+                    <td class="slimField"><input class="field" id="administrative_area_level_1" name="region" value="{{ old('region') }}"/></td>
                     <td class="label">Post code(*)</td>
-                    <td class="wideField"><input class="field" id="postal_code" disabled="true" name="postcode" value="{{ session()->get('building.postcode') }}"/></td>
+                    <td class="wideField"><input class="field" id="postal_code" name="postcode" value="{{ session()->get('building.postcode') }}"/></td>
                 </tr>
                 <tr>
                     <td class="label">Country</td>
-                    <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"/></td>
+                    <td class="wideField" colspan="3"><input class="field" id="country" name="country" value="{{ old('country') }}"/></td>
                 </tr>
             </table>
             <p>(*)required fields</p>

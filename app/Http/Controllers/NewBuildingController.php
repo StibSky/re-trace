@@ -91,14 +91,14 @@ class NewBuildingController extends Controller
                 $building->setProjectName($validatedName);
                 $request->session()->put('building', $building);
                 if ($building->getProjectName() == null) {
-                    return redirect()->back()->withInput(Input::all())->with('error', 'please fill in a name');
+                    return redirect()->back()->withInput()->with('error', 'please fill in a name');
                 }
             }else{
                 $building = $request->session()->get('building');
                 $building->setProjectName($validatedName);
                 $request->session()->put('building', $building);
                 if ($building->getProjectName() == null) {
-                    return redirect()->back()->with('error', 'please fill in a name');
+                    return redirect()->back()->withInput()->with('error', 'please fill in a name');
                 }
             }
         }
@@ -138,16 +138,16 @@ class NewBuildingController extends Controller
                 $building->setPostcode($inputPostcode);
                 $request->session()->put('building', $building);
                 if (empty($request->input('street_number'))) {
-                    return redirect()->back()->with('error', 'please fill in a street number');
+                    return redirect()->back()->withInput()->with('error', 'please fill in a street number');
                 }
                 if ($building->getAddress1() === null) {
-                    return redirect()->back()->with('error', 'please fill in your address');
+                    return redirect()->back()->withInput()->with('error', 'please fill in your address');
                 }
                 if ($building->getCity() == null) {
-                    return redirect()->back()->with('error', 'please fill in city');
+                    return redirect()->back()->withInput()->with('error', 'please fill in city');
                 }
                 if ($building->getPostcode() == null) {
-                    return redirect()->back()->with('error', 'please fill in postcode');
+                    return redirect()->back()->withInput()->with('error', 'please fill in postcode');
                 }
             } else {
                 $building = $request->session()->get('building');
@@ -157,16 +157,16 @@ class NewBuildingController extends Controller
                 $building->setPostcode($inputPostcode);
                 $request->session()->put('building', $building);
                 if (empty($request->input('street_number'))) {
-                    return redirect()->back()->with('error', 'please fill in a street number');
+                    return redirect()->back()->withInput()->with('error', 'please fill in a street number');
                 }
                 if ($building->getAddress1() === null) {
-                    return redirect()->back()->with('error', 'please fill in your address');
+                    return redirect()->back()->withInput()->with('error', 'please fill in your address');
                 }
                 if ($building->getCity() == null) {
-                    return redirect()->back()->with('error', 'please fill in city');
+                    return redirect()->back()->withInput()->with('error', 'please fill in city');
                 }
                 if ($building->getPostcode() == null) {
-                    return redirect()->back()->with('error', 'please fill in postcode');
+                    return redirect()->back()->withInput()->with('error', 'please fill in postcode');
                 }
             }
         }
