@@ -7,6 +7,7 @@
 @endsection
 @section('head-script')
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 @endsection
 @section('content')
     <!--
@@ -115,8 +116,24 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
     </script>
     <script type="text/javascript">
-        // Initialize and add the map
+        "use strict";
+
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+
+        const BELGIUM_BOUNDS = {
+            north: 49.56,
+            south: 51.47,
+            west: 2.59,
+            east: 6.26
+        };
+        const ANTWERPEN = {
+            lat: 51.22,
+            lng: 4.4
+        };
+
         function initMap() {
+
             let locationArray = [];
                 @for($i=0; $i < count( $locations ); $i++)
             var location = {
@@ -125,13 +142,17 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             locationArray.push(location);
             @endfor
 
-            console.log(locationArray)
-
-            let map = new google.maps.Map(
-                document.getElementById('map'), {zoom: 8, center: location});
+            let map = new google.maps.Map(document.getElementById("map"), {
+                    center: ANTWERPEN,
+                    restriction: {
+                        latLngBounds: BELGIUM_BOUNDS,
+                        strictBounds: false
+                    },
+                    zoom: 8
+                });
 
             for(let i = 0; i < locationArray.length; i++) {
-                new google.maps.Marker({position: locationArray[i], map: map});
+                new google.maps.Marker({position: locationArray[i], label: labels[labelIndex++ % labels.length], map: map});
             }
         }
     </script>
