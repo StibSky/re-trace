@@ -47,7 +47,6 @@ class MapController extends Controller
         $lat2 = $decodedB['results'][0]['geometry']['location']['lat'];
         $lng2 = $decodedB['results'][0]['geometry']['location']['lng'];*/
 
-
         return view('dashboard.map', [
             'locations' => $locations,
         ]);
