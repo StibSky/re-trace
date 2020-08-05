@@ -1,21 +1,7 @@
 #projectInfo,
 #userInfo {
   height: 70vh;
-}
-
-@media handheld and (max-height: 1300px) {
-  #projectInfo,
-  #userInfo {
-    height: 50vh;
-  }
-}
-
-#userInfo {
-  margin-right: 1em;
-}
-
-#projectInfo {
-  margin-left: 1em;
+  width: 30%;
 }
 
 #newSearch {

@@ -16,6 +16,11 @@ body ul li a:hover {
   text-decoration: none;
 }
 
+body input {
+  width: 25vw;
+  border: none;
+}
+
 body .card {
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
@@ -25,7 +30,7 @@ body .card {
 body #main-button {
   color: white;
   font-weight: bold;
-  width: 14vw;
+  width: 25vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
@@ -41,7 +46,7 @@ body #main-button-medium:hover {
 
 body #secondary-button {
   font-weight: bold;
-  width: 14vw;
+  width: 25vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;
@@ -92,8 +97,13 @@ body #secondary-button-medium {
   border-radius: 100px;
 }
 
+a span {
+  color: black;
+}
+
 a span:hover {
   color: #f3bfba;
+  text-decoration: none;
 }
 
 .full-height {
