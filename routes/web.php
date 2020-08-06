@@ -64,6 +64,7 @@ Route::post('/upload', 'UploadController@upload')->name('upload');
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
+Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 
 Route::get( '/verify-test', function () {
     // Get a user for demo purposes

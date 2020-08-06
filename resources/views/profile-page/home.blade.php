@@ -101,10 +101,36 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="col-sm-5 col-12 p-2 card d-flex" id="projectInfo">
             <div class="row d-flex">
                 <div class="col-12 d-flex align-items-center pl-5" id="newSearch">
-                    <form class="form">
+                    <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
+                        @csrf
+                        <label>Pick material:
+                            <select name="substance" id="categorySelect">
+                                @foreach($headCategories as $headCategory)
+                                    <option value="{{ $headCategory->id }}" class="categoryOptions">
+                                        {{ $headCategory->name }}
+                                    </option>
+                                @endforeach
+                                @foreach($subCategories1 as $subCategory1)
+
+                                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                        ---{{$subCategory1->name }}
+                                    </option>
+
+                                @endforeach
+                                @foreach($subCategories2 as $subCategory2)
+
+                                    <option value="{{ $subCategory2->id }}" class="categoryOptions">
+                                        ------{{ $subCategory2->name }}
+                                    </option>
+
+                                @endforeach
+                            </select>
+
+                        </label>
+                        <br>
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                                   style="padding-left: 20px; border-radius: 40px;" id="mysearch">
+                                   style="padding-left: 20px; border-radius: 40px;" id="mysearch" name="mysearch">
                             <div class="input-group-addon py-1"
                                  style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
                                 <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
@@ -144,24 +170,38 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
         function initMap() {
 
+            let map = new google.maps.Map(document.getElementById("map"), {
+                center: ANTWERPEN,
+                restriction: {
+                    latLngBounds: BELGIUM_BOUNDS,
+                    strictBounds: false
+                },
+                zoom: 8
+            });
+
+
             let locationArray = [];
+            @if(session('substanceId') !=null )
+                @for($i=0; $i < count( session('materialLocations') ); $i++)
+            var location = {
+                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+            locationArray.push(location);
+            console.log('test');
+            @endfor
+            @else
                 @for($i=0; $i < count( $locations ); $i++)
             var location = {
                     lat: {!! HomeController::getLat($locations[$i]) !!},
                     lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
+            console.log(locationArray);
                 @endfor
+            @endif
 
-            let map = new google.maps.Map(document.getElementById("map"), {
-                    center: ANTWERPEN,
-                    restriction: {
-                        latLngBounds: BELGIUM_BOUNDS,
-                        strictBounds: false
-                    },
-                    zoom: 8
-                });
-                {{-- write a check that only displays buildings with the correct materials --}}
-                {{--            @if((Building::where('projectName', 'fff1234')->first())== null)--}}
+
+
+
             for (let i = 0; i < locationArray.length; i++) {
                 new google.maps.Marker({
                     position: locationArray[i],
@@ -169,7 +209,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     map: map
                 });
             }
-            {{--            @endif--}}
         }
     </script>
     {{--  <div class="container mt-3">
