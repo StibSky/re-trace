@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
+    //========================================================================================================================
+    //IMPORTANT CHECK THAT ONLY TYPES OF DOCUMENTS CAN BE UPLOADED WE ACTUALLY WANT! CHECK MIME_CONTENT
+    //========================================================================================================================
+
     public function upload(Request $request)
     {
         if (!Auth::check()) {
@@ -20,7 +24,8 @@ class UploadController extends Controller
         }
 
         $file = new UploadedFile();
-
+//swap if
+        //check if userfile instanceof
         if ($request->userfile != null) {
             $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
 
@@ -28,6 +33,7 @@ class UploadController extends Controller
 
             $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
+            //be careful with $post
             if (isset($_POST['upload'])) {
                 $file->setName($filename);
                 $file->setFormat($originalExtension);
@@ -43,6 +49,7 @@ class UploadController extends Controller
 
             $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
 
+            //make constant of path
             $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
 
             return back()->with('success', 'file uploaded');

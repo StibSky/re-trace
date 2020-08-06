@@ -84,6 +84,7 @@ class NewBuildingController extends Controller
 
     public function addStep1(Request $request)
     {
+        //can be converted to 1 if can be shortened
         $validatedName = $request->input('projectName');
         if (isset($_POST['newBuilding'])) {
             if(empty($request->session()->get('building'))){
