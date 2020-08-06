@@ -54,7 +54,7 @@ class HomeController extends Controller
                     ->get()
             );
         }
-        $substance = Substance::all();
+        //move to class
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
         $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
@@ -76,6 +76,7 @@ class HomeController extends Controller
         ]);
     }
 
+    //look up blade extensions laravel, put in separate class
     public static function getLng($location)
     {
         $decodeLocation = json_decode($location, true);
@@ -95,35 +96,39 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
-        if (Materiallist::where('substanceId', $substanceId)->first() != null) {
-            $buildMaterials = Materiallist::where('substanceId', $substanceId)->get();
-            $buildIds = [];
-            foreach ($buildMaterials as $buildMaterial) {
-                array_push($buildIds, $buildMaterial->buildid);
-            }
-            $buildMaterialBuildings = [];
-            for ($i = 0; $i < count($buildIds); $i++) {
-                array_push($buildMaterialBuildings, Building::where('id', $buildIds[$i])->first());
-            }
-            $materialLocations = [];
-
-            for ($i = 0; $i < count($buildMaterialBuildings); $i++) {
-                array_push($materialLocations,
-                    \GoogleMaps::load('geocoding')
-                        ->setParam(['address' => $buildMaterialBuildings[$i]->address1 . ' ' . $buildMaterialBuildings[$i]->city . ' ' . $buildMaterialBuildings[$i]->postcode,
-                        ])
-                        ->get()
-                );
-            }
-        } else {
+        if (Materiallist::where('substanceId', $substanceId)->first() == null) {
             return back()->with('error', 'material not found');
+        }
+        //shows array of materiallist
+        /** @var Materiallist[] $buildMaterials */
+        $buildMaterials = Materiallist::where('substanceId', $substanceId)->get();
+        $buildIds = [];
+
+        // consider changing array_push to $list [] = 'new item';
+        foreach ($buildMaterials as $buildMaterial) {
+            array_push($buildIds, $buildMaterial->buildid);
+        }
+        $buildMaterialBuildings = [];
+        //convert them all to foreach
+        //watch out with count
+        for ($i = 0; $i < count($buildIds); $i++) {
+            array_push($buildMaterialBuildings, Building::where('id', $buildIds[$i])->first());
+        }
+        $materialLocations = [];
+
+        for ($i = 0; $i < count($buildMaterialBuildings); $i++) {
+            array_push($materialLocations,
+                \GoogleMaps::load('geocoding')
+                    ->setParam(['address' => $buildMaterialBuildings[$i]->address1 . ' ' . $buildMaterialBuildings[$i]->city . ' ' . $buildMaterialBuildings[$i]->postcode,
+                    ])
+                    ->get()
+            );
         }
 
 
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
-                'materialLocations' => $materialLocations
-            ]);
+                'materialLocations' => $materialLocations]);
     }
 }

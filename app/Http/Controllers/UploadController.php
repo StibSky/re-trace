@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
+    //========================================================================================================================
+    //IMPORTANT CHECK THAT ONLY TYPES OF DOCUMENTS CAN BE UPLOADED WE ACTUALLY WANT! CHECK MIME_CONTENT
+    //========================================================================================================================
+
     public function upload(Request $request)
     {
         if (!Auth::check()) {
@@ -20,38 +24,44 @@ class UploadController extends Controller
         }
 
         $file = new UploadedFile();
-
         if ($request->userfile == null) {
             return back()->with('error', 'please select a file');
         }
+        //swap if
+        //check if userfile instanceof
+        if ($request->userfile != null) {
+            $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
 
-        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+            $originalExtension = $request->userfile->getClientOriginalExtension();
 
-        $originalExtension = $request->userfile->getClientOriginalExtension();
+            $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
-        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
+            //be careful with $post
+            if (isset($_POST['upload'])) {
+                $file->setName($filename);
+                $file->setFormat($originalExtension);
+                $file->setType($request->input("type"));
+                $user = Auth::user();
+                $file->setUserId($user->id);
+                $file->setProjectId($request->input("projectId"));
+                $file->save();
+            }
 
-        if (isset($_POST['upload'])) {
-            $file->setName($filename);
-            $file->setFormat($originalExtension);
-            $file->setType($request->input("type"));
-            $user = Auth::user();
-            $file->setUserId($user->id);
-            $file->setProjectId($request->input("projectId"));
-            $file->save();
+            $firstname = Auth::user()->first_name;
+            $lastname = Auth::user()->last_name;
+
+            $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
+
+            $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+            //make constant of path
+            $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+
+            return back()->with('success', 'file uploaded');
         }
-
-        $firstname = Auth::user()->first_name;
-        $lastname = Auth::user()->last_name;
-
-        $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-
-        $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
-
-        return back()->with('success', 'file uploaded');
     }
 
-    public function viewFiles($id)
+    public
+    function viewFiles($id)
     {
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
@@ -76,7 +86,8 @@ class UploadController extends Controller
 
     }
 
-    public function downloadFile($id)
+    public
+    function downloadFile($id)
     {
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
@@ -89,7 +100,8 @@ class UploadController extends Controller
         return response()->download($targetFile);
     }
 
-    public function deleteFile(Request $request)
+    public
+    function deleteFile(Request $request)
     {
         $file = UploadedFile::where('id', $request->input("fileId"))->first();
 
@@ -108,15 +120,16 @@ class UploadController extends Controller
         return redirect()->back()->with('success', 'File deleted successfully');
     }
 
-    public function previewFiles($id)
+    public
+    function previewFiles($id)
     {
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
-        $firstname = User::where('id',$file->userId)->first()->first_name;
-        $lastname = User::where('id',$file->userId)->first()->last_name;
+        $firstname = User::where('id', $file->userId)->first()->first_name;
+        $lastname = User::where('id', $file->userId)->first()->last_name;
         $filename = $file->name;
 
-        $targetFile =  ('storage/app/public/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = ('storage/app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
         //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [
