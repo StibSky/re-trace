@@ -2,6 +2,12 @@ body {
   background-color: #e2e6f0;
 }
 
+@media screen and (max-height: 799px) {
+  body {
+    font-size: 10%;
+  }
+}
+
 body ul {
   padding: 0;
   list-style: none;
@@ -14,11 +20,6 @@ body ul li a {
 body ul li a:hover {
   color: #f3bfba;
   text-decoration: none;
-}
-
-body input {
-  width: 25vw;
-  border: none;
 }
 
 body .card {
@@ -34,6 +35,20 @@ body #main-button {
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
+}
+
+@media screen and (max-width: 799px) {
+  body #main-button {
+    height: 3vh;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body #main-button {
+    height: 4vh;
+    width: 50%;
+  }
 }
 
 body #main-button:hover,

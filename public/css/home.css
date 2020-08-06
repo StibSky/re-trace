@@ -1,12 +1,40 @@
 #projectInfo,
 #userInfo {
-  height: 70vh;
+  height: 80vh;
 }
 
-@media handheld and (max-height: 1300px) {
+@media screen and (max-width: 767px) {
   #projectInfo,
   #userInfo {
-    height: 50vh;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  #projectInfo,
+  #userInfo {
+    height: 60vh;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  #projectInfo,
+  #userInfo {
+    height: 70vh;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  #projectInfo,
+  #userInfo {
+    height: 70vh;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  #projectInfo,
+  #userInfo {
+    height: 70vh;
   }
 }
 
@@ -35,6 +63,18 @@
   cursor: pointer;
   /*color: gold;*/
   background-color: #f3bfba;
+}
+
+@media screen and (max-width: 450px) {
+  #searchBar {
+    width: 65vw;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  #searchBar {
+    width: 20vw;
+  }
 }
 
 ul {

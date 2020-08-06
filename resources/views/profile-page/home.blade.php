@@ -22,7 +22,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
     @endif
     <div class="d-flex flex-md-row flex-column justify-content-between">
-        <div class="col-sm-6 col-12 px-2 card" id="userInfo">
+        <div class="col-md-6 col-12 px-2 card" id="userInfo">
             <div class="row no-gutters d-flex">
                 <div class="col-auto d-flex pl-4 pt-4">
                     <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
@@ -34,7 +34,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
             </div>
             <div class="row no-gutters d-flex">
-                <div class="col-12 d-flex flex-column pl-4 pt-4">
+                <div class="col-12 d-flex flex-column pl-4 pt-lg-0 pt-4">
                     <h5>Personal details</h5>
                     <ul>
                         <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
@@ -44,8 +44,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
             </div>
 
-            <div class="card-title mt-3 ml-3"><h4>My projects</h4></div>
-            <div class="card-body">
+            <div class="card-title mt-lg-0 mt-3 ml-3"><h4>My projects</h4></div>
+            <div class="card-body pt-lg-0 pt-3">
                 @if(count($buildings) == 0)
                     <h5> - Please add your first project to progress your profile</h5>
                 @endif
@@ -101,9 +101,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             <a class="btn btn-primary ml-2 mb-2" id="main-button" href="{{ route('building') }}">Add New Project</a>
 
         </div>
-        <div class="col-sm-5 col-12 p-2 card d-flex" id="projectInfo">
+        <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
             <div class="row d-flex">
-                <div class="col-12 d-flex align-items-center pl-5" id="newSearch">
+                <div class="col-12 d-flex align-items-center pl-5 mb-lg-0 mb-md-3 mb-5" id="newSearch">
                     <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
                         @csrf
                         <label>Pick material:
@@ -131,7 +131,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             </select>
                         </label>
                         <br>
-                        <div class="input-group">
+                        <div class="input-group" id="searchBar">
                             <input class="form-control" type="text" placeholder="Search" aria-label="Search"
                                    style="padding-left: 20px; border-radius: 40px;" id="filterCategories" name="mysearch">
                             <div class="input-group-addon py-1"
@@ -142,7 +142,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </div>
                     </form>
                 </div>
-                <div id="map" class=" border border-dark mb-5 ml-5 mr-5 rounded"></div>
+                <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
             </div>
         </div>
     </div>

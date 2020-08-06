@@ -62,16 +62,16 @@
                 <div class="col-md-6">
                     <input id="type" type="radio" name="type" value="Business">
                     <label for="type">Business</label>
-                    <span class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip"
+                    <button disabled class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip"
                             data-placement="bottom" title="When you're a developer or recycling plant">
                         ?
-                    </span>
+                    </button>
                     <input id="type2" type="radio" name="type" value="Private" checked>
                     <label for="type2">Private</label>
-                    <span class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip"
+                    <button disabled class="text-center" id="custom-tooltip" tabindex="-1" data-toggle="tooltip"
                             data-placement="bottom" title="When you're a single home owner">
                         ?
-                    </span>
+                    </button>
                     @error('type')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

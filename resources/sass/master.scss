@@ -5,6 +5,10 @@
 body {
     background-color: $retrace-light-blue;
 
+    @media screen and (max-height: 799px) {
+            font-size: 10%;
+    }
+
     ul {
         padding: 0;
         list-style: none;
@@ -19,14 +23,11 @@ body {
             }
         }
     }
-    input {
-        width: 25vw;
-        border: none;
-    }
     .card {
         box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: $retrace-light-blue;
         border-color: $retrace-light-blue;
+
     }
 
     #main-button {
@@ -36,6 +37,18 @@ body {
         background-color: $retrace-pink;
         border-color: $retrace-pink;
         border-radius: 100px;
+
+        @media screen and (max-width: 799px) {
+                height: 3vh;
+                width: 50%;
+
+        }
+
+        @media screen and (max-width: 1024px) {
+            height: 4vh;
+            width: 50%;
+        }
+
     }
 
     #main-button:hover, #main-button-small:hover, #main-button-medium:hover, #main-button-wide:hover {

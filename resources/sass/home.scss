@@ -1,12 +1,30 @@
 @import 'variables';
 
 #projectInfo, #userInfo {
-    height: 70vh;
-}
+    height: 80vh;
 
-@media handheld and (max-height: 1300px) {
+    @media screen and (max-width: 767px)  {
+        height: 100vh;
+    }
+
+    @media screen and (min-width: 1400px) {
+        height: 60vh;
+    }
+
+}
+@media screen and (min-width: 1400px) {
     #projectInfo, #userInfo {
-        height: 50vh;
+        height: 70vh;
+    }
+}
+@media screen and (min-width: 1600px) {
+    #projectInfo, #userInfo {
+        height: 70vh;
+    }
+}
+@media screen and (min-width: 1900px) {
+    #projectInfo, #userInfo {
+        height: 70vh;
     }
 }
 
@@ -35,6 +53,15 @@
     background-color: rgb(243,191,186);
 }
 
+#searchBar {
+
+    @media screen and (max-width: 450px) {
+        width: 65vw;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1200px) {
+        width: 20vw;
+    }
+}
 ul {
     padding: 0;
     list-style: none;
