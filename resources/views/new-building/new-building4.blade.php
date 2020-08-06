@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     <div class="container d-flex justify-content-center flex-column align-items-center">
+        <h3>CREATE A NEW PROJECT</h3>
         <div class="card d-flex justify-content-center">
             <div class="mb-4 text-center card-header">
                 <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">

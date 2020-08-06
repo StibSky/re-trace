@@ -4,10 +4,13 @@
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
 @endsection
 @section('head-script')
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 @endsection
 @section('content')
     <!--
@@ -104,7 +107,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
                         @csrf
                         <label>Pick material:
-                            <select name="substance" id="categorySelect">
+                            <select name="substance" id="categorySelect" class="js-example-basic-single">
+                                <option>Please select</option>
                                 @foreach($headCategories as $headCategory)
                                     <option value="{{ $headCategory->id }}" class="categoryOptions">
                                         {{ $headCategory->name }}
@@ -125,12 +129,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
                                 @endforeach
                             </select>
-
                         </label>
                         <br>
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                                   style="padding-left: 20px; border-radius: 40px;" id="mysearch" name="mysearch">
+                                   style="padding-left: 20px; border-radius: 40px;" id="filterCategories" name="mysearch">
                             <div class="input-group-addon py-1"
                                  style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
                                 <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
@@ -154,6 +157,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <script type="text/javascript">
         "use strict";
 
+        $(document).ready(function () {
+            $(".js-example-basic-single").select2();
+        });
+
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
 
@@ -169,7 +176,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         };
 
         function initMap() {
-
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
                 restriction: {
@@ -181,15 +187,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-            @if(session('substanceId') !=null )
+                @if(session('substanceId') !=null )
                 @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                     lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             console.log('test');
-            @endfor
-            @else
+                @endfor
+                @else
                 @for($i=0; $i < count( $locations ); $i++)
             var location = {
                     lat: {!! HomeController::getLat($locations[$i]) !!},
@@ -197,7 +203,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             locationArray.push(location);
             console.log(locationArray);
                 @endfor
-            @endif
+                @endif
 
 
 

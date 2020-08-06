@@ -27,13 +27,13 @@ blade for adding a new building/project to a User
                     <div class="form-group">
                         <label for="street" class="sr-only">Street name</label>
                         <input type="text" class="form-control text-center" id="route" name="street"
-                               value="{{ old('street') }}" placeholder="STREET NAME(*)"/>
+                               value="{{ session()->get('inputStreetNumber') }}" placeholder="STREET NAME(*)"/>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-6 col-12">
                             <label for="street_number" class="sr-only">Street number</label>
                             <input type="text" class="form-control text-center" id="street_number" name="street_number"
-                                   value="{{ old('street_number') }}" placeholder="NR(*)"/>
+                                   value="{{ session()->get('inputStreet') }}" placeholder="NR(*)"/>
                         </div>
                         <div class="form-group col-sm-6 col-12">
                             <label for="address2" class="sr-only">Address2</label>

@@ -21,34 +21,34 @@ class UploadController extends Controller
 
         $file = new UploadedFile();
 
-        if ($request->userfile != null) {
-            $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
-
-            $originalExtension = $request->userfile->getClientOriginalExtension();
-
-            $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
-
-            if (isset($_POST['upload'])) {
-                $file->setName($filename);
-                $file->setFormat($originalExtension);
-                $file->setType($request->input("type"));
-                $user = Auth::user();
-                $file->setUserId($user->id);
-                $file->setProjectId($request->input("projectId"));
-                $file->save();
-            }
-
-            $firstname = Auth::user()->first_name;
-            $lastname = Auth::user()->last_name;
-
-            $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-
-            $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
-
-            return back()->with('success', 'file uploaded');
-        } else {
+        if ($request->userfile == null) {
             return back()->with('error', 'please select a file');
         }
+
+        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+
+        $originalExtension = $request->userfile->getClientOriginalExtension();
+
+        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
+
+        if (isset($_POST['upload'])) {
+            $file->setName($filename);
+            $file->setFormat($originalExtension);
+            $file->setType($request->input("type"));
+            $user = Auth::user();
+            $file->setUserId($user->id);
+            $file->setProjectId($request->input("projectId"));
+            $file->save();
+        }
+
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
+
+        $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
+
+        $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+
+        return back()->with('success', 'file uploaded');
     }
 
     public function viewFiles($id)
