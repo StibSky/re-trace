@@ -4,23 +4,46 @@
 @endsection
 @section('content')
     <div class="container d-flex justify-content-center flex-column align-items-center">
-        <img class="mb-4" src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
+        <div class="card d-flex justify-content-center">
+            <div class="mb-4 text-center card-header">
+                <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
+                <h3><strong>re-trace.io</strong></h3>
+            </div>
+            <div class="card-body text-center">
+                <h4>Confirm input and create project?</h4>
+                <table class="d-flex justify-content-center mt-5">
+                    <tr>
+                        <td>Project name: {{ $building->projectName }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address: {{ $building->address1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ $building->address2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>City: {{ $building->city }}</td>
+                    </tr>
+                    <tr>
+                        <td>Postcode: {{ $building->postcode }}</td>
+                    </tr>
+                    <tr>
+                        <td>Type: {{ $building->type }}</td>
+                    </tr>
+                    <tr>
+                        <td>Activity: {{ $building->status }}</td>
+                    </tr>
+                </table>
+                <form action="{{ route('store') }}" method="post" class="mt-5">
+                    @csrf
+                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">Create</button>
+                </form>
+            </div>
 
-        <h2>Confirm input and create project?</h2>
-        <h3>Project name: {{ $building->projectName }}</h3>
-        <h3>Address: {{ $building->address1 }}</h3>
-        <h3>{{ $building->address2 }}</h3>
-        <h3>City: {{ $building->city }}</h3>
-        <h3>Postcode: {{ $building->postcode }}</h3>
-        <h3>Type: {{ $building->type }}</h3>
-        <h3>Activity: {{ $building->status }}</h3>
-
-        <form action="{{ route('store') }}" method="post">
-            @csrf
-            <button type="submit" id="main-button" class="btn btn-primary" name="confirm">Create</button>
-        </form>
-        <a href="{{ url()->previous() }}" id="secondary-button" class="btn btn-primary">Back</a>
-        <br>
+            <div class="card-footer text-center">
+                <a href="{{ url()->previous() }}"><span><strong>Go Back</strong></span></a>
+            </div>
+        </div>
     </div>
 @endsection
 
