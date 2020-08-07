@@ -73,7 +73,7 @@ body #secondary-button-medium:hover {
 
 body #main-button-small {
   font-weight: bold;
-  width: 5vw;
+  width: 75px;
   background-color: #f3bfba;
   border-color: #f3bfba;
   color: white;
@@ -91,7 +91,7 @@ body #main-button-medium {
 
 body #secondary-button-small {
   font-weight: bold;
-  width: 5vw;
+  width: 75px;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;
