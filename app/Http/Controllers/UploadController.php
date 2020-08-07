@@ -36,6 +36,7 @@ class UploadController extends Controller
 
             $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
+            //make array and check met in_array
             $mimetype = $request->userfile->getMimeType();
             if ($mimetype != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && $mimetype != 'application/pdf'
                 && $mimetype != 'image/png' && $mimetype != 'image/jpeg' && $mimetype != 'application/msword' && $mimetype != 'text/plain') {
