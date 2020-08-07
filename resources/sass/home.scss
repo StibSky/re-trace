@@ -1,33 +1,5 @@
 @import 'variables';
 
-#projectInfo, #userInfo {
-    height: 90vh;
-
-    @media screen and (max-width: 767px)  {
-        height: 100vh;
-    }
-
-    @media screen and (min-width: 1400px) {
-        height: 60vh;
-    }
-
-}
-@media screen and (min-width: 1400px) {
-    #projectInfo, #userInfo {
-        height: 70vh;
-    }
-}
-@media screen and (min-width: 1600px) {
-    #projectInfo, #userInfo {
-        height: 70vh;
-    }
-}
-@media screen and (min-width: 1900px) {
-    #projectInfo, #userInfo {
-        height: 70vh;
-    }
-}
-
 #newSearch {
 
     height: 6em;
