@@ -33,14 +33,14 @@ body #main-button {
 
 @media screen and (max-width: 799px) {
   body #main-button {
-    height: 3vh;
+    height: 30px;
     width: 50%;
   }
 }
 
 @media screen and (max-width: 1024px) {
   body #main-button {
-    height: 4vh;
+    height: 40px;
     width: 50%;
   }
 }
@@ -82,7 +82,7 @@ body #main-button-small {
 
 body #main-button-medium {
   font-weight: bold;
-  width: 9vw;
+  width: 115px;
   background-color: #f3bfba;
   border-color: #f3bfba;
   color: white;
@@ -100,7 +100,7 @@ body #secondary-button-small {
 
 body #secondary-button-medium {
   font-weight: bold;
-  width: 9vw;
+  width: 115px;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;

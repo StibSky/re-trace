@@ -35,13 +35,13 @@ body {
         border-radius: 100px;
 
         @media screen and (max-width: 799px) {
-                height: 3vh;
+                height: 30px;
                 width: 50%;
 
         }
 
         @media screen and (max-width: 1024px) {
-            height: 4vh;
+            height: 40px;
             width: 50%;
         }
 
@@ -79,7 +79,7 @@ body {
 
     #main-button-medium {
         font-weight: bold;
-        width: 9vw;
+        width: 115px;
         background-color: $retrace-pink;
         border-color: $retrace-pink;
         color: white;
@@ -97,7 +97,7 @@ body {
 
     #secondary-button-medium {
         font-weight: bold;
-        width: 9vw;
+        width: 115px;
         background-color: $retrace-green;
         border-color: $retrace-green;
         color: white;
