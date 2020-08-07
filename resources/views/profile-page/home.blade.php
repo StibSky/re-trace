@@ -24,128 +24,136 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column justify-content-between">
         <div class="col-md-6 col-12 px-2" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="row no-gutters d-flex">
-                    <div class="col-auto d-flex pt-4">
-                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-center">
-                        <div>
-                            <h4>Hi {{ Auth::user()->first_name }}</h4>
+                <div class="card-header">Profile</div>
+                <div class="card-body">
+                    <div class="row px-3">
+                        <div class="col-6 d-flex flex-column">
+                            <div class="row">
+                                <img src="{{ asset('images/logos/resquare.png') }}" class="w-50" alt="Placeholder">
+                            </div>
+                            <div class="row ml-3">
+                                <a class="btn btn-primary" name="editProfile" id="main-button-small">Edit
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
+                            <h5>Personal details</h5>
+                            <ul>
+                                <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                                <li>Email address: {{ Auth::user()->email }}</li>
+                                <li>Profile Type: {{ Auth::user()->type }}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            <div class="row no-gutters d-flex">
-                <div class="col-12 d-flex flex-column pt-lg-0 pt-4">
-                    <h5>Personal details</h5>
-                    <ul>
-                        <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
-                        <li>Email address: {{ Auth::user()->email }}</li>
-                        <li>Profile Type: {{ Auth::user()->type }}</li>
-                    </ul>
-                </div>
-            </div>
             </div>
 
             <div class="row card mt-lg-5 mt-1">
-                <div class="card-title"><h4>My projects</h4></div>
-                <div class="card-body pt-lg-0 pt-3 pb-2" id="myProjects">
+                <div class="card-header">My projects</div>
+                <div class="card-body" id="myProjects">
                     @if(count($buildings) == 0)
                         <h5> - Please add your first project to progress your profile</h5>
                     @endif
-                    <ul>
-                        @foreach($buildings as $building)
-                            <li class="mb-1 d-flex justify-content-between">
-                                <a id="project-names"
-                                   href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
-                                <div>
-                                    @if(Auth::user()->type == 'admin')
-                                        <button data-toggle="modal"
-                                                data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
-                                                id="main-button-small">Delete
-                                        </button>
-                                    @endif
-                                </div>
-                            </li>
-                            <hr>
-                            <div id="myModal" class="modal fade" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content text-left">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">X
-                                            </button>
-                                            <h4 class="modal-title">Are you sure you want to delete?</h4>
+                            <ul>
+                                @foreach($buildings as $building)
+                                    <li class="d-flex flex-row  justify-content-between">
+                                        <a id="project-names"
+                                           href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                        <span class="w-100">{{ $building->type }}</span>
+                                        <div>
+                                            @if(Auth::user()->type == 'admin')
+                                                <button data-toggle="modal"
+                                                        data-target="#myModal" class="btn btn-primary"
+                                                        name="deleteBuilding"
+                                                        id="main-button-small">Delete
+                                                </button>
+                                            @endif
                                         </div>
-                                        <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                            @csrf
-                                            <div class="modal-body">
-                                                <button value="{{ $building->id }}" class="btn btn-primary"
-                                                        name="deleteBuilding" id="main-button">Yes, delete project
-                                                </button>
-                                                <button type="button" class="btn btn-default"
-                                                        id="secondary-button-small"
-                                                        data-dismiss="modal">No
-                                                </button>
-                                            </div>
-                                            <div class="modal-footer">
+                                    </li>
+                                    <hr class="py-0 my-2">
+                                    <div id="myModal" class="modal fade" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content text-left">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">X
+                                                    </button>
+                                                    <h4 class="modal-title">Are you sure you want to delete?</h4>
+                                                </div>
+                                                <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <button value="{{ $building->id }}" class="btn btn-primary"
+                                                                name="deleteBuilding" id="main-button">Yes, delete
+                                                            project
+                                                        </button>
+                                                        <button type="button" class="btn btn-default"
+                                                                id="secondary-button-small"
+                                                                data-dismiss="modal">No
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-footer">
 
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
                                     </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
-                        @endforeach
-                    </ul>
+                                @endforeach
+                            </ul>
 
                 </div>
-                <a class="btn btn-primary ml-2 mb-2" id="main-button" href="{{ route('building') }}">Add New Project</a></div>
-
-        </div>
-        <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
-            <div class="row d-flex">
-                <div class="col-12 d-flex align-items-center pl-5 mb-lg-0 mb-md-3 mb-5" id="newSearch">
-                    <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
-                        @csrf
-                        <label>Pick material:
-                            <select name="substance" id="categorySelect" class="js-example-basic-single">
-                                <option>Please select</option>
-                                @foreach($headCategories as $headCategory)
-                                    <option value="{{ $headCategory->id }}" class="categoryOptions">
-                                        {{ $headCategory->name }}
-                                    </option>
-                                @endforeach
-                                @foreach($subCategories1 as $subCategory1)
-
-                                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                        ---{{$subCategory1->name }}
-                                    </option>
-
-                                @endforeach
-                                @foreach($subCategories2 as $subCategory2)
-
-                                    <option value="{{ $subCategory2->id }}" class="categoryOptions">
-                                        ------{{ $subCategory2->name }}
-                                    </option>
-
-                                @endforeach
-                            </select>
-                        </label>
-                        <br>
-                        <div class="input-group" id="searchBar">
-                            <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                                   style="padding-left: 20px; border-radius: 40px;" id="filterCategories" name="mysearch">
-                            <div class="input-group-addon py-1"
-                                 style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                        id="search-btn"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="card-footer">
+                    <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">Add New Project</a>
                 </div>
-                <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
             </div>
+
         </div>
+        {{-- <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
+             <div class="row d-flex">
+                 <div class="col-12 d-flex align-items-center pl-5 mb-lg-0 mb-md-3 mb-5" id="newSearch">
+                     <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
+                         @csrf
+                         <label>Pick material:
+                             <select name="substance" id="categorySelect" class="js-example-basic-single">
+                                 <option>Please select</option>
+                                 @foreach($headCategories as $headCategory)
+                                     <option value="{{ $headCategory->id }}" class="categoryOptions">
+                                         {{ $headCategory->name }}
+                                     </option>
+                                 @endforeach
+                                 @foreach($subCategories1 as $subCategory1)
+
+                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                         ---{{$subCategory1->name }}
+                                     </option>
+
+                                 @endforeach
+                                 @foreach($subCategories2 as $subCategory2)
+
+                                     <option value="{{ $subCategory2->id }}" class="categoryOptions">
+                                         ------{{ $subCategory2->name }}
+                                     </option>
+
+                                 @endforeach
+                             </select>
+                         </label>
+                         <br>
+                         <div class="input-group" id="searchBar">
+                             <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                                    style="padding-left: 20px; border-radius: 40px;" id="filterCategories" name="mysearch">
+                             <div class="input-group-addon py-1"
+                                  style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                 <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                         id="search-btn"><i class="fa fa-search"></i></button>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+                 <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
+             </div>
+         </div>--}}
     </div>
 
 

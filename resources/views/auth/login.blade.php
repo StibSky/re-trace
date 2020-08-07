@@ -62,7 +62,7 @@
                     </div>
                     <div class="form-group row d-flex justify-content-center">
                         <div>
-                            <button type="submit" class="btn btn-primary" id="main-button">
+                            <button type="submit" class="btn btn-primary" id="main-button-wide">
                                 {{ __('Login') }}
                             </button>
                         </div>
@@ -71,9 +71,8 @@
             </form>
             <div class="card-footer text-center">
                 <div>
-                    <p>Don't have an account?</p>
-                    <a id="secondary-button" class="btn btn-primary"
-                       href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <p>Don't have an account?  <strong><a href="{{ route('register') }}">{{ __('Sign up') }}</a></strong></p>
+
                 </div>
             </div>
         </div>
