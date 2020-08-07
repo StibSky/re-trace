@@ -36,12 +36,14 @@ class UploadController extends Controller
 
             $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
+            $allowedFiles = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'image/png', 'image/jpeg',
+                'application/msword', 'text/plain'];
+
             //make array and check met in_array
             $mimetype = $request->userfile->getMimeType();
-/*            if ($mimetype != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && $mimetype != 'application/pdf'
-                && $mimetype != 'image/png' && $mimetype != 'image/jpeg' && $mimetype != 'application/msword' && $mimetype != 'text/plain') {
+           if (!in_array($mimetype, $allowedFiles)) {
                 return back()->with('error', 'invalid file type');
-            }*/
+            }
 
             //be careful with $post
             if (isset($_POST['upload'])) {
@@ -58,7 +60,7 @@ class UploadController extends Controller
             $lastname = Auth::user()->last_name;
 
             $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-            dd($request->userfile->getMimeType());
+            //dd($request->userfile->getMimeType());
 
             $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
             //make constant of path
