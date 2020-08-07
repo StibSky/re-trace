@@ -2,12 +2,6 @@ body {
   background-color: #e2e6f0;
 }
 
-@media screen and (max-height: 799px) {
-  body {
-    font-size: 10%;
-  }
-}
-
 body ul {
   padding: 0;
   list-style: none;
