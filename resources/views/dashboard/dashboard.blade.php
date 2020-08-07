@@ -8,57 +8,68 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 p-4 ml-lg-0 ml-xl-0 mx-auto">
-            <div class="card-title">
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto">
+            <div class="card-header">
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
-            <figure><img class="w-100"
-                         src="{{ asset('images/coolbuilding.jpg') }}">
-            </figure>
-            <p>Type: {{ $project["type"] }}</p>
-            <div class="row px-md-1 px-lg-2 px-xl-3 px-3 d-flex justify-content-between">
-                <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
-                        data-target="#myModal">
-                    Upload files
-                </button>
-                <a id="secondary-button-medium" class="btn btn-primary"
-                   href="{{route('viewFiles', $project->id)}}">View files</a>
+            <div class="card-body">
+                <figure><img class="w-100"
+                             src="{{ asset('images/coolbuilding.jpg') }}">
+                </figure>
+                <p>Type: {{ $project["type"] }}</p></div>
+            <div class="card-footer d-flex justify-content-between">
+                    <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal">
+                        Upload files
+                    </button>
+                    <a id="secondary-button-medium" class="btn btn-primary"
+                       href="{{route('viewFiles', $project->id)}}">View files</a>
             </div>
-            <div class="d-flex justify-content-center">
+        </div>
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto">
+            <div class="card-header">
+                <h4>Information</h4>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Location: {{ $project["address1"] }}
+                        <ul>
+                            <li>{{ $project["address2"] }}</li>
+                        </ul>
+                    </li>
+                    {{--                    <li>Measuring State</li>
+                                        <li>Material list</li>
+                                        <li>Surface</li>
+                                        <li>Plans</li>
+                                        <li>Pictures</li>--}}
+                </ul>
+            </div>
+            <div class="card-footer">
+                @if(Auth::user()->type == 'admin')
+                    <button data-toggle="modal"
+                            data-target="#deleteModal" class="btn btn-primary" name="deleteBuilding"
+                            id="main-button">Delete building
+                    </button>
+                @endif
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-lg-2 mx-auto">
+            <div class="card-header">
+                <h4>Waste Streams</h4>
+            </div>
+            <div class="card-body">
+                @if(count($buildingSubstances) > 0)
+                    <ul>
+                        @foreach($buildingSubstances as $buildingSubstance)
+                            <li>{{ $buildingSubstance[0]['name'] }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+            <div class=" card-footer">
                 <a class="btn btn-primary mt-3" id="main-button"
                    href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 p-4 mx-md-auto mx-lg-5 mx-auto">
-            <h4>Information</h4>
-            <ul>
-                <li>Location: {{ $project["address1"] }}
-                    <ul>
-                        <li>{{ $project["address2"] }}</li>
-                    </ul>
-                </li>
-                {{--                    <li>Measuring State</li>
-                                    <li>Material list</li>
-                                    <li>Surface</li>
-                                    <li>Plans</li>
-                                    <li>Pictures</li>--}}
-            </ul>
-            @if(Auth::user()->type == 'admin')
-                <button data-toggle="modal"
-                        data-target="#deleteModal" class="btn btn-primary" name="deleteBuilding"
-                        id="main-button">Delete building
-                </button>
-            @endif
-        </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 p-4 mx-lg-2 mx-auto">
-            <h4>Waste Streams</h4>
-            @if(count($buildingSubstances) > 0)
-                <ul>
-                    @foreach($buildingSubstances as $buildingSubstance)
-                        <li>{{ $buildingSubstance[0]['name'] }}</li>
-                    @endforeach
-                </ul>
-            @endif
         </div>
     </div>
     {{--    <div class="card-body">
