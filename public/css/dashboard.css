@@ -1,6 +1,12 @@
 .card {
-  min-height: 80vh;
+  min-height: 65vh;
   height: 100%;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card .card-header,
+.card .card-footer {
+  border: none;
+  background-color: #e2e6f0;
 }
 
