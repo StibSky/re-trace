@@ -68,7 +68,7 @@
             <hr class="w-25">
         </form>
         <div>
-            <p>Don't have an account?</p> <br>
+            <p>Don't have an account?</p>
             <a id="secondary-button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
         </div>
 

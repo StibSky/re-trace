@@ -24,7 +24,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column justify-content-between">
         <div class="col-md-6 col-12 px-2 card" id="userInfo">
             <div class="row no-gutters d-flex">
-                <div class="col-auto d-flex pl-4 pt-4">
+                <div class="col-auto d-flex pt-4">
                     <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
                 </div>
                 <div class="col-4 d-flex flex-center">
@@ -34,7 +34,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
             </div>
             <div class="row no-gutters d-flex">
-                <div class="col-12 d-flex flex-column pl-4 pt-lg-0 pt-4">
+                <div class="col-12 d-flex flex-column pt-lg-0 pt-4">
                     <h5>Personal details</h5>
                     <ul>
                         <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
@@ -45,7 +45,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
             <div class="card-title mt-lg-0 mt-3 ml-3"><h4>My projects</h4></div>
-            <div class="card-body pt-lg-0 pt-3">
+            <div class="card-body pt-lg-0 pt-3 pb-2" id="myProjects">
                 @if(count($buildings) == 0)
                     <h5> - Please add your first project to progress your profile</h5>
                 @endif
@@ -92,9 +92,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             <!-- /.modal-dialog -->
                         </div>
                     @endforeach
-                    <div class="d-flex">
-                        {{ $buildings->links() }}
-                    </div>
                 </ul>
 
             </div>
