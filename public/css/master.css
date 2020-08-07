@@ -73,6 +73,13 @@ body #main-button-small {
   border-radius: 100px;
 }
 
+@media screen and (max-width: 1024px) {
+  body #main-button-small {
+    max-height: 40px;
+    width: 50%;
+  }
+}
+
 body #main-button-medium {
   font-weight: bold;
   width: 115px;

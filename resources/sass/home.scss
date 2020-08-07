@@ -1,13 +1,14 @@
 @import 'variables';
 
 #newSearch {
-
     height: 6em;
 }
 
 #myProjects {
-    overflow: scroll;
-    height: 100px;
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+    height: 150px;
+
 }
 
 #project-names {
@@ -26,7 +27,6 @@
 }
 #search-btn:hover {
     cursor: pointer;
-    /*color: gold;*/
     background-color: rgb(243,191,186);
 }
 

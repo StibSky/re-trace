@@ -22,17 +22,18 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
     @endif
     <div class="d-flex flex-md-row flex-column justify-content-between">
-        <div class="col-md-6 col-12 px-2 card" id="userInfo">
-            <div class="row no-gutters d-flex">
-                <div class="col-auto d-flex pt-4">
-                    <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
-                </div>
-                <div class="col-4 d-flex flex-center">
-                    <div>
-                        <h4>Hi {{ Auth::user()->first_name }}</h4>
+        <div class="col-md-6 col-12 px-2" id="userInfo">
+            <div class="row card d-flex mb-5">
+                <div class="row no-gutters d-flex">
+                    <div class="col-auto d-flex pt-4">
+                        <img src="{{ asset('images/coolbuilding.jpg') }}" class="w-50" alt="">
+                    </div>
+                    <div class="col-4 d-flex flex-center">
+                        <div>
+                            <h4>Hi {{ Auth::user()->first_name }}</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
             <div class="row no-gutters d-flex">
                 <div class="col-12 d-flex flex-column pt-lg-0 pt-4">
                     <h5>Personal details</h5>
@@ -43,59 +44,62 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     </ul>
                 </div>
             </div>
-
-            <div class="card-title mt-lg-0 mt-3 ml-3"><h4>My projects</h4></div>
-            <div class="card-body pt-lg-0 pt-3 pb-2" id="myProjects">
-                @if(count($buildings) == 0)
-                    <h5> - Please add your first project to progress your profile</h5>
-                @endif
-                <ul>
-                    @foreach($buildings as $building)
-                        <li class="mb-1 d-flex justify-content-between">
-                            <a id="project-names"
-                               href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
-                            <div>
-                                @if(Auth::user()->type == 'admin')
-                                    <button data-toggle="modal"
-                                            data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
-                                            id="main-button-small">Delete
-                                    </button>
-                                @endif
-                            </div>
-                        </li>
-                        <hr>
-                        <div id="myModal" class="modal fade" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content text-left">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">X
-                                        </button>
-                                        <h4 class="modal-title">Are you sure you want to delete?</h4>
-                                    </div>
-                                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                        @csrf
-                                        <div class="modal-body">
-                                            <button value="{{ $building->id }}" class="btn btn-primary"
-                                                    name="deleteBuilding" id="main-button">Yes, delete project
-                                            </button>
-                                            <button type="button" class="btn btn-default" id="secondary-button-small"
-                                                    data-dismiss="modal">No
-                                            </button>
-                                        </div>
-                                        <div class="modal-footer">
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                    @endforeach
-                </ul>
-
             </div>
-            <a class="btn btn-primary ml-2 mb-2" id="main-button" href="{{ route('building') }}">Add New Project</a>
+
+            <div class="row card mt-lg-5 mt-1">
+                <div class="card-title"><h4>My projects</h4></div>
+                <div class="card-body pt-lg-0 pt-3 pb-2" id="myProjects">
+                    @if(count($buildings) == 0)
+                        <h5> - Please add your first project to progress your profile</h5>
+                    @endif
+                    <ul>
+                        @foreach($buildings as $building)
+                            <li class="mb-1 d-flex justify-content-between">
+                                <a id="project-names"
+                                   href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                <div>
+                                    @if(Auth::user()->type == 'admin')
+                                        <button data-toggle="modal"
+                                                data-target="#myModal" class="btn btn-primary" name="deleteBuilding"
+                                                id="main-button-small">Delete
+                                        </button>
+                                    @endif
+                                </div>
+                            </li>
+                            <hr>
+                            <div id="myModal" class="modal fade" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-left">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">X
+                                            </button>
+                                            <h4 class="modal-title">Are you sure you want to delete?</h4>
+                                        </div>
+                                        <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <button value="{{ $building->id }}" class="btn btn-primary"
+                                                        name="deleteBuilding" id="main-button">Yes, delete project
+                                                </button>
+                                                <button type="button" class="btn btn-default"
+                                                        id="secondary-button-small"
+                                                        data-dismiss="modal">No
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        @endforeach
+                    </ul>
+
+                </div>
+                <a class="btn btn-primary ml-2 mb-2" id="main-button" href="{{ route('building') }}">Add New Project</a></div>
 
         </div>
         <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">

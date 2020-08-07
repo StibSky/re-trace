@@ -69,6 +69,11 @@ body {
         border-color: $retrace-pink;
         color: white;
         border-radius: 100px;
+
+        @media screen and (max-width: 1024px) {
+            max-height: 40px;
+            width: 50%;
+        }
     }
 
     #main-button-medium {
