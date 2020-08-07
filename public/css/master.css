@@ -31,16 +31,9 @@ body #main-button {
   border-radius: 100px;
 }
 
-@media screen and (max-width: 799px) {
-  body #main-button {
-    height: 30px;
-    width: 50%;
-  }
-}
-
 @media screen and (max-width: 1024px) {
   body #main-button {
-    height: 40px;
+    min-height: 40px;
     width: 50%;
   }
 }

@@ -8,7 +8,7 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 p-4 ml-md-1 ml-lg-0 ml-xl-0 mx-auto">
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 p-4 ml-lg-0 ml-xl-0 mx-auto">
             <div class="card-title">
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
