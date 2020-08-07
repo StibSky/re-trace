@@ -41,7 +41,7 @@ class UploadController extends Controller
 
             //make array and check met in_array
             $mimetype = $request->userfile->getMimeType();
-           if (!in_array($mimetype, $allowedFiles)) {
+            if (!in_array($mimetype, $allowedFiles)) {
                 return back()->with('error', 'invalid file type');
             }
 

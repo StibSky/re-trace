@@ -275,12 +275,11 @@ class NewBuildingController extends Controller
             ->first();
 
         //Materiallist::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
-        if ($checkMaterial === null) {
-            $buildingMaterial->save();
-            return redirect()->back()->with('success', 'Material added successfully!');
-        } else {
+        if ($checkMaterial != null) {
             return redirect()->back()->with('error', 'You already selected this material');
         }
+        $buildingMaterial->save();
+        return redirect()->back()->with('success', 'Material added successfully!');
 
     }
 }
