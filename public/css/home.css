@@ -2,6 +2,12 @@
   height: 6em;
 }
 
+#myProjects {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+  height: 150px;
+}
+
 #project-names {
   font-size: 18px;
 }
@@ -21,7 +27,6 @@
 
 #search-btn:hover {
   cursor: pointer;
-  /*color: gold;*/
   background-color: #f3bfba;
 }
 

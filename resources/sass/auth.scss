@@ -1,5 +1,10 @@
 @import 'variables';
 
+#email, #password, #password-confirm, #first_name, #last_name {
+    width: 25vw;
+    border: none;
+}
+
 #forgot-password {
     font-size: small;
 }
