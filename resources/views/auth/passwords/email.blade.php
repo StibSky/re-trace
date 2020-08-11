@@ -16,15 +16,20 @@
                         {{ session('status') }}
                     </div>
                 @endif
-
+                <h5>Trouble logging in?</h5>
+                <br>
+                <p>Enter your email and we’ll send you a link to get back
+                    into your account.</p>
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
 
                     <div class="form-group">
                         <label for="email" class="sr-only">{{ __('E-Mail Address') }}</label>
 
-                        <input id="email" type="email" class="form-control text-center @error('email') is-invalid @enderror"
-                               name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email" autofocus>
+                        <input id="forgotemail" type="email"
+                               class="form-control text-center @error('email') is-invalid @enderror"
+                               name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required
+                               autocomplete="email" autofocus>
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">

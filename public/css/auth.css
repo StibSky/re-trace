@@ -3,11 +3,11 @@
 #password-confirm,
 #first_name,
 #last_name {
-  width: 25vw;
+  width: 100%;
   border: none;
 }
 
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 1140px) {
   #email,
   #password,
   #password-confirm,
