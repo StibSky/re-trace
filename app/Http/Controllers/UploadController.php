@@ -13,6 +13,20 @@ use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
+   /* private $firstname;
+    private $lastname;
+    private $projectFolder;
+    private $path;
+
+    public function __construct()
+    {
+        $this->firstname = Auth::user()->first_name;
+        $this ->lastname = Auth::user()->last_name;
+        $this->projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+
+        $this->path = $this->firstname . "_" . $this->lastname . "/" . $this->projectFolder;
+    }*/
+
     public function upload(Request $request)
     {
         if (!Auth::check()) {
@@ -23,47 +37,42 @@ class UploadController extends Controller
         if ($request->userfile == null) {
             return back()->with('error', 'please select a file');
         }
-        //swap if
-        //check if userfile instanceof
-        if ($request->userfile != null) {
-            $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+        $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
 
-            $originalExtension = $request->userfile->getClientOriginalExtension();
+        $originalExtension = $request->userfile->getClientOriginalExtension();
 
-            $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
+        $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
-            $allowedFiles = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'image/png', 'image/jpeg',
-                'application/msword', 'text/plain', 'image/vnd.dwg', 'application/vnd.mcd', 'application/vnd.vwx', 'application/vnd.ifc', 'application/octet-stream'];
+        $allowedFiles = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'image/png', 'image/jpeg',
+            'application/msword', 'text/plain', 'image/vnd.dwg', 'application/vnd.mcd', 'application/vnd.vwx', 'application/vnd.ifc', 'application/octet-stream'];
 
-            //make array and check met in_array
-            $mimetype = $request->userfile->getMimeType();
-           if (!in_array($mimetype, $allowedFiles)) {
-                return back()->with('error', 'invalid file type');
-            }
-
-            //be careful with $post
-            if (isset($_POST['upload'])) {
-                $file->setName($filename);
-                $file->setFormat($originalExtension);
-                $file->setType($request->input("type"));
-                $user = Auth::user();
-                $file->setUserId($user->id);
-                $file->setProjectId($request->input("projectId"));
-                $file->save();
-            }
-
-            $firstname = Auth::user()->first_name;
-            $lastname = Auth::user()->last_name;
-
-            $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-            //dd($request->userfile->getMimeType());
-
-            $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
-            //make constant of path
-            $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
-
-            return back()->with('success', 'file uploaded');
+        //make array and check met in_array
+        $mimetype = $request->userfile->getMimeType();
+        if (!in_array($mimetype, $allowedFiles)) {
+            return back()->with('error', 'invalid file type');
         }
+
+        //be careful with $post
+        if (isset($_POST['upload'])) {
+            $file->setName($filename);
+            $file->setFormat($originalExtension);
+            $file->setType($request->input("type"));
+            $user = Auth::user();
+            $file->setUserId($user->id);
+            $file->setProjectId($request->input("projectId"));
+            $file->save();
+        }
+
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
+
+        $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
+        //dd($request->userfile->getMimeType());
+
+        $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+
+        return back()->with('success', 'file uploaded');
+
     }
 
     public
