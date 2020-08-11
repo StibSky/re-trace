@@ -22,21 +22,21 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
     @endif
     <div class="d-flex flex-md-row flex-column justify-content-between">
-        <div class="col-md-6 col-12 px-2" id="userInfo">
-            <div class="row card d-flex mb-5">
-                <div class="card-header">Profile</div>
+        <div class="col-md-5 col-lg-6 card col-12 px-0 mb-md-0 mb-5" id="userInfo">
+{{--            <div class="row card d-flex mb-5">--}}
+                <div class="card-header w-100">Profile</div>
                 <div class="card-body">
-                    <div class="row px-3">
-                        <div class="col-6 d-flex flex-column">
+                    <div class="row flex-row">
+                        <div class="col-lg-5 col-12 d-flex flex-column ml-1">
                             <div class="row">
-                                <img src="{{ asset('images/logos/resquare.png') }}" class="w-50" alt="Placeholder">
+                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" alt="Placeholder">
                             </div>
-                            <div class="row ml-3">
-                                <a class="btn btn-primary" name="editProfile" id="main-button-small">Edit
+                            <div class="row">
+                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small">Edit
                                 </a>
                             </div>
                         </div>
-                        <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
+                        <div class="col-lg-6 col-12 d-flex flex-column pt-lg-2 pt-4">
                             <h5>Personal details</h5>
                             <ul>
                                 <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
@@ -46,69 +46,70 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </div>
                     </div>
                 </div>
-            </div>
+{{--            </div>--}}
 
-            <div class="row card mt-lg-5 mt-1">
-                <div class="card-header">My projects</div>
-                <div class="card-body" id="myProjects">
-                    @if(count($buildings) == 0)
-                        <h5> - Please add your first project to progress your profile</h5>
-                    @endif
-                            <ul>
-                                @foreach($buildings as $building)
-                                    <li class="d-flex flex-row  justify-content-between">
-                                        <a id="project-names"
-                                           href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
-                                        <span class="w-100">{{ $building->type }}</span>
-                                        <div>
-                                            @if(Auth::user()->type == 'admin')
-                                                <button data-toggle="modal"
-                                                        data-target="#myModal" class="btn btn-primary"
-                                                        name="deleteBuilding"
-                                                        id="main-button-small">Delete
-                                                </button>
-                                            @endif
-                                        </div>
-                                    </li>
-                                    <hr class="py-0 my-2">
-                                    <div id="myModal" class="modal fade" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content text-left">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">X
-                                                    </button>
-                                                    <h4 class="modal-title">Are you sure you want to delete?</h4>
-                                                </div>
-                                                <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <button value="{{ $building->id }}" class="btn btn-primary"
-                                                                name="deleteBuilding" id="main-button">Yes, delete
-                                                            project
-                                                        </button>
-                                                        <button type="button" class="btn btn-default"
-                                                                id="secondary-button-small"
-                                                                data-dismiss="modal">No
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-footer">
-
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
+        </div>
+        <div class="col-md-5 card col-12 px-0" id="projectInfo">
+            {{--                <div class="row card mt-lg-5 mt-1">--}}
+            <div class="card-header">My projects</div>
+            <div class="card-body" id="myProjects">
+                @if(count($buildings) == 0)
+                    <h5> - Please add your first project to progress your profile</h5>
+                @endif
+                <ul>
+                    @foreach($buildings as $building)
+                        <li class="d-flex flex-row  justify-content-between">
+                            <a id="project-names"
+                               href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                            <span class="w-75 text-left">{{ $building->type }}</span>
+                            <div>
+                                @if(Auth::user()->type == 'admin')
+                                    <button data-toggle="modal"
+                                            data-target="#myModal" class="btn btn-primary w-100"
+                                            name="deleteBuilding"
+                                            id="main-button-small">Delete
+                                    </button>
+                                @endif
+                            </div>
+                        </li>
+                        <hr class="py-0 my-2">
+                        <div id="myModal" class="modal fade" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-left">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">X
+                                        </button>
+                                        <h4 class="modal-title">Are you sure you want to delete?</h4>
                                     </div>
-                                @endforeach
-                            </ul>
+                                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <button value="{{ $building->id }}" class="btn btn-primary"
+                                                    name="deleteBuilding" id="main-button">Yes, delete
+                                                project
+                                            </button>
+                                            <button type="button" class="btn btn-default"
+                                                    id="secondary-button-small"
+                                                    data-dismiss="modal">No
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
 
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">Add New Project</a>
-                </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                    @endforeach
+                </ul>
+
             </div>
-
+            <div class="card-footer">
+                <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">+ New Project</a>
+            </div>
+            {{--                </div>--}}
         </div>
         {{-- <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
              <div class="row d-flex">
@@ -157,7 +158,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     </div>
 
 
-    <?php use App\Http\Controllers\HomeController;
+{{--    <?php use App\Http\Controllers\HomeController;
     use App\Building; ?>
 
     <script defer
@@ -225,7 +226,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 });
             }
         }
-    </script>
+    </script>--}}
     {{--  <div class="container mt-3">
           Profile Progress
           --}}{{--            <div class="progress">--}}{{--
@@ -237,6 +238,4 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
               @endif
           </div>
       </div>--}}
-
-
 @endsection

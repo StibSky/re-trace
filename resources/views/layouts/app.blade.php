@@ -26,6 +26,7 @@ sets up the navbar and yields the content of the other pages
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/webkit.css')}}" media="screen and (-webkit-min-device-pixel-ratio:0)" type="text/css" />
     @yield('stylesheet')
 
 </head>
@@ -116,18 +117,17 @@ sets up the navbar and yields the content of the other pages
             </main>
         </div>
         <footer class="site-footer">
-            <div class="container">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-sm-12 col-md-6 col-lg">
-                        <div class="links">
+                    <div class="col-12 col-md-6 col-lg">
+                        <div class="links text-center">
                             <a href="https://re-trace.io" target="_blank"><span>About</span></a>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg">
+                    <div class="col-12 col-md-6 col-lg">
                         <p class="text-center">&copy; 2020 - Re-trace.io</p>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg">
-                        <ul class="social-icons">
+                    <div class="col-12 col-md-6 col-lg">
+                        <ul class="social-icons text-center">
                             <li><a class="socialmedia" href="https://www.instagram.com/re_trace.io/" target="_blank"><i
                                         class="fa fa-socialmedia"><img src="{{url('/images/instagram.png')}}"
                                                                        width="25px"
@@ -140,7 +140,6 @@ sets up the navbar and yields the content of the other pages
                     </div>
                 </div>
                 <hr>
-            </div>
         </footer>
     </div>
 

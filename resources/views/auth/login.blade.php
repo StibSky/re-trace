@@ -63,13 +63,13 @@
                     <div class="form-group row d-flex justify-content-center">
                         <div>
                             <button type="submit" class="btn btn-primary" id="main-button-wide">
-                                {{ __('Login') }}
+                                {{ __('Log in') }}
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class="card-footer text-center">
+            <div class="card-footer text-center" id="login-footer">
                 <div>
                     <p>Don't have an account?  <strong><a href="{{ route('register') }}">{{ __('Sign up') }}</a></strong></p>
 

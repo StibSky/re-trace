@@ -8,7 +8,7 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto">
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto px-0">
             <div class="card-header">
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
@@ -17,7 +17,7 @@ uses dynamic linking
                              src="{{ asset('images/coolbuilding.jpg') }}">
                 </figure>
                 <p>Type: {{ $project["type"] }}</p></div>
-            <div class="card-footer d-flex justify-content-between">
+            <div class="card-footer d-flex justify-content-between" id="dashboard-footer1">
                     <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
                             data-target="#myModal">
                         Upload files
@@ -26,7 +26,7 @@ uses dynamic linking
                        href="{{route('viewFiles', $project->id)}}">View files</a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto">
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto px-0" id="project-information">
             <div class="card-header">
                 <h4>Information</h4>
             </div>
@@ -44,7 +44,7 @@ uses dynamic linking
                                         <li>Pictures</li>--}}
                 </ul>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" id="dashboard-footer2">
                 @if(Auth::user()->type == 'admin')
                     <button data-toggle="modal"
                             data-target="#deleteModal" class="btn btn-primary" name="deleteBuilding"
@@ -53,7 +53,7 @@ uses dynamic linking
                 @endif
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-lg-2 mx-auto">
+        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-lg-2 mx-auto px-0" id="waste-streams">
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
@@ -66,7 +66,7 @@ uses dynamic linking
                     </ul>
                 @endif
             </div>
-            <div class=" card-footer">
+            <div class=" card-footer" id="dashboard-footer3">
                 <a class="btn btn-primary mt-3" id="main-button"
                    href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>

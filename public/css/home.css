@@ -1,5 +1,35 @@
+.card-body {
+  text-wrap: none;
+}
+
+@media screen and (max-width: 414px) {
+  .card-body {
+    text-wrap: avoid;
+    font-size: 90%;
+  }
+}
+
+@media screen and (max-width: 801px) {
+  .card-body {
+    text-wrap: avoid;
+    font-size: 90%;
+  }
+}
+
 #newSearch {
   height: 6em;
+}
+
+#projectInfo .card-footer {
+  border: none;
+  background-color: #e2e6f0;
+}
+
+.card-header {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: #e2e6f0;
+  border-color: #e2e6f0;
+  width: 100%;
 }
 
 #myProjects {

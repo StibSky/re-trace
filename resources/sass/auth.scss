@@ -3,6 +3,10 @@
 #email, #password, #password-confirm, #first_name, #last_name {
     width: 25vw;
     border: none;
+
+    @media screen and (max-width: 799px) {
+        width: 100%;
+    }
 }
 
 #forgot-password {
@@ -11,10 +15,17 @@
 
 #custom-tooltip {
     background-color: $retrace-pink;
-    border-radius: 50%;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
     color: white;
+    font-weight: bolder;
     border: none;
+    font-size: 10px;
+    height: 20px;
+    border-radius: 100%;
+}
+
+.card-header, #login-footer {
+    box-shadow: none;
+    background-color: $retrace-light-blue;
+    border-color: $retrace-light-blue;
+    width: 100%;
 }
