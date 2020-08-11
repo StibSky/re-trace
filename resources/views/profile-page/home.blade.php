@@ -29,7 +29,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <div class="row flex-row">
                         <div class="col-lg-5 col-12 d-flex flex-column ml-1">
                             <div class="row">
-                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" alt="Placeholder">
+                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50" alt="Placeholder">
                             </div>
                             <div class="row">
                                 <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small">Edit
