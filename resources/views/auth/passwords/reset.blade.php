@@ -1,10 +1,13 @@
 @extends('layouts.app')
-
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endsection
 @section('content')
     <div class="row justify-content-center">
+        <h3>{{ __('Reset Password') }}</h3>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header"></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
@@ -50,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="main-button-wide">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>
