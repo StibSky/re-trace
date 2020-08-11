@@ -117,17 +117,18 @@ sets up the navbar and yields the content of the other pages
             </main>
         </div>
         <footer class="site-footer">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-12 col-md-6 col-lg">
-                        <div class="links text-center">
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-between px-2">
+                    <div class="col-12 col-md-3 col-lg">
+                        <div class="links text-center text-md-left">
                             <a href="https://re-trace.io" target="_blank"><span>About</span></a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg">
+                    <div class="col-12 col-md-3 col-lg">
                         <p class="text-center">&copy; 2020 - Re-trace.io</p>
                     </div>
-                    <div class="col-12 col-md-6 col-lg">
-                        <ul class="social-icons text-center">
+                    <div class="col-12 col-md-3 col-lg">
+                        <ul class="social-icons text-center text-md-right">
                             <li><a class="socialmedia" href="https://www.instagram.com/re_trace.io/" target="_blank"><i
                                         class="fa fa-socialmedia"><img src="{{url('/images/instagram.png')}}"
                                                                        width="25px"
@@ -140,6 +141,7 @@ sets up the navbar and yields the content of the other pages
                     </div>
                 </div>
                 <hr>
+            </div>
         </footer>
     </div>
 
