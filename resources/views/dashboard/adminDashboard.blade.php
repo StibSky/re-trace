@@ -43,7 +43,7 @@
                                     href="{{route('dash', $businessBuilding[$i]->id)}}">{{ $businessBuilding[$i]['projectName'] }} </a>"
 
                                 @if(DB::table('uploaded_file')->where('projectId', $businessBuilding[$i]->id)->first() != null)
-                                This user has files: "<a
+                                    <strong style="color: green">This user has files: </strong> "<a
                                     href="{{route('viewFiles', $businessBuilding[$i]->id)}}">Files page </a>"
                                 @endif
                                 <br>

@@ -32,9 +32,42 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50" alt="Placeholder">
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small">Edit
+                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small" data-toggle="modal"
+                                   data-target="#editModal">Edit
                                 </a>
                             </div>
+                        </div>
+                        <div id="editModal" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Fill in the fields you want to edit, Leave the fields empty if you don't want to change anything</h4>
+
+                                    </div>
+                                    <form action="{{ route('editUserInfo') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="modal-body">
+                                            {{--                        <input type="text" name="name">--}}
+                                            <label for="firstName">First name</label>
+                                            <input type="text" name="firstName">
+                                            <br>
+                                            <label for="lastName">Last name</label>
+                                            <input type="text" name="lastName">
+                                            <br>
+                                            <label for="Email">Email</label>
+                                            <input type="text" name="Email">
+                                            <br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <input type="submit" value="Submit" name="upload"/>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
                         <div class="col-lg-6 col-12 d-flex flex-column pt-lg-2 pt-4">
                             <h5>Personal details</h5>

@@ -6,6 +6,7 @@ use App\Building;
 use App\Materiallist;
 use App\Substance;
 use App\Unit;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -130,5 +131,24 @@ class HomeController extends Controller
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
                 'materialLocations' => $materialLocations]);
+    }
+
+    public function editUserInfo(Request $request)
+    {
+        $user = User::where('id',Auth::user()->id)->first();
+        if ($request->input('firstName') != null ) {
+            $user->setFirstName($request->input('firstName'));
+        }
+
+        if ($request->input('Email') !=null){
+        $user->setEmail($request->input('Email'));
+        }
+
+        if ($request->input('lastName') !=null){
+            $user->setLastName($request->input('lastName'));
+        }
+        $user->save();
+
+        return back()->withErrors('success', 'successfully updated your info');
     }
 }
