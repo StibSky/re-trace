@@ -100,14 +100,14 @@
                     <div class="form-group">
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary" id="main-button-wide">
-                                {{ __('Register') }}
+                                {{ __('Create an Account') }}
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
             <div class="card-footer text-center" id="register-footer">
-                <a href="{{route('login')}}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('login')}}"><span><strong>Back to Login</strong></span></a>
             </div>
         </div>
     </div>

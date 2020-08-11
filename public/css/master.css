@@ -123,6 +123,14 @@ body #main-button-wide {
   border-radius: 100px;
 }
 
+@media screen and (max-width: 1024px) {
+  body #main-button-wide {
+    min-height: 30px;
+    max-height: 40px;
+    width: 100%;
+  }
+}
+
 a span {
   color: black;
 }

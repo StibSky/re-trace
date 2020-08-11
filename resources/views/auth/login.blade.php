@@ -60,7 +60,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group row d-flex justify-content-center">
+                    <div class="form-group">
                         <div>
                             <button type="submit" class="btn btn-primary" id="main-button-wide">
                                 {{ __('Log in') }}
