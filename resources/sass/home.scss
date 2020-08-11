@@ -1,7 +1,33 @@
 @import 'variables';
 
+.card-body {
+    text-wrap: none;
+    @media screen and (max-width: 414px) {
+        text-wrap: avoid;
+        font-size: 90%;
+    }
+    @media screen and (max-width: 801px) {
+        text-wrap: avoid;
+        font-size: 90%;
+    }
+}
+
 #newSearch {
     height: 6em;
+}
+
+#projectInfo {
+    .card-footer {
+        border: none;
+        background-color: $retrace-light-blue;
+    }
+}
+
+.card-header {
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: $retrace-light-blue;
+    border-color: $retrace-light-blue;
+    width: 100%;
 }
 
 #myProjects {

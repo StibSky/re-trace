@@ -7,16 +7,35 @@
   border: none;
 }
 
+@media screen and (max-width: 799px) {
+  #email,
+  #password,
+  #password-confirm,
+  #first_name,
+  #last_name {
+    width: 100%;
+  }
+}
+
 #forgot-password {
   font-size: small;
 }
 
 #custom-tooltip {
   background-color: #f3bfba;
-  border-radius: 50%;
-  outline: 0;
-  box-shadow: none;
   color: white;
+  font-weight: bolder;
   border: none;
+  font-size: 10px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+.card-header,
+#login-footer {
+  box-shadow: none;
+  background-color: #e2e6f0;
+  border-color: #e2e6f0;
+  width: 100%;
 }
 

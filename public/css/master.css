@@ -22,8 +22,8 @@ body .card {
   border-color: #e2e6f0;
 }
 
-body .card .card-header {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
+body .card .card-footer {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
   border-color: #e2e6f0;
 }
@@ -83,7 +83,7 @@ body #main-button-small {
   body #main-button-small {
     min-height: 30px;
     max-height: 40px;
-    width: 100%;
+    width: 95%;
   }
 }
 
