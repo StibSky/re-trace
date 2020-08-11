@@ -32,7 +32,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" alt="Placeholder">
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small">Edit
+                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small" data-toggle="modal"
+                                   data-target="#myModal">Edit
                                 </a>
                             </div>
                         </div>
