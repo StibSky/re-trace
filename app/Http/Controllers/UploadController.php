@@ -13,10 +13,6 @@ use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
-    //========================================================================================================================
-    //IMPORTANT CHECK THAT ONLY TYPES OF DOCUMENTS CAN BE UPLOADED WE ACTUALLY WANT! CHECK MIME_CONTENT
-    //========================================================================================================================
-
     public function upload(Request $request)
     {
         if (!Auth::check()) {
@@ -36,11 +32,14 @@ class UploadController extends Controller
 
             $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
+            $allowedFiles = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'image/png', 'image/jpeg',
+                'application/msword', 'text/plain', 'image/vnd.dwg', 'application/vnd.mcd', 'application/vnd.vwx', 'application/vnd.ifc', 'application/octet-stream'];
+
+            //make array and check met in_array
             $mimetype = $request->userfile->getMimeType();
-/*            if ($mimetype != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && $mimetype != 'application/pdf'
-                && $mimetype != 'image/png' && $mimetype != 'image/jpeg' && $mimetype != 'application/msword' && $mimetype != 'text/plain') {
+           if (!in_array($mimetype, $allowedFiles)) {
                 return back()->with('error', 'invalid file type');
-            }*/
+            }
 
             //be careful with $post
             if (isset($_POST['upload'])) {
@@ -57,7 +56,7 @@ class UploadController extends Controller
             $lastname = Auth::user()->last_name;
 
             $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
-            dd($request->userfile->getMimeType());
+            //dd($request->userfile->getMimeType());
 
             $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
             //make constant of path
