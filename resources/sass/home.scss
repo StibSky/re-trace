@@ -4,7 +4,6 @@
     text-wrap: none;
     @media screen and (max-width: 414px) {
         text-wrap: avoid;
-        font-size: 90%;
     }
     @media screen and (max-width: 801px) {
         text-wrap: avoid;
@@ -21,6 +20,22 @@
         border: none;
         background-color: $retrace-light-blue;
     }
+}
+
+
+@media (max-width: 1440px) {
+    @media not all and (min-resolution: .001dpcm) {
+
+        #projectInfo, #userInfo {
+            max-height: 65vh;
+        }
+
+        #profilePic {
+            height: 100%;
+        }
+
+    }
+
 }
 
 .card-header {
@@ -45,6 +60,7 @@
 #mysearch {
     width: 20vw;
 }
+
 #mysearch:focus + .input-group-addon {
     z-index: 10;
 }
@@ -53,9 +69,10 @@
     background-color: rgb(255, 182, 193);
     border-color: rgb(255, 182, 193);
 }
+
 #search-btn:hover {
     cursor: pointer;
-    background-color: rgb(243,191,186);
+    background-color: rgb(243, 191, 186);
 }
 
 #searchBar {
@@ -67,6 +84,7 @@
         width: 20vw;
     }
 }
+
 ul {
     padding: 0;
     list-style: none;

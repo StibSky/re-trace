@@ -27,9 +27,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 <div class="card-header w-100">Profile</div>
                 <div class="card-body">
                     <div class="row flex-row">
-                        <div class="col-lg-5 col-12 d-flex flex-column ml-1">
+                        <div class="col-lg-5 col-12 d-flex flex-column">
                             <div class="row">
-                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50" alt="Placeholder">
+                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
                             </div>
                             <div class="row">
                                 <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small" data-toggle="modal"
