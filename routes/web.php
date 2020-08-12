@@ -72,6 +72,8 @@ Route::get( '/verify-test', function () {
     $user = App\User::find(1);
     return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
 });
+
+Route::get('')
 //array('before' => 'auth', 'uses' => 'HomeController@index')
 
 
