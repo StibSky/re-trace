@@ -1,7 +1,7 @@
 @import 'variables';
 
 .card {
-    min-height: 70vh;
+    min-height: 50vh;
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
 
     .card-header {
@@ -17,7 +17,11 @@
     border-radius: 100%;
 }
 
-
+#infoOverview {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+    height: 150px;
+}
 
 #dashboard-footer1, #dashboard-footer2, #dashboard-footer3 {
     box-shadow: none;

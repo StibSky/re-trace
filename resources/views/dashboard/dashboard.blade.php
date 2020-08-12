@@ -8,17 +8,17 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-md-4 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto px-0">
+        <div class="col-12 col-lg-6 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto px-0">
             <div class="card-header">
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <figure class="d-flex flex-column col-6">
+                    <figure class="d-flex flex-column col-12 col-lg-6">
                         <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
                         <button type="button" id="main-button-small" class="btn btn-primary mt-3 mx-auto">Edit</button>
                     </figure>
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         <ul>
                             <li>Location: {{ $project["address1"] }}
                                 <ul>
@@ -32,24 +32,22 @@ uses dynamic linking
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between" id="dashboard-footer1">
-                <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
-                        data-target="#myModal">
-                    Upload files
-                </button>
-                <a id="secondary-button-medium" class="btn btn-primary"
-                   href="{{route('viewFiles', $project->id)}}">View files</a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto px-0" id="project-information">
+        <div class="col-12 col-lg-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto px-0" id="project-information">
             <div class="card-header">
                 <h4>Information</h4>
             </div>
-            <div class="card-body" id="infoOverview">
+            <div class="card-body" id="infoOverview">{{--
                 @if(count($projecttypes) == 0)
                     <h5> - Please add your first files to progress your profile</h5>
-                @endif
+                @endif--}}
                 <ul>
-                    <li>Waste streams</li>
+                    <li class="d-flex flex-row justify-content-between">
+                        <p>Waste streams</p>
+                        <a class="btn btn-primary my-auto" id="main-button-medium"
+                           href="{{ route('addstreams', $project->id) }}">Add streams</a>
+                    </li>
                     <hr class="py-0 my-2">
                     @foreach($projecttypes as $projecttype)
                         <li class="d-flex flex-row  justify-content-between">
@@ -75,7 +73,7 @@ uses dynamic linking
                 @endif
             </div>
         </div>
-        <div class="col-12 col-md-4 col-lg card mt-lg-0 mt-2 ml-lg-0 mx-auto px-0" id="waste-streams">
+{{--        <div class="col-12 col-md-4 col-lg card mt-lg-0 mt-2 ml-lg-0 mx-auto px-0" id="waste-streams">
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
@@ -92,7 +90,7 @@ uses dynamic linking
                 <a class="btn btn-primary mt-3" id="main-button"
                    href="{{ route('addstreams', $project->id) }}">Add streams</a>
             </div>
-        </div>
+        </div>--}}
     </div>
 {{--    <div class="card-body">
         <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
