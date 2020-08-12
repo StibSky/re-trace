@@ -8,7 +8,7 @@
     <h1>Files - {{ $project->projectName }}</h1>
     <ul>
         @foreach($projecttypes as $type)
-            <h4 class="pb-3">{{ $type }}</h4>
+            <h4 class="pb-3"><a href="{{route(str_replace(' ', '', $type), $project->id)}}">{{ $type }}</a></h4>
             @foreach($projectfiles as $file)
                 @if($file->type == $type)
                     <li class="d-flex flex-row justify-content-between pb-2">

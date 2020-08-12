@@ -54,6 +54,7 @@ Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('admin
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
 Route::get('/previewFiles/{id}', 'UploadController@previewFiles')->name('previewFiles');
+Route::get('/Measuringstate/{id}', 'UploadController@measuringstate')->name('Measuringstate');
 Route::post('/deleteFile', 'UploadController@deleteFile')->name('deleteFile');
 //route to upload files,
 //==========================================
@@ -64,8 +65,14 @@ Route::post('/upload', 'UploadController@upload')->name('upload');
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
+
+Route::get('/updateadminfunctions', 'MaterialFunctionController@index')->name('updateadminfunctions');
+Route::post('/saveadminfunctions', 'MaterialFunctionController@update')->name('saveadminfunctions');
+
+
 Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
+
 
 Route::get( '/verify-test', function () {
     // Get a user for demo purposes

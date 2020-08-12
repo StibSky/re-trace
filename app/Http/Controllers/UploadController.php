@@ -153,4 +153,20 @@ class UploadController extends Controller
         return response()->file($targetFile);
 
     }
+
+    public function measuringstate($id) {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+         return view('files.measuringstate', [
+             'project' => $project,
+             'projectfiles' => $projectfiles,
+             'projecttypes' => $projecttypes,
+         ]);
+    }
 }
