@@ -13,17 +13,23 @@ uses dynamic linking
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
             <div class="card-body">
-                <figure><img class="w-100"
-                             src="{{ asset('images/coolbuilding.jpg') }}">
-                </figure>
-                <p>Type: {{ $project["type"] }}</p></div>
-            <div class="card-footer d-flex justify-content-between" id="dashboard-footer1">
-                    <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
-                            data-target="#myModal">
-                        Upload files
-                    </button>
-                    <a id="secondary-button-medium" class="btn btn-primary"
-                       href="{{route('viewFiles', $project->id)}}">View files</a>
+                <div class="row">
+                    <figure class="d-flex flex-column col-6">
+                        <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
+                        <button type="button" id="main-button-small" class="btn btn-primary mt-3 mx-auto">Edit</button>
+                    </figure>
+                    <div class="col-6">
+                        <ul>
+                            <li>Location: {{ $project["address1"] }}
+                                <ul>
+                                    <li>{{ $project["address2"] }}</li>
+                                </ul>
+                            </li>
+                            <li>Type: {{ $project["type"] }}</li>
+                            <li>Action: {{ $project["status"] }}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-md-auto mx-lg-5 mx-auto px-0" id="project-information">
