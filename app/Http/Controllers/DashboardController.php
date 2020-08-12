@@ -40,10 +40,16 @@ class DashboardController extends Controller
             array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
         }
 
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
 
         return view('dashboard.dashboard', [
             'project' => $project,
-            'buildingSubstances' => $buildingSubstances
+            'buildingSubstances' => $buildingSubstances,
+            'projecttypes' => $projecttypes
         ]);
     }
 

@@ -79,7 +79,7 @@ body {
         @media screen and (max-width: 1024px) {
             min-height: 30px;
             max-height: 40px;
-            width: 95%;
+            width: 50%;
         }
     }
 
@@ -99,6 +99,11 @@ body {
         border-color: $retrace-green;
         color: white;
         border-radius: 100px;
+        @media screen and (max-width: 1024px) {
+            min-height: 30px;
+            max-height: 40px;
+            width: 100%;
+        }
     }
 
     #secondary-button-medium {

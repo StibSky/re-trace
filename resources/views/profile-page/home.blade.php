@@ -137,7 +137,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </div>
                     @endforeach
                 </ul>
-
             </div>
             <div class="card-footer">
                 <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">+ New Project</a>
