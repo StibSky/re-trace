@@ -1,9 +1,7 @@
 @import 'variables';
 
-
-
 .card {
-    height: 80vh;
+    min-height: 70vh;
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
 
     .card-header {
@@ -14,10 +12,26 @@
     }
 }
 
+#projectPic {
+    max-width: 150px;
+    border-radius: 100%;
+}
+
 
 
 #dashboard-footer1, #dashboard-footer2, #dashboard-footer3 {
     box-shadow: none;
     border: none;
     background-color: $retrace-light-blue;
+}
+
+@media (max-width: 1440px) {
+    @media not all and (min-resolution: .001dpcm) {
+
+        #projectPic {
+            max-height: 150px;
+        }
+
+    }
+
 }
