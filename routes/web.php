@@ -65,6 +65,11 @@ Route::post('/upload', 'UploadController@upload')->name('upload');
 
 Route::get('/updateadmin', 'UpdateAdminController@index')->name('updateAdmin');
 Route::post('/saveadmindb', 'UpdateAdminController@update')->name('saveAdmin');
+
+Route::get('/updateadminfunctions', 'MaterialFunctionController@index')->name('updateadminfunctions');
+Route::post('/saveadminfunctions', 'MaterialFunctionController@update')->name('saveadminfunctions');
+
+
 Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
 
