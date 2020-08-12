@@ -83,7 +83,7 @@ body #main-button-small {
   body #main-button-small {
     min-height: 30px;
     max-height: 40px;
-    width: 95%;
+    width: 50%;
   }
 }
 
@@ -103,6 +103,14 @@ body #secondary-button-small {
   border-color: #bbcecd;
   color: white;
   border-radius: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  body #secondary-button-small {
+    min-height: 30px;
+    max-height: 40px;
+    width: 100%;
+  }
 }
 
 body #secondary-button-medium {

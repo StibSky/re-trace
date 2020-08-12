@@ -8,7 +8,7 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto px-0">
+        <div class="col-12 col-md-4 col-lg card mt-lg-0 mt-2 ml-lg-0 ml-xl-0 mx-auto px-0">
             <div class="card-header">
                 <h4>{{ $project->projectName ?? 'Project name' }}</h4>
             </div>
@@ -44,21 +44,29 @@ uses dynamic linking
             <div class="card-header">
                 <h4>Information</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="infoOverview">
+                @if(count($projecttypes) == 0)
+                    <h5> - Please add your first files to progress your profile</h5>
+                @endif
                 <ul>
-                    <li>Location: {{ $project["address1"] }}
-                        <ul>
-                            <li>{{ $project["address2"] }}</li>
-                        </ul>
-                    </li>
-                    {{--                    <li>Measuring State</li>
-                                        <li>Material list</li>
-                                        <li>Surface</li>
-                                        <li>Plans</li>
-                                        <li>Pictures</li>--}}
+                    <li>Waste streams</li>
+                    <hr class="py-0 my-2">
+                    @foreach($projecttypes as $projecttype)
+                        <li class="d-flex flex-row  justify-content-between">
+                            {{ $projecttype }}
+                        </li>
+                        <hr class="py-0 my-2">
+                    @endforeach
                 </ul>
+
             </div>
             <div class="card-footer" id="dashboard-footer2">
+                <button type="button" id="main-button-medium" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal">
+                    Upload files
+                </button>
+                <a id="secondary-button-medium" class="btn btn-primary"
+                   href="{{route('viewFiles', $project->id)}}">View files</a>
                 @if(Auth::user()->type == 'admin')
                     <button data-toggle="modal"
                             data-target="#deleteModal" class="btn btn-primary" name="deleteBuilding"
@@ -67,7 +75,7 @@ uses dynamic linking
                 @endif
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg card mt-lg-0 mt-2 mx-lg-2 mx-auto px-0" id="waste-streams">
+        <div class="col-12 col-md-4 col-lg card mt-lg-0 mt-2 ml-lg-0 mx-auto px-0" id="waste-streams">
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
@@ -86,27 +94,28 @@ uses dynamic linking
             </div>
         </div>
     </div>
-    {{--    <div class="card-body">
-            <form action="{{ route('upload') }}"method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="userfile" />
-                <input type="submit" value="upload"/>
-            </form>
-        </div>--}}
+{{--    <div class="card-body">
+        <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="userfile"/>
+            <input type="submit" value="upload"/>
+        </form>
+    </div>--}}
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
                     <h4 class="modal-title">Please upload a new file or image</h4>
 
                 </div>
                 <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                        {{--                        <input type="text" name="name">--}}
-                        <input type="file" name="userfile">
                         <input type="text" name="name">
+                        <input type="file" name="userfile">
                         <br>
                         <label for="type">Select file type:</label>
                         <select name="type">
@@ -122,7 +131,8 @@ uses dynamic linking
                         <input value="{{ $project->id }}" type="hidden" name="projectId"/>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
                         <input type="submit" value="upload" name="upload"/>
                     </div>
                 </form>
@@ -155,15 +165,15 @@ uses dynamic linking
                 </form>
             </div>
 
-    {{--  <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
-          profile</h4>
-      <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
-          <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
-               aria-valuemin="0" aria-valuemax="100" style="width:25%";
-          >
-              25% Completed Profile
-          </div>
-      </div>--}}
+{{--            <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
+                profile</h4>
+            <div class="progress" style="margin-left: auto; margin-right: auto; margin-top: 1em; width: 50%">
+                <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" aria-valuenow="25"
+                     aria-valuemin="0" aria-valuemax="100" style="width:25%" ;
+                >
+                    25% Completed Profile
+                </div>
+            </div>--}}
 
 
 @endsection
