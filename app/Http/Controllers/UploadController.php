@@ -13,19 +13,10 @@ use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
-   /* private $firstname;
-    private $lastname;
-    private $projectFolder;
-    private $path;
-
     public function __construct()
     {
-        $this->firstname = Auth::user()->first_name;
-        $this ->lastname = Auth::user()->last_name;
-        $this->projectFolder = Building::where('id', $file->projectId)->first()->projectName;
 
-        $this->path = $this->firstname . "_" . $this->lastname . "/" . $this->projectFolder;
-    }*/
+    }
 
     public function upload(Request $request)
     {
@@ -154,7 +145,8 @@ class UploadController extends Controller
 
     }
 
-    public function measuringstate($id) {
+    public function measuringstate($id)
+    {
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
             ->get();
@@ -163,10 +155,169 @@ class UploadController extends Controller
         $project = Building::where('id', $id)->first();
 
         $projecttypes = $projectfiles->pluck("type")->unique();
-         return view('files.measuringstate', [
-             'project' => $project,
-             'projectfiles' => $projectfiles,
-             'projecttypes' => $projecttypes,
-         ]);
+
+        $filetype = "Measuring state";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+        ]);
+    }
+
+    public function location($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Location";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+        ]);
+
+    }
+
+    public function surface($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Surface";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
+    }
+
+    public function volume($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Volume";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
+    }
+
+    public function materiallist($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Material list";
+
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
+    }
+
+    public function plans($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Plans";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
+    }
+
+    public function photosexterior($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Photos exterior";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
+    }
+
+    public function photosinterior($id)
+    {
+        $projectfiles = DB::table('uploaded_file')
+            ->where('projectId', $id)
+            ->get();
+        //->groupBy("type");
+
+        $project = Building::where('id', $id)->first();
+
+        $projecttypes = $projectfiles->pluck("type")->unique();
+
+        $filetype = "Photos interior";
+
+        return view('files.typefiles', [
+            'project' => $project,
+            'projectfiles' => $projectfiles,
+            'projecttypes' => $projecttypes,
+            'filetype' => $filetype
+
+        ]);
     }
 }

@@ -69,7 +69,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
-                        <div class="col-lg-6 col-12 d-flex flex-column pt-lg-2 pt-4">
+                        <div class="col-lg-6 col-12 d-flex flex-column pt-lg-2 pt-4 mx-auto">
                             <h5>Personal details</h5>
                             <ul>
                                 <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
