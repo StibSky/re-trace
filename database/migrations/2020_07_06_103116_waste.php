@@ -13,7 +13,9 @@ class Waste extends Migration
      */
     public function up()
     {
-        Schema::create('waste', function (Blueprint $table) {
+        if (!Schema::hasTable('waste')) {
+
+            Schema::create('waste', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
             $table->string("material");
@@ -21,7 +23,7 @@ class Waste extends Migration
             $table->dateTime('date');
 
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.
