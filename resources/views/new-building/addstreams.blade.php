@@ -8,7 +8,24 @@
         <form action="{{ route('saveEdit') }}" method="post" name="substanceForm">
             @csrf
             <h3> ADD MATERIAL STREAMS for {{ $project->projectName }}</h3>
-            <label>Pick material:
+            <div class="form-group">
+                <label for="title">Title</label>
+                <label>
+                    <input type="text" class="form-control" name="title" placeholder="project title"
+                           value="{{old('title')}}">
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="description">description</label>
+                <input type="textarea" class="form-control" name="description" placeholder="project description"
+                       value="{{old('name')}}">
+            </div>
+            <div class="form-group">
+                <label for="description">desciprtion</label>
+                <input type="textarea" class="form-control" name="description" placeholder="project description"
+                       value="{{old('name')}}">
+            </div>
+            <label>Label 2:
                 <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                 <input value="{{$buildingId}}" type="hidden" name="buildingId"/>
                 <select name="substance" id="categorySelect">
@@ -36,7 +53,7 @@
             </label>
             <br>
             <label for="quantity">Quantity: </label>
-                <input type="text" name="quantity" placeholder="insert quantity"/>
+            <input type="text" name="quantity" placeholder="insert quantity"/>
             <br>
             <button type="submit" id="main-button" class="btn btn-primary" name="saveEdit">Submit</button>
         </form>

@@ -26,10 +26,6 @@
 @media (max-width: 1440px) {
     @media not all and (min-resolution: .001dpcm) {
 
-        #projectInfo, #userInfo {
-            max-height: 65vh;
-        }
-
         #profilePic {
             height: 100%;
         }
@@ -53,7 +49,6 @@
 
 #project-names {
     width: 100%;
-    font-size: 16px;
     height: 20px;
 }
 
