@@ -15,8 +15,9 @@ class Building extends Migration
     {
         Schema::create('building', function (Blueprint $table) {
             $table->id()->unsigned();
+            $table->string("projectName")->nullable();
             $table->string("address1");
-            $table->string("address2");
+            $table->string("address2")->nullable();
             $table->string("city");
             $table->integer("postcode");
             $table->string("type");
@@ -26,6 +27,7 @@ class Building extends Migration
             $table->string("image")->nullable();
             $table->string("status")->nullable();
             $table->string("plan")->nullable();
+
 
             $table->bigInteger('userid')->nullable()->unsigned();
         });

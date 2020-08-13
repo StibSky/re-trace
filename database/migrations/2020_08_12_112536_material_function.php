@@ -26,7 +26,7 @@ class MaterialFunction extends Migration
 
         });
 
-        Schema::table('substance', function (Blueprint $table) {
+        Schema::table('materialFunction', function (Blueprint $table) {
             $table->foreign('parent')
                 ->references('id')
                 ->on('materialFunction')

@@ -20,8 +20,8 @@ class Substance extends Migration
             $table->string("name_fr")->nullable();
             $table->double('specific_weight')->nullable();
             $table->string("code")->unique();
-            $table->unsignedBigInteger("parent")->nullable();
-            $table->unsignedBigInteger("unit_id");
+            $table->BigInteger("parent")->nullable()->unsigned();
+            $table->BigInteger("unit_id")->unsigned();
             $table->string('comments')->nullable();
             $table->boolean("is_hazardous");
             $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
@@ -34,6 +34,7 @@ class Substance extends Migration
         $table->foreign('parent')
             ->references('id')
             ->on('substance')
+            ->onUpdate('cascade')
             ->onDelete('cascade');
 
         $table->foreign('unit_id')
