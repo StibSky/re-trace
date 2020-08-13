@@ -1,7 +1,9 @@
 <?php
 
+use App\Building;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +57,13 @@ Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
 Route::get('/previewFiles/{id}', 'UploadController@previewFiles')->name('previewFiles');
 Route::get('/Measuringstate/{id}', 'UploadController@measuringstate')->name('Measuringstate');
+Route::get('/Location/{id}', 'UploadController@location')->name('Location');
+Route::get('/Surface/{id}', 'UploadController@surface')->name('Surface');
+Route::get('/Volume/{id}', 'UploadController@volume')->name('Volume');
+Route::get('/Materiallist/{id}', 'UploadController@materiallist')->name('Materiallist');
+Route::get('/Plans/{id}', 'UploadController@plans')->name('Plans');
+Route::get('/Photosexterior/{id}', 'UploadController@photosexterior')->name('Photosexterior');
+Route::get('/Photosinterior/{id}', 'UploadController@photosinterior')->name('Photosinterior');
 Route::post('/deleteFile', 'UploadController@deleteFile')->name('deleteFile');
 //route to upload files,
 //==========================================
