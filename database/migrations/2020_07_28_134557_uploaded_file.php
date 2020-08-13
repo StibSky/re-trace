@@ -13,32 +13,35 @@ class UploadedFile extends Migration
      */
     public function up()
     {
-        Schema::create('uploaded_file', function (Blueprint $table) {
-            $table->id()->unsigned();
-            $table->string("name");
-            $table->integer("size")->nullable();
-            $table->string("format");
-            $table->string("type");
-            $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
-            $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
 
-            $table->bigInteger('userId')->nullable()->unsigned();
-            $table->bigInteger("projectId")->nullable()->unsigned();
-        });
+        if (!Schema::hasTable('uploaded_file')) {
 
-        Schema::table('uploaded_file', function (Blueprint $table) {
-            $table->foreign('projectId')
-                ->references('id')
-                ->on('building')
-                ->onDelete('cascade');
+            Schema::create('uploaded_file', function (Blueprint $table) {
+                $table->id()->unsigned();
+                $table->string("name");
+                $table->integer("size")->nullable();
+                $table->string("format");
+                $table->string("type");
+                $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
+                $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
 
-            $table->foreign('userId')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-        });
+                $table->bigInteger('userId')->nullable()->unsigned();
+                $table->bigInteger("projectId")->nullable()->unsigned();
+            });
+
+            Schema::table('uploaded_file', function (Blueprint $table) {
+                $table->foreign('projectId')
+                    ->references('id')
+                    ->on('building')
+                    ->onDelete('cascade');
+
+                $table->foreign('userId')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+            });
+        }
     }
-
     /**
      * Reverse the migrations.
      *

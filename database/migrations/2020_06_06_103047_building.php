@@ -13,7 +13,9 @@ class Building extends Migration
      */
     public function up()
     {
-        Schema::create('building', function (Blueprint $table) {
+        if (!Schema::hasTable('building')) {
+
+            Schema::create('building', function (Blueprint $table) {
             $table->id()->unsigned();
             $table->string("projectName")->nullable();
             $table->string("address1");
@@ -27,8 +29,6 @@ class Building extends Migration
             $table->string("image")->nullable();
             $table->string("status")->nullable();
             $table->string("plan")->nullable();
-
-
             $table->bigInteger('userid')->nullable()->unsigned();
         });
 
@@ -38,7 +38,7 @@ class Building extends Migration
                 ->on('users')
                 ->onDelete('cascade');
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.

@@ -17,7 +17,6 @@ class MaterialFunction extends Model
     {
         return $this->name;
     }
-
     /**
      * @param mixed $name
      */
