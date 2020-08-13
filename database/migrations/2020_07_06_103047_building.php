@@ -27,6 +27,7 @@ class Building extends Migration
             $table->string("status")->nullable();
             $table->string("plan")->nullable();
 
+
             $table->bigInteger('userid')->nullable()->unsigned();
         });
 

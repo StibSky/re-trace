@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('COMBELL_DB_CONNECTION', 'remoteconnection'),
+    'default' => env('COMBELL_DB_CONNECTION', 'stagingconnection'),
 
     /*
     |--------------------------------------------------------------------------
