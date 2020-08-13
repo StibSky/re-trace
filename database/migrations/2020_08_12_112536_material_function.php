@@ -25,6 +25,7 @@ class MaterialFunction extends Migration
             $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
 
         });
+
         Schema::table('materialFunction', function (Blueprint $table) {
             $table->foreign('parent')
                 ->references('id')

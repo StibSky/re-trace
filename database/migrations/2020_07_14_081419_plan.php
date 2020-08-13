@@ -27,6 +27,7 @@ class Plan extends Migration
                 ->on('building')
                 ->onDelete('cascade');
         });
+
     }
 
     /**
