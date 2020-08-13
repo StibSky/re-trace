@@ -5,8 +5,9 @@
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
 @section('content')
+    <h1>{{ $filetype }}</h1>
     @foreach($projectfiles as $file)
-        @if($file->type == "Measuring state")
+        @if($file->type == $filetype)
             <li class="d-flex flex-row justify-content-between pb-2">
                 <p>{{ $file->name }} - {{ $file->id }}</p>
                 <div class="d-flex flex-row justify-content-end">

@@ -1,3 +1,16 @@
+@media screen and (max-width: 414px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 801px) {
+  html {
+    text-wrap: avoid;
+    font-size: 90%;
+  }
+}
+
 body {
   background-color: #e2e6f0;
 }
@@ -31,17 +44,11 @@ body .card .card-footer {
 body #main-button {
   color: white;
   font-weight: bold;
-  width: 14vw;
+  width: 15vw;
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
-}
-
-@media screen and (max-width: 1024px) {
-  body #main-button {
-    min-height: 40px;
-    width: 50%;
-  }
+  font-size: 90%;
 }
 
 body #main-button:hover,
@@ -55,11 +62,12 @@ body #main-button-wide:hover {
 
 body #secondary-button {
   font-weight: bold;
-  width: 14vw;
+  width: 15vw;
   background-color: #bbcecd;
   border-color: #bbcecd;
   color: white;
   border-radius: 100px;
+  font-size: 90%;
 }
 
 body #secondary-button:hover,
@@ -77,12 +85,7 @@ body #main-button-small {
   border-color: #f3bfba;
   color: white;
   border-radius: 100px;
-}
-
-@media screen and (max-width: 1024px) {
-  body #main-button-small {
-    width: 100%;
-  }
+  font-size: 90%;
 }
 
 body #main-button-medium {
@@ -92,6 +95,7 @@ body #main-button-medium {
   border-color: #f3bfba;
   color: white;
   border-radius: 100px;
+  font-size: 90%;
 }
 
 body #secondary-button-small {
@@ -101,14 +105,7 @@ body #secondary-button-small {
   border-color: #bbcecd;
   color: white;
   border-radius: 100px;
-}
-
-@media screen and (max-width: 1024px) {
-  body #secondary-button-small {
-    min-height: 30px;
-    max-height: 40px;
-    width: 100%;
-  }
+  font-size: 90%;
 }
 
 body #secondary-button-medium {
@@ -118,6 +115,7 @@ body #secondary-button-medium {
   border-color: #bbcecd;
   color: white;
   border-radius: 100px;
+  font-size: 90%;
 }
 
 body #main-button-wide {
@@ -127,14 +125,7 @@ body #main-button-wide {
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
-}
-
-@media screen and (max-width: 1024px) {
-  body #main-button-wide {
-    min-height: 30px;
-    max-height: 40px;
-    width: 100%;
-  }
+  font-size: 90%;
 }
 
 a span {
