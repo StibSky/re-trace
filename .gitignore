@@ -12,3 +12,8 @@ npm-debug.log
 yarn-error.log
 
 .idea
+<<<<<<< HEAD
+=======
+
+/config/database.php
+>>>>>>> e76581dde5af5e5a696d530c03df9795f1e2ef9d
