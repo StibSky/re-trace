@@ -15,7 +15,12 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'default' => env('DB_CONNECTION', 'mysql'),
+=======
+    'default' => env('COMBELL_DB_CONNECTION', 'stagingconnection'),
+
+>>>>>>> 232caf0551da4eec5243f781ded94ec6c9380c6e
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +48,11 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+<<<<<<< HEAD
         'mysql' => [
+=======
+      /* 'mysql' => [
+>>>>>>> 232caf0551da4eec5243f781ded94ec6c9380c6e
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'localhost'),
