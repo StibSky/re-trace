@@ -13,7 +13,9 @@ class Unit extends Migration
      */
     public function up()
     {
-        Schema::create('unit', function (Blueprint $table) {
+        if (!Schema::hasTable('unit')) {
+
+            Schema::create('unit', function (Blueprint $table) {
             $table->id()->unsigned();
             $table->string("name");
             $table->string("name_nl")->nullable();
@@ -24,7 +26,7 @@ class Unit extends Migration
             $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
             $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.
