@@ -24,7 +24,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column justify-content-between">
         <div class="col-md-5 col-lg-6 card col-12 px-0 mb-md-0 mb-5" id="userInfo">
 {{--            <div class="row card d-flex mb-5">--}}
-                <div class="card-header w-100">Profile</div>
+                <div class="card-header w-100"><h4>Profile</h4></div>
                 <div class="card-body">
                     <div class="row flex-row">
                         <div class="col-lg-5 col-12 d-flex flex-column">
@@ -32,7 +32,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button-small" data-toggle="modal"
+                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button" data-toggle="modal"
                                    data-target="#editModal">Edit
                                 </a>
                             </div>
@@ -84,7 +84,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
         <div class="col-md-5 card col-12 px-0" id="projectInfo">
             {{--                <div class="row card mt-lg-5 mt-1">--}}
-            <div class="card-header">My projects</div>
+            <div class="card-header"><h4>My projects</h4></div>
             <div class="card-body" id="myProjects">
                 @if(count($buildings) == 0)
                     <h5> - Please add your first project to progress your profile</h5>
@@ -100,7 +100,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     <button data-toggle="modal"
                                             data-target="#myModal" class="btn btn-primary w-100"
                                             name="deleteBuilding"
-                                            id="main-button-small">Delete
+                                            id="main-button">Delete
                                     </button>
                                 @endif
                             </div>

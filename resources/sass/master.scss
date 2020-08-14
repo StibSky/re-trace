@@ -2,6 +2,7 @@
 
 // Universal elements + bootstrap overrides
 html {
+    font-size: 100%;
     @media screen and (max-width: 414px) {
         font-size: 80%;
     }
@@ -47,7 +48,6 @@ body {
             }
             @media screen and (max-width: 801px) {
                 text-wrap: avoid;
-                font-size: 90%;
             }
         }
     }
@@ -118,6 +118,7 @@ body {
         border-color: $retrace-pink;
         text-align: center;
         transition: all 0.2s;
+        white-space: nowrap;
 
         @media (max-width: 1440px) {
             @media not all and (min-resolution: .001dpcm) {
@@ -161,7 +162,7 @@ body {
     #main-button-wide {
         color: white;
         font-weight: bold;
-        width: 25vw;
+        width: 100%;
         background-color: $retrace-pink;
         border-color: $retrace-pink;
         border-radius: 100px;
