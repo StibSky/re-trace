@@ -13,37 +13,39 @@ class Substance extends Migration
      */
     public function up()
     {
-        Schema::create('substance', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("name_nl")->nullable();
-            $table->string("name_fr")->nullable();
-            $table->double('specific_weight')->nullable();
-            $table->string("code")->unique();
-            $table->BigInteger("parent")->nullable()->unsigned();
-            $table->BigInteger("unit_id")->unsigned();
-            $table->string('comments')->nullable();
-            $table->boolean("is_hazardous");
-            $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
-            $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
+        if (!Schema::hasTable('substance')) {
 
-        });
+            Schema::create('substance', function (Blueprint $table) {
+                $table->id();
+                $table->string("name");
+                $table->string("name_nl")->nullable();
+                $table->string("name_fr")->nullable();
+                $table->double('specific_weight')->nullable();
+                $table->string("code")->unique();
+                $table->BigInteger("parent")->nullable()->unsigned();
+                $table->BigInteger("unit_id")->unsigned();
+                $table->string('comments')->nullable();
+                $table->boolean("is_hazardous");
+                $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
+                $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
+
+            });
 
 
-        Schema::table('substance', function (Blueprint $table) {
-        $table->foreign('parent')
-            ->references('id')
-            ->on('substance')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            Schema::table('substance', function (Blueprint $table) {
+                $table->foreign('parent')
+                    ->references('id')
+                    ->on('substance')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
-        $table->foreign('unit_id')
-            ->references('id')
-            ->on('unit')
-            ->onDelete('cascade');
-        });
+                $table->foreign('unit_id')
+                    ->references('id')
+                    ->on('unit')
+                    ->onDelete('cascade');
+            });
+        }
     }
-
     /**
      * Reverse the migrations.
      *

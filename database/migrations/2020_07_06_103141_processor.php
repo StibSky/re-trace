@@ -13,12 +13,14 @@ class Processor extends Migration
      */
     public function up()
     {
-        Schema::create('processor', function (Blueprint $table) {
+        if (!Schema::hasTable('processor')) {
+
+            Schema::create('processor', function (Blueprint $table) {
             $table->id();
             $table->string('location');
             $table->string('contactInfo');
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.

@@ -13,21 +13,23 @@ class Images extends Migration
      */
     public function up()
     {
-        Schema::create('image', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger("buildid")->nullable()->unsigned();
-            $table->string("image")->nullable();
-            $table->dateTime("created_at")->nullable();
-            $table->dateTime("updated_at")->nullable();
-        });
+        if (!Schema::hasTable('image')) {
 
-        Schema::table('image', function (Blueprint $table) {
-            $table->foreign('buildid')
-                ->references('id')
-                ->on('building')
-                ->onDelete('cascade');
-        });
+            Schema::create('image', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger("buildid")->nullable()->unsigned();
+                $table->string("image")->nullable();
+                $table->dateTime("created_at")->nullable();
+                $table->dateTime("updated_at")->nullable();
+            });
 
+            Schema::table('image', function (Blueprint $table) {
+                $table->foreign('buildid')
+                    ->references('id')
+                    ->on('building')
+                    ->onDelete('cascade');
+            });
+        }
     }
 
     /**

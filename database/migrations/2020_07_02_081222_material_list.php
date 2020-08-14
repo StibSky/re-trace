@@ -13,27 +13,29 @@ class MaterialList extends Migration
      */
     public function up()
     {
-        Schema::create('materialList', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger("substanceId")->nullable()->unsigned();
-            $table->bigInteger("buildid")->nullable()->unsigned();
-            $table->integer("quantity");
-            $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
-            $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
-        });
+        if (!Schema::hasTable('materiallist')) {
 
-        Schema::table('materialList', function (Blueprint $table) {
-            $table->foreign('buildid')
-                ->references('id')
-                ->on('building')
-                ->onDelete('cascade');
-            $table->foreign('substanceId')
-                ->references('id')
-                ->on('substance')
-                ->onDelete('cascade');
-        });
+            Schema::create('materiallist', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger("substanceId")->nullable()->unsigned();
+                $table->bigInteger("buildid")->nullable()->unsigned();
+                $table->integer("quantity");
+                $table->dateTime("created_at")->default(date("Y-m-d H:i:s"));
+                $table->dateTime("updated_at")->default(date("Y-m-d H:i:s"));
+            });
+
+            Schema::table('materiallist', function (Blueprint $table) {
+                $table->foreign('buildid')
+                    ->references('id')
+                    ->on('building')
+                    ->onDelete('cascade');
+                $table->foreign('substanceId')
+                    ->references('id')
+                    ->on('substance')
+                    ->onDelete('cascade');
+            });
+        }
     }
-
     /**
      * Reverse the migrations.
      *
@@ -41,6 +43,6 @@ class MaterialList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materialList');
+        Schema::dropIfExists('materiallist');
     }
 }

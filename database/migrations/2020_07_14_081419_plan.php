@@ -13,21 +13,23 @@ class Plan extends Migration
      */
     public function up()
     {
-        Schema::create('plan', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger("buildid")->nullable()->unsigned();
-            $table->string("plan");
-            $table->dateTime("created_at")->nullable();
-            $table->dateTime("updated_at")->nullable();
-        });
+        if (!Schema::hasTable('plan')) {
 
-        Schema::table('plan', function (Blueprint $table) {
-            $table->foreign('buildid')
-                ->references('id')
-                ->on('building')
-                ->onDelete('cascade');
-        });
+            Schema::create('plan', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger("buildid")->nullable()->unsigned();
+                $table->string("plan");
+                $table->dateTime("created_at")->nullable();
+                $table->dateTime("updated_at")->nullable();
+            });
 
+            Schema::table('plan', function (Blueprint $table) {
+                $table->foreign('buildid')
+                    ->references('id')
+                    ->on('building')
+                    ->onDelete('cascade');
+            });
+        }
     }
 
     /**
