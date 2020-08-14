@@ -33,9 +33,9 @@ class Building extends Migration
         });
 
         Schema::table('building', function (Blueprint $table) {
-            $table->foreign('userid')
+            $table->foreign('buildid')
                 ->references('id')
-                ->on('users')
+                ->on('building')
                 ->onDelete('cascade');
         });
     }}
