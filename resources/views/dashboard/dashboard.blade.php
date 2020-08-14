@@ -7,8 +7,8 @@
 blade for the specific user projects
 uses dynamic linking
 -->
-    <div class="d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-12 col-lg-6 mr-lg-2 mr-xl-3 mx-auto px-0">
+    <div class="d-flex flex-lg-row flex-column align-items-stretch justify-content-center">
+        <div class="col-12 col-lg-6 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
             <div class="row card" id="projectOverview">
                 <div class="card-header">
                     <h4>{{ $project->projectName ?? 'Project name' }}</h4>
@@ -23,7 +23,7 @@ uses dynamic linking
                                 <button data-toggle="modal"
                                         data-target="#deleteModal" class="btn btn-primary mx-auto mt-1"
                                         name="deleteBuilding"
-                                        id="main-button-small">Delete
+                                        id="main-button">Delete
                                 </button>
                             @endif
                         </figure>
@@ -57,17 +57,16 @@ uses dynamic linking
                             <hr class="py-0 my-2">
                         @endforeach
                     </ul>
-
                 </div>
                 <div class="card-footer" id="dashboard-footer2">
-                    <button type="button" id="main-button-wide" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
                             data-target="#myModal">
                         Upload information
                     </button>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 w-100" id="waste-streams">
+        <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch" id="waste-streams">
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
