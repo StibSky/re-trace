@@ -1,3 +1,7 @@
+html {
+  font-size: 100%;
+}
+
 @media screen and (max-width: 414px) {
   html {
     font-size: 80%;
@@ -54,7 +58,6 @@ body .card .card-body {
 @media screen and (max-width: 801px) {
   body .card .card-body {
     text-wrap: avoid;
-    font-size: 90%;
   }
 }
 
@@ -134,6 +137,7 @@ body #main-button-small {
   border-color: #f3bfba;
   text-align: center;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 @media (max-width: 1440px) {
@@ -177,7 +181,7 @@ body #secondary-button-medium {
 body #main-button-wide {
   color: white;
   font-weight: bold;
-  width: 25vw;
+  width: 100%;
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;

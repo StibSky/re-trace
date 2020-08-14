@@ -14,10 +14,6 @@
   border-radius: 100%;
 }
 
-#waste-streams {
-  min-height: 642px;
-}
-
 #infoOverview {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
