@@ -49,6 +49,7 @@ uses dynamic linking
                 @if(count($projecttypes) == 0)
                     <h5> - Please add your first files to progress your profile</h5>
                 @endif--}}
+<<<<<<< HEAD
                     <ul>
                         @foreach($projecttypes as $projecttype)
                             <li class="d-flex flex-row  justify-content-between">
@@ -57,6 +58,22 @@ uses dynamic linking
                             <hr class="py-0 my-2">
                         @endforeach
                     </ul>
+=======
+                <ul>
+                    <li class="d-flex flex-row justify-content-between">
+                        <p>Waste streams</p>
+                        <a class="btn btn-primary my-auto" id="main-button-small"
+                           href="{{ route('addstreams', $project->id) }}">Add streams</a>
+                    </li>
+                    <hr class="py-0 my-2">
+                    @foreach($projecttypes as $projecttype)
+                        <li class="d-flex flex-row  justify-content-between">
+                            {{ $projecttype }}
+                        </li>
+                        <hr class="py-0 my-2">
+                    @endforeach
+                </ul>
+>>>>>>> staging
 
                 </div>
                 <div class="card-footer" id="dashboard-footer2">

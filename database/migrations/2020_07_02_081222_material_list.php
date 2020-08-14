@@ -43,6 +43,6 @@ class MaterialList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materialList');
+        Schema::dropIfExists('materiallist');
     }
 }
