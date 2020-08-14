@@ -17,7 +17,7 @@ uses dynamic linking
                     <div class="row">
                         <figure class="d-flex flex-column col-12 col-lg-6">
                             <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
-                            <button type="button" id="main-button-small" class="btn btn-primary mt-3 mx-auto">Edit
+                            <button type="button" id="main-button" class="btn btn-primary mt-3 mx-auto">Edit
                             </button>
                             @if(Auth::user()->type == 'admin')
                                 <button data-toggle="modal"
