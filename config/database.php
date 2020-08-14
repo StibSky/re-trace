@@ -15,12 +15,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
-    'default' => env('DB_CONNECTION', 'mysql'),
-=======
     'default' => env('COMBELL_DB_CONNECTION', 'stagingconnection'),
-
->>>>>>> 232caf0551da4eec5243f781ded94ec6c9380c6e
 
     /*
     |--------------------------------------------------------------------------
@@ -48,11 +43,9 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-<<<<<<< HEAD
-        'mysql' => [
-=======
-      /* 'mysql' => [
->>>>>>> 232caf0551da4eec5243f781ded94ec6c9380c6e
+
+     /*  'mysql' => [
+
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'localhost'),
@@ -70,9 +63,9 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
-        ],
+        ],*/
 
-/*        'remoteconnection' => [
+       'remoteconnection' => [
             'driver' => 'mysql',
             'host' => env('COMBELL_DB_HOST'),
             'port' => env('COMBELL_DB_PORT'),
@@ -84,7 +77,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ],*/
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
