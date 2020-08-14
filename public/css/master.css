@@ -1,3 +1,7 @@
+html {
+  font-size: 100%;
+}
+
 @media screen and (max-width: 414px) {
   html {
     font-size: 80%;
@@ -41,14 +45,43 @@ body .card .card-footer {
   border-color: #e2e6f0;
 }
 
+body .card .card-body {
+  text-wrap: none;
+}
+
+@media screen and (max-width: 414px) {
+  body .card .card-body {
+    text-wrap: avoid;
+  }
+}
+
+@media screen and (max-width: 801px) {
+  body .card .card-body {
+    text-wrap: avoid;
+  }
+}
+
 body #main-button {
-  color: white;
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
   font-weight: bold;
-  width: 15vw;
+  color: #FFFFFF;
   background-color: #f3bfba;
   border-color: #f3bfba;
-  border-radius: 100px;
-  font-size: 90%;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    body #main-button {
+      white-space: nowrap;
+    }
+}
 }
 
 body #main-button:hover,
@@ -61,13 +94,26 @@ body #main-button-wide:hover {
 }
 
 body #secondary-button {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
   font-weight: bold;
-  width: 15vw;
+  color: #FFFFFF;
   background-color: #bbcecd;
   border-color: #bbcecd;
-  color: white;
-  border-radius: 100px;
-  font-size: 90%;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    body #secondary-button {
+      white-space: nowrap;
+    }
+}
 }
 
 body #secondary-button:hover,
@@ -79,13 +125,27 @@ body #secondary-button-medium:hover {
 }
 
 body #main-button-small {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
   font-weight: bold;
-  width: 75px;
+  color: #FFFFFF;
   background-color: #f3bfba;
   border-color: #f3bfba;
-  color: white;
-  border-radius: 100px;
-  font-size: 90%;
+  text-align: center;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    body #main-button-small {
+      white-space: nowrap;
+    }
+}
 }
 
 body #main-button-medium {
@@ -121,7 +181,7 @@ body #secondary-button-medium {
 body #main-button-wide {
   color: white;
   font-weight: bold;
-  width: 25vw;
+  width: 100%;
   background-color: #f3bfba;
   border-color: #f3bfba;
   border-radius: 100px;
