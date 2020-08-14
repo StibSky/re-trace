@@ -45,7 +45,7 @@ uses dynamic linking
                 <ul>
                     <li class="d-flex flex-row justify-content-between">
                         <p>Waste streams</p>
-                        <a class="btn btn-primary my-auto" id="main-button-medium"
+                        <a class="btn btn-primary my-auto" id="main-button-small"
                            href="{{ route('addstreams', $project->id) }}">Add streams</a>
                     </li>
                     <hr class="py-0 my-2">

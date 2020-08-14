@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Building;
-use App\Materiallist;
+use App\MaterialList;
 use App\Substance;
 use App\Unit;
 use App\User;
@@ -97,12 +97,12 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
-        if (Materiallist::where('substanceId', $substanceId)->first() == null) {
+        if (MaterialList::where('substanceId', $substanceId)->first() == null) {
             return back()->with('error', 'material not found');
         }
         //shows array of materiallist
-        /** @var Materiallist[] $buildMaterials */
-        $buildMaterials = Materiallist::where('substanceId', $substanceId)->get();
+        /** @var MaterialList[] $buildMaterials */
+        $buildMaterials = MaterialList::where('substanceId', $substanceId)->get();
         $buildIds = [];
 
         // consider changing array_push to $list [] = 'new item';

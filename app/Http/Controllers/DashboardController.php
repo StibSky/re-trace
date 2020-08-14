@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
-use App\Materiallist;
+use App\MaterialList;
 use App\Substance;
 use App\User;
 use Illuminate\Http\Request;
@@ -32,7 +32,7 @@ class DashboardController extends Controller
         }
         $project = Building::all()->find($id);
         // $image = Image::all()->find($id);
-        $materials = Materiallist::where('buildid', $id)->get();
+        $materials = MaterialList::where('buildid', $id)->get();
 
         $buildingSubstances = [];
 

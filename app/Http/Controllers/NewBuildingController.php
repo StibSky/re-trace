@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
-use App\Materiallist;
+use App\MaterialList;
 use App\Substance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -263,8 +263,8 @@ class NewBuildingController extends Controller
     public function saveEdit(Request $request)
     {
         //check phan
-        /** @var Materiallist $buildingMaterial */
-        $buildingMaterial = new Materiallist();
+        /** @var MaterialList $buildingMaterial */
+        $buildingMaterial = new MaterialList();
         $buildingMaterial->setSubstanceId($request->input('substance'));
         $buildingMaterial->setBuildid($request->input('buildingId'));
         $buildingMaterial->setQuantity($request->input('quantity'));
@@ -274,7 +274,7 @@ class NewBuildingController extends Controller
             ->where('substanceId', $request->input('substance'))
             ->first();
 
-        //Materiallist::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
+        //MaterialList::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
         if ($checkMaterial != null) {
             return redirect()->back()->with('error', 'You already selected this material');
         }

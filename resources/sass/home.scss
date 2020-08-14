@@ -1,16 +1,5 @@
 @import 'variables';
 
-.card-body {
-    text-wrap: none;
-    @media screen and (max-width: 414px) {
-        text-wrap: avoid;
-    }
-    @media screen and (max-width: 801px) {
-        text-wrap: avoid;
-        font-size: 90%;
-    }
-}
-
 #newSearch {
     height: 6em;
 }
@@ -25,10 +14,6 @@
 
 @media (max-width: 1440px) {
     @media not all and (min-resolution: .001dpcm) {
-
-        #projectInfo, #userInfo {
-            max-height: 65vh;
-        }
 
         #profilePic {
             height: 100%;

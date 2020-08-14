@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Materiallist extends Model
+class MaterialList extends Model
 {
     private $id;
 
