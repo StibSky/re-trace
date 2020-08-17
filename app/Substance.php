@@ -208,4 +208,9 @@ class Substance extends Model
     }
 
 
+    public function Tags()
+    {
+        return $this->belongsTo('App\Substance');
+    }
+
 }
