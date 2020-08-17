@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Building;
 use App\Image;
 use App\Materiallist;
+use App\Stream;
 use App\Substance;
 use App\User;
 use Illuminate\Http\Request;
@@ -97,12 +98,24 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function addStreams1()
+    public function addStreams1(Request $request, $id)
     {
         if (empty($request->session()->get('stream'))) {
-            $building = new Stream();
+            $stream = new Stream();
         } else {
-            $building = $request->session()->get('building');
+            $stream = $request->session()->get('stream');
         }
+
+        if ($request->input("streamName") == null) {
+            return redirect()->back()->withInput()->with('error', 'please fill in a name');
+        }
+
+        $stream->setName($request->input("streamName"));
+        $stream->setBuildid($id);
+
+        $request->session()->put('streamName', $request->input("streamName"));
+        $request->session()->put('buildId', $id);
+
+        return redirect('/streams2');
     }
 }

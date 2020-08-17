@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                     <div class="form-group">
                         <label for="projectName" class="sr-only">Name:</label>
                         <input type="text" class="form-control text-center" id="streamName" name="streamName"
-                               placeholder="PROJECT NAME"
+                               placeholder="STREAM NAME"
                                value="{{ session()->get('stream.streamName') }}">
                     </div>
                     <div class="form-group">
@@ -31,7 +31,7 @@ blade for adding a new building/project to a User
                                placeholder="PROJECT NAME"
                                value="{{ session()->get('building.projectName') }}">
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding">Next</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">
