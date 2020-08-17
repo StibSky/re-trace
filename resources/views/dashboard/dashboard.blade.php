@@ -81,7 +81,7 @@ uses dynamic linking
             </div>
             <div class=" card-footer" id="dashboard-footer3">
                 <a class="btn btn-primary mt-3" id="main-button"
-                   href="{{ route('addstreams', $project->id) }}">Add streams</a>
+                   href="{{ route('streams1', $project->id) }}">Add streams</a>
             </div>
         </div>
     </div>
