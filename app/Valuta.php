@@ -80,4 +80,8 @@ class valuta extends Model
         'updated_at'
     ];
 
+    public function Stream()
+    {
+        return $this->belongsTo('App\Valuta');
+    }
 }
