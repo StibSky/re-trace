@@ -206,4 +206,6 @@ class Substance extends Model
     {
         return $this->belongsTo('App\Substance');
     }
+
+
 }
