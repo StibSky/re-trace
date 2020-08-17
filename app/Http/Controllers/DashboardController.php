@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Image;
+use App\MaterialFunction;
 use App\Materiallist;
 use App\Stream;
 use App\Substance;
 use App\Tag;
+use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -150,7 +152,6 @@ class DashboardController extends Controller
 
         $headCategory = Substance::whereNull('parent')->get();
 
-
         $subCategory1 = DB::table('substance')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
 
@@ -170,7 +171,7 @@ class DashboardController extends Controller
 
     public function addStreams3(Request $request, $id)
     {
-        if (empty($request->session()->get('stream'))) {
+        if (empty($request->session()->get('tag'))) {
             $tag = new Tag();
         } else {
             $tag = $request->session()->get('tag');
@@ -184,7 +185,83 @@ class DashboardController extends Controller
 
         $request->session()->put('tag', $tag);
 
-        return redirect('/add-streams4');
+        return redirect('/add-streams4/'.$id);
+    }
+
+    public function streams4(Request $request, $id)
+    {
+        $tag = $request->session()->get('tag');
+
+        $headCategory = MaterialFunction::whereNull('parent')->get();
+
+        $subCategory1 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
+
+        $subCategory2 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
+
+        return view('streams.add-streams4', [
+            'headCategories' => $headCategory,
+            'subCategories1' => $subCategory1,
+            'subCategories2' => $subCategory2,
+            'tag' => $tag,
+            'id' => $id
+        ]);
+    }
+
+    public function addStreams4(Request $request, $id)
+    {
+        if (empty($request->session()->get('tag'))) {
+            $tag = new Tag();
+        } else {
+            $tag = $request->session()->get('tag');
+        }
+
+        if ($request->input("materialFunction") == null) {
+            return redirect()->back()->withInput()->with('error', 'please select a function');
+        }
+
+        $tag->setFunctionId($request->input("materialFunction"));
+
+        $request->session()->put('tag', $tag);
+
+        return redirect('/add-streams5/'.$id);
+    }
+
+    public function streams5(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+        $units = Unit::all();
+
+        return view('streams.add-streams5', [
+            'stream' => $stream,
+            'id' => $id,
+            'units' => $units
+        ]);
+    }
+
+    public function addStreams5(Request $request, $id)
+    {
+        if (empty($request->session()->get('stream'))) {
+            $stream = new Stream();
+        } else {
+            $stream = $request->session()->get('stream');
+        }
+
+        if ($request->input("streamQuantity") == null) {
+            return redirect()->back()->withInput()->with('error', 'please give a quantity');
+        }
+
+        if ($request->input("streamUnit") == null) {
+            return redirect()->back()->withInput()->with('error', 'please give a unit of measurement');
+        }
+
+        $stream->setQuantity($request->input("streamQuantity"));
+        $stream->setUnitId($request->input("streamUnit"));
+        $request->session()->put('stream', $stream);
+
+        return redirect('/add-streams6/'.$id);
     }
 
 }
