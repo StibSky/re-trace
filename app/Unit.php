@@ -155,4 +155,9 @@ class Unit extends Model
     {
         return $this->hasMany('App\Unit');
     }
+
+    public function Stream()
+    {
+        return $this->belongsTo('App\Unit');
+    }
 }

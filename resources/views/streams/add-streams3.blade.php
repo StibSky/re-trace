@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                     @csrf
                     <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                     <select name="substance" id="categorySelect">
-                        <option value="null" class="categoryOptions">PLEASE SELECT A MATERIAL</option>
+                        <option selected disabled class="categoryOptions">PLEASE SELECT A MATERIAL</option>
                         @foreach($headCategories as $headCategory)
                             <option value="{{ $headCategory->id }}" class="categoryOptions">
                                 {{ $headCategory->code . " " .$headCategory->name }}
