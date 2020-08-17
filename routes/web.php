@@ -53,7 +53,11 @@ Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
 
 Route::get('/add-streams1/{id}', 'DashboardController@streams1')->name('streams1');
+Route::get('/add-streams2/{id}', 'DashboardController@streams2')->name('streams2');
+Route::get('/add-streams3/{id}', 'DashboardController@streams3')->name('streams3');
 Route::post('/add-streams1/{id}', 'DashboardController@addStreams1')->name('add-streams1');
+Route::post('/add-streams2/{id}', 'DashboardController@addStreams2')->name('add-streams2');
+Route::post('/add-streams3/{id}', 'DashboardController@addStreams3')->name('add-streams3');
 
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');

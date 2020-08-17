@@ -20,22 +20,21 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams1', $project->id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-group">
-                        <label for="projectName" class="sr-only">Name:</label>
+                        <label for="streamName" class="sr-only">Name:</label>
                         <input type="text" class="form-control text-center" id="streamName" name="streamName"
                                placeholder="STREAM NAME"
-                               value="{{ session()->get('stream.streamName') }}">
+                               value="{{ session()->get('stream.name') }}">
                     </div>
                     <div class="form-group">
-                        <label for="buildId" class="sr-only">Build id:</label>
-                        <input type="hidden" class="form-control text-center" id="projectId" name="projectId"
-                               placeholder="PROJECT NAME"
-                               value="{{ session()->get('building.projectName') }}">
+                        <label for="streamDescription" class="sr-only">Description:</label>
+                        <textarea class="form-control text-center" id="streamDescription" name="streamDescription"
+                               placeholder="DESCRIPTION">{{ session()->get('stream.description') }}</textarea>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{route('home')}}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('dash', $project->id)}}"><span><strong>Go Back</strong></span></a>
             </div>
         </div>
     </div>

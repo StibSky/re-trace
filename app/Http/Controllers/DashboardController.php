@@ -7,6 +7,7 @@ use App\Image;
 use App\Materiallist;
 use App\Stream;
 use App\Substance;
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,18 +83,13 @@ class DashboardController extends Controller
     public function streams1(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-
-/*        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
-
-        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
-
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();*/
-
+        $tag = $request->session()->get('tag');
 
         $project = Building::all()->find($id);
 
         return view('streams.add-streams1', [
             'stream' => $stream,
+            'tag' => $tag,
             'project' => $project
         ]);
     }
@@ -111,11 +107,84 @@ class DashboardController extends Controller
         }
 
         $stream->setName($request->input("streamName"));
+        $stream->setDescription($request->input("streamDescription"));
         $stream->setBuildid($id);
 
-        $request->session()->put('streamName', $request->input("streamName"));
-        $request->session()->put('buildId', $id);
+        $request->session()->put('stream', $stream);
 
-        return redirect('/streams2');
+        return redirect('/add-streams2/'.$id);
     }
+
+    public function streams2(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+        return view('streams.add-streams2', [
+            'stream' => $stream,
+            'id' => $id
+            ]);
+    }
+
+    public function addStreams2(Request $request, $id)
+    {
+        if (empty($request->session()->get('stream'))) {
+            $stream = new Stream();
+        } else {
+            $stream = $request->session()->get('stream');
+        }
+
+        if ($request->input("category") == null) {
+            return redirect()->back()->withInput()->with('error', 'please select a destination');
+        }
+
+        $stream->setCategory($request->input("category"));
+
+        $request->session()->put('stream', $stream);
+
+        return redirect('/add-streams3/'.$id);
+    }
+
+    public function streams3(Request $request, $id)
+    {
+        $tag = $request->session()->get('tag');
+
+        $headCategory = Substance::whereNull('parent')->get();
+
+
+        $subCategory1 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
+
+
+        $subCategory2 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
+
+        return view('streams.add-streams3', [
+            'tag' => $tag,
+            'headCategories' => $headCategory,
+            'subCategories1' => $subCategory1,
+            'subCategories2' => $subCategory2,
+            'id' => $id
+
+        ]);
+    }
+
+    public function addStreams3(Request $request, $id)
+    {
+        if (empty($request->session()->get('stream'))) {
+            $tag = new Tag();
+        } else {
+            $tag = $request->session()->get('tag');
+        }
+
+        if ($request->input("substance") == null) {
+            return redirect()->back()->withInput()->with('error', 'please select a material');
+        }
+
+        $tag->setMaterialId($request->input("substance"));
+
+        $request->session()->put('tag', $tag);
+
+        return redirect('/add-streams4');
+    }
+
 }
