@@ -154,4 +154,9 @@ class MaterialFunction extends Model
     {
         return $this->belongsTo('App\MaterialFunction');
     }
+
+    public function Tags()
+    {
+        return $this->belongsTo('App\MaterialFunction');
+    }
 }
