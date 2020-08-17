@@ -21,6 +21,7 @@ class Streams extends Migration
                 $table->string("description")->nullable();
                 $table->bigInteger("buildid")->unsigned();
                 $table->string("category");
+                $table->string("action");
                 $table->BigInteger("unit_id")->unsigned();
                 $table->integer("quantity");
                 $table->BigInteger("valuta_id")->unsigned();
