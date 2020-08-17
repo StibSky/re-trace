@@ -77,4 +77,32 @@ class DashboardController extends Controller
             'businessBuildings' => $businessBuildings
         ]);
     }
+
+    public function streams1(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+/*        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
+
+        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
+
+        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();*/
+
+
+        $project = Building::all()->find($id);
+
+        return view('streams.add-streams1', [
+            'stream' => $stream,
+            'project' => $project
+        ]);
+    }
+
+    public function addStreams1()
+    {
+        if (empty($request->session()->get('stream'))) {
+            $building = new Stream();
+        } else {
+            $building = $request->session()->get('building');
+        }
+    }
 }

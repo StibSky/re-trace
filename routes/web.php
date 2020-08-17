@@ -35,7 +35,6 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
-Route::get('/addStreams/{id}', 'NewBuildingController@addStreams')->name('addstreams');
 Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 Route::get('/newBuilding', 'NewBuildingController@step1')->name('building');
@@ -52,6 +51,9 @@ Route::post('/store', 'NewBuildingController@store')->name('store');
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
+
+Route::get('/add-streams1/{id}', 'DashboardController@streams1')->name('streams1');
+Route::post('/add-streams1/{id}', 'DashboardController@addStreams1')->name('add-streams1');
 
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
