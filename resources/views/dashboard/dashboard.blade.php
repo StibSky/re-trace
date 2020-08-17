@@ -71,10 +71,10 @@ uses dynamic linking
                 <h4>Waste Streams</h4>
             </div>
             <div class="card-body">
-                @if(count($buildingSubstances) > 0)
+                @if(count($streams) > 0)
                     <ul>
-                        @foreach($buildingSubstances as $buildingSubstance)
-                            <li>{{ $buildingSubstance[0]['name'] }}</li>
+                        @foreach($streams as $stream)
+                            <li>{{ $stream->name }}</li>
                         @endforeach
                     </ul>
                 @endif

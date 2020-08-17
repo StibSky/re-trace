@@ -13,6 +13,22 @@ class Stream extends Model
     /**
      * @return mixed
      */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param mixed $action
+     */
+    public function setAction($action): void
+    {
+        $this->action = $action;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         return $this->name;
@@ -141,7 +157,7 @@ class Stream extends Model
 
 
     protected $fillable = [
-        'name', 'description', 'buildid', 'category', 'unit_id', 'quantity', 'valuta_id', 'price'
+        'name', 'description', 'buildid', 'category', 'unit_id', 'quantity', 'valuta_id', 'price', 'action'
     ];
 
     public function Building() {

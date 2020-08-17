@@ -27,7 +27,7 @@ blade for adding a new building/project to a User
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">Unit:</label>
                             <select name="streamUnit" id="streamUnit">
-                                <option value="null">
+                                <option selected disabled>
                                     PLEASE SELECT A UNIT OF MEASUREMENT
                                 </option>
                                 @foreach($units as $unit)

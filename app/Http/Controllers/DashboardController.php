@@ -37,13 +37,13 @@ class DashboardController extends Controller
         }
         $project = Building::all()->find($id);
         // $image = Image::all()->find($id);
-        $materials = Materiallist::where('buildid', $id)->get();
+        //$materials = Materiallist::where('buildid', $id)->get();
 
         $buildingSubstances = [];
 
-        foreach ($materials as $material) {
+/*        foreach ($materials as $material) {
             array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
-        }
+        }*/
 
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
@@ -51,10 +51,14 @@ class DashboardController extends Controller
 
         $projecttypes = $projectfiles->pluck("type")->unique();
 
+        $streams = Stream::where('buildid', $id)->get();
+
+
         return view('dashboard.dashboard', [
             'project' => $project,
             'buildingSubstances' => $buildingSubstances,
-            'projecttypes' => $projecttypes
+            'projecttypes' => $projecttypes,
+            'streams' => $streams
         ]);
     }
 
@@ -298,8 +302,83 @@ class DashboardController extends Controller
         $stream->setValutaId($request->input("streamValuta"));
         $request->session()->put('stream', $stream);
 
-        dd($request->session()->get('stream.price'));
-
         return redirect('/add-streams7/'.$id);
     }
+
+    public function streams7(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+        return view('streams.add-streams7', [
+            'stream' => $stream,
+            'id' => $id,
+        ]);
+    }
+
+    public function addStreams7(Request $request, $id)
+    {
+        if (empty($request->session()->get('stream'))) {
+            $stream = new Stream();
+        } else {
+            $stream = $request->session()->get('stream');
+        }
+
+        if ($request->input("streamAction") == null) {
+            return redirect()->back()->withInput()->with('error', 'please select an action');
+        }
+
+        $stream->setAction($request->input('streamAction'));
+        $request->session()->put('stream', $stream);
+
+        return redirect('/confirm/'.$id);
+    }
+
+    public function confirm(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+        $tag = $request->session()->get('tag');
+
+        $material = Substance::with('tags')
+            ->where('id', $tag->getMaterialId())
+            ->first();
+
+        $streamFunction = MaterialFunction::with('tags')
+            ->where('id', $tag->getFunctionId())
+            ->first();
+
+        $unit = Unit::with('stream')
+            ->where('id', $stream->getUnitId())
+            ->first();
+
+        $valuta = Valuta::with('stream')
+            ->where('id', $stream->getValutaId())
+            ->first();
+
+        return view('streams.confirm',
+            ['stream' => $stream,
+                'tag' => $tag,
+                'id' => $id,
+                'material' => $material,
+                'streamFunction' => $streamFunction,
+                'unit' => $unit,
+                'valuta' => $valuta]);
+    }
+
+    public function store(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+        $tag = $request->session()->get('tag');
+
+        $stream->save();
+
+        $tag->setStreamId($stream->id);
+
+        $tag->save();
+
+        $request->session()->forget('stream');
+        $request->session()->forget('tag');
+
+        return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
+    }
+
 }

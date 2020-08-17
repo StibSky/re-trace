@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard_old.css') }}">
 @endsection
 @section('content')
     <div class="container d-flex justify-content-center flex-column align-items-center">
@@ -10,31 +10,34 @@
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>Confirm input and create project?</h4>
+                <h4>Confirm input and add stream?</h4>
                 <table class="d-flex justify-content-center mt-5">
                     <tr>
-                        <td>Project name: {{ $building->projectName }}</td>
+                        <td>Stream name: {{ $stream->name }}</td>
                     </tr>
                     <tr>
-                        <td>Address: {{ $building->address1 }}</td>
+                        <td>Description: {{ $stream->description }}</td>
                     </tr>
                     <tr>
-                        <td>{{ $building->address2 }}</td>
+                        <td>Destination: {{ $stream->category }}</td>
                     </tr>
                     <tr>
-                        <td>City: {{ $building->city }}</td>
+                        <td>Material: {{ $material->name }}</td>
                     </tr>
                     <tr>
-                        <td>Postcode: {{ $building->postcode }}</td>
+                        <td>Function: {{ $streamFunction->name }}</td>
                     </tr>
                     <tr>
-                        <td>Type: {{ $building->type }}</td>
+                        <td>Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>Activity: {{ $building->status }}</td>
+                        <td>Price: {{ $valuta->symbol }}{{ $stream->price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Action: {{ $stream->action }}</td>
                     </tr>
                 </table>
-                <form action="{{ route('store') }}" method="post" class="mt-5">
+                <form action="{{ route('store', $id) }}" method="post" class="mt-5">
                     @csrf
                     <button type="submit" id="main-button" class="btn btn-primary" name="confirm">Create</button>
                 </form>
