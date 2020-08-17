@@ -242,24 +242,6 @@ class NewBuildingController extends Controller
         return redirect()->route('home');
     }
 
-    public function addStreams($id)
-    {
-        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
-
-        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
-
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '9')->get();
-
-
-        $project = Building::all()->find($id);
-        return view('new-building.addstreams', [
-            'buildingId' => $id,
-            'project' => $project,
-            'headCategories' => $headCategory,
-            'subCategories1' => $subCategory1,
-            'subCategories2' => $subCategory2,]);
-    }
-
     public function saveEdit(Request $request)
     {
         //check phan

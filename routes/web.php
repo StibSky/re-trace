@@ -35,7 +35,6 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
-Route::get('/addStreams/{id}', 'NewBuildingController@addStreams')->name('addstreams');
 Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 Route::get('/newBuilding', 'NewBuildingController@step1')->name('building');
@@ -52,6 +51,24 @@ Route::post('/store', 'NewBuildingController@store')->name('store');
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
 Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
+
+Route::get('/add-streams1/{id}', 'DashboardController@streams1')->name('streams1');
+Route::get('/add-streams2/{id}', 'DashboardController@streams2')->name('streams2');
+Route::get('/add-streams3/{id}', 'DashboardController@streams3')->name('streams3');
+Route::get('/add-streams4/{id}', 'DashboardController@streams4')->name('streams4');
+Route::get('/add-streams5/{id}', 'DashboardController@streams5')->name('streams5');
+Route::get('/add-streams6/{id}', 'DashboardController@streams6')->name('streams6');
+Route::get('/add-streams7/{id}', 'DashboardController@streams7')->name('streams7');
+Route::post('/add-streams1/{id}', 'DashboardController@addStreams1')->name('add-streams1');
+Route::post('/add-streams2/{id}', 'DashboardController@addStreams2')->name('add-streams2');
+Route::post('/add-streams3/{id}', 'DashboardController@addStreams3')->name('add-streams3');
+Route::post('/add-streams4/{id}', 'DashboardController@addStreams4')->name('add-streams4');
+Route::post('/add-streams5/{id}', 'DashboardController@addStreams5')->name('add-streams5');
+Route::post('/add-streams6/{id}', 'DashboardController@addStreams6')->name('add-streams6');
+Route::post('/add-streams7/{id}', 'DashboardController@addStreams7')->name('add-streams7');
+
+Route::get('/confirm/{id}', 'DashboardController@confirm')->name('confirm');
+Route::post('/store/{id}', 'DashboardController@store')->name('store');
 
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
