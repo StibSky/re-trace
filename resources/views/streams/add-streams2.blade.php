@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                     @csrf
                     <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                     <select name="category" id="categorySelect">
-                        <option value="null" class="categoryOptions">PLEASE SELECT A DESTINATION</option>
+                        <option  selected disabled class="categoryOptions">PLEASE SELECT A DESTINATION</option>
                         <option value="destination1" class="categoryOptions">
                             destination 1
                         </option>

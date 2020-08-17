@@ -67,6 +67,9 @@ Route::post('/add-streams5/{id}', 'DashboardController@addStreams5')->name('add-
 Route::post('/add-streams6/{id}', 'DashboardController@addStreams6')->name('add-streams6');
 Route::post('/add-streams7/{id}', 'DashboardController@addStreams7')->name('add-streams7');
 
+Route::get('/confirm/{id}', 'DashboardController@confirm')->name('confirm');
+Route::post('/store/{id}', 'DashboardController@store')->name('store');
+
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
 Route::get('/previewFiles/{id}', 'UploadController@previewFiles')->name('previewFiles');

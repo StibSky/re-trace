@@ -21,7 +21,7 @@ blade for adding a new building/project to a User
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">Valuta:</label>
                             <select name="streamValuta" id="streamValuta">
-                                <option value="null">
+                                <option selected disabled>
                                     PLEASE SELECT A CURRENCY
                                 </option>
                                 @foreach($valutas as $valuta)

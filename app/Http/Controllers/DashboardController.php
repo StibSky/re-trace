@@ -298,8 +298,49 @@ class DashboardController extends Controller
         $stream->setValutaId($request->input("streamValuta"));
         $request->session()->put('stream', $stream);
 
-        dd($request->session()->get('stream.price'));
-
         return redirect('/add-streams7/'.$id);
     }
+
+    public function streams7(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+        return view('streams.add-streams6', [
+            'stream' => $stream,
+            'id' => $id,
+        ]);
+    }
+
+    public function addStreams7(Request $request, $id)
+    {
+        $request->session()->put('streamAction', $request->input("streamAction"));
+
+        return redirect('/confirm/'.$id);
+    }
+
+    public function confirm(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+        $tag = $request->session()->get('tag');
+
+        return view('new-building.confirm',
+            ['stream' => $stream,
+                'tag' => $tag,
+                'id' => $id]);
+    }
+
+    public function store(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+        $tag = $request->session()->get('tag');
+
+        $stream->save();
+        $tag->save();
+
+        $request->session()->forget('stream');
+        $request->session()->forget('tag');
+
+        return redirect()->route('home')->with('success', 'Stream added successfully');
+    }
+
 }

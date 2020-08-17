@@ -15,34 +15,29 @@ blade for adding a new building/project to a User
             </div>
             <div class="card-body text-center">
                 <h4>Please give the price of your stream</h4>
-                <form action="{{ route('add-streams6', $id) }}" method="post" class="mt-5">
+                <form action="{{ route('add-streams7', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="streamUnit" class="sr-only">Valuta:</label>
-                            <select name="streamValuta" id="streamValuta">
-                                <option value="null">
-                                    PLEASE SELECT A CURRENCY
+                            <label for="streamAction" class="sr-only">Action:</label>
+                            <select name="streamAction" id="streamAction">
+                                <option value=null>
+                                    PLEASE SELECT AN ACTION
                                 </option>
-                                @foreach($valutas as $valuta)
-                                    <option value="{{ $valuta->id }}">
-                                        {{ $valuta->symbol }}
-                                    </option>
-                                @endforeach
+                                <option value="reuse">
+                                    Reuse
+                                </option>
+                                <option value="recycle">
+                                    Recycle
+                                </option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="streamPrice" class="sr-only">Price:</label>
-                            <input type="text" class="form-control text-center" id="streamPrice"
-                                   name="streamPrice"
-                                   placeholder="PRICE" value="{{ session()->get('stream.price') }}">
                         </div>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{route('streams5', $id)}}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('streams6', $id)}}"><span><strong>Go Back</strong></span></a>
             </div>
         </div>
     </div>
