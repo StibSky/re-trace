@@ -11,6 +11,7 @@ use App\Substance;
 use App\Tag;
 use App\Unit;
 use App\User;
+use App\Valuta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -264,4 +265,41 @@ class DashboardController extends Controller
         return redirect('/add-streams6/'.$id);
     }
 
+    public function streams6(Request $request, $id)
+    {
+        $stream = $request->session()->get('stream');
+
+        $valutas = Valuta::all();
+
+        return view('streams.add-streams6', [
+            'stream' => $stream,
+            'id' => $id,
+            'valutas' => $valutas
+        ]);
+    }
+
+    public function addStreams6(Request $request, $id)
+    {
+        if (empty($request->session()->get('stream'))) {
+            $stream = new Stream();
+        } else {
+            $stream = $request->session()->get('stream');
+        }
+
+        if ($request->input("streamPrice") == null) {
+            return redirect()->back()->withInput()->with('error', 'please give a price');
+        }
+
+        if ($request->input("streamValuta") == null) {
+            return redirect()->back()->withInput()->with('error', 'please give a currency');
+        }
+
+        $stream->setPrice($request->input("streamPrice"));
+        $stream->setValutaId($request->input("streamValuta"));
+        $request->session()->put('stream', $stream);
+
+        dd($request->session()->get('stream.price'));
+
+        return redirect('/add-streams7/'.$id);
+    }
 }

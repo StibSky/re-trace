@@ -8,7 +8,7 @@ class valuta extends Model
 {
     private $id;
     public $timestamps = false;
-    protected $table = "tags";
+    protected $table = "valuta";
 
 
     /**
