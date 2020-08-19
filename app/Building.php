@@ -244,11 +244,6 @@ class Building extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function Image()
-    {
-        return $this->hasMany('App\Image');
-    }
-
     public function Materiallist()
     {
         return $this->hasMany('App\Materiallist');
