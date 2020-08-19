@@ -28,7 +28,10 @@ class UploadController extends Controller
         if ($request->userfile == null) {
             return back()->with('error', 'please select a file');
         }
+
         $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
+
+        //get filebasename and sanitise
 
         $originalExtension = $request->userfile->getClientOriginalExtension();
 

@@ -52,6 +52,5 @@ class Streams extends Migration
     public function down()
     {
         Schema::dropIfExists('streams');
-
     }
 }
