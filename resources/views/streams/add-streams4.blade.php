@@ -21,7 +21,7 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
                     <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
-                    <select name="materialFunction" id="categorySelect">
+                    <select name="materialFunction" id="categorySelect" multiple>
                         <option  selected disabled class="categoryOptions">PLEASE SELECT A FUNCTION</option>
                         @foreach($headCategories as $headCategory)
                             <option value="{{ $headCategory->id }}" class="categoryOptions">
