@@ -17,22 +17,21 @@ blade for adding a new building/project to a User
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>What's the destination of your stream?</h4>
+                <h4>What's the origin of your stream?</h4>
                 <form action="{{ route('add-streams2', $id) }}" method="post" class="mt-5">
                     @csrf
                     <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
                     <select name="category" id="categorySelect">
-                        <option  selected disabled class="categoryOptions">PLEASE SELECT A DESTINATION</option>
-                        <option value="destination1" class="categoryOptions">
-                            destination 1
+                        <option  selected disabled class="categoryOptions">PLEASE SELECT AN ORIGIN</option>
+                        <option value="Production surplus" class="categoryOptions">
+                            Production surplus
+                        </option>
+                        <option value="Overstock" class="categoryOptions">
+                             Overstock
                         </option>
 
-                        <option value="destination2" class="categoryOptions">
-                            destination 2
-                        </option>
-
-                        <option value="destination3" class="categoryOptions">
-                            destination 3
+                        <option value="Construction and demolition" class="categoryOptions">
+                            Construction and demolition
                         </option>
 
                     </select>
