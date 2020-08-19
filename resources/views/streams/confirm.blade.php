@@ -44,7 +44,7 @@
             </div>
 
             <div class="card-footer text-center">
-                <a href="{{route('streams7', $id)}}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('streams4', $id)}}"><span><strong>Go Back</strong></span></a>
             </div>
         </div>
     </div>
