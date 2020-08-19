@@ -28,13 +28,50 @@ class UpdateAdminController extends Controller
         if (Auth::user()->type != 'admin') {
             return redirect()->back();
         }
-        $substance = Substance::all();
-        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
-        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
+        $headCategory = Substance::whereNull('parent')->get();
 
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '10')->get();
+        $subCategory1 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
 
+        $subCategory2 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
+
+
+        $tree = [];
+
+        if (isset ($subCategory2)) {
+            foreach ($subCategory2 as $sub2) {
+                $tree += [$sub2->id => $sub2->parent];
+            }
+        }
+        foreach ($subCategory1 as $sub1) {
+            $tree += [$sub1->id => $sub1->parent];
+        }
+        foreach ($headCategory as $head) {
+            $tree += [$head->id => $head->parent];
+        }
+
+        function parseTree($tree, $root = null) {
+            $return = array();
+            # Traverse the tree and search for direct children of the root
+            foreach($tree as $child => $parent) {
+                # A direct child is found
+                if($parent == $root) {
+                    # Remove item from tree (we don't need to traverse this again)
+                    unset($tree[$child]);
+                    # Append the child into result array and parse its children
+                    $return[] = array(
+                        'id' => $child,
+                        'children' => parseTree($tree, $child)
+                    );
+                }
+            }
+            return empty($return) ? null : $return;
+        }
+
+
+        $result = parseTree($tree);
 
         $unit = Unit::all();
 
@@ -43,9 +80,17 @@ class UpdateAdminController extends Controller
             'subCategories1' => $subCategory1,
             'subCategories2' => $subCategory2,
             'units' => $unit,
+            'tree' => $result
         ]);
     }
 
+    public static function getNameFunction($id) {
+        $substanceElement = DB::table('substance')
+            ->where('id', $id )->first();
+
+
+        return $substanceElement->code . " " . $substanceElement->name;
+    }
 
     /*
      * This function fills in the Substance database
@@ -66,11 +111,11 @@ class UpdateAdminController extends Controller
             $substance->setUnitId($request->input('unit_id'));
 
 
-            if ($substance->getParent()!= null && $request->input('code') != null ) {
+            if ($substance->getParent() != null && $request->input('code') != null) {
                 return back()->withInput()->with('error', 'you cannot select a parent if you fill in a code yourself');
             }
             //AUTOMATIC NUMBERING PROGRESS
-            if (($substance->getParent()) != null && $request->input('code') == null ) {
+            if (($substance->getParent()) != null && $request->input('code') == null) {
                 $parentCode = Substance::where('id', $substance->getParent())->first()->code;
                 $parentId = Substance::where('id', $substance->getParent())->first()->id;
             } else {
