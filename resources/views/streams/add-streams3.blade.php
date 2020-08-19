@@ -20,29 +20,55 @@ blade for adding a new building/project to a User
                 <h4>Which materials are in your stream?</h4>
                 <form action="{{ route('add-streams3', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
-                    <select name="substance" id="categorySelect">
-                        <option selected disabled class="categoryOptions">PLEASE SELECT A MATERIAL</option>
-                        @foreach($headCategories as $headCategory)
-                            <option value="{{ $headCategory->id }}" class="categoryOptions">
-                                {{ $headCategory->code . " " .$headCategory->name }}
-                            </option>
-                        @endforeach
-                        @foreach($subCategories1 as $subCategory1)
+                    <div class="form-row">
+                        <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
+                        <select name="substance" id="categorySelect" multiple>
+                            <option selected disabled class="categoryOptions">PLEASE SELECT A MATERIAL</option>
+                            @foreach($substanceHeadCategories as $substanceHeadCategory)
+                                <option value="{{ $substanceHeadCategory->id }}" class="categoryOptions">
+                                    {{ $substanceHeadCategory->code . " " .$substanceHeadCategory->name }}
+                                </option>
+                            @endforeach
+                            @foreach($substanceSubCategories1 as $substanceSubCategory1)
 
-                            <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                ---{{$subCategory1->code . " " .$subCategory1->name }}
-                            </option>
+                                <option value="{{ $substanceSubCategory1->id }}" class="categoryOptions">
+                                    ---{{$substanceSubCategory1->code . " " .$substanceSubCategory1->name }}
+                                </option>
 
-                        @endforeach
-                        @foreach($subCategories2 as $subCategory2)
+                            @endforeach
+                            @foreach($substanceSubCategories2 as $substanceSubCategory2)
 
-                            <option value="{{ $subCategory2->id }}" class="categoryOptions">
-                                ------{{ $subCategory2->code . " " .$subCategory2->name }}
-                            </option>
+                                <option value="{{ $substanceSubCategory2->id }}" class="categoryOptions">
+                                    ------{{ $substanceSubCategory2->code . " " .$substanceSubCategory2->name }}
+                                </option>
 
-                        @endforeach
-                    </select>
+                            @endforeach
+                        </select></div>
+                    <div class="form-row">
+                        <input placeholder="search here" type="text" name="filter" id="filterCategories2"/>
+                        <select name="materialFunction" id="categorySelect2" multiple>
+                            <option selected disabled class="categoryOptions2">PLEASE SELECT A FUNCTION</option>
+                            @foreach($functionHeadCategories as $functionHeadCategory)
+                                <option value="{{ $functionHeadCategory->id }}" class="categoryOptions2">
+                                    {{ $functionHeadCategory->name }}
+                                </option>
+                            @endforeach
+                            @foreach($functionSubCategories1 as $functionSubCategory1)
+
+                                <option value="{{ $functionSubCategory1->id }}" class="categoryOptions2">
+                                    ---{{ $functionSubCategory1->name }}
+                                </option>
+
+                            @endforeach
+                            @foreach($functionSubCategories2 as $functionSubCategory2)
+
+                                <option value="{{ $functionSubCategory2->id }}" class="categoryOptions2">
+                                    ------{{ $functionSubCategory2->name }}
+                                </option>
+
+                            @endforeach
+                        </select>
+                    </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
@@ -66,6 +92,21 @@ blade for adding a new building/project to a User
                 })
             })
         })
-    </script></div>
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#filterCategories2').change(function () {
+                var filter = $(this).val();
+                $('.categoryOptions2').each(function () {
+                    if ($(this).text().toLowerCase().includes(filter.toLowerCase())) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                    $('#categorySelect2').text().toLowerCase().includes(filter.toLowerCase());
+                })
+            })
+        })
+    </script>
 @endsection
 @endsection
