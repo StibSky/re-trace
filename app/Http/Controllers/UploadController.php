@@ -133,11 +133,9 @@ class UploadController extends Controller
     public
     function previewFiles($id)
     {
-
         $authid = Auth::user()->id;
         $registeredUser = DB::table('users')
-            ->whereRaw($authid . " IN (SELECT userId FROM uploaded_file) AND ". $id . " IN (SELECT id FROM building)")->get();
-
+            ->whereRaw($authid . " IN (SELECT userId FROM uploaded_file where projectId = ". $id ." )")->get();
         if ($registeredUser !=null ){
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
