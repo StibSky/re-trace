@@ -34,7 +34,7 @@ class StreamController extends Controller
 
         $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
 
-        if (is_dir($targetFolder)) {
+        if (is_dir(Storage::path($targetFolder))) {
             $targetFile = $targetFolder . '/' . $filename;
 
             $fullPath = Storage::path($targetFile);
