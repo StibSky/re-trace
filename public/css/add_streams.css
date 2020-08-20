@@ -1,5 +1,10 @@
+#set-width {
+  width: 40vw;
+}
+
 #categorySelect,
 #categorySelect2 {
+  margin-top: 20px;
   height: 20vh;
   border: none;
   background-color: #e2e6f0;
@@ -22,8 +27,10 @@
   background-color: white;
   font-size: 1em;
   padding: 10px;
+  align-self: center;
   text-align: center;
-  display: inline-block;
+  display: inline;
+  text-wrap: normal;
   cursor: pointer;
   border: none;
   color: black;
