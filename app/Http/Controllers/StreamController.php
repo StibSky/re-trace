@@ -39,7 +39,6 @@ class StreamController extends Controller
 
         return view('streams.add-streams1', [
             'stream' => $stream,
-            'tag' => $tag,
             'project' => $project,
             'targetFile' => $targetFile,
             'image_data' => $image_data
