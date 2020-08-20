@@ -95,11 +95,11 @@ Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
 
 
-Route::get( '/verify-test', function () {
+/*Route::get( '/verify-test', function () {
     // Get a user for demo purposes
     $user = App\User::find(1);
     return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
-});
+});*/
 //array('before' => 'auth', 'uses' => 'HomeController@index')
 
 
