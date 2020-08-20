@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                     @csrf
                     <div class="form-row">
                         <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
-                        <select name="substance" id="categorySelect" multiple>
+                        <select name="substance[]" id="categorySelect" multiple>
                             <option selected disabled class="categoryOptions">PLEASE SELECT A MATERIAL</option>
                             @foreach($substanceHeadCategories as $substanceHeadCategory)
                                 <option value="{{ $substanceHeadCategory->id }}" class="categoryOptions">
@@ -46,7 +46,7 @@ blade for adding a new building/project to a User
                         </select></div>
                     <div class="form-row">
                         <input placeholder="search here" type="text" name="filter" id="filterCategories2"/>
-                        <select name="materialFunction" id="categorySelect2" multiple>
+                        <select name="materialFunction[]" id="categorySelect2" multiple>
                             <option selected disabled class="categoryOptions2">PLEASE SELECT A FUNCTION</option>
                             @foreach($functionHeadCategories as $functionHeadCategory)
                                 <option value="{{ $functionHeadCategory->id }}" class="categoryOptions2">
