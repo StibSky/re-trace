@@ -22,9 +22,6 @@ class StreamController extends Controller
     public function streams1(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
-
-        $image = $request->session()->get('image');
 
         $project = Building::all()->find($id);
 
