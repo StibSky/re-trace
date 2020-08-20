@@ -37,6 +37,8 @@
                 </select>
             </div>
         </div>
+        <?php use App\Http\Controllers\MaterialFunctionController;
+        use App\Building; ?>
         <h2>Select Parent</h2>
         <label>
             <input type="text" name="filter" id="filterCategories"/>
@@ -44,27 +46,25 @@
                 <option value="{{ null }}" class="headCategory">
                     NO PARENT/NEW CATEGORY
                 </option>
-                @foreach($headCategories as $headCategory)
-                    <option value="{{ $headCategory->id }}" class="categoryOptions">
-                        {{ $headCategory->name }}
+                @foreach($tree as $node)
+                    <option value="{{$node['id']}}" class="categoryOptions">
+                        {{\App\Http\Controllers\MaterialFunctionController::getNameFunction( $node['id'])}}
                     </option>
+                    @if($node['children'] != null)
+                        @for($i =0; $i < count($node['children']); $i++)
+                            <option value="{{$node['children'][$i]['id']}}" class="categoryOptions">
+                                --{{\App\Http\Controllers\MaterialFunctionController::getNameFunction($node['children'][$i]['id'])}}
+                            </option>
+                            @if($node['children'][$i]['children'] !=null)
+                                @for($j =0; $j < count($node['children'][$i]['children']); $j++)
+                                    <option value="{{$node['children'][$i]['children'][$j]['id']}}" class="categoryOptions">
+                                        ----{{\App\Http\Controllers\MaterialFunctionController::getNameFunction($node['children'][$i]['children'][$j]['id'])}}
+                                    </option>
+                                @endfor
+                            @endif
+                        @endfor
+                    @endif
                 @endforeach
-                @foreach($subCategories1 as $subCategory1)
-
-                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                        ---{{$subCategory1->name }}
-                    </option>
-
-                @endforeach
-                @foreach($subCategories2 as $subCategory2)
-
-                    <option value="{{ $subCategory2->id }}" class="categoryOptions">
-                        ------{{$subCategory2->name }}
-                    </option>
-
-                @endforeach
-
-
             </select>
         </label>
 
