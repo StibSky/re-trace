@@ -34,6 +34,8 @@ class StreamController extends Controller
 
         $targetFile = ('storage/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
+        var_dump($targetFile);
+
         return view('streams.add-streams1', [
             'stream' => $stream,
             'tag' => $tag,
