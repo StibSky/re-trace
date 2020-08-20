@@ -32,12 +32,20 @@ class StreamController extends Controller
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
 
-        $targetFile = ('/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
 
-        $fullPath = Storage::path($targetFile);
+        if (isset($targetFolder)) {
+            $targetFile = $targetFolder . '/' . $filename;
 
-        $base64 = base64_encode(Storage::get($targetFile));
-        $image_data = 'data:'.mime_content_type($fullPath) . ';base64,' . $base64;
+            $fullPath = Storage::path($targetFile);
+
+            $base64 = base64_encode(Storage::get($targetFile));
+            $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+        }
+        else {
+            $targetFile = null;
+            $image_data = null;
+        }
 
         return view('streams.add-streams1', [
             'stream' => $stream,
