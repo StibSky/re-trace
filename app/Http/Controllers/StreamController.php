@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Valuta;
 use App\Unit;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StreamController extends Controller
@@ -32,13 +33,19 @@ class StreamController extends Controller
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
 
-        $targetFile = ('storage/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = ('/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+
+        $fullPath = Storage::path($targetFile);
+
+        $base64 = base64_encode(Storage::get($targetFile));
+        $image_data = 'data:'.mime_content_type($fullPath) . ';base64,' . $base64;
 
         return view('streams.add-streams1', [
             'stream' => $stream,
             'tag' => $tag,
             'project' => $project,
-            'targetFile' => $targetFile
+            'targetFile' => $targetFile,
+            'image_data' => $image_data
         ]);
     }
 
