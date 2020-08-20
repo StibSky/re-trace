@@ -22,7 +22,6 @@ class StreamController extends Controller
     public function streams1(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
 
         $image = $request->session()->get('image');
 
@@ -42,7 +41,6 @@ class StreamController extends Controller
 
         return view('streams.add-streams1', [
             'stream' => $stream,
-            'tag' => $tag,
             'project' => $project,
             'targetFile' => $targetFile,
             'image_data' => $image_data
@@ -311,8 +309,6 @@ class StreamController extends Controller
             $functionTag->save();
         }
         $image->setStreamId($stream->id);
-
-
         $image->save();
 
         $request->session()->forget('stream');
