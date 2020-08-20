@@ -166,26 +166,39 @@ class StreamController extends Controller
 
     public function addStreams3(Request $request, $id)
     {
-        if (empty($request->session()->get('tag'))) {
-            $tag = new Tag();
-        } else {
-            $tag = $request->session()->get('tag');
-        }
+//        if (empty($request->session()->get('tag'))) {
+//            $tag = new Tag();
+//        } else {
+//            $tag = $request->session()->get('tag');
+//        }
 
         if ($request->input("substance") == null) {
             return redirect()->back()->withInput()->with('error', 'please select a material');
         }
 
-        $tag->setMaterialId($request->input("substance"));
+        $allSelectedMaterials = [];
+        $sessionMaterials = [];
+        for ($i = 0; $i < count($_POST["substance"]); $i++) {
+            ${'materialTag' . $i} = new Tag();
+            ${'materialTag' . $i}->setMaterialId($_POST["substance"][$i]);
+            array_push($sessionMaterials, ${'materialTag' . $i});
+        }
+
+
+        $request->session()->put('materialSession', $sessionMaterials);
+
 
         if ($request->input("materialFunction") == null) {
             return redirect()->back()->withInput()->with('error', 'please select a function');
         }
 
-        $tag->setFunctionId($request->input("materialFunction"));
-
-        $request->session()->put('tag', $tag);
-
+        $sessionFunctions = [];
+        for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
+            ${'functionTag' . $i} = new Tag();
+            ${'functionTag' . $i}->setFunctionId($_POST["materialFunction"][$i]);
+            array_push($sessionFunctions, ${'functionTag' . $i});
+        }
+        $request->session()->put('functionSession', $sessionFunctions);
         return redirect('/add-streams4/' . $id);
     }
 
@@ -274,19 +287,30 @@ class StreamController extends Controller
     public function store(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
+
+
+        $materialTags = $request->session()->get('materialSession');
+        $functionTags = $request->session()->get('functionSession');
         $image = $request->session()->get('image');
 
         $stream->save();
 
-        $tag->setStreamId($stream->id);
+        foreach ($materialTags as $materialTag) {
+            $materialTag->setStreamId($stream->id);
+            $materialTag->save();
+        }
+        foreach ($functionTags as $functionTag) {
+            $functionTag->setStreamId($stream->id);
+            $functionTag->save();
+        }
         $image->setStreamId($stream->id);
 
-        $tag->save();
+
         $image->save();
 
         $request->session()->forget('stream');
-        $request->session()->forget('tag');
+        $request->session()->forget('materialSession');
+        $request->session()->forget('functionSession');
         $request->session()->forget('image');
 
         return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
