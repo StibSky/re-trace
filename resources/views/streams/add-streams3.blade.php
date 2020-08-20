@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
 @endsection
 @section('head-script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,15 +21,14 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams3', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-row">
-                        <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
+                        <><input placeholder="search here" type="text" name="filter" id="filterCategories"/></>
                         <select name="substance" id="categorySelect" multiple>
-                            <option selected disabled class="categoryOptions">PLEASE SELECT A MATERIAL</option>
                             @foreach($substanceHeadCategories as $substanceHeadCategory)
                                 <option value="{{ $substanceHeadCategory->id }}" class="categoryOptions">
                                     {{ $substanceHeadCategory->code . " " .$substanceHeadCategory->name }}
                                 </option>
                             @endforeach
-                            @foreach($substanceSubCategories1 as $substanceSubCategory1)
+{{--                            @foreach($substanceSubCategories1 as $substanceSubCategory1)
 
                                 <option value="{{ $substanceSubCategory1->id }}" class="categoryOptions">
                                     ---{{$substanceSubCategory1->code . " " .$substanceSubCategory1->name }}
@@ -42,18 +41,17 @@ blade for adding a new building/project to a User
                                     ------{{ $substanceSubCategory2->code . " " .$substanceSubCategory2->name }}
                                 </option>
 
-                            @endforeach
+                            @endforeach--}}
                         </select></div>
                     <div class="form-row">
                         <input placeholder="search here" type="text" name="filter" id="filterCategories2"/>
                         <select name="materialFunction" id="categorySelect2" multiple>
-                            <option selected disabled class="categoryOptions2">PLEASE SELECT A FUNCTION</option>
                             @foreach($functionHeadCategories as $functionHeadCategory)
                                 <option value="{{ $functionHeadCategory->id }}" class="categoryOptions2">
                                     {{ $functionHeadCategory->name }}
                                 </option>
                             @endforeach
-                            @foreach($functionSubCategories1 as $functionSubCategory1)
+{{--                            @foreach($functionSubCategories1 as $functionSubCategory1)
 
                                 <option value="{{ $functionSubCategory1->id }}" class="categoryOptions2">
                                     ---{{ $functionSubCategory1->name }}
@@ -66,7 +64,7 @@ blade for adding a new building/project to a User
                                     ------{{ $functionSubCategory2->name }}
                                 </option>
 
-                            @endforeach
+                            @endforeach--}}
                         </select>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>

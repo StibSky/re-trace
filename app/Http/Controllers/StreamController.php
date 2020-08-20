@@ -40,8 +40,6 @@ class StreamController extends Controller
         $base64 = base64_encode(Storage::get($targetFile));
         $image_data = 'data:'.mime_content_type($fullPath) . ';base64,' . $base64;
 
-        var_dump($targetFile);
-
         return view('streams.add-streams1', [
             'stream' => $stream,
             'tag' => $tag,
