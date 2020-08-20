@@ -23,6 +23,8 @@ class StreamController extends Controller
     {
         $stream = $request->session()->get('stream');
 
+        $image = $request->session()->get('image');
+
         $project = Building::all()->find($id);
 
         $filename = $request->session()->get('image.name');
@@ -307,8 +309,6 @@ class StreamController extends Controller
             $functionTag->save();
         }
         $image->setStreamId($stream->id);
-
-
         $image->save();
 
         $request->session()->forget('stream');
