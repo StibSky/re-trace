@@ -22,10 +22,23 @@
                         <td>Destination: {{ $stream->category }}</td>
                     </tr>
                     <tr>
-                        <td>Material: {{ $material->name }}</td>
+                        <td>Materials:
+                            <ul>
+                            @foreach($materialArray as $material)
+                                    <li>{{ $material->name }}</li>
+                            @endforeach
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Function: {{ $streamFunction->name }}</td>
+                        <td>Function:
+                            <ul>
+                            @foreach($functionArray as $streamFunction)
+                                    <li>{{ $streamFunction->name }}</li>
+                            @endforeach
+                            </ul>
+                        </td>
+                        
                     </tr>
                     <tr>
                         <td>Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>

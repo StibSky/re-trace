@@ -269,15 +269,25 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
+        $materialTags = $request->session()->get('materialSession');
+        $functionTags = $request->session()->get('functionSession');
 
-        $material = Substance::with('tags')
-            ->where('id', $tag->getMaterialId())
-            ->first();
+        $materialArray = [];
+        $functionArray = [];
 
-        $streamFunction = MaterialFunction::with('tags')
-            ->where('id', $tag->getFunctionId())
-            ->first();
+        foreach ($materialTags as $materialTag) {
+            $material = Substance::with('tags')
+                ->where('id', $materialTag->getMaterialId())
+                ->first();
+            array_push($materialArray, $material);
+        }
+
+        foreach ($functionTags as $functionTag) {
+            $streamFunction = MaterialFunction::with('tags')
+                ->where('id', $functionTag->getFunctionId())
+                ->first();
+            array_push($functionArray, $streamFunction);
+        }
 
         $unit = Unit::with('stream')
             ->where('id', $stream->getUnitId())
@@ -289,10 +299,9 @@ class StreamController extends Controller
 
         return view('streams.confirm',
             ['stream' => $stream,
-                'tag' => $tag,
                 'id' => $id,
-                'material' => $material,
-                'streamFunction' => $streamFunction,
+                'materialArray' => $materialArray,
+                'functionArray' => $functionArray,
                 'unit' => $unit,
                 'valuta' => $valuta]);
     }
