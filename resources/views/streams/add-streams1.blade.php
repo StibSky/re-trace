@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
 @endsection
 @section('content')
     <!--
@@ -43,8 +43,8 @@ blade for adding a new building/project to a User
                     </div>
                     <div class="form-group">
                         <label for="streamAction" class="sr-only">Action:</label>
-                        <select name="streamAction" id="streamAction">
-                            <option value=null>
+                        <select name="streamAction">
+                            <option selected disabled>
                                 PLEASE SELECT AN ACTION
                             </option>
                             <option value="reuse">

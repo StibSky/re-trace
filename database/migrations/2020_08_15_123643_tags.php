@@ -17,9 +17,9 @@ class Tags extends Migration
 
             Schema::create('tags', function (Blueprint $table) {
                 $table->id()->unsigned();
-                $table->bigInteger("material_id")->unsigned();
-                $table->BigInteger("function_id")->unsigned();
-                $table->BigInteger("stream_id")->unsigned();
+                $table->BigInteger("material_id")->unsigned()->nullable();
+                $table->BigInteger("function_id")->unsigned()->nullable();
+                $table->BigInteger("stream_id")->unsigned()->nullable();
             });
 
             Schema::table('tags', function (Blueprint $table) {

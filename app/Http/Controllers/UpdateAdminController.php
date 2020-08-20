@@ -45,19 +45,24 @@ class UpdateAdminController extends Controller
                 $tree += [$sub2->id => $sub2->parent];
             }
         }
-        foreach ($subCategory1 as $sub1) {
-            $tree += [$sub1->id => $sub1->parent];
+        if (isset ($subCategory1)) {
+            foreach ($subCategory1 as $sub1) {
+                $tree += [$sub1->id => $sub1->parent];
+            }
         }
-        foreach ($headCategory as $head) {
-            $tree += [$head->id => $head->parent];
+        if (isset($headCategory)) {
+            foreach ($headCategory as $head) {
+                $tree += [$head->id => $head->parent];
+            }
         }
 
-        function parseTree($tree, $root = null) {
+        function parseTree($tree, $root = null)
+        {
             $return = array();
             # Traverse the tree and search for direct children of the root
-            foreach($tree as $child => $parent) {
+            foreach ($tree as $child => $parent) {
                 # A direct child is found
-                if($parent == $root) {
+                if ($parent == $root) {
                     # Remove item from tree (we don't need to traverse this again)
                     unset($tree[$child]);
                     # Append the child into result array and parse its children
@@ -84,9 +89,10 @@ class UpdateAdminController extends Controller
         ]);
     }
 
-    public static function getNameFunction($id) {
+    public static function getNameFunction($id)
+    {
         $substanceElement = DB::table('substance')
-            ->where('id', $id )->first();
+            ->where('id', $id)->first();
 
 
         return $substanceElement->code . " " . $substanceElement->name;
