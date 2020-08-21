@@ -29,20 +29,20 @@ blade for adding a new building/project to a User
                             <select name="substance[]" id="categorySelect" multiple>
                                 @foreach($substanceHeadCategories as $substanceHeadCategory)
                                     <option value="{{ $substanceHeadCategory->id }}" class="categoryOptions">
-                                        {{ $substanceHeadCategory->code . " " .$substanceHeadCategory->name }}
+                                        {{ $substanceHeadCategory->name }}
                                     </option>
                                 @endforeach
                                 {{--                            @foreach($substanceSubCategories1 as $substanceSubCategory1)
 
                                                                 <option value="{{ $substanceSubCategory1->id }}" class="categoryOptions">
-                                                                    ---{{$substanceSubCategory1->code . " " .$substanceSubCategory1->name }}
+                                                                    ---{{  $substanceSubCategory1->name }}
                                                                 </option>
 
                                                             @endforeach
                                                             @foreach($substanceSubCategories2 as $substanceSubCategory2)
 
                                                                 <option value="{{ $substanceSubCategory2->id }}" class="categoryOptions">
-                                                                    ------{{ $substanceSubCategory2->code . " " .$substanceSubCategory2->name }}
+                                                                    ------{{ $substanceSubCategory2->name }}
                                                                 </option>
 
                                                             @endforeach--}}

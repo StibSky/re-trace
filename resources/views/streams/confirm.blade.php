@@ -38,7 +38,7 @@
                             @endforeach
                             </ul>
                         </td>
-                        
+
                     </tr>
                     <tr>
                         <td>Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>
