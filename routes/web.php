@@ -93,13 +93,14 @@ Route::post('/saveadminfunctions', 'MaterialFunctionController@update')->name('s
 
 Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
+Route::post('/editDashInfo/{id}', 'DashboardController@editDashInfo')->name('editDashInfo');
 
 
-Route::get( '/verify-test', function () {
+/*Route::get( '/verify-test', function () {
     // Get a user for demo purposes
     $user = App\User::find(1);
     return (new Illuminate\Auth\Notifications\VerifyEmail())->toMail($user);
-});
+});*/
 //array('before' => 'auth', 'uses' => 'HomeController@index')
 
 

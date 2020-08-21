@@ -1,7 +1,7 @@
 <template>
     <div class="card-body text-center">
         <h4>Which materials are in your stream?</h4>
-        <form action="{{ route('add-streams3', $id) }}" method="post" class="mt-5">
+        <form method="post" class="mt-5">
             @csrf
             <input placeholder="search here" type="text" name="filter" id="filterCategories"/>
             <multiselect

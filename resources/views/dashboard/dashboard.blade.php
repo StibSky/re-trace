@@ -17,8 +17,68 @@ uses dynamic linking
                     <div class="row">
                         <figure class="d-flex flex-column col-12 col-lg-6">
                             <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
-                            <button type="button" id="main-button" class="btn btn-primary mt-3 mx-auto">Edit
+                            <button type="button" id="main-button" class="btn btn-primary mt-3 mx-auto" name="editDash"
+                                    data-toggle="modal"
+                                    data-target="#editDashModal">Edit
                             </button>
+
+
+                            <div id="editDashModal" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title">Fill in the fields you want to edit, Leave the
+                                                fields empty if you don't want to change anything <br> To change street please fill in Name and Number</h4>
+
+                                        </div>
+                                        <form action="{{ route('editDashInfo', $project->id) }}" method="post"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="streetName">Street name</label>
+                                                    <input type="text" name="streetName" id="streetName">
+                                                    <br>
+                                                    <label for="streetNumber">Street number</label>
+                                                    <input type="text" name="streetNumber" id="streetNumber">
+                                                    <br>
+                                                    <label for="typeButtonSelect">Type</label>
+                                                    <select name="type" id="typeButtonSelect" multiple>
+                                                        <option value="detached house">Detached house</option>
+                                                        <option value="apartment">Apartment</option>
+                                                        <option value="terraced house">Terraced house</option>
+                                                        <option value="multiple houses">Multiple houses</option>
+                                                        <option value="commercial building">Commercial building</option>
+                                                    </select>
+                                                    <br>
+                                                    <label for="buttonSelect">Action</label>
+                                                    <select name="status"
+                                                            id="buttonSelect"
+                                                            multiple>
+                                                        <option value="renovation">Renovation</option>
+                                                        <option value="demolition">Demolition</option>
+                                                        <option value="new Build">New Build</option>
+                                                        <option value="nothing">Nothing</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <input type="submit" value="Submit" name="upload"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+
                             @if(Auth::user()->type == 'admin')
                                 <button data-toggle="modal"
                                         data-target="#deleteModal" class="btn btn-primary mx-auto mt-1"
@@ -66,7 +126,8 @@ uses dynamic linking
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch" id="waste-streams">
+        <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch"
+             id="waste-streams">
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
@@ -155,6 +216,8 @@ uses dynamic linking
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
 
     {{--            <h4 style="width:50%; margin-left: auto; margin-right: auto; margin-top: 3em">upload first files to progress
                     profile</h4>

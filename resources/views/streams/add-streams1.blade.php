@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
 @endsection
 @section('content')
     <!--
@@ -19,7 +19,7 @@ blade for adding a new building/project to a User
                 <h4>what is the name of your stream?</h4>
                 <div class="d-flex flex-column">
                     <div class="row mb-2">
-                        <img src="{{ session()->get('image')? asset($targetFile) : asset('images/logos/resquare.png')}}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
+                        <img src="{{ $targetFile && session()->get('image')? $image_data : asset('images/logos/resquare.png')}}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
                     </div>
                     <div class="d-flex flex-column">
                         <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
@@ -43,8 +43,8 @@ blade for adding a new building/project to a User
                     </div>
                     <div class="form-group">
                         <label for="streamAction" class="sr-only">Action:</label>
-                        <select name="streamAction" id="streamAction">
-                            <option value=null>
+                        <select name="streamAction">
+                            <option selected disabled>
                                 PLEASE SELECT AN ACTION
                             </option>
                             <option value="reuse">
