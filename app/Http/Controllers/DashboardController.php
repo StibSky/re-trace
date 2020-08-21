@@ -87,4 +87,26 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function editDashInfo(Request $request, $id)
+    {
+        $building = Building::where('id',$id)->first();
+
+
+        if ($request->input('streetName') != null && $request->input('streetNumber') !=null) {
+            $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
+        }
+
+        if ($request->input('type') != null) {
+            $building->setType($request->input('type'));
+        }
+
+        if ($request->input('status') != null) {
+            $building->setStatus($request->input('status'));
+        }
+
+        $building->save();
+
+        return back()->withErrors('success', 'successfully updated your info');
+    }
+
 }
