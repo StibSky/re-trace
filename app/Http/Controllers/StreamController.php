@@ -105,6 +105,9 @@ class StreamController extends Controller
         if ($request->input("streamAction") == null) {
             return redirect()->back()->withInput()->with('error', 'please select an action');
         }
+        if  ($request->session()->get('image') == null) {
+            return redirect()->back()->withInput()->with('error', 'please upload an image');
+        }
 
         $stream->setName($request->input("streamName"));
         $stream->setDescription($request->input("streamDescription"));
