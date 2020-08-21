@@ -42,6 +42,14 @@
     color: white;
 }*!*/
 
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    #streamPic {
+      height: 100%;
+    }
+}
+}
+
 #set-width {
   width: 50vw;
 }
