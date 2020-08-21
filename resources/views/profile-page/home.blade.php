@@ -43,20 +43,19 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title">Fill in the fields you want to edit, Leave the fields empty if you don't want to change anything</h4>
-
                                     </div>
                                     <form action="{{ route('editUserInfo') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
-                                            {{--                        <input type="text" name="name">--}}
+
                                             <label for="firstName">First name</label>
-                                            <input type="text" name="firstName">
+                                            <input type="text" name="firstName" id="firstName">
                                             <br>
                                             <label for="lastName">Last name</label>
-                                            <input type="text" name="lastName">
+                                            <input type="text" name="lastName" id="lastName">
                                             <br>
                                             <label for="Email">Email</label>
-                                            <input type="text" name="Email">
+                                            <input type="text" name="Email" id="Email">
                                             <br>
                                         </div>
                                         <div class="modal-footer">
