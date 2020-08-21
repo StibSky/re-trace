@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Valuta;
 use App\Unit;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StreamController extends Controller
@@ -21,7 +22,6 @@ class StreamController extends Controller
     public function streams1(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
 
         $image = $request->session()->get('image');
 
@@ -32,13 +32,26 @@ class StreamController extends Controller
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
 
-        $targetFile = ('storage/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
+
+        if (is_dir(Storage::path($targetFolder))) {
+            $targetFile = $targetFolder . '/' . $filename;
+
+            $fullPath = Storage::path($targetFile);
+
+            $base64 = base64_encode(Storage::get($targetFile));
+            $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+        }
+        else {
+            $targetFile = null;
+            $image_data = null;
+        }
 
         return view('streams.add-streams1', [
             'stream' => $stream,
-            'tag' => $tag,
             'project' => $project,
-            'targetFile' => $targetFile
+            'targetFile' => $targetFile,
+            'image_data' => $image_data
         ]);
     }
 
@@ -91,6 +104,9 @@ class StreamController extends Controller
         }
         if ($request->input("streamAction") == null) {
             return redirect()->back()->withInput()->with('error', 'please select an action');
+        }
+        if  ($request->session()->get('image') == null) {
+            return redirect()->back()->withInput()->with('error', 'please upload an image');
         }
 
         $stream->setName($request->input("streamName"));
@@ -256,15 +272,25 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
+        $materialTags = $request->session()->get('materialSession');
+        $functionTags = $request->session()->get('functionSession');
 
-        $material = Substance::with('tags')
-            ->where('id', $tag->getMaterialId())
-            ->first();
+        $materialArray = [];
+        $functionArray = [];
 
-        $streamFunction = MaterialFunction::with('tags')
-            ->where('id', $tag->getFunctionId())
-            ->first();
+        foreach ($materialTags as $materialTag) {
+            $material = Substance::with('tags')
+                ->where('id', $materialTag->getMaterialId())
+                ->first();
+            array_push($materialArray, $material);
+        }
+
+        foreach ($functionTags as $functionTag) {
+            $streamFunction = MaterialFunction::with('tags')
+                ->where('id', $functionTag->getFunctionId())
+                ->first();
+            array_push($functionArray, $streamFunction);
+        }
 
         $unit = Unit::with('stream')
             ->where('id', $stream->getUnitId())
@@ -276,10 +302,9 @@ class StreamController extends Controller
 
         return view('streams.confirm',
             ['stream' => $stream,
-                'tag' => $tag,
                 'id' => $id,
-                'material' => $material,
-                'streamFunction' => $streamFunction,
+                'materialArray' => $materialArray,
+                'functionArray' => $functionArray,
                 'unit' => $unit,
                 'valuta' => $valuta]);
     }
@@ -304,8 +329,6 @@ class StreamController extends Controller
             $functionTag->save();
         }
         $image->setStreamId($stream->id);
-
-
         $image->save();
 
         $request->session()->forget('stream');

@@ -1,0 +1,41 @@
+@import 'variables';
+
+#set-width {
+    width: 40vw;
+}
+
+#categorySelect, #categorySelect2 {
+    margin-top: 20px;
+    border: none;
+    background-color: $retrace-light-blue;
+    overflow: hidden;
+}
+
+#categorySelect::-moz-focus-inner, #categorySelect2::-moz-focus-inner {
+    border: 0;
+}
+#categorySelect:focus, #categorySelect2:focus {
+    outline: none;
+}
+
+#categorySelect option, #categorySelect2 option{
+    width: 10vw;
+    background-color: white;
+    font-size: 1em;
+    padding: 10px;
+    align-self: center;
+    text-align: center;
+    text-wrap: normal;
+    cursor: pointer;
+    border: none;
+    color: black;
+    margin: 10px 10px;
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#categorySelect option[selected] {
+    background-color: $retrace-pink;
+    color: white;
+}
