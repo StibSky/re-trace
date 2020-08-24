@@ -1,45 +1,88 @@
+/*#categorySelect, #categorySelect2 {
+    margin:4px;
+    background-color:#EFEFEF;
+    border-radius:4px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+
+#categorySelect!*, #categorySelect2*! label {
+    float:left;
+    width:4.0em;
+}
+
+#categorySelect!*, #categorySelect2*! label span {
+    position:absolute;
+    top:-20px;
+}
+
+!*#categorySelect::-moz-focus-inner, #categorySelect2::-moz-focus-inner {
+    border: 0;
+}
+
+#categorySelect:focus, #categorySelect2:focus {
+    outline: none;
+}
+
+#categorySelect option, #categorySelect2 option{
+    background-color: white;
+    font-size: 1em;
+    padding: 10px;
+    align-self: center;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    margin: 10px 10px;
+}
+
+#categorySelect option:hover {
+    background-color: $retrace-pink;
+    color: white;
+}*!*/
+
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    #streamPic {
+      height: 100%;
+    }
+}
+}
+
 #set-width {
-  width: 40vw;
+  width: 50vw;
 }
 
-#categorySelect,
-#categorySelect2 {
-  margin-top: 20px;
-  border: none;
-  background-color: #e2e6f0;
-  overflow: hidden;
-}
-
-#categorySelect::-moz-focus-inner,
-#categorySelect2::-moz-focus-inner {
+.vis-hidden {
   border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
-#categorySelect:focus,
-#categorySelect2:focus {
-  outline: none;
-}
-
-#categorySelect option,
-#categorySelect2 option {
-  width: 10vw;
-  background-color: white;
-  font-size: 1em;
+label {
+  margin: 10px;
   padding: 10px;
-  align-self: center;
-  text-align: center;
-  text-wrap: normal;
-  cursor: pointer;
+  border-radius: 50px;
   border: none;
-  color: black;
-  margin: 10px 10px;
-  display: inline-flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  background-color: white;
 }
 
-#categorySelect option[selected] {
+input:focus + label {
+  border-color: blue;
+}
+
+input:checked + label {
   background-color: #f3bfba;
   color: white;
+}
+
+input:focus:checked + label {
+  border-color: green;
 }
 

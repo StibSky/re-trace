@@ -53,12 +53,30 @@ class DashboardController extends Controller
 
         $streams = Stream::where('buildid', $id)->get();
 
+        $tags = [];
+
+        foreach ($streams as $stream) {
+            array_push($tags, Tag::where('stream_id', $stream->id)->get());
+        }
+
+        $materials = [];
+        $functions = [];
+
+        for ($i = 0; $i < count($tags); $i++) {
+            for ($j = 0; $j < count($tags[$i]); $j++) {
+                array_push($functions, $tags[$i][$j]['function_id']);
+                array_push($materials, $tags[$i][$j]['material_id']);
+            }
+        }
 
         return view('dashboard.dashboard', [
             'project' => $project,
             'buildingSubstances' => $buildingSubstances,
             'projecttypes' => $projecttypes,
-            'streams' => $streams
+            'streams' => $streams,
+            'tags' => $tags,
+            'materials' => $materials,
+            'functions' => $functions
         ]);
     }
 
