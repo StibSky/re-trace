@@ -23,6 +23,7 @@
 #wasteStreams {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
+  height: 300px;
 }
 
 #dashboard-footer1,
