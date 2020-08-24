@@ -162,10 +162,10 @@ class StreamController extends Controller
         $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
 
         $functionSubCategory1 = DB::table('materialFunction')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)AND is_hazardous != 1")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
 
         $functionSubCategory2 = DB::table('materialFunction')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
 
         return view('streams.add-streams3', [
             'substanceHeadCategories' => $substanceHeadCategory,
