@@ -339,6 +339,23 @@ class StreamController extends Controller
     }
 
     public function streamView($id) {
+        $stream = DB::table('streams')->where('id', $id)->first();
+        $name = $stream->name;
+        $description = $stream->description;
+        $category = $stream->category;
+        $action = $stream->action;
+        $unit = DB::table('unit')->where('id', $stream->unit_id)->first()->short_name;
+        $quantity = $stream->quantity;
+        $valuta = DB::table('valuta')->where('id', $stream->valuta_id)->first()->symbol;
+        $price = $stream->price;
 
+        $materials = DB::table('substance')
+            ->where('id', (DB::table('tags')
+                ->where('stream_id', $id)->get()->material_id))->get()->name;
+        
+
+
+
+            return view('streams.streamview');
     }
 }
