@@ -95,6 +95,7 @@ Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
 Route::post('/editDashInfo/{id}', 'DashboardController@editDashInfo')->name('editDashInfo');
 
+Route::get('/streamView/{id}', 'StreamController@streamView')->name('streamView');
 
 /*Route::get( '/verify-test', function () {
     // Get a user for demo purposes

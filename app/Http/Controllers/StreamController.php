@@ -138,7 +138,7 @@ class StreamController extends Controller
         }
 
         if ($request->input("category") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a destination');
+            return redirect()->back()->withInput()->with('error', 'please select an origin');
         }
 
         $stream->setCategory($request->input("category"));
@@ -152,13 +152,12 @@ class StreamController extends Controller
     {
         $tag = $request->session()->get('tag');
 
-        $substanceHeadCategory = Substance::whereNull('parent')->get();
-
+        $substanceHeadCategory = DB::table('substance')
+            ->whereRaw("parent IS NULL AND is_hazardous != 1")->get();
         $substanceSubCategory1 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
-
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)AND is_hazardous != 1")->get();
         $substanceSubCategory2 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
         $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
 
@@ -207,8 +206,6 @@ class StreamController extends Controller
         if ($request->input("materialFunction") == null) {
             return redirect()->back()->withInput()->with('error', 'please select a function');
         }
-
-        dd($_POST["materialFunction"]);
 
         $sessionFunctions = [];
         for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
@@ -339,5 +336,9 @@ class StreamController extends Controller
         $request->session()->forget('image');
 
         return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
+    }
+
+    public function streamView($id) {
+
     }
 }

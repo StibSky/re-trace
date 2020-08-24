@@ -19,7 +19,7 @@ blade for adding a new building/project to a User
                 <h4>what is the name of your stream?</h4>
                 <div class="d-flex flex-column">
                     <div class="row mb-2">
-                        <img src="{{ $targetFile && session()->get('image')? $image_data : asset('images/logos/resquare.png')}}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
+                        <img src="{{ $targetFile && session()->get('image')? $image_data : asset('images/logos/resquare.png')}}" id="streamPic" class="w-50 mx-auto" alt="Placeholder">
                     </div>
                     <div class="d-flex flex-column">
                         <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
@@ -42,18 +42,14 @@ blade for adding a new building/project to a User
                                placeholder="DESCRIPTION">{{ session()->get('stream.description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="streamAction" class="sr-only">Action:</label>
-                        <select name="streamAction">
-                            <option selected disabled>
-                                PLEASE SELECT AN ACTION
-                            </option>
-                            <option value="reuse">
-                                Reuse
-                            </option>
-                            <option value="recycle">
-                                Recycle
-                            </option>
-                        </select>
+                        PLEASE SELECT AN ACTION
+                        <div class="radio-toolbar">
+                            <input type="radio" id="radioApple" name="streamAction" value="reuse">
+                            <label for="radioApple">Reuse</label>
+
+                            <input type="radio" id="radioBanana" name="streamAction" value="recycle">
+                            <label for="radioBanana">Recycle</label>
+                        </div>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
