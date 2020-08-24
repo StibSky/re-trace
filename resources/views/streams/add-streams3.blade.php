@@ -104,7 +104,7 @@ blade for adding a new building/project to a User
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#filterCategories').change(function () {
+            $('#filterCategories').keyup(function () {
                 var filter = $(this).val();
                 $('.categoryOptions').each(function () {
                     if ($(this).text().toLowerCase().includes(filter.toLowerCase())) {
@@ -119,7 +119,7 @@ blade for adding a new building/project to a User
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#filterCategories2').change(function () {
+            $('#filterCategories2').keyup(function () {
                 var filter = $(this).val();
                 $('.categoryOptions2').each(function () {
                     if ($(this).text().toLowerCase().includes(filter.toLowerCase())) {

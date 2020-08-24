@@ -139,11 +139,15 @@ uses dynamic linking
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-                            <li><strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong></li>
+                            <li><strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+                            </li>
                             @for ($i = 0; $i < count($tags); $i++)
                                 @for ($j = 0; $j < count($tags[$i]); $j++)
                                     @if($stream->id == $tags[$i][$j]['stream_id'])
                                         @if($tags[$i][$j]['material_id'] != null)
+                                            @if($j < 1)
+                                                <i>materials and functions</i>
+                                            @endif
                                             <li>
                                                 {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
                                             </li>
