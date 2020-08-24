@@ -78,7 +78,7 @@ class DashboardController extends Controller
 
     public static function getFunctionName($id)
     {
-        $functionName = DB::table('materialfunction')
+        $functionName = DB::table('materialFunction')
             ->where('id', $id)->first();
 
         return $functionName->name;

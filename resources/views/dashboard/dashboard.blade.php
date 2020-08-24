@@ -35,7 +35,7 @@ uses dynamic linking
                                             <h4 class="modal-title">Fill in the fields you want to edit, Leave the
                                                 fields empty if you don't want to change anything <br> To change street
                                                 please fill in Name and Number</h4>
-                                            
+
 
                                         </div>
                                         <form action="{{ route('editDashInfo', $project->id) }}" method="post"
