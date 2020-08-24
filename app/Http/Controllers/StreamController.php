@@ -392,6 +392,6 @@ class StreamController extends Controller
                 'price' => $price,
                 'materials' => $materials,
                 'functions' => $functions
-            ]); 
+            ]);
     }
 }
