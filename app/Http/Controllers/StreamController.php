@@ -16,6 +16,7 @@ use App\Valuta;
 use App\Unit;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use function Faker\Provider\pt_BR\check_digit;
 
 class StreamController extends Controller
 {
@@ -138,7 +139,7 @@ class StreamController extends Controller
         }
 
         if ($request->input("category") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a destination');
+            return redirect()->back()->withInput()->with('error', 'please select an origin');
         }
 
         $stream->setCategory($request->input("category"));
@@ -339,6 +340,58 @@ class StreamController extends Controller
     }
 
     public function streamView($id) {
+        $stream = DB::table('streams')->where('id', $id)->first();
+        $name = $stream->name;
+        $description = $stream->description;
+        $category = $stream->category;
+        $action = $stream->action;
+        $unit = DB::table('unit')->where('id', $stream->unit_id)->first()->short_name;
+        $quantity = $stream->quantity;
+        $valuta = DB::table('valuta')->where('id', $stream->valuta_id)->first()->symbol;
+        $price = $stream->price;
 
+        $materialTags = DB::table('tags')->whereRaw('stream_id = ' .  $id . ' AND material_id IS NOT NULL')
+            ->get();
+
+        $materialIds = [];
+
+        foreach ($materialTags as $materialTag) {
+            array_push($materialIds, $materialTag->material_id);
+        }
+
+        $materials = [];
+        foreach ($materialIds as $materialId) {
+            array_push($materials, DB::table('substance')->where('id', $materialId)->first()->name);
+        }
+
+        $functionTags = DB::table('tags')->whereRaw('stream_id = ' .  $id . ' AND function_id IS NOT NULL')
+            ->get();
+
+        $functionIds = [];
+
+        foreach ($functionTags as $functionTag) {
+            array_push($functionIds, $functionTag->function_id);
+        }
+
+        $functions = [];
+        foreach ($functionIds as $functionId) {
+            array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first()->name);
+        }
+
+
+
+
+            return view('streams.streamview', [
+                'name' => $name,
+                'description' =>$description,
+                'category' => $category,
+                'action' => $action,
+                'unit' => $unit,
+                'quantity' => $quantity,
+                'valuta' => $valuta,
+                'price' => $price,
+                'materials' => $materials,
+                'functions' => $functions
+            ]);
     }
 }
