@@ -63,7 +63,7 @@
   width: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+       appearance: none;
 }
 
 /*.radio-toolbar label {
