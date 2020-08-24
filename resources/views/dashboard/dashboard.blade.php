@@ -30,9 +30,11 @@ uses dynamic linking
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 &times;
                                             </button>
+
                                             <h4 class="modal-title">Fill in the fields you want to edit, Leave the
                                                 fields empty if you don't want to change anything <br> To change street
                                                 please fill in Name and Number</h4>
+
 
                                         </div>
                                         <form action="{{ route('editDashInfo', $project->id) }}" method="post"
@@ -136,14 +138,29 @@ uses dynamic linking
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-                            <li>{{ $stream->name }}
-                            </li>
+                            <li><strong>{{ $stream->name }}</strong></li>
+                            @for ($i = 0; $i < count($tags); $i++)
+                                @for ($j = 0; $j < count($tags[$i]); $j++)
+                                    @if($stream->id == $tags[$i][$j]['stream_id'])
+                                        @if($tags[$i][$j]['material_id'] != null)
+                                            <li>
+                                                {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
+                                            </li>
+                                        @endif
+
+                                        @if($tags[$i][$j]['function_id'] != null)
+                                            <li>
+                                                {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
+                                            </li>
+                                        @endif
+
+                                    @endif
+                                @endfor
+                            @endfor
+
                         @endforeach
-                        @foreach($tags as $tag)
-                            @if($tag['stream_id'] == $stream->id)
-                                {{ $stream->name }}
-                            @endif
-                        @endforeach
+
+
                     </ul>
                 @endif
             </div>
