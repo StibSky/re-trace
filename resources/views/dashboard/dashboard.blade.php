@@ -138,7 +138,7 @@ uses dynamic linking
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-                            <li><strong>{{ $stream->name }}</strong></li>
+                            <li><strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong></li>
                             @for ($i = 0; $i < count($tags); $i++)
                                 @for ($j = 0; $j < count($tags[$i]); $j++)
                                     @if($stream->id == $tags[$i][$j]['stream_id'])
