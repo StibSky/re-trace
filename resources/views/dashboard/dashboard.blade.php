@@ -161,7 +161,7 @@ uses dynamic linking
                                     @endif
                                 @endfor
                             @endfor
-
+                            <li> <i>action: {{$stream->action}} </i></li>
                         @endforeach
 
 
