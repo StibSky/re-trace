@@ -16,6 +16,7 @@ use App\Valuta;
 use App\Unit;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use function Faker\Provider\pt_BR\check_digit;
 
 class StreamController extends Controller
 {
@@ -349,13 +350,48 @@ class StreamController extends Controller
         $valuta = DB::table('valuta')->where('id', $stream->valuta_id)->first()->symbol;
         $price = $stream->price;
 
-        $materials = DB::table('substance')
-            ->where('id', (DB::table('tags')
-                ->where('stream_id', $id)->get()->material_id))->get()->name;
-        
+        $materialTags = DB::table('tags')->whereRaw('stream_id = ' .  $id . ' AND material_id IS NOT NULL')
+            ->get();
+
+        $materialIds = [];
+
+        foreach ($materialTags as $materialTag) {
+            array_push($materialIds, $materialTag->material_id);
+        }
+
+        $materials = [];
+        foreach ($materialIds as $materialId) {
+            array_push($materials, DB::table('substance')->where('id', $materialId)->first()->name);
+        }
+
+        $functionTags = DB::table('tags')->whereRaw('stream_id = ' .  $id . ' AND function_id IS NOT NULL')
+            ->get();
+
+        $functionIds = [];
+
+        foreach ($functionTags as $functionTag) {
+            array_push($functionIds, $functionTag->function_id);
+        }
+
+        $functions = [];
+        foreach ($functionIds as $functionId) {
+            array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first()->name);
+        }
 
 
 
-            return view('streams.streamview');
+
+            return view('streams.streamview', [
+                'name' => $name,
+                'description' =>$description,
+                'category' => $category,
+                'action' => $action,
+                'unit' => $unit,
+                'quantity' => $quantity,
+                'valuta' => $valuta,
+                'price' => $price,
+                'materials' => $materials,
+                'functions' => $functions
+            ]); 
     }
 }
