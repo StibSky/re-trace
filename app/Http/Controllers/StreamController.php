@@ -188,33 +188,32 @@ class StreamController extends Controller
 //            $tag = $request->session()->get('tag');
 //        }
 
-        if ($request->input("substance") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a material');
+        if ($request->input("substance") == null && $request->input("materialFunction") == null) {
+            return redirect()->back()->withInput()->with('error', 'please select at least one material and/or function');
         }
 
-        $allSelectedMaterials = [];
         $sessionMaterials = [];
-        for ($i = 0; $i < count($_POST["substance"]); $i++) {
-            ${'materialTag' . $i} = new Tag();
-            ${'materialTag' . $i}->setMaterialId($_POST["substance"][$i]);
-            array_push($sessionMaterials, ${'materialTag' . $i});
+        if(isset($_POST["substance"])) {
+            for ($i = 0; $i < count($_POST["substance"]); $i++) {
+                ${'materialTag' . $i} = new Tag();
+                ${'materialTag' . $i}->setMaterialId($_POST["substance"][$i]);
+                array_push($sessionMaterials, ${'materialTag' . $i});
+            }
+            $request->session()->put('materialSession', $sessionMaterials);
         }
 
-
-        $request->session()->put('materialSession', $sessionMaterials);
-
-
-        if ($request->input("materialFunction") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a function');
-        }
 
         $sessionFunctions = [];
-        for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
-            ${'functionTag' . $i} = new Tag();
-            ${'functionTag' . $i}->setFunctionId($_POST["materialFunction"][$i]);
-            array_push($sessionFunctions, ${'functionTag' . $i});
+        if(isset($_POST["materialFunction"])) {
+            for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
+                ${'functionTag' . $i} = new Tag();
+                ${'functionTag' . $i}->setFunctionId($_POST["materialFunction"][$i]);
+                array_push($sessionFunctions, ${'functionTag' . $i});
+            }
+            $request->session()->put('functionSession', $sessionFunctions);
+
         }
-        $request->session()->put('functionSession', $sessionFunctions);
+
         return redirect('/add-streams4/' . $id);
     }
 
@@ -272,24 +271,35 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $materialTags = $request->session()->get('materialSession');
-        $functionTags = $request->session()->get('functionSession');
 
-        $materialArray = [];
-        $functionArray = [];
+        $functionArray = null;
 
-        foreach ($materialTags as $materialTag) {
-            $material = Substance::with('tags')
-                ->where('id', $materialTag->getMaterialId())
-                ->first();
-            array_push($materialArray, $material);
+        $materialArray = null;
+
+        if($request->session()->get('materialSession')) {
+            $materialArray = [];
+
+            $materialTags = $request->session()->get('materialSession');
+
+            foreach ($materialTags as $materialTag) {
+                $material = Substance::with('tags')
+                    ->where('id', $materialTag->getMaterialId())
+                    ->first();
+                array_push($materialArray, $material);
+            }
         }
 
-        foreach ($functionTags as $functionTag) {
-            $streamFunction = MaterialFunction::with('tags')
-                ->where('id', $functionTag->getFunctionId())
-                ->first();
-            array_push($functionArray, $streamFunction);
+        if($request->session()->get('functionSession')) {
+            $functionArray = [];
+
+            $functionTags = $request->session()->get('functionSession');
+
+            foreach ($functionTags as $functionTag) {
+                $streamFunction = MaterialFunction::with('tags')
+                    ->where('id', $functionTag->getFunctionId())
+                    ->first();
+                array_push($functionArray, $streamFunction);
+            }
         }
 
         $unit = Unit::with('stream')
@@ -314,20 +324,29 @@ class StreamController extends Controller
         $stream = $request->session()->get('stream');
 
 
-        $materialTags = $request->session()->get('materialSession');
-        $functionTags = $request->session()->get('functionSession');
         $image = $request->session()->get('image');
 
         $stream->save();
 
-        foreach ($materialTags as $materialTag) {
-            $materialTag->setStreamId($stream->id);
-            $materialTag->save();
+        if($request->session()->get('materialSession')) {
+
+            $materialTags = $request->session()->get('materialSession');
+
+            foreach ($materialTags as $materialTag) {
+                $materialTag->setStreamId($stream->id);
+                $materialTag->save();
+            }
         }
-        foreach ($functionTags as $functionTag) {
-            $functionTag->setStreamId($stream->id);
-            $functionTag->save();
+
+        if($request->session()->get('functionSession')) {
+            $functionTags = $request->session()->get('functionSession');
+
+            foreach ($functionTags as $functionTag) {
+                $functionTag->setStreamId($stream->id);
+                $functionTag->save();
+            }
         }
+
         $image->setStreamId($stream->id);
         $image->save();
 

@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                         <img src="{{ $targetFile && session()->get('image')? $image_data : asset('images/logos/resquare.png')}}" id="streamPic" class="w-50 mx-auto" alt="Placeholder">
                     </div>
                     <div class="d-flex flex-column">
-                        <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
+                        <button type="button" id="secondary-button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#myModal">
                             Upload image
                         </button>
