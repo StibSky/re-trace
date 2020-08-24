@@ -30,7 +30,7 @@ blade for adding a new building/project to a User
                         <input type="radio" id="radioOrange" name="category" value="Construction and demolition waste">
                         <label for="radioOrange">Construction and demolition waste</label>
                     </div>
-                    <button type="submit" id="main-button" class="btn btn-primary" name="newStream">Next</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">
