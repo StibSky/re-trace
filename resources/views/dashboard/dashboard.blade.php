@@ -134,7 +134,7 @@ uses dynamic linking
             <div class="card-header">
                 <h4>Waste Streams</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="wasteStreams">
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)

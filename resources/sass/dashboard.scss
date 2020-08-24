@@ -22,6 +22,9 @@
     height: 150px;
 }
 
+#wasteStreams {
+    overflow-y: auto;
+}
 #dashboard-footer1, #dashboard-footer2, #dashboard-footer3 {
     box-shadow: none;
     border: none;
