@@ -31,7 +31,8 @@ uses dynamic linking
                                                 &times;
                                             </button>
                                             <h4 class="modal-title">Fill in the fields you want to edit, Leave the
-                                                fields empty if you don't want to change anything <br> To change street please fill in Name and Number</h4>
+                                                fields empty if you don't want to change anything <br> To change street
+                                                please fill in Name and Number</h4>
 
                                         </div>
                                         <form action="{{ route('editDashInfo', $project->id) }}" method="post"
@@ -135,7 +136,13 @@ uses dynamic linking
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-                            <li>{{ $stream->name }}</li>
+                            <li>{{ $stream->name }}
+                            </li>
+                        @endforeach
+                        @foreach($tags as $tag)
+                            @if($tag['stream_id'] == $stream->id)
+                                {{ $stream->name }}
+                            @endif
                         @endforeach
                     </ul>
                 @endif

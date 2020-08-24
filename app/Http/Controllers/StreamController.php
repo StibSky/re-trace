@@ -208,8 +208,6 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', 'please select a function');
         }
 
-        dd($_POST["materialFunction"]);
-
         $sessionFunctions = [];
         for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
             ${'functionTag' . $i} = new Tag();

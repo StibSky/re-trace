@@ -48,7 +48,7 @@ blade for adding a new building/project to a User
                                                             @endforeach
                                                         </select>--}}
                             <div id="categorySelect">
-                                @foreach($substanceSubCategories1 as $substanceSubCategory1)
+                                @foreach($substanceSubCategories2 as $substanceSubCategory1)
                                         <input type="checkbox" value="{{ $substanceSubCategory1->id }}" class="vis-hidden" id="{{ $substanceSubCategory1->id }}"
                                                name="substance[]">
                                         <label for="{{ $substanceSubCategory1->id }}" class="categoryOptions">{{ $substanceSubCategory1->name }}</label>
