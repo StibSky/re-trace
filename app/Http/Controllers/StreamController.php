@@ -152,21 +152,20 @@ class StreamController extends Controller
     {
         $tag = $request->session()->get('tag');
 
-        $substanceHeadCategory = Substance::whereNull('parent')->get();
-
+        $substanceHeadCategory = DB::table('substance')
+            ->whereRaw("parent IS NULL AND is_hazardous != 1")->get();
         $substanceSubCategory1 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
-
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)AND is_hazardous != 1")->get();
         $substanceSubCategory2 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
         $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
 
         $functionSubCategory1 = DB::table('materialFunction')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)AND is_hazardous != 1")->get();
 
         $functionSubCategory2 = DB::table('materialFunction')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
         return view('streams.add-streams3', [
             'substanceHeadCategories' => $substanceHeadCategory,
@@ -337,5 +336,9 @@ class StreamController extends Controller
         $request->session()->forget('image');
 
         return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
+    }
+
+    public function streamView($id) {
+
     }
 }

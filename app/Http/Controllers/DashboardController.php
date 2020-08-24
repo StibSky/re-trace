@@ -53,13 +53,35 @@ class DashboardController extends Controller
 
         $streams = Stream::where('buildid', $id)->get();
 
+        $tags = [];
+
+        foreach ($streams as $stream) {
+            array_push($tags, Tag::where('stream_id', $stream->id)->get());
+        }
 
         return view('dashboard.dashboard', [
             'project' => $project,
             'buildingSubstances' => $buildingSubstances,
             'projecttypes' => $projecttypes,
-            'streams' => $streams
+            'streams' => $streams,
+            'tags' => $tags,
         ]);
+    }
+
+    public static function getMaterialName($id)
+    {
+        $materialName = DB::table('substance')
+            ->where('id', $id)->first();
+
+        return $materialName->name;
+    }
+
+    public static function getFunctionName($id)
+    {
+        $functionName = DB::table('materialfunction')
+            ->where('id', $id)->first();
+
+        return $functionName->name;
     }
 
     public function adminDashboard()
