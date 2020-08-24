@@ -138,7 +138,7 @@ class StreamController extends Controller
         }
 
         if ($request->input("category") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a destination');
+            return redirect()->back()->withInput()->with('error', 'please select an origin');
         }
 
         $stream->setCategory($request->input("category"));
