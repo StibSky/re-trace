@@ -1,3 +1,7 @@
+#streamPic {
+  max-width: 40vw;
+}
+
 @media (max-width: 1440px) {
 @media not all and (min-resolution: 0.001dpcm) {
     #streamPic {

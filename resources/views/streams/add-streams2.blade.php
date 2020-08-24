@@ -11,7 +11,7 @@ blade for adding a new building/project to a User
 -->
     <div class="container d-flex justify-content-center flex-column align-items-center">
         <h3>ADD NEW STREAM</h3>
-        <div class="card d-flex justify-content-center">
+        <div class="card d-flex justify-content-center" id="set-width">
             <div class="mb-4 text-center card-header">
                 <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
                 <h3><strong>re-trace.io</strong></h3>
@@ -30,7 +30,7 @@ blade for adding a new building/project to a User
                         <input type="radio" id="radioOrange" name="category" value="Construction and demolition waste">
                         <label for="radioOrange">Construction and demolition waste</label>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="newStream">Next</button>
                 </form>
             </div>
             <div class="card-footer text-center">

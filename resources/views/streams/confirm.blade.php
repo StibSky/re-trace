@@ -24,18 +24,22 @@
                     <tr>
                         <td>Materials:
                             <ul>
-                            @foreach($materialArray as $material)
-                                    <li>{{ $material->name }}</li>
-                            @endforeach
+                                @if($materialArray)
+                                    @foreach($materialArray as $material)
+                                        <li>{{ $material->name }}</li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </td>
                     </tr>
                     <tr>
                         <td>Function:
                             <ul>
-                            @foreach($functionArray as $streamFunction)
-                                    <li>{{ $streamFunction->name }}</li>
-                            @endforeach
+                                @if($functionArray)
+                                    @foreach($functionArray as $streamFunction)
+                                        <li>{{ $streamFunction->name }}</li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </td>
 
