@@ -42,18 +42,14 @@ blade for adding a new building/project to a User
                                placeholder="DESCRIPTION">{{ session()->get('stream.description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="streamAction" class="sr-only">Action:</label>
-                        <select name="streamAction">
-                            <option selected disabled>
-                                PLEASE SELECT AN ACTION
-                            </option>
-                            <option value="reuse">
-                                Reuse
-                            </option>
-                            <option value="recycle">
-                                Recycle
-                            </option>
-                        </select>
+                        PLEASE SELECT AN ACTION
+                        <div class="radio-toolbar">
+                            <input type="radio" id="radioApple" name="streamAction" value="reuse">
+                            <label for="radioApple">Reuse</label>
+
+                            <input type="radio" id="radioBanana" name="streamAction" value="recycle">
+                            <label for="radioBanana">Recycle</label>
+                        </div>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
                 </form>

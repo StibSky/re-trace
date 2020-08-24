@@ -86,9 +86,9 @@ blade for adding a new building/project to a User
                             </select>--}}
                             <div id="categorySelect2">
                                 @foreach($functionSubCategories2 as $functionSubCategory2)
-                                    <input type="checkbox" value="{{ $functionSubCategory1->id }}" class="vis-hidden" id="{{ $functionSubCategory1->id }}"
+                                    <input type="checkbox" value="{{ $functionSubCategory2->id }}" class="vis-hidden" id="{{ $functionSubCategory2->id }}"
                                            name="materialFunction[]">
-                                    <label for="{{ $functionSubCategory1->id }}" class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
+                                    <label for="{{ $functionSubCategory2->id }}" class="categoryOptions2">{{ $functionSubCategory2->name }}</label>
                                 @endforeach
                             </div>
                         </div>
