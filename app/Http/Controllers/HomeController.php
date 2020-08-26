@@ -96,9 +96,13 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
+        if ($substanceId = " ") {
+            return back()->with('error', 'please choose a material');
+        }
 
         $buildings = DB::table('building')
             ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
+
 
         $materialLocations = [];
         foreach ($buildings as $building) {
@@ -109,7 +113,6 @@ class HomeController extends Controller
                     ->get()
             );
         }
-
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
