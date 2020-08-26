@@ -113,35 +113,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </div>
                                 </li>
                                 <hr class="py-0 my-2">
-                                <div id="myModal" class="modal fade" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content text-left">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">X
-                                                </button>
-                                                <h4 class="modal-title">Are you sure you want to delete?</h4>
-                                            </div>
-                                            <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                                @csrf
-                                                <div class="modal-body">
-                                                    <button value="{{ $building->id }}" class="btn btn-primary"
-                                                            name="deleteBuilding" id="main-button">Yes, delete
-                                                        project
-                                                    </button>
-                                                    <button type="button" class="btn btn-default"
-                                                            id="secondary-button-small"
-                                                            data-dismiss="modal">No
-                                                    </button>
-                                                </div>
-                                                <div class="modal-footer">
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
                             @endforeach
                         </ul>
                     </div>
@@ -250,47 +221,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </div>
                             </li>
                             <hr class="py-0 my-2">
-                            <div id="myModal" class="modal fade" aria-hidden="true">
-                                <div id="editModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-hidden="true">
-                                                    &times;
-                                                </button>
-                                                <h4 class="modal-title">Fill in the fields you want to edit, Leave the
-                                                    fields
-                                                    empty
-                                                    if you don't want to change anything</h4>
-                                            </div>
-                                            <form action="{{ route('editUserInfo') }}" method="post"
-                                                  enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="modal-body">
-
-                                                    <label for="firstName">First name</label>
-                                                    <input type="text" name="firstName" id="firstName">
-                                                    <br>
-                                                    <label for="lastName">Last name</label>
-                                                    <input type="text" name="lastName" id="lastName">
-                                                    <br>
-                                                    <label for="Email">Email</label>
-                                                    <input type="text" name="Email" id="Email">
-                                                    <br>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <input type="submit" value="Submit" name="upload"/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
                         @endforeach
                     </ul>
 
@@ -304,7 +234,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
             <div class="row d-flex">
                 <div class="col-12 d-flex justify-content-center" id="newSearch">
-                    <form class="form text-center d-flex flex-column justify-content-center px-auto" action="{{ route('mysearch') }}" method="post" name="searchForm">
+                    <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                          action="{{ route('mysearch') }}" method="post" name="searchForm">
                         @csrf
                         <label>Pick material:
                             <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
@@ -345,6 +276,75 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
                 <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
             </div>
+        </div>
+        <div id="editModal" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Fill in the fields you want to edit, Leave the
+                            fields
+                            empty
+                            if you don't want to change anything</h4>
+                    </div>
+                    <form action="{{ route('editUserInfo') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+
+                            <label for="firstName">First name</label>
+                            <input type="text" name="firstName" id="firstName">
+                            <br>
+                            <label for="lastName">Last name</label>
+                            <input type="text" name="lastName" id="lastName">
+                            <br>
+                            <label for="Email">Email</label>
+                            <input type="text" name="Email" id="Email">
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <input type="submit" value="Submit" name="upload"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div id="myModal" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-left">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X
+                        </button>
+                        <h4 class="modal-title">Are you sure you want to delete?</h4>
+                    </div>
+                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <button value="{{ $building->id }}" class="btn btn-primary"
+                                    name="deleteBuilding" id="main-button">Yes, delete
+                                project
+                            </button>
+                            <button type="button" class="btn btn-default"
+                                    id="secondary-button-small"
+                                    data-dismiss="modal">No
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
     </div>
 
