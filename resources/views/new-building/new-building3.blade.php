@@ -12,7 +12,8 @@
             </div>
             <div class="card-body text-center">
                 <h4>What type of building is your project ?</h4>
-                <form action="{{ route('newBuilding3') }}" method="post" class="mt-5">
+                <p>You can only select <strong>one</strong> type</p>
+                <form action="{{ route('newBuilding3') }}" method="post" class="mt-4">
                     @csrf
                     <div class="form-group">
                         <label for="type" class="sr-only">Type</label>
