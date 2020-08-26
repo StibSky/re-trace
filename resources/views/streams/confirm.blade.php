@@ -54,7 +54,7 @@
                         <td>Action: {{ $stream->action }}</td>
                     </tr>
                 </table>
-                <form action="{{ route('store', $id) }}" method="post" class="mt-5">
+                <form action="{{ route('storeStream', $id) }}" method="post" class="mt-5">
                     @csrf
                     <button type="submit" id="main-button" class="btn btn-primary" name="confirm">Create</button>
                 </form>
