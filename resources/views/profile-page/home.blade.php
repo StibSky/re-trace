@@ -93,7 +93,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         @csrf
                         <label>Pick material:
                             <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
-                                <option>Please select</option>
+                                <option selected disabled>Please select</option>
                                 @foreach($headCategories as $headCategory)
                                     <option value="{{ $headCategory->id }}" class="categoryOptions">
                                         {{ $headCategory->name }}
