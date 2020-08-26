@@ -17,7 +17,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="status" class="sr-only">Status</label>
-                        <select name="status" id="buttonSelect">
+                        <select name="status" id="buttonSelect" multiple>
                             <option value="renovation">Renovation</option>
                             <option value="demolition">Demolition</option>
                             <option value="new Build">New Build</option>
