@@ -95,10 +95,10 @@ class HomeController extends Controller
         $inputsearch = $request->input('mysearch');
 
         $substanceId = $request->input('substance');
-        
+
 
         if ($substanceId == " ") {
-            return back()->with('error', 'No locations with this material found or no material selected');
+            return back()->with('error', 'please select a material');
         }
 
         $buildings = DB::table('building')
