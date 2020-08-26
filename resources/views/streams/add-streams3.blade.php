@@ -48,10 +48,10 @@ blade for adding a new building/project to a User
                                                             @endforeach
                                                         </select>--}}
                             <div id="categorySelect">
-                                @foreach($substanceSubCategories2 as $substanceSubCategory2)
-                                        <input type="checkbox" value="{{ $substanceSubCategory2->id }}" class="vis-hidden" id="{{ $substanceSubCategory2->id }}"
+                                @foreach($substanceSubCategories1 as $substanceSubCategory1)
+                                        <input type="checkbox" value="{{ $substanceSubCategory1->id }}" class="vis-hidden" id="{{ $substanceSubCategory1->id }}"
                                                name="substance[]">
-                                        <label for="{{ $substanceSubCategory2->id }}" class="categoryOptions">{{ $substanceSubCategory2->name }}</label>
+                                        <label for="{{ $substanceSubCategory1->id }}" class="categoryOptions">{{ $substanceSubCategory1->name }}</label>
                                 @endforeach
                             </div>
                         </div>
@@ -85,10 +85,10 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>--}}
                             <div id="categorySelect2">
-                                @foreach($functionSubCategories2 as $functionSubCategory2)
-                                    <input type="checkbox" value="{{ $functionSubCategory2->id }}" class="vis-hidden" id="{{ $functionSubCategory2->id }}"
+                                @foreach($functionSubCategories1 as $functionSubCategory1)
+                                    <input type="checkbox" value="{{ $functionSubCategory1->id }}" class="vis-hidden" id="{{ $functionSubCategory1->id }}"
                                            name="materialFunction[]">
-                                    <label for="{{ $functionSubCategory2->id }}" class="categoryOptions2">{{ $functionSubCategory2->name }}</label>
+                                    <label for="{{ $functionSubCategory1->id }}" class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
                                 @endforeach
                             </div>
                         </div>
