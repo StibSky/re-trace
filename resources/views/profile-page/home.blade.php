@@ -165,7 +165,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </button>
                         <h4 class="modal-title">Are you sure you want to delete?</h4>
                     </div>
-                    <form action="{{ route('deleteBuilding', $building->id) }}" method="post">
+                    @if(count($buildings) > 0)
+                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <button value="{{ $building->id }}" class="btn btn-primary"
@@ -181,6 +182,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
                         </div>
                     </form>
+                        @endif
                 </div>
                 <!-- /.modal-content -->
             </div>
