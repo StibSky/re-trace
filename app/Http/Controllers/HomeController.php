@@ -96,8 +96,9 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
-        if ($substanceId = " ") {
-            return back()->with('error', 'please choose a material');
+
+        if ($substanceId == " ") {
+            return back()->with('error', 'please select a material');
         }
 
         $buildings = DB::table('building')

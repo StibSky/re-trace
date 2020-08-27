@@ -94,24 +94,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         <label>Pick material:
                             <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
                                 <option selected disabled>Please select</option>
-                                @foreach($headCategories as $headCategory)
-                                    <option value="{{ $headCategory->id }}" class="categoryOptions">
-                                        {{ $headCategory->name }}
-                                    </option>
-                                @endforeach
                                 @foreach($subCategories1 as $subCategory1)
-
                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
                                         ---{{$subCategory1->name }}
                                     </option>
-
-                                @endforeach
-                                @foreach($subCategories2 as $subCategory2)
-
-                                    <option value="{{ $subCategory2->id }}" class="categoryOptions">
-                                        ------{{ $subCategory2->name }}
-                                    </option>
-
                                 @endforeach
                             </select>
                         </label>
