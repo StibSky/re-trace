@@ -179,6 +179,7 @@ class NewBuildingController extends Controller
         } else {
             $building = $request->session()->get('building');
         }
+
         $building->setType($inputType);
         $request->session()->put('building', $building);
 

@@ -62,7 +62,6 @@ class HomeController extends Controller
 
         $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '10')->get();
 
-
         $unit = Unit::all();
 
         return view('profile-page.home', [
@@ -97,36 +96,24 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
-        if (Materiallist::where('substanceId', $substanceId)->first() == null) {
-            return back()->with('error', 'material not found');
-        }
-        //shows array of materiallist
-        /** @var Materiallist[] $buildMaterials */
-        $buildMaterials = Materiallist::where('substanceId', $substanceId)->get();
-        $buildIds = [];
 
-        // consider changing array_push to $list [] = 'new item';
-        foreach ($buildMaterials as $buildMaterial) {
-            array_push($buildIds, $buildMaterial->buildid);
+        if ($substanceId == " ") {
+            return back()->with('error', 'please select a material');
         }
-        $buildMaterialBuildings = [];
-        //convert them all to foreach
-        //watch out with count
-        for ($i = 0; $i < count($buildIds); $i++) {
-            array_push($buildMaterialBuildings, Building::where('id', $buildIds[$i])->first());
-        }
+
+        $buildings = DB::table('building')
+            ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
+
+
         $materialLocations = [];
-
-        for ($i = 0; $i < count($buildMaterialBuildings); $i++) {
+        foreach ($buildings as $building) {
             array_push($materialLocations,
                 \GoogleMaps::load('geocoding')
-                    ->setParam(['address' => $buildMaterialBuildings[$i]->address1 . ' ' . $buildMaterialBuildings[$i]->city . ' ' . $buildMaterialBuildings[$i]->postcode,
+                    ->setParam(['address' => $building->address1 . ' ' . $building->city . ' ' . $building->postcode,
                     ])
                     ->get()
             );
         }
-
-
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
@@ -135,16 +122,16 @@ class HomeController extends Controller
 
     public function editUserInfo(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($request->input('firstName') != null ) {
+        $user = User::where('id', Auth::user()->id)->first();
+        if ($request->input('firstName') != null) {
             $user->setFirstName($request->input('firstName'));
         }
 
-        if ($request->input('Email') !=null){
-        $user->setEmail($request->input('Email'));
+        if ($request->input('Email') != null) {
+            $user->setEmail($request->input('Email'));
         }
 
-        if ($request->input('lastName') !=null){
+        if ($request->input('lastName') != null) {
             $user->setLastName($request->input('lastName'));
         }
         $user->save();

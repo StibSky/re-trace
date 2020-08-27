@@ -265,7 +265,7 @@ class StreamController extends Controller
 
         $request->session()->put('stream', $stream);
 
-        return redirect('/confirm/' . $id);
+        return redirect('/confirmStream/' . $id);
     }
 
     public function confirm(Request $request, $id)

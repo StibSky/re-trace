@@ -13,11 +13,12 @@
             </div>
             <div class="card-body text-center">
                 <h4>What are you going to do?</h4>
-                <form action="{{ route('newBuilding4') }}" method="post" class="mt-5">
+                <p>You can only select <strong>one</strong> type</p>
+                <form action="{{ route('newBuilding4') }}" method="post" class="mt-4">
                     @csrf
                     <div class="form-group">
                         <label for="status" class="sr-only">Status</label>
-                        <select name="status" id="buttonSelect">
+                        <select name="status" id="buttonSelect" multiple>
                             <option value="renovation">Renovation</option>
                             <option value="demolition">Demolition</option>
                             <option value="new Build">New Build</option>
