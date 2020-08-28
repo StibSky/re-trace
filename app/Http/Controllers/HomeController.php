@@ -55,6 +55,13 @@ class HomeController extends Controller
                     ->get()
             );
         }
+        $decodedarray = [];
+        foreach ($locations as $location) {
+            $location = json_decode($location, true);
+           array_push($decodedarray, $location);
+        }
+        //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
+
         //move to class
         $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
 
@@ -73,6 +80,7 @@ class HomeController extends Controller
             'subCategories1' => $subCategory1,
             'subCategories2' => $subCategory2,
             'units' => $unit,
+            'decodedarray' => $decodedarray,
         ]);
     }
 
