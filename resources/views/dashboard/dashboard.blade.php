@@ -19,7 +19,7 @@ uses dynamic linking
                             <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
                             <button type="button" id="main-button" class="btn btn-primary mt-3 mx-auto" name="editDash"
                                     data-toggle="modal"
-                                    data-target="#editDashModal">Edit
+                                    data-target="#editDashModal">{{ __("Edit")}}
                             </button>
 
 
@@ -31,9 +31,10 @@ uses dynamic linking
                                                 &times;
                                             </button>
 
-                                            <h4 class="modal-title">Fill in the fields you want to edit, Leave the
-                                                fields empty if you don't want to change anything <br> To change street
-                                                please fill in Name and Number</h4>
+                                            <h4 class="modal-title">{{ __("Fill in the fields you want to edit")}},
+                                                {{ __("Leave the fields empty if you don't want to change anything")}}
+                                                <br>
+                                                {{ __("To change street please fill in Name and Number")}}</h4>
 
 
                                         </div>
@@ -42,36 +43,40 @@ uses dynamic linking
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label for="streetName">Street name</label>
+                                                    <label for="streetName">{{ __("Street name")}}</label>
                                                     <input type="text" name="streetName" id="streetName">
                                                     <br>
-                                                    <label for="streetNumber">Street number</label>
+                                                    <label for="streetNumber">{{ __("Street number")}}"</label>
                                                     <input type="text" name="streetNumber" id="streetNumber">
                                                     <br>
-                                                    <label for="typeButtonSelect">Type</label>
+                                                    <label for="typeButtonSelect">{{ __("Type")}}</label>
                                                     <select name="type" id="typeButtonSelect" multiple>
-                                                        <option value="detached house">Detached house</option>
-                                                        <option value="apartment">Apartment</option>
-                                                        <option value="terraced house">Terraced house</option>
-                                                        <option value="multiple houses">Multiple houses</option>
-                                                        <option value="commercial building">Commercial building</option>
+                                                        <option
+                                                            value="detached house">{{ __("Detached house")}}</option>
+                                                        <option value="apartment">{{ __("Apartment")}}</option>
+                                                        <option
+                                                            value="terraced house">{{ __("Terraced house")}}</option>
+                                                        <option
+                                                            value="multiple houses">{{ __("Multiple houses")}}</option>
+                                                        <option
+                                                            value="commercial building">{{ __("Commercial building")}}</option>
                                                     </select>
                                                     <br>
-                                                    <label for="buttonSelect">Action</label>
+                                                    <label for="buttonSelect">{{ __("Action")}}</label>
                                                     <select name="status"
                                                             id="buttonSelect"
                                                             multiple>
-                                                        <option value="renovation">Renovation</option>
-                                                        <option value="demolition">Demolition</option>
-                                                        <option value="new Build">New Build</option>
-                                                        <option value="nothing">Nothing</option>
+                                                        <option value="renovation">{{ __("Renovation")}}</option>
+                                                        <option value="demolition">{{ __("Demolition")}}</option>
+                                                        <option value="new Build">{{ __("New Build")}}</option>
+                                                        <option value="nothing">{{ __("Nothing")}}</option>
                                                     </select>
 
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                    Close
+                                                    {{ __("Close")}}
                                                 </button>
                                                 <input type="submit" value="Submit" name="upload"/>
                                             </div>
@@ -92,13 +97,13 @@ uses dynamic linking
                         </figure>
                         <div class="col-12 col-lg-6">
                             <ul>
-                                <li>Location: {{ $project["address1"] }}
+                                <li>{{ __("Location")}}: {{ $project["address1"] }}
                                     <ul>
                                         <li>{{ $project["address2"] }}</li>
                                     </ul>
                                 </li>
-                                <li>Type: {{ $project["type"] }}</li>
-                                <li>Action: {{ $project["status"] }}</li>
+                                <li>{{ __("Type")}}: {{ $project["type"] }}</li>
+                                <li>{{ __("Action")}}: {{ $project["status"] }}</li>
                             </ul>
                         </div>
                     </div>
@@ -106,7 +111,7 @@ uses dynamic linking
             </div>
             <div class="row card mt-lg-2 mt-3" id="projectInfo">
                 <div class="card-header">
-                    <h4>Information</h4>
+                    <h4>{{ __("Information")}}</h4>
                 </div>
                 <div class="card-body" id="infoOverview">{{--
                 @if(count($projecttypes) == 0)
@@ -124,7 +129,7 @@ uses dynamic linking
                 <div class="card-footer" id="dashboard-footer2">
                     <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
                             data-target="#myModal">
-                        Upload information
+                        {{ __("Upload information")}}
                     </button>
                 </div>
             </div>
@@ -132,7 +137,7 @@ uses dynamic linking
         <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch"
              id="waste-streams">
             <div class="card-header">
-                <h4>Waste Streams</h4>
+                <h4>{{ __("Waste Streams")}}</h4>
             </div>
             <div class="card-body" id="wasteStreams">
                 @if(count($streams) > 0)
@@ -161,7 +166,7 @@ uses dynamic linking
                                     @endif
                                 @endfor
                             @endfor
-                            <li> <i>action: {{$stream->action}} </i></li>
+                            <li><i>action: {{$stream->action}} </i></li>
                         @endforeach
 
 

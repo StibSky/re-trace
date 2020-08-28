@@ -81,5 +81,22 @@
     "Fill in the fields you want to edit": "Vul de velden in die u wilt wijzigen",
     "Leave the fields empty if you don't want to change anything": "Laat de velden leeg die u niet wilt wijzigen",
     "Close" : "Sluiten",
-    "Are you sure you want to delete?": "Ben je zeker dat je wil verwijderen?"
+    "Are you sure you want to delete?": "Ben je zeker dat je wil verwijderen?",
+    "To change street please fill in Name and Number": "Om je straat te veranderen vul Naam en Nummer in",
+    "Street name": "Straatnaam",
+    "Street number": "Straatnummer",
+    "Detached house": "Vrijstaand huis",
+    "Apartment": "Appartement",
+    "Terraced house": "Rijtjeshuis",
+    "Multiple houses": "Meerdere huizen",
+    "Commercial building": "Commercieel gebouw",
+    "Action": "Actie",
+    "Renovation": "Renovatie",
+    "Demolition": "Afbraak",
+    "New Build": "Nieuwbouw",
+    "Nothing": "Niks",
+    "Location": "Locatie",
+    "Information": "Informatie",
+    "Upload information": "Informatie Uploaden",
+    "Waste Streams" : "Afvalstromen"
 }
