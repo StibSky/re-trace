@@ -18,7 +18,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 -->
     @if(session('verified'))
         <div class="alert alert-success">
-            You've successfully verified your email!
+            {{ __("You've successfully verified your email!")}}
         </div>
     @endif
 
