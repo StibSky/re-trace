@@ -55,12 +55,21 @@ class HomeController extends Controller
                     ->get()
             );
         }
+        $decodedarray = [];
+        foreach ($locations as $location) {
+            $location = json_decode($location, true);
+           array_push($decodedarray, $location);
+        }
+        //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
+
         //move to class
-        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
+        $headCategory = Substance::whereNull('parent')->get();
 
-        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
+        $subCategory1 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL) AND is_hazardous IS FALSE")->get();
 
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '10')->get();
+        $subCategory2 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
 
         $unit = Unit::all();
 
@@ -73,6 +82,7 @@ class HomeController extends Controller
             'subCategories1' => $subCategory1,
             'subCategories2' => $subCategory2,
             'units' => $unit,
+            'decodedarray' => $decodedarray,
         ]);
     }
 

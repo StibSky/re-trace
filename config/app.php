@@ -231,5 +231,10 @@ return [
         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
 
     ],
+    'languages' => [
+        'en' => 'English',
+        'nl' => 'Dutch',
+        'fr' => 'French',
+    ],
 
 ];
