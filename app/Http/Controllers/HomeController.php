@@ -66,7 +66,7 @@ class HomeController extends Controller
         $headCategory = Substance::whereNull('parent')->get();
 
         $subCategory1 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL AND is_hazardous IS FALSE)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL AND is_hazardous !=1)")->get();
 
         $subCategory2 = DB::table('substance')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
