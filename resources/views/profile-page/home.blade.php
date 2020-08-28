@@ -165,6 +165,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </button>
                         <h4 class="modal-title">Are you sure you want to delete?</h4>
                     </div>
+                    @if(count($buildings) > 0)
                     <form action="{{ route('deleteBuilding', $building) }}" method="post">
                         @csrf
                         <div class="modal-body">
@@ -181,6 +182,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
                         </div>
                     </form>
+                        @endif
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -228,34 +230,33 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('substanceId') !=null )
-                @for($i=0; $i < count( session('materialLocations') ); $i++)
+            @if(session('substanceId') !=null )
+            @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            console.log('test');
-                @endfor
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
-            var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
-            locationArray.push(location);
-            console.log(locationArray);
-                @endfor
-                @endif
-
-
-
-
-            for (let i = 0; i < locationArray.length; i++) {
                 new google.maps.Marker({
-                    position: locationArray[i],
+                    position: locationArray['{{$i}}'],
                     label: labels[labelIndex++ % labels.length],
-                    map: map
+                    map: map,
+                    title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
                 });
-            }
+            @endfor
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
+            var location = {
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
+            locationArray.push(location);
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+            @endfor
+            @endif
         }
     </script>
     {{--  <div class="container mt-3">
