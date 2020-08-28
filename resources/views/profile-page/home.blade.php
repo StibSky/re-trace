@@ -18,14 +18,14 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 -->
     @if(session('verified'))
         <div class="alert alert-success">
-            You've successfully verified your email!
+            {{ __("You've successfully verified your email!")}}
         </div>
     @endif
 
     <div class="d-flex flex-md-row flex-column justify-content-between">
         <div class="col-md-6 col-12 px-2" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="card-header">Profile</div>
+                <div class="card-header">{{ __("Profile")}}</div>
                 <div class="card-body">
                     <div class="row px-3">
                         <div class="col-lg-5 col-12 d-flex flex-column">
@@ -36,16 +36,17 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             <div class="row">
                                 <a class="btn btn-primary mx-auto" name="editProfile" id="main-button"
                                    data-toggle="modal"
-                                   data-target="#editModal">Edit
+                                   data-target="#editModal">{{ __("Edit")}}
                                 </a>
                             </div>
                         </div>
                         <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
-                            <h5>Personal details</h5>
+                            <h5>{{ __("Personal details")}}</h5>
                             <ul>
-                                <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
-                                <li>Email address: {{ Auth::user()->email }}</li>
-                                <li>Profile Type: {{ Auth::user()->type }}</li>
+                                <li>{{ __("Full name")}}
+                                    : {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                                <li>{{ __("Email address")}}: {{ Auth::user()->email }}</li>
+                                <li>{{ __("Profile Type")}}: {{ Auth::user()->type }}</li>
                             </ul>
                         </div>
                     </div>
@@ -53,10 +54,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
             <div class="row card mt-lg-5 mt-1">
-                <div class="card-header">My projects</div>
+                <div class="card-header">{{ __("My projects")}}</div>
                 <div class="card-body" id="myProjects">
                     @if(count($buildings) == 0)
-                        <h5> - Please add your first project to progress your profile</h5>
+                        <h5> - {{ __("Please add your first project to progress your profile")}}</h5>
                     @endif
                     <ul>
                         @foreach($buildings as $building)
@@ -69,7 +70,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary"
                                                 name="deleteBuilding"
-                                                id="main-button-small">Delete
+                                                id="main-button-small">{{ __("Delete")}}
                                         </button>
                                     @endif
                                 </div>
@@ -80,7 +81,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">Add New Project</a>
+                    <a class="btn btn-primary" id="main-button"
+                       href="{{ route('building') }}">{{ __("+ New Project")}}</a>
                 </div>
             </div>
 
@@ -91,19 +93,19 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <form class="form text-center d-flex flex-column justify-content-center px-auto"
                           action="{{ route('mysearch') }}" method="post" name="searchForm">
                         @csrf
-                        <label>Pick material:
+                        <label>{{ __("Pick material")}}:
                             <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
-                                <option selected disabled>Please select</option>
+                                <option selected disabled>{{ __("Please Select")}}</option>
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                        ---{{$subCategory1->name }}
+                                        {{$subCategory1->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </label>
                         <br>
                         <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
-                            <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                            <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
                                    style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
                                    name="mysearch">
                             <div class="input-group-addon py-1"
@@ -125,29 +127,27 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 aria-hidden="true">
                             &times;
                         </button>
-                        <h4 class="modal-title">Fill in the fields you want to edit, Leave the
-                            fields
-                            empty
-                            if you don't want to change anything</h4>
+                        <h4 class="modal-title">{{ __("Fill in the fields you want to edit")}},
+                            {{ __("Leave the fields empty if you don't want to change anything")}}</h4>
                     </div>
                     <form action="{{ route('editUserInfo') }}" method="post"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
 
-                            <label for="firstName">First name</label>
+                            <label for="firstName">{{ __("First name")}}</label>
                             <input type="text" name="firstName" id="firstName">
                             <br>
-                            <label for="lastName">Last name</label>
+                            <label for="lastName">{{ __("Last name")}}</label>
                             <input type="text" name="lastName" id="lastName">
                             <br>
-                            <label for="Email">Email</label>
+                            <label for="Email">{{ __("Email")}}</label>
                             <input type="text" name="Email" id="Email">
                             <br>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">
-                                Close
+                                {{ __("Close")}}
                             </button>
                             <input type="submit" value="Submit" name="upload"/>
                         </div>
@@ -163,26 +163,26 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">X
                         </button>
-                        <h4 class="modal-title">Are you sure you want to delete?</h4>
+                        <h4 class="modal-title">{{ __("Are you sure you want to delete?")}}</h4>
                     </div>
                     @if(count($buildings) > 0)
-                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                        @csrf
-                        <div class="modal-body">
-                            <button value="{{ $building->id }}" class="btn btn-primary"
-                                    name="deleteBuilding" id="main-button">Yes, delete
-                                project
-                            </button>
-                            <button type="button" class="btn btn-default"
-                                    id="secondary-button-small"
-                                    data-dismiss="modal">No
-                            </button>
-                        </div>
-                        <div class="modal-footer">
+                        <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <button value="{{ $building->id }}" class="btn btn-primary"
+                                        name="deleteBuilding" id="main-button">Yes, delete
+                                    project
+                                </button>
+                                <button type="button" class="btn btn-default"
+                                        id="secondary-button-small"
+                                        data-dismiss="modal">No
+                                </button>
+                            </div>
+                            <div class="modal-footer">
 
-                        </div>
-                    </form>
-                        @endif
+                            </div>
+                        </form>
+                    @endif
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -230,38 +230,33 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('substanceId') !=null)
-                @for($i=0; $i < count( session('materialLocations') ); $i++)
+            @if(session('substanceId') !=null )
+            @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-            @if(HomeController::getLat(session('materialLocations')[$i]) != null && HomeController::getLng(session('materialLocations')[$i]) != null)
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            @endif
-            console.log('test');
-                @endfor
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+            @endfor
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
-            @if(HomeController::getLat($locations[$i]) != null && HomeController::getLng($locations[$i]) != null)
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+            @endfor
             @endif
-            console.log(locationArray);
-                @endfor
-                @endif
-
-
-
-
-            for (let i = 0; i < locationArray.length; i++) {
-                new google.maps.Marker({
-                    position: locationArray[i],
-                    label: labels[labelIndex++ % labels.length],
-                    map: map
-                });
-            }
         }
     </script>
     {{--  <div class="container mt-3">
