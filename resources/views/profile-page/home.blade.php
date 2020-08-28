@@ -230,12 +230,14 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('substanceId') !=null )
+                @if(session('substanceId') !=null)
                 @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                     lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+            @if(HomeController::getLat(session('materialLocations')[$i]) != null && HomeController::getLng(session('materialLocations')[$i]) != null)
             locationArray.push(location);
+            @endif
             console.log('test');
                 @endfor
                 @else
@@ -243,7 +245,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             var location = {
                     lat: {!! HomeController::getLat($locations[$i]) !!},
                     lng: {!! HomeController::getLng($locations[$i]) !!}};
+            @if(HomeController::getLat($locations[$i]) != null && HomeController::getLng($locations[$i]) != null)
             locationArray.push(location);
+            @endif
             console.log(locationArray);
                 @endfor
                 @endif
