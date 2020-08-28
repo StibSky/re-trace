@@ -62,5 +62,23 @@
     "When you're a single home owner": "Indien u eigenaar bent van een alleenstaand huis",
     "Back to Login": "Ga naar Login",
     "Keep me logged in" : "Ik wil ingelogd blijven",
-    "Don't have an account?" : "Nog geen account?"
+    "Don't have an account?" : "Nog geen account?",
+    "Profile" : "Profiel",
+    "Edit" : "Wijzigen",
+    "Personal details": "Persoonlijke Gegevens",
+    "Full name": "Volledige Naam",
+    "Email address": "e-mailadres",
+    "Profile Type": "Profiel Type",
+    "My projects": "Mijn Projecten",
+    "Please add your first project to progress your profile":
+    "Gelieve een eerste project aan te maken om je profiel te vervolledigen",
+    "Delete": "Verwijderen",
+    "Add New Project": "Een Nieuw Project Toevoegen",
+    "Pick material":"Materiaal kiezen",
+    "Please Select" : "Maak een Keuze",
+    "Search": "Zoeken",
+    "Fill in the fields you want to edit": "Vul de velden in die u wilt wijzigen",
+    "Leave the fields empty if you don't want to change anything": "Laat de velden leeg die u niet wilt wijzigen",
+    "Close" : "Sluiten",
+    "Are you sure you want to delete?": "Ben je zeker dat je wil verwijderen?"
 }
