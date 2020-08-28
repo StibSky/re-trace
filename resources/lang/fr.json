@@ -60,10 +60,10 @@
     "CREATE AN ACCOUNT": "CRÉER UN COMPTE",
     "Create an Account": "Créer un Compte",
     "First name": "Prénom",
-    "Last name": "nom de famille",
+    "Last name": "Nom de famille",
     "When you're a developer or recycling plant": "Lorsque vous êtes développeur ou usine de recyclage",
     "When you're a single home owner": "Lorsque vous êtes propriétaire d'une maison individuelle",
-    "Back to Login": "aller à la page de connexion",
+    "Back to Login": "Aller à la page de connexion",
     "Keep me logged in": "Rester connecté",
     "Don't have an account?": "Vous n'avez pas de compte?",
     "Profile": "Profil",
@@ -80,7 +80,7 @@
     "Please Select": "Veuillez sélectionner",
     "Search": "Chercher",
     "Fill in the fields you want to edit": "Remplissez les champs que vous souhaitez modifier",
-    "Leave the fields empty if you don't want to change anything": "laissez les champs vides si vous ne voulez rien changer",
+    "Leave the fields empty if you don't want to change anything": "Laissez les champs vides si vous ne voulez rien changer",
     "Close" : "Fermer",
     "Are you sure you want to delete?": "Etes-vous sûr que vous voulez supprimer?"
 }
