@@ -82,7 +82,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-primary" id="main-button"
-                       href="{{ route('building') }}">{{ __("Add New Project")}}</a>
+                       href="{{ route('building') }}">{{ __("+ New Project")}}</a>
                 </div>
             </div>
 
