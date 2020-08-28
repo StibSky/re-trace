@@ -96,7 +96,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <option selected disabled>Please select</option>
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                        ---{{$subCategory1->name }}
+                                        {{$subCategory1->name }}
                                     </option>
                                 @endforeach
                             </select>
