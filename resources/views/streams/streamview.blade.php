@@ -3,17 +3,17 @@
     <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
 @endsection
 @section('content')
-    <p><strong>name:</strong> {{$name}}</p>
-    <p><strong>description:</strong> {{$description}}</p>
-    <p><strong>category:</strong> {{$category}}</p>
-    <p><strong>action:</strong> {{$action}}</p>
-    <p><strong>quantity:</strong> {{$quantity}} {{$unit}} </p>
-    <p><strong>price:</strong> {{$price}}{{$valuta}}</p>
-    <p><strong>materials:</strong></p>
+    <p><strong>Name:</strong> {{$name}}</p>
+    <p><strong>Description:</strong> {{$description}}</p>
+    <p><strong>Category:</strong> {{$category}}</p>
+    <p><strong>Action:</strong> {{$action}}</p>
+    <p><strong>Quantity:</strong> {{$quantity}} {{$unit}} </p>
+    <p><strong>Price:</strong> {{$price}}{{$valuta}}</p>
+    <p><strong>Materials:</strong></p>
     @foreach($materials as $material)
         <p>{{$material}}</p>
     @endforeach
-    <p><strong>functions:</strong> </p>
+    <p><strong>Functions:</strong> </p>
     @foreach($functions as $function)
         <p>{{$function}}</p>
     @endforeach

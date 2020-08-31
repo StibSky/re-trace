@@ -10,19 +10,19 @@
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>Confirm input and add stream?</h4>
+                <h4>{{_("")}}Confirm input and add stream?</h4>
                 <table class="d-flex justify-content-center mt-5">
                     <tr>
-                        <td>Stream name: {{ $stream->name }}</td>
+                        <td>{{_("")}}Stream name: {{ $stream->name }}</td>
                     </tr>
                     <tr>
-                        <td>Description: {{ $stream->description }}</td>
+                        <td>{{_("")}}Description: {{ $stream->description }}</td>
                     </tr>
                     <tr>
-                        <td>Destination: {{ $stream->category }}</td>
+                        <td>{{_("")}}Destination: {{ $stream->category }}</td>
                     </tr>
                     <tr>
-                        <td>Materials:
+                        <td>{{_("")}}Materials:
                             <ul>
                                 @if($materialArray)
                                     @foreach($materialArray as $material)
@@ -45,23 +45,23 @@
 
                     </tr>
                     <tr>
-                        <td>Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>
+                        <td>{{_("")}}Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>Price: {{ $valuta->symbol }}{{ $stream->price }}</td>
+                        <td>{{_("")}}Price: {{ $valuta->symbol }}{{ $stream->price }}</td>
                     </tr>
                     <tr>
-                        <td>Action: {{ $stream->action }}</td>
+                        <td>{{_("")}}Action: {{ $stream->action }}</td>
                     </tr>
                 </table>
                 <form action="{{ route('storeStream', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">Create</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">{{_("")}}Create</button>
                 </form>
             </div>
 
             <div class="card-footer text-center">
-                <a href="{{route('streams4', $id)}}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('streams4', $id)}}"><span><strong>{{_("")}}Go Back</strong></span></a>
             </div>
         </div>
     </div>
