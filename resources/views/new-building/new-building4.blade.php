@@ -29,7 +29,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ url()->previous() }}"><span><strong>{{ __("Go Back")}}</strong></span></a>
+                <a href="{{route('building3')}}"><span><strong>{{ __("Go Back")}}</strong></span></a>
             </div>
         </div>
     </div>

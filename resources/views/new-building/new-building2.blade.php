@@ -60,7 +60,7 @@ blade for adding a new building/project to a User
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ url()->previous() }}"><span><strong>Go Back</strong></span></a>
+                <a href="{{route('building')}}"><span><strong>Go Back</strong></span></a>
             </div>
         </div>
         <script>
