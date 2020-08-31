@@ -98,7 +98,13 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <option selected disabled>{{ __("Please Select")}}</option>
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                        {{$subCategory1->name }}
+                                        @if(app()->getLocale() == "en")
+                                            {{ $subCategory1->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $subCategory1->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $subCategory1->name_nl }}
+                                        @endif
                                     </option>
                                 @endforeach
                             </select>
