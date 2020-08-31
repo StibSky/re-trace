@@ -151,7 +151,7 @@ uses dynamic linking
                                     @if($stream->id == $tags[$i][$j]['stream_id'])
                                         @if($tags[$i][$j]['material_id'] != null)
                                             @if($j < 1)
-                                                <i>materials and functions</i>
+                                                <i>{{ __("materials and functions")}}</i>
                                             @endif
                                             <li>
                                                 {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
@@ -167,7 +167,7 @@ uses dynamic linking
                                     @endif
                                 @endfor
                             @endfor
-                            <li><i>action: {{$stream->action}} </i></li>
+                            <li><i>{{ __("Action")}}: {{$stream->action}} </i></li>
                         @endforeach
 
 
@@ -176,7 +176,7 @@ uses dynamic linking
             </div>
             <div class=" card-footer" id="dashboard-footer3">
                 <a class="btn btn-primary mt-3" id="main-button"
-                   href="{{ route('streams1', $project->id) }}">Add streams</a>
+                   href="{{ route('streams1', $project->id) }}">{{ __("Add streams")}}</a>
             </div>
         </div>
     </div>
@@ -194,7 +194,7 @@ uses dynamic linking
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title">Please upload a new file or image</h4>
+                    <h4 class="modal-title">{{ __("Please upload a new file or image")}}</h4>
 
                 </div>
                 <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
@@ -203,21 +203,21 @@ uses dynamic linking
                         <input type="text" name="name">
                         <input type="file" name="userfile">
                         <br>
-                        <label for="type">Select file type:</label>
+                        <label for="type">{{ __("Select file type")}}:</label>
                         <select name="type">
-                            <option value="Measuring state">Measuring state</option>
-                            <option value="Location">Location</option>
-                            <option value="Surface">Surface</option>
-                            <option value="Volume">Volume</option>
-                            <option value="Material list">Material list</option>
-                            <option value="Plans">Plans</option>
-                            <option value="Photos exterior">Photos exterior</option>
-                            <option value="Photos interior">Photos interior</option>
+                            <option value="Measuring state">{{ __("Measuring state")}}</option>
+                            <option value="Location">{{ __("Location")}}</option>
+                            <option value="Surface">{{ __("Surface")}}</option>
+                            <option value="Volume">{{ __("Volume")}}</option>
+                            <option value="Material list">{{ __("Material list")}}</option>
+                            <option value="Plans">{{ __("Plans")}}</option>
+                            <option value="Photos exterior">{{ __("Photos exterior")}}</option>
+                            <option value="Photos interior">{{ __("Photos interior")}}</option>
                         </select>
                         <input value="{{ $project->id }}" type="hidden" name="projectId"/>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ __("Close")}}
                         </button>
                         <input type="submit" value="upload" name="upload"/>
                     </div>

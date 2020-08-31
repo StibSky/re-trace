@@ -7,7 +7,7 @@
     <div class="container">
         <form action="{{ route('saveEdit') }}" method="post" name="substanceForm">
             @csrf
-            <h3> ADD MATERIAL STREAMS for {{ $project->projectName }}</h3>
+            <h3> {{ __("ADD MATERIAL STREAMS FOR") }} {{ $project->projectName }}</h3>
             <div class="form-group">
                 <label for="title">Title</label>
                 <label>

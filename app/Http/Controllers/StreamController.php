@@ -153,6 +153,7 @@ class StreamController extends Controller
     {
         $tag = $request->session()->get('tag');
 
+
         $substanceHeadCategory = DB::table('substance')
             ->whereRaw("parent IS NULL AND is_hazardous != 1")->get();
         $substanceSubCategory1 = DB::table('substance')
