@@ -88,10 +88,10 @@ sets up the navbar and yields the content of the other pages
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            My profile
+                                            {{ __("My profile")}}
                                         </a>
                                         <a class="dropdown-item" href="https://re-trace.io" target="_blank">
-                                            About
+                                           {{ __("About")}}
                                         </a>
                                         <div style="border-top: 1px solid lightslategray;">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -133,7 +133,7 @@ sets up the navbar and yields the content of the other pages
                 <div class="row d-flex justify-content-between px-2">
                     <div class="col-12 col-md-3 col-lg">
                         <div class="links text-center text-md-left">
-                            <a href="https://re-trace.io" target="_blank"><span>About</span></a>
+                            <a href="https://re-trace.io" target="_blank"><span>{{ __("About")}}</span></a>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-lg">
