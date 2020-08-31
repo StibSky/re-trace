@@ -5,7 +5,7 @@
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @endsection
 @section('content')
-    <h1>Files - {{ $project->projectName }}</h1>
+    <h1>{{ __("Files")}} - {{ $project->projectName }}</h1>
     <ul>
         @foreach($projecttypes as $type)
             <h4 class="pb-3"><a href="{{route(str_replace(' ', '', $type), $project->id)}}">{{ $type }}</a></h4>
@@ -15,7 +15,7 @@
                         <p>{{ $file->name }} - {{ $file->id }}</p>
                         <div class="d-flex flex-row justify-content-end">
                             @if($file->type == "Photos exterior" or $file->type == "Photos interior")
-                                <a href="#" class="btn btn-primary" id="secondary-button-medium">Set as main image</a>
+                                <a href="#" class="btn btn-primary" id="secondary-button-medium">{{ __("Set as main image")}}</a>
                             @endif
                             @if(Auth::user()->type == 'admin')
                                 <button data-toggle="modal"
@@ -50,8 +50,8 @@
                                 {{--                                    <a href="{{route('deleteFile', $file->id)}}" class="btn btn-primary"
                                                                        id="main-button-medium">Yes, delete file</a>--}}
                             @endif
-                            <a href="{{route('previewFiles', $file->id)}}" class="btn btn-primary" id="secondary-button-medium">View</a>
-                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">Download</a>
+                            <a href="{{route('previewFiles', $file->id)}}" class="btn btn-primary" id="secondary-button-medium">{{ __("View")}}</a>
+                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">{{ __("Download")}}</a>
                         </div>
                     </li>
                     <hr>

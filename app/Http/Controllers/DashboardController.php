@@ -41,9 +41,9 @@ class DashboardController extends Controller
 
         $buildingSubstances = [];
 
-/*        foreach ($materials as $material) {
-            array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
-        }*/
+        /*        foreach ($materials as $material) {
+                    array_push($buildingSubstances, Substance::where('id', $material->substanceId)->get());
+                }*/
 
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
@@ -73,62 +73,78 @@ class DashboardController extends Controller
         $materialName = DB::table('substance')
             ->where('id', $id)->first();
 
-        return $materialName->name;
+        if (app()->getLocale() == "en") {
+            return $materialName->name;
+        } elseif (app()->getLocale() == "fr") {
+            return $materialName->name_fr;
+        } elseif (app()->getLocale() == "nl"){
+            return $materialName->name_nl;
     }
+}
 
-    public static function getFunctionName($id)
-    {
-        $functionName = DB::table('materialFunction')
-            ->where('id', $id)->first();
+public
+static function getFunctionName($id)
+{
+    $functionName = DB::table('materialFunction')
+        ->where('id', $id)->first();
 
+
+    if (app()->getLocale() == "en") {
         return $functionName->name;
+    } elseif (app()->getLocale() == "fr") {
+        return $functionName->name_fr;
+    } elseif (app()->getLocale() == "nl"){
+        return $functionName->name_nl;
+    }
+}
+
+public
+function adminDashboard()
+{
+    //dashboardcontroller for administrators to see user info
+    if (Auth::user()->type != 'admin') {
+        return redirect()->back();
+    }
+    $privateUsers = User::where('type', 'Private')->get();
+    $businessUsers = User::where('type', 'Business')->get();
+    $privateBuildings = [];
+    foreach ($privateUsers as $privateUser) {
+        array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
+    }
+    $businessBuildings = [];
+    foreach ($businessUsers as $businessUser) {
+        array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
     }
 
-    public function adminDashboard()
-    {
-        //dashboardcontroller for administrators to see user info
-        if (Auth::user()->type != 'admin') {
-            return redirect()->back();
-        }
-        $privateUsers = User::where('type', 'Private')->get();
-        $businessUsers = User::where('type', 'Business')->get();
-        $privateBuildings = [];
-        foreach ($privateUsers as $privateUser) {
-            array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
-        }
-        $businessBuildings = [];
-        foreach ($businessUsers as $businessUser) {
-            array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
-        }
+    return view('dashboard.adminDashboard', [
+        'privates' => $privateUsers,
+        'privateBuildings' => $privateBuildings,
+        'businesses' => $businessUsers,
+        'businessBuildings' => $businessBuildings
+    ]);
+}
 
-        return view('dashboard.adminDashboard', [
-            'privates' => $privateUsers,
-            'privateBuildings' => $privateBuildings,
-            'businesses' => $businessUsers,
-            'businessBuildings' => $businessBuildings
-        ]);
+public
+function editDashInfo(Request $request, $id)
+{
+    $building = Building::where('id', $id)->first();
+
+
+    if ($request->input('streetName') != null && $request->input('streetNumber') != null) {
+        $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
     }
 
-    public function editDashInfo(Request $request, $id)
-    {
-        $building = Building::where('id',$id)->first();
-
-
-        if ($request->input('streetName') != null && $request->input('streetNumber') !=null) {
-            $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
-        }
-
-        if ($request->input('type') != null) {
-            $building->setType($request->input('type'));
-        }
-
-        if ($request->input('status') != null) {
-            $building->setStatus($request->input('status'));
-        }
-
-        $building->save();
-
-        return back()->withErrors('success', 'successfully updated your info');
+    if ($request->input('type') != null) {
+        $building->setType($request->input('type'));
     }
+
+    if ($request->input('status') != null) {
+        $building->setStatus($request->input('status'));
+    }
+
+    $building->save();
+
+    return back()->withErrors('success', 'successfully updated your info');
+}
 
 }
