@@ -75,7 +75,7 @@ class StreamController extends Controller
         $mimetype = $request->streamImage->getMimeType();
 
         if (!in_array($mimetype, $allowedFiles)) {
-            return back()->with('error', 'invalid file type');
+            return back()->with('error', __('invalid file type'));
         }
 
         $image->setName($imagename);
@@ -89,7 +89,7 @@ class StreamController extends Controller
 
         $request->streamImage->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $imagename, 'public');
 
-        return back()->with('success', 'image uploaded');
+        return back()->with('success', __('image uploaded'));
     }
 
     public function addStreams1(Request $request, $id)
@@ -101,13 +101,13 @@ class StreamController extends Controller
         }
 
         if ($request->input("streamName") == null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in a name');
+            return redirect()->back()->withInput()->with('error', __('please fill in a name'));
         }
         if ($request->input("streamAction") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select an action');
+            return redirect()->back()->withInput()->with('error', __('please select an action'));
         }
         if  ($request->session()->get('image') == null) {
-            return redirect()->back()->withInput()->with('error', 'please upload an image');
+            return redirect()->back()->withInput()->with('error', __('please upload an image'));
         }
 
         $stream->setName($request->input("streamName"));
@@ -190,7 +190,7 @@ class StreamController extends Controller
 //        }
 
         if ($request->input("substance") == null && $request->input("materialFunction") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select at least one material and/or function');
+            return redirect()->back()->withInput()->with('error', __('please select at least one material and/or function'));
         }
 
         $sessionMaterials = [];
@@ -243,22 +243,22 @@ class StreamController extends Controller
         }
 
         if ($request->input("streamQuantity") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a quantity');
+            return redirect()->back()->withInput()->with('error', __('please give a quantity'));
         }
 
         if ($request->input("streamUnit") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a unit of measurement');
+            return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
         $stream->setQuantity($request->input("streamQuantity"));
         $stream->setUnitId($request->input("streamUnit"));
 
         if ($request->input("streamPrice") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a price');
+            return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
 
         if ($request->input("streamValuta") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a currency');
+            return redirect()->back()->withInput()->with('error', __('please give a currency'));
         }
 
         $stream->setPrice($request->input("streamPrice"));
@@ -356,7 +356,7 @@ class StreamController extends Controller
         $request->session()->forget('functionSession');
         $request->session()->forget('image');
 
-        return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
+        return redirect()->route('dash', $id)->with('success', __('Stream added successfully'));
     }
 
     public function streamView($id) {
@@ -397,9 +397,6 @@ class StreamController extends Controller
         foreach ($functionIds as $functionId) {
             array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first()->name);
         }
-
-
-
 
             return view('streams.streamview', [
                 'name' => $name,

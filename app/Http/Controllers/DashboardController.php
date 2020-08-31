@@ -144,7 +144,7 @@ function editDashInfo(Request $request, $id)
 
     $building->save();
 
-    return back()->withErrors('success', 'successfully updated your info');
+    return back()->withErrors('success', __("Successfully updated your info"));
 }
 
 }

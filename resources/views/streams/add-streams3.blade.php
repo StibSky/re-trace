@@ -10,7 +10,7 @@
 blade for adding a new building/project to a User
 -->
     <div class="container d-flex justify-content-center flex-column align-items-center">
-        <h3>ADD NEW STREAM</h3>
+        <h3>{{ __("ADD NEW STREAM") }}</h3>
         <div class="card d-flex justify-content-center" id="set-width">
             <div class="mb-4 text-center card-header">
                 <img src="{{ asset('/images/retracelogo.png') }}" alt="" height="40">
@@ -19,7 +19,7 @@ blade for adding a new building/project to a User
             <div class="card-body text-center">
                 <form action="{{ route('add-streams3', $id) }}" method="post">
                     @csrf
-                    <h4>Which materials are in your stream?</h4>
+                    <h4>{{ __("Which materials are in your stream?") }}</h4>
                     <div class="form-group mt-3">
                         <div class="row d-flex justify-content-center">
                             <input placeholder="Filter..." class="text-center" type="text" name="filter"
@@ -67,7 +67,7 @@ blade for adding a new building/project to a User
                             </div>
                         </div>
                     </div>
-                    <h4>What are the functions of your stream?</h4>
+                    <h4>{{ __("What are the functions of your stream?") }}</h4>
                     <div class="form-group mt-3">
                         <div class="row d-flex justify-content-center">
                             <input placeholder="Filter..." class="text-center" type="text" name="filter"
@@ -106,11 +106,11 @@ blade for adding a new building/project to a User
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">Next</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next")}}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ route('streams2', $id) }}"><span><strong>Go Back</strong></span></a>
+                <a href="{{ route('streams2', $id) }}"><span><strong>{{ __("Go Back")}}</strong></span></a>
             </div>
         </div>
     </div>
