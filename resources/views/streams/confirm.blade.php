@@ -10,19 +10,19 @@
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>{{_("")}}Confirm input and add stream?</h4>
+                <h4>{{ __("Confirm input and add stream?") }}</h4>
                 <table class="d-flex justify-content-center mt-5">
                     <tr>
-                        <td>{{_("")}}Stream name: {{ $stream->name }}</td>
+                        <td>{{ __("Stream name") }}: {{ $stream->name }}</td>
                     </tr>
                     <tr>
-                        <td>{{_("")}}Description: {{ $stream->description }}</td>
+                        <td>{{ __("Description: {{ $stream->description }}</td>
                     </tr>
                     <tr>
-                        <td>{{_("")}}Destination: {{ $stream->category }}</td>
+                        <td>{{ __("Destination: {{ $stream->category }}</td>
                     </tr>
                     <tr>
-                        <td>{{_("")}}Materials:
+                        <td>{{ __("Materials") }}:
                             <ul>
                                 @if($materialArray)
                                     @foreach($materialArray as $material)
@@ -45,23 +45,23 @@
 
                     </tr>
                     <tr>
-                        <td>{{_("")}}Quantity: {{ $stream->quantity }} {{ $unit->short_name }}</td>
+                        <td>{{ __("Quantity") }}: {{ $stream->quantity }} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>{{_("")}}Price: {{ $valuta->symbol }}{{ $stream->price }}</td>
+                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ $stream->price }}</td>
                     </tr>
                     <tr>
-                        <td>{{_("")}}Action: {{ $stream->action }}</td>
+                        <td>{{ __("Action") }}: {{ $stream->action }}</td>
                     </tr>
                 </table>
                 <form action="{{ route('storeStream', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">{{_("")}}Create</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">{{ __("Create") }}</button>
                 </form>
             </div>
 
             <div class="card-footer text-center">
-                <a href="{{route('streams4', $id)}}"><span><strong>{{_("")}}Go Back</strong></span></a>
+                <a href="{{route('streams4', $id)}}"><span><strong>{{ __("Go Back") }}</strong></span></a>
             </div>
         </div>
     </div>

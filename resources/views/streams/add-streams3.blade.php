@@ -106,11 +106,11 @@ blade for adding a new building/project to a User
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{_("")}}Next</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next")}}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ route('streams2', $id) }}"><span><strong>{{_("")}}Go Back</strong></span></a>
+                <a href="{{ route('streams2', $id) }}"><span><strong>{{ __("Go Back")}}</strong></span></a>
             </div>
         </div>
     </div>
