@@ -49,9 +49,20 @@ blade for adding a new building/project to a User
                                                         </select>--}}
                             <div id="categorySelect">
                                 @foreach($substanceSubCategories1 as $substanceSubCategory1)
-                                        <input type="checkbox" value="{{ $substanceSubCategory1->id }}" class="vis-hidden" id="{{ $substanceSubCategory1->id }}"
-                                               name="substance[]">
-                                        <label for="{{ $substanceSubCategory1->id }}" class="categoryOptions">{{ $substanceSubCategory1->name }}</label>
+                                    <input type="checkbox" value="{{ $substanceSubCategory1->id }}" class="vis-hidden"
+                                           id="{{ $substanceSubCategory1->id }}"
+                                           name="substance[]">
+                                    <label for="{{ $substanceSubCategory1->id }}" class="categoryOptions">
+
+                                        @if(app()->getLocale() == "en")
+                                            {{ $substanceSubCategory1->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $substanceSubCategory1->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $substanceSubCategory1->name_nl }}
+                                        @endif
+
+                                    </label>
                                 @endforeach
                             </div>
                         </div>
@@ -63,32 +74,34 @@ blade for adding a new building/project to a User
                                    id="filterCategories2"/>
                         </div>
                         <div class="row d-flex justify-content-center">
-{{--                            <select name="materialFunction[]" id="categorySelect2" multiple>
-                                @foreach($functionHeadCategories as $functionHeadCategory)
-                                    <option value="{{ $functionHeadCategory->id }}" class="categoryOptions2">
-                                        {{ $functionHeadCategory->name }}
-                                    </option>
-                                @endforeach
-                                @foreach($functionSubCategories1 as $functionSubCategory1)
+                            {{--                            <select name="materialFunction[]" id="categorySelect2" multiple>
+                                                            @foreach($functionHeadCategories as $functionHeadCategory)
+                                                                <option value="{{ $functionHeadCategory->id }}" class="categoryOptions2">
+                                                                    {{ $functionHeadCategory->name }}
+                                                                </option>
+                                                            @endforeach
+                                                            @foreach($functionSubCategories1 as $functionSubCategory1)
 
-                                    <option value="{{ $functionSubCategory1->id }}" class="categoryOptions2">
-                                        ---{{ $functionSubCategory1->name }}
-                                    </option>
+                                                                <option value="{{ $functionSubCategory1->id }}" class="categoryOptions2">
+                                                                    ---{{ $functionSubCategory1->name }}
+                                                                </option>
 
-                                @endforeach
-                                @foreach($functionSubCategories2 as $functionSubCategory2)
+                                                            @endforeach
+                                                            @foreach($functionSubCategories2 as $functionSubCategory2)
 
-                                    <option value="{{ $functionSubCategory2->id }}" class="categoryOptions2">
-                                        {{ $functionSubCategory2->name }}
-                                    </option>
+                                                                <option value="{{ $functionSubCategory2->id }}" class="categoryOptions2">
+                                                                    {{ $functionSubCategory2->name }}
+                                                                </option>
 
-                                @endforeach
-                            </select>--}}
+                                                            @endforeach
+                                                        </select>--}}
                             <div id="categorySelect2">
                                 @foreach($functionSubCategories1 as $functionSubCategory1)
-                                    <input type="checkbox" value="{{ $functionSubCategory1->id }}" class="vis-hidden" id="{{ $functionSubCategory1->id }}"
+                                    <input type="checkbox" value="{{ $functionSubCategory1->id }}" class="vis-hidden"
+                                           id="{{ $functionSubCategory1->id }}"
                                            name="materialFunction[]">
-                                    <label for="{{ $functionSubCategory1->id }}" class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
+                                    <label for="{{ $functionSubCategory1->id }}"
+                                           class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
                                 @endforeach
                             </div>
                         </div>

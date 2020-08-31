@@ -98,5 +98,20 @@
     "Location": "Locatie",
     "Information": "Informatie",
     "Upload information": "Informatie Uploaden",
-    "Waste Streams" : "Afvalstromen"
+    "Waste Streams" : "Afvalstromen",
+    "materials and functions": "materialen en functies",
+    "Add streams": "Stromen Toevoegen",
+    "Please upload a new file or image": "Upload een nieuw bestand of afbeelding",
+    "Select file type" : "Kies het file type" ,
+    "Measuring state" :  "Meetstaat",
+    "Location" : "Locatie",
+    "Surface" : "oppervlakte" ,
+    "Volume" : "Volume",
+    "Material list" : "Materiaallijst",
+    "Photos exterior" : "Foto's buitenkant" ,
+    "Photos interior" : "Foto's binnenkant" ,
+    "Files" : "Bestanden" ,
+    "Set as main image": "Instellen als hoofdafbeelding",
+    "View" : "Bekijken",
+    "Download" : "Downloaden"
 }

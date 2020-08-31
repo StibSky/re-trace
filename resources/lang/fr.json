@@ -99,5 +99,20 @@
     "Location": "emplacement",
     "Information": "Informations",
     "Upload information": "Télécharger des informations",
-    "Waste Streams" : "Les Flux de Déchets"
+    "Waste Streams" : "Les Flux de Déchets",
+    "materials and functions": "matériaux et fonctions",
+    "Add streams": "Ajouter des flux",
+    "Please upload a new file or image": "Veuillez télécharger un nouveau fichier ou une nouvelle image",
+    "Select file type" : "Sélectionnez le type de fichier" ,
+    "Measuring state" :  "État de mesure",
+    "Location" : "Emplacement",
+    "Surface" : "Surface" ,
+    "Volume" : "Le volume",
+    "Material list" : "Liste de matériel",
+    "Photos exterior" : "Photos extérieur" ,
+    "Photos interior" : "Photos intérieur" ,
+    "Files" : "Dossiers",
+    "Set as main image": "Définir comme image principale",
+    "View" : "Vue",
+    "Download" : "Télécharger"
 }
