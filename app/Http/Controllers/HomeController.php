@@ -108,7 +108,7 @@ class HomeController extends Controller
 
 
         if ($substanceId == " ") {
-            return back()->with('error', 'please select a material');
+            return back()->with('error', __('please select a material'));
         }
 
         $buildings = DB::table('building')
@@ -146,6 +146,6 @@ class HomeController extends Controller
         }
         $user->save();
 
-        return back()->withErrors('success', 'successfully updated your info');
+        return back()->withErrors('success', __('successfully updated your info'));
     }
 }

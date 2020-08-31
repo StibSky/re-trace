@@ -101,7 +101,7 @@ class MaterialFunctionController extends Controller
 
 
         if ($materialFunction->getName() == null) {
-            return back()->withInput()->with('error', 'please fill in a name');
+            return back()->withInput()->with('error', __('please fill in a name'));
         }
 
         $materialFunction->save();

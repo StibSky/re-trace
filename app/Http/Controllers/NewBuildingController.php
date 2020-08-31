@@ -93,14 +93,14 @@ class NewBuildingController extends Controller
                 $building->setProjectName($validatedName);
                 $request->session()->put('building', $building);
                 if ($building->getProjectName() == null) {
-                    return redirect()->back()->withInput()->with('error', 'please fill in a name');
+                    return redirect()->back()->withInput()->with('error', __("please fill in a name"));
                 }
             } else {
                 $building = $request->session()->get('building');
                 $building->setProjectName($validatedName);
                 $request->session()->put('building', $building);
                 if ($building->getProjectName() == null) {
-                    return redirect()->back()->withInput()->with('error', 'please fill in a name');
+                    return redirect()->back()->withInput()->with('error', __("please fill in a name"));
                 }
             }
         }
@@ -132,16 +132,16 @@ class NewBuildingController extends Controller
         $inputPostcode = $request->input('postcode');
 
         if ($inputStreetNumber == null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in a street number');
+            return redirect()->back()->withInput()->with('error', __('please fill in a street number'));
         }
         if ($inputStreet === null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in your address');
+            return redirect()->back()->withInput()->with('error', __('please fill in your address'));
         }
         if ($inputCity == null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in city');
+            return redirect()->back()->withInput()->with('error', __('please fill in city'));
         }
         if ($inputPostcode == null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in postcode');
+            return redirect()->back()->withInput()->with('error', __('please fill in postcode'));
         }
 
         if (empty($request->session()->get('building'))) {
@@ -172,7 +172,7 @@ class NewBuildingController extends Controller
         $inputType = $request->input('type');
 
         if ($inputType == null) {
-            return redirect()->back()->with('error', 'please fill in type');
+            return redirect()->back()->with('error', __('please fill in type'));
         }
         if (empty($request->session()->get('building'))) {
             $building = new Building();
@@ -200,7 +200,7 @@ class NewBuildingController extends Controller
     {
         $inputStatus = $request->input('status');
         if ($inputStatus == null) {
-            return redirect()->back()->with('error', 'please fill in status');
+            return redirect()->back()->with('error', __('please fill in status'));
         }
         $user = Auth::user();
         if (empty($request->session()->get('building'))) {
@@ -230,7 +230,7 @@ class NewBuildingController extends Controller
         $request->session()->forget('inputStreetNumber');
         $request->session()->forget('inputStreet');
 
-        return redirect()->route('home')->with('success', 'Project created successfully');
+        return redirect()->route('home')->with('success', __('Project created successfully'));
     }
 
     public function deleteBuilding()
@@ -259,10 +259,10 @@ class NewBuildingController extends Controller
 
         //Materiallist::where('buildid', '=', '$request->input('buildingId')', '=', Input::get('email'))->first();
         if ($checkMaterial != null) {
-            return redirect()->back()->with('error', 'You already selected this material');
+            return redirect()->back()->with('error', __('You already selected this material'));
         }
         $buildingMaterial->save();
-        return redirect()->back()->with('success', 'Material added successfully!');
+        return redirect()->back()->with('success', __('Material added successfully!'));
 
     }
 }
