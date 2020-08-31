@@ -196,7 +196,6 @@
     "You were inactive for too long and logged out automatically" : "Vous êtes resté inactif trop longtemps et déconnecté automatiquement",
     "please select a file" : "Veuillez sélectionner un fichier",
     "file uploaded" : "Fichier téléchargé",
-    "File deleted successfully" : "Fichier supprimé avec succès"
-
-
+    "File deleted successfully" : "Fichier supprimé avec succès",
+    "PROJECT NAME": "NOM DE PROJET"
 }

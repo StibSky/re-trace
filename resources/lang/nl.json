@@ -195,5 +195,6 @@
     "You were inactive for too long and logged out automatically" : "U was te lang inactief en bent automatisch uitgelogd",
     "please select a file" : "Gelieve een file te selecteren",
     "file uploaded" : "File upgeload",
-    "File deleted successfully" : "File succesvol verwijderd"
+    "File deleted successfully" : "File succesvol verwijderd",
+    "PROJECT NAME": "PROJECTNAAM"
 }
