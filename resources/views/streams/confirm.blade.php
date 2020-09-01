@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Function:
+                        <td>{{ __("Function")}}:
                             <ul>
                                 @if($functionArray)
                                     @foreach($functionArray as $streamFunction)

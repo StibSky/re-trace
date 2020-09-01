@@ -87,43 +87,72 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
         </div>
-        <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
-            <div class="row d-flex">
-                <div class="col-12 d-flex justify-content-center" id="newSearch">
-                    <form class="form text-center d-flex flex-column justify-content-center px-auto"
-                          action="{{ route('mysearch') }}" method="post" name="searchForm">
-                        @csrf
-                        <label>{{ __("Pick material")}}:
-                            <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
-                                <option selected disabled>{{ __("Please Select")}}</option>
-                                @foreach($subCategories1 as $subCategory1)
-                                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                        @if(app()->getLocale() == "en")
-                                            {{ $subCategory1->name }}
-                                        @elseif(app()->getLocale() == "fr")
-                                            {{ $subCategory1->name_fr }}
-                                        @elseif(app()->getLocale() == "nl")
-                                            {{ $subCategory1->name_nl }}
-                                        @endif
-                                    </option>
-                                @endforeach
-                            </select>
-                        </label>
-                        <br>
-                        <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
-                            <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
-                                   style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
-                                   name="mysearch">
-                            <div class="input-group-addon py-1"
-                                 style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                        id="search-btn"><i class="fa fa-search"></i></button>
-                            </div>
+        <div class="col-lg-3 mt-md-0 mt-2 p-2 ml-2 card d-flex">
+            <button type="button" id="moreMats" class="moreMats"
+                    onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
+                        .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});
+                        $('.moreFuncts').toggle(function(){$('#moreMats').html($('.moreFuncts')
+                        .is(':hidden')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
+            <button type="button" id="moreFuncts" class="moreFuncts"
+                    onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
+                        .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});
+                        $('.moreMats').toggle(function(){$('#moreFuncts').html($('.moreMats')
+                        .is(':hidden')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
+            <div id="newSearch">
+                <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                      action="{{ route('mysearch') }}" method="post" name="searchForm">
+                    @csrf
+
+                    <label class="materialDrop" style="display:none">{{ __("Pick material")}}:
+                        <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
+                            <option selected disabled>{{ __("Please Select")}}</option>
+                            @foreach($subCategories1 as $subCategory1)
+                                <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                    @if(app()->getLocale() == "en")
+                                        {{ $subCategory1->name }}
+                                    @elseif(app()->getLocale() == "fr")
+                                        {{ $subCategory1->name_fr }}
+                                    @elseif(app()->getLocale() == "nl")
+                                        {{ $subCategory1->name_nl }}
+                                    @endif
+                                </option>
+                            @endforeach
+                        </select>
+                        <button>{{ __("Search") }}</button>
+                    </label>
+                    <br>
+                    <label class="functionDrop" style="display:none">{{ __("Pick Function")}}:
+                        <select name="dbFunction" id="categorySelect" class="js-example-basic-single w-50">
+                            <option selected disabled>{{ __("Please Select")}}</option>
+                            @foreach($functionSubCategory1 as $functionSub)
+                                <option value="{{ $functionSub->id }}" class="categoryOptions">
+                                    @if(app()->getLocale() == "en")
+                                        {{ $functionSub->name }}
+                                    @elseif(app()->getLocale() == "fr")
+                                        {{ $functionSub->name_fr }}
+                                    @elseif(app()->getLocale() == "nl")
+                                        {{ $functionSub->name_nl }}
+                                    @endif
+                                </option>
+                            @endforeach
+                        </select>
+                        <button>{{ __("Search") }}</button>
+                    </label>
+                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
+                        <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
+                               style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                               name="mysearch">
+                        <div class="input-group-addon py-1"
+                             style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                            <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                    id="search-btn"><i class="fa fa-search"></i></button>
                         </div>
-                    </form>
-                </div>
-                <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
+                    </div>
+                </form>
             </div>
+        </div>
+        <div class="col-md-5 d-flex" id="projectInfo">
+            <div id="map" class="border border-dark rounded h-100"></div>
         </div>
         <div id="editModal" class="modal fade" aria-hidden="true">
             <div class="modal-dialog">
@@ -194,6 +223,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
             <!-- /.modal-dialog -->
         </div>
+
     </div>
 
 
@@ -249,6 +279,20 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
             });
             @endfor
+            @elseif(session('functionId') !=null )
+            @for($i=0; $i < count( session('materialLocations') ); $i++)
+            var location = {
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+            locationArray.push(location);
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+            @endfor
+
             @else
             @for($i=0; $i < count( $locations ); $i++)
             var location = {

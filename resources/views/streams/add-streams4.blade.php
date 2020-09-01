@@ -32,7 +32,13 @@ blade for adding a new building/project to a User
                                 </option>
                                 @foreach($units as $unit)
                                     <option value="{{ $unit->id }}">
-                                        {{ $unit->name }}
+                                        @if(app()->getLocale() == "en")
+                                            {{ $unit->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $unit->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $unit->name_nl }}
+                                        @endif
                                     </option>
                                 @endforeach
                             </select>
@@ -43,10 +49,10 @@ blade for adding a new building/project to a User
                             <label for="streamUnit" class="sr-only">{{ __("Valuta") }}:</label>
                             <select name="streamValuta" id="streamValuta">
                                 <option selected disabled>
-                                    PLEASE SELECT A CURRENCY
-                                </option>
-                                @foreach($valutas as $valuta)
-                                    <option value="{{ $valuta->id }}">
+                                    {{ __("PLEASE SELECT A CURRENCY") }}
+                                 </option>
+                                 @foreach($valutas as $valuta)
+                                     <option value="{{ $valuta->id }}">
                                         {{ $valuta->symbol }}
                                     </option>
                                 @endforeach
@@ -56,7 +62,7 @@ blade for adding a new building/project to a User
                             <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
                             <input type="text" class="form-control text-center" id="streamPrice"
                                    name="streamPrice"
-                                   placeholder="PRICE" value="{{ session()->get('stream.price') }}">
+                                   placeholder="{{ __("PRICE") }}" value="{{ session()->get('stream.price') }}">
                         </div>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
