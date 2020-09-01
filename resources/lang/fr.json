@@ -169,6 +169,7 @@
     "Destination": "Destination",
     "Materials": "Matériaux",
     "Function": "Fonction",
+    "Functions": "Fonctions",
     "Confirm input and add stream?": "Confirmer l'entrée et ajouter un flux?",
     "Material added successfully!": "Matériel ajouté avec succès!",
     "Project created successfully": "Projet créé avec succès",
@@ -197,5 +198,8 @@
     "please select a file" : "Veuillez sélectionner un fichier",
     "file uploaded" : "Fichier téléchargé",
     "File deleted successfully" : "Fichier supprimé avec succès",
-    "PROJECT NAME": "NOM DE PROJET"
+    "PROJECT NAME": "NOM DE PROJET",
+    "Pick Function" : "Choisissez le Fonction",
+    "Hide Functions" : "Masquer les Fonctions",
+    "Hide Materials" : "Masquer les matériaux"
 }
