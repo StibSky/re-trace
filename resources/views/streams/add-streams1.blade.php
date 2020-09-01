@@ -44,10 +44,16 @@ blade for adding a new building/project to a User
                     <div class="form-group">
                         {{ __("PLEASE SELECT AN ACTION") }}
                         <div class="radio-toolbar">
-                            <input type="radio" id="radioApple" name="streamAction" value="reuse">
+                            <input type="radio" id="radioApple" name="streamAction" value="reuse"
+                            @if( session()->get('stream.action') == "reuse")
+                                checked
+                                @endif>
                             <label for="radioApple">{{ __("Reuse") }}</label>
 
-                            <input type="radio" id="radioBanana" name="streamAction" value="recycle">
+                            <input type="radio" id="radioBanana" name="streamAction" value="recycle"
+                                   @if( session()->get('stream.action') == "recycle")
+                                   checked
+                                @endif>
                             <label for="radioBanana">{{ __("Recycle") }}</label>
                         </div>
                     </div>

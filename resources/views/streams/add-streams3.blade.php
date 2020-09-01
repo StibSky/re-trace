@@ -51,7 +51,9 @@ blade for adding a new building/project to a User
                                 @foreach($substanceSubCategories1 as $substanceSubCategory1)
                                     <input type="checkbox" value="{{ $substanceSubCategory1->id }}" class="vis-hidden"
                                            id="{{ $substanceSubCategory1->id }}"
-                                           name="substance[]">
+                                           name="substance[]" @if(session()->get('materialIds') && in_array($substanceSubCategory1->id, session()->get('materialIds')))
+                                        checked
+                                           @endif>
                                     <label for="{{ $substanceSubCategory1->id }}" class="categoryOptions">
 
                                         @if(app()->getLocale() == "en")
@@ -99,14 +101,17 @@ blade for adding a new building/project to a User
                                 @foreach($functionSubCategories1 as $functionSubCategory1)
                                     <input type="checkbox" value="{{ $functionSubCategory1->id }}" class="vis-hidden"
                                            id="{{ $functionSubCategory1->id }}"
-                                           name="materialFunction[]">
+                                           name="materialFunction[]" @if(session()->get('functionIds') && in_array($functionSubCategory1->id, session()->get('functionIds')))
+                                           checked
+                                        @endif>
                                     <label for="{{ $functionSubCategory1->id }}"
                                            class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next")}}</button>
+                    <button type="submit" id="main-button-wide" class="btn btn-primary"
+                            name="newStream">{{ __("Next")}}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
