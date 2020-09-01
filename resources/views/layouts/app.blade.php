@@ -161,5 +161,5 @@ sets up the navbar and yields the content of the other pages
 </div>
 </body>
 <!-- Site footer -->
-
+<script src="{{mix('/js/app.js')}}"></script>
 </html>

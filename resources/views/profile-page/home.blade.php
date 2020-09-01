@@ -134,7 +134,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </select>
                         <button>{{ __("Search") }}</button>
                     </label>
-                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
+{{--                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
                         <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
                                style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
                                name="mysearch">
@@ -143,7 +143,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
                                     id="search-btn"><i class="fa fa-search"></i></button>
                         </div>
-                    </div>
+                    </div>--}}
                 </form>
             </div>
         </div>
@@ -229,10 +229,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     </script>
     <script type="text/javascript">
         "use strict";
-
-        $(document).ready(function () {
-            $(".js-example-basic-single").select2();
-        });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
