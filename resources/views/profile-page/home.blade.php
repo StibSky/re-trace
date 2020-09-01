@@ -90,14 +90,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="col-lg-3 mt-md-0 mt-2 p-2 ml-2 card d-flex">
             <button type="button" id="moreMats" class="moreMats"
                     onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
-                        .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});
-                        $('.moreFuncts').toggle(function(){$('#moreMats').html($('.moreFuncts')
-                        .is(':hidden')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
+                        .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
             <button type="button" id="moreFuncts" class="moreFuncts"
                     onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
-                        .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});
-                        $('.moreMats').toggle(function(){$('#moreFuncts').html($('.moreMats')
-                        .is(':hidden')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
+                        .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
             <div id="newSearch">
                 <form class="form text-center d-flex flex-column justify-content-center px-auto"
                       action="{{ route('mysearch') }}" method="post" name="searchForm">
@@ -169,7 +165,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                           enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
-
                             <label for="firstName">{{ __("First name")}}</label>
                             <input type="text" name="firstName" id="firstName">
                             <br>
@@ -214,7 +209,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </button>
                             </div>
                             <div class="modal-footer">
-
                             </div>
                         </form>
                     @endif
