@@ -18,11 +18,11 @@
                     <div class="form-group">
                         <label for="type" class="sr-only">Type</label>
                         <select name="type" id="buttonSelect" multiple>
-                            <option value="detached house">{{ __("Detached house")}}</option>
-                            <option value="apartment">{{ __("Apartment")}}</option>
-                            <option value="terraced house">{{ __("Terraced house")}}</option>
-                            <option value="multiple houses">{{ __("Multiple houses")}}</option>
-                            <option value="commercial building">{{ __("Commercial building")}}</option>
+                            <option value="Detached house">{{ __("Detached house")}}</option>
+                            <option value="Apartment">{{ __("Apartment")}}</option>
+                            <option value="Terraced house">{{ __("Terraced house")}}</option>
+                            <option value="Multiple houses">{{ __("Multiple houses")}}</option>
+                            <option value="Commercial building">{{ __("Commercial building")}}</option>
                         </select>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding3">{{ __("Next")}}
