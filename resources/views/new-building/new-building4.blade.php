@@ -19,10 +19,10 @@
                     <div class="form-group">
                         <label for="status" class="sr-only">{{ __("Status")}}</label>
                         <select name="status" id="buttonSelect" multiple>
-                            <option value="renovation">{{ __("Renovation")}}</option>
-                            <option value="demolition">{{ __("Demolition")}}</option>
-                            <option value="new Build">{{ __("New Build")}}</option>
-                            <option value="nothing">{{ __("Nothing")}}</option>
+                            <option value="Renovation">{{ __("Renovation")}}</option>
+                            <option value="Demolition">{{ __("Demolition")}}</option>
+                            <option value="New Build">{{ __("New Build")}}</option>
+                            <option value="Nothing">{{ __("Nothing")}}</option>
                         </select>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding4">{{ __("Next")}}</button>

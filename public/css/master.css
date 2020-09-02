@@ -138,6 +138,7 @@ body #main-button-small {
   text-align: center;
   transition: all 0.2s;
   white-space: nowrap;
+  font-size: 100%;
 }
 
 @media (max-width: 1440px) {

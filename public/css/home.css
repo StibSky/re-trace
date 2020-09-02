@@ -26,11 +26,14 @@
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
   height: 150px;
+  font-size: 100%;
 }
 
-#project-names {
-  width: 100%;
-  height: 20px;
+#titleBar {
+  padding-left: 1.3vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 #mysearch {

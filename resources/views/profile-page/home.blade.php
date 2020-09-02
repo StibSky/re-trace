@@ -55,17 +55,24 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
             <div class="row card mt-lg-5 mt-1">
                 <div class="card-header">{{ __("My projects")}}</div>
-                <div class="card-body" id="myProjects">
+                <div class="d-flex flex-row justify-content-between" id="titleBar">
+                    <span class="w-75">{{ __("Name")}}</span>
+                    <span class="w-100">{{ __("Type")}}</span>
+                    <span class="w-75">{{ __("Category")}}</span>
+                    <span class="w-75"> </span>
+                </div>
+                <div class="card-body text-left" id="myProjects">
                     @if(count($buildings) == 0)
                         <h5> - {{ __("Please add your first project to progress your profile")}}</h5>
                     @endif
                     <ul>
                         @foreach($buildings as $building)
                             <li class="d-flex flex-row justify-content-between">
-                                <a id="project-names"
+                                <a id="project-names" class="w-75"
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <span class="w-100">{{ $building->type }}</span>
-                                <div>
+                                <span class="w-75">{{ $building->status }}</span>
+                                <div class="w-75">
                                     @if(Auth::user()->type == 'admin')
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary"
