@@ -21,8 +21,6 @@ uses dynamic linking
                                     data-toggle="modal"
                                     data-target="#editDashModal">{{ __("Edit")}}
                             </button>
-
-
                             <div id="editDashModal" class="modal fade">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -139,57 +137,59 @@ uses dynamic linking
             <div class="card-header">
                 <h5>{{ __("Waste Streams")}}</h5>
             </div>
-          <div class="d-flex flex-row justify-content-between">
-                    <div class="column w-75"> <p></p></div>
-                    <div class="column w-75"> <p>{{ __("Stream")}}</p></div>
-                    <div class="column w-75"> <p>{{ __("Action")}}</p></div>
-                    <div class="column w-75"> <p>{{ __("Quantity")}}</p></div>
-          </div>
+            <div class="d-flex flex-row justify-content-between text-left" id="titleBar">
+                <div class="column w-75"> </div>
+                <div class="column w-100"><p>{{ __("Stream")}}</p></div>
+                <div class="column w-100"><p>{{ __("Action")}}</p></div>
+                <div class="column w-50"><p>{{ __("Quantity")}}</p></div>
+            </div>
 
             <div class="card-body" id="wasteStreams">
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
                             <li class="d-flex flex-row justify-content-between">
-                                <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
+                                <div class="w-75">
+                                    <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
                             \App\Http\Controllers\DashboardController::getStreamBuilding($stream->id) . '/' .
                             \App\Http\Controllers\DashboardController::getStreamImage($stream->id)) }}"/>
+                                </div>
 
-                                <strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+                                <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
-                                <p>{{$stream->action}}</p>
-                                <p>{{$stream->quantity}}</p>
+                                <p class="w-100">{{$stream->action}}</p>
+                                <p class="w-50">{{$stream->quantity}}</p>
 
 
-                          {{--  @for ($i = 0; $i < count($tags); $i++)
-                                @for ($j = 0; $j < count($tags[$i]); $j++)
-                                    @if($stream->id == $tags[$i][$j]['stream_id'])
-                                        @if($tags[$i][$j]['material_id'] != null)
-                                           <p>
-                                                {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
-                                           </p>
-                                        @endif
+                                {{--  @for ($i = 0; $i < count($tags); $i++)
+                                      @for ($j = 0; $j < count($tags[$i]); $j++)
+                                          @if($stream->id == $tags[$i][$j]['stream_id'])
+                                              @if($tags[$i][$j]['material_id'] != null)
+                                                 <p>
+                                                      {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
+                                                 </p>
+                                              @endif
 
-                                    @endif
-                                @endfor
-                            @endfor
+                                          @endif
+                                      @endfor
+                                  @endfor
 
-                            @for ($i = 0; $i < count($tags); $i++)
-                                @for ($j = 0; $j < count($tags[$i]); $j++)
-                                    @if($stream->id == $tags[$i][$j]['stream_id'])
+                                  @for ($i = 0; $i < count($tags); $i++)
+                                      @for ($j = 0; $j < count($tags[$i]); $j++)
+                                          @if($stream->id == $tags[$i][$j]['stream_id'])
 
-                                        @if($tags[$i][$j]['function_id'] != null)
-                                           <p>
-                                                {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
-                                           </p>
-                                        @endif
+                                              @if($tags[$i][$j]['function_id'] != null)
+                                                 <p>
+                                                      {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
+                                                 </p>
+                                              @endif
 
-                                    @endif
-                                @endfor
-                            @endfor--}}
+                                          @endif
+                                      @endfor
+                                  @endfor--}}
+                            </li>
+                            <hr class="py-0 my-2">
                         @endforeach
-                        </li>
-
                     </ul>
                 @endif
             </div>

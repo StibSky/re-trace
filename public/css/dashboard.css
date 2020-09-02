@@ -6,8 +6,8 @@
 }
 
 #streamImage {
-  width: 10%;
-  height: 10%;
+  width: 4vw;
+  height: 4vw;
 }
 
 #projectPic {
@@ -19,6 +19,12 @@
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
   height: 150px;
+}
+
+#titleBar {
+  padding: 1vw 1.8vw 0.2vw 1.3vw;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
 }
 
 #wasteStreams {
