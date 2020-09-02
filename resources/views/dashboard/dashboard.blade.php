@@ -139,40 +139,60 @@ uses dynamic linking
             <div class="card-header">
                 <h4>{{ __("Waste Streams")}}</h4>
             </div>
+          <div class="d-flex flex-row justify-content-between">
+                    <div class="column w-75"> <p></p></div>
+                    <div class="column w-75"> <p>{{ __("Stream")}}</p></div>
+                    <div class="column w-75"> <p>{{ __("Action")}}</p></div>
+                    <div class="column w-75"> <p>{{ __("Material")}}</p></div>
+                    <div class="column w-75"> <p>{{ __("Function")}}</p></div>
+                    <div class="column w-75"> <p>{{ __("Quantity")}}</p></div>
+          </div>
+
             <div class="card-body" id="wasteStreams">
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-                            <li><strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
-                            </li>
-                            <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
+                            <li class="d-flex flex-row justify-content-between">
+                                <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
                             \App\Http\Controllers\DashboardController::getStreamBuilding($stream->id) . '/' .
                             \App\Http\Controllers\DashboardController::getStreamImage($stream->id)) }}"/>
 
-                            @for ($i = 0; $i < count($tags); $i++)
+                                <strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+
+                                <p>{{$stream->action}}</p>
+                                <a href="#">{{ __("Materials")}} </a>
+                                <a href="#">{{ __("Functions")}} </a>
+                                <p>{{$stream->quantity}}</p>
+
+
+                          {{--  @for ($i = 0; $i < count($tags); $i++)
                                 @for ($j = 0; $j < count($tags[$i]); $j++)
                                     @if($stream->id == $tags[$i][$j]['stream_id'])
                                         @if($tags[$i][$j]['material_id'] != null)
-                                            @if($j < 1)
-                                                <i>{{ __("materials and functions")}}</i>
-                                            @endif
-                                            <li>
+                                           <p>
                                                 {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
-                                            </li>
-                                        @endif
-
-                                        @if($tags[$i][$j]['function_id'] != null)
-                                            <li>
-                                                {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
-                                            </li>
+                                           </p>
                                         @endif
 
                                     @endif
                                 @endfor
                             @endfor
-                            <li><i>{{ __("Action")}}: {{$stream->action}} </i></li>
-                        @endforeach
 
+                            @for ($i = 0; $i < count($tags); $i++)
+                                @for ($j = 0; $j < count($tags[$i]); $j++)
+                                    @if($stream->id == $tags[$i][$j]['stream_id'])
+
+                                        @if($tags[$i][$j]['function_id'] != null)
+                                           <p>
+                                                {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
+                                           </p>
+                                        @endif
+
+                                    @endif
+                                @endfor
+                            @endfor--}}
+                        @endforeach
+                        </li>
 
                     </ul>
                 @endif
