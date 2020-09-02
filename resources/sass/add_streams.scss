@@ -6,12 +6,12 @@
 @media (max-width: 1440px) {
     @media not all and (min-resolution: .001dpcm) {
         #streamPic {
-            height: 100%;
+            height: 90%;
         }
     }
 }
 
-#set-width {
+.card {
     width: 50vw;
 }
 
@@ -32,7 +32,7 @@
     border-radius: 50px;
     border: none;
     background-color: white;
-    font-size: 12px;
+    font-size: 95%;
 }
 
 #categorySelect input:focus + label, #categorySelect2 input:focus + label {
