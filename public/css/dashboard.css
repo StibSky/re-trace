@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+#streamImage {
+  width: 10%;
+}
+
 #projectPic {
   max-width: 150px;
   border-radius: 100%;

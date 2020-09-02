@@ -145,6 +145,10 @@ uses dynamic linking
                         @foreach($streams as $stream)
                             <li><strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
                             </li>
+                            <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
+                            \App\Http\Controllers\DashboardController::getStreamBuilding($stream->id) . '/' .
+                            \App\Http\Controllers\DashboardController::getStreamImage($stream->id)) }}"/>
+
                             @for ($i = 0; $i < count($tags); $i++)
                                 @for ($j = 0; $j < count($tags[$i]); $j++)
                                     @if($stream->id == $tags[$i][$j]['stream_id'])

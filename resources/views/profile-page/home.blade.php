@@ -102,6 +102,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         <form class="form text-center d-flex flex-column justify-content-center px-auto" action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
 
+
                             <label class="materialDrop">{{ __("Pick material")}}:
                                 <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
                                     <option selected disabled>{{ __("Please Select")}}</option>
@@ -171,6 +172,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                           enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
+
                             <label for="firstName">{{ __("First name")}}</label>
                             <input type="text" name="firstName" id="firstName">
                             <br>
@@ -215,6 +217,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </button>
                             </div>
                             <div class="modal-footer">
+
                             </div>
                         </form>
                     @endif
