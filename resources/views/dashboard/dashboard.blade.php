@@ -11,7 +11,7 @@ uses dynamic linking
         <div class="col-12 col-lg-4 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
             <div class="row card" id="projectOverview">
                 <div class="card-header">
-                    <h4>{{ $project->projectName ?? 'Project name' }}</h4>
+                    <h5>{{ $project->projectName ?? 'Project name' }}</h5>
                 </div>
                 <div class="card-body mb-lg-2 mb-3">
                     <div class="row">
@@ -111,7 +111,7 @@ uses dynamic linking
             </div>
             <div class="row card mt-lg-2 mt-3" id="projectInfo">
                 <div class="card-header">
-                    <h4>{{ __("Information")}}</h4>
+                    <h5>{{ __("Information")}}</h5>
                 </div>
                 <div class="card-body" id="infoOverview">{{--
                 @if(count($projecttypes) == 0)
@@ -137,7 +137,7 @@ uses dynamic linking
         <div class="col-12 col-lg-7 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch"
              id="waste-streams">
             <div class="card-header">
-                <h4>{{ __("Waste Streams")}}</h4>
+                <h5>{{ __("Waste Streams")}}</h5>
             </div>
           <div class="d-flex flex-row justify-content-between">
                     <div class="column w-75"> <p></p></div>

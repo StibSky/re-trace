@@ -25,7 +25,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
         <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="card-header">{{ __("Profile")}}</div>
+                <div class="card-header"><h5>{{ __("Profile")}}</h5></div>
                 <div class="card-body">
                     <div class="row px-3">
                         <div class="col-lg-5 col-12 d-flex flex-column">
@@ -54,7 +54,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
             <div class="row card mt-lg-5 mt-1">
-                <div class="card-header">{{ __("My projects")}}</div>
+                <div class="card-header"><h5>{{ __("My projects")}}</h5></div>
                 <div class="d-flex flex-row justify-content-between" id="titleBar">
                     <span class="w-75">{{ __("Name")}}</span>
                     <span class="w-100">{{ __("Type")}}</span>
@@ -95,8 +95,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
         </div>
         <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 ml-3 card d-flex" id="projectInfo">
-            <div class="card-body">
-                <div class="row" id="newSearch">
+            <div class="card-body d-flex">
+                <div class="col-4" id="newSearch">
 {{--                    <div class="d-flex flex-column w-25">
                         <button type="button" id="moreMats" class="moreMats"
                                 onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
@@ -159,8 +159,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </form>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded w-100"></div>
+                <div class="col-8 mt-3">
+                    <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
             </div>
         </div>
