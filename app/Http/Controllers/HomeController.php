@@ -110,7 +110,6 @@ class HomeController extends Controller
         return $decodeLocation['results'][0]['geometry']['location']['lat'];
     }
 
-
     public function mysearch(Request $request)
     {
         $inputsearch = $request->input('mysearch');

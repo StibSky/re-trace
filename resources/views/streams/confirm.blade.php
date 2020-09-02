@@ -19,7 +19,7 @@
                         <td>{{ __("Description") }}: {{ $stream->description }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __("Destination") }}: {{ $stream->category }}</td>
+                        <td>{{ __("Origin") }}: {{ $stream->category }}</td>
                     </tr>
                     <tr>
                         <td>{{ __("Materials") }}:

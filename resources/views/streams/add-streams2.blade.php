@@ -21,13 +21,22 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams2', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="radio-toolbar">
-                        <input type="radio" id="radioApple" name="category" value="Production surplus">
+                        <input type="radio" id="radioApple" name="category" value="Production surplus"
+                               @if( session()->get('stream.category') == "Production surplus")
+                               checked
+                            @endif>
                         <label for="radioApple">{{ __("Production surplus") }}</label>
 
-                        <input type="radio" id="radioBanana" name="category" value="Overstock">
+                        <input type="radio" id="radioBanana" name="category" value="Overstock"
+                               @if( session()->get('stream.category') == "Overstock")
+                               checked
+                            @endif>
                         <label for="radioBanana">{{ __("Overstock") }}</label>
 
-                        <input type="radio" id="radioOrange" name="category" value="Construction and demolition waste">
+                        <input type="radio" id="radioOrange" name="category" value="Construction and demolition waste"
+                               @if( session()->get('stream.category') == "Construction and demolition waste")
+                               checked
+                            @endif>
                         <label for="radioOrange">{{ __("Construction and demolition waste") }}</label>
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
