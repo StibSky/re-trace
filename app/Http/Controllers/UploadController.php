@@ -22,12 +22,12 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         if (!Auth::check()) {
-            return redirect('login')->with('error', 'You were inactive for too long and logged out automatically');
+            return redirect('login')->with('error', __('You were inactive for too long and logged out automatically'));
         }
 
         $file = new UploadedFile();
         if ($request->userfile == null) {
-            return back()->with('error', 'please select a file');
+            return back()->with('error', __('please select a file'));
         }
 
         $filebasename = $request->input("name") ?? $request->userfile->getClientOriginalName();
@@ -44,7 +44,7 @@ class UploadController extends Controller
         //make array and check met in_array
         $mimetype = $request->userfile->getMimeType();
         if (!in_array($mimetype, $allowedFiles)) {
-            return back()->with('error', 'invalid file type');
+            return back()->with('error', __('invalid file type'));
         }
 
         //be careful with $post
@@ -66,7 +66,7 @@ class UploadController extends Controller
 
         $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
 
-        return back()->with('success', 'file uploaded');
+        return back()->with('success', __('file uploaded'));
 
     }
 
@@ -127,7 +127,7 @@ class UploadController extends Controller
 
         $file->delete();
 
-        return redirect()->back()->with('success', 'File deleted successfully');
+        return redirect()->back()->with('success', __('File deleted successfully'));
     }
 
     public

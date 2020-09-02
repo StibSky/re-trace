@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                     <div class="form-group">
                         <label for="projectName" class="sr-only">{{ __("Name") }}:</label>
                         <input type="text" class="form-control text-center" id="projectName" name="projectName"
-                               placeholder="PROJECT NAME"
+                               placeholder="{{ __("PROJECT NAME") }}"
                                value="{{ session()->get('building.projectName') }}">
                     </div>
                     <button type="submit" id="main-button-wide" class="btn btn-primary" name="newBuilding">{{ __("Next")}}</button>

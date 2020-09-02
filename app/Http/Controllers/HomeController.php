@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Building;
 use App\Materiallist;
 use App\Substance;
+use App\MaterialFunction;
 use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class HomeController extends Controller
         $decodedarray = [];
         foreach ($locations as $location) {
             $location = json_decode($location, true);
-           array_push($decodedarray, $location);
+            array_push($decodedarray, $location);
         }
         //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
 
@@ -71,6 +72,13 @@ class HomeController extends Controller
         $subCategory2 = DB::table('substance')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
 
+        $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
+
+        $functionSubCategory1 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
+
+        $functionSubCategory2 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
         $unit = Unit::all();
 
         return view('profile-page.home', [
@@ -81,6 +89,9 @@ class HomeController extends Controller
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
             'subCategories2' => $subCategory2,
+            'functionHeadCategory' => $functionHeadCategory,
+            'functionSubCategory1' => $functionSubCategory1,
+            'functionSubCategory2' => $functionSubCategory2,
             'units' => $unit,
             'decodedarray' => $decodedarray,
         ]);
@@ -99,21 +110,30 @@ class HomeController extends Controller
         return $decodeLocation['results'][0]['geometry']['location']['lat'];
     }
 
-
     public function mysearch(Request $request)
     {
         $inputsearch = $request->input('mysearch');
 
         $substanceId = $request->input('substance');
 
+        $functionID = $request->input('dbFunction');
 
-        if ($substanceId == " ") {
-            return back()->with('error', 'please select a material');
+
+        if ($substanceId == null && $functionID == null) {
+            return back()->with('error', __('please select a material or function '));
         }
 
-        $buildings = DB::table('building')
-            ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-
+        if ($substanceId !=null && $functionID != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . ") )")->get();
+        }
+        elseif ($substanceId != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
+        } elseif ($functionID != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . "))")->get();
+        }
 
         $materialLocations = [];
         foreach ($buildings as $building) {
@@ -127,7 +147,9 @@ class HomeController extends Controller
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
-                'materialLocations' => $materialLocations]);
+                'materialLocations' => $materialLocations,
+                'functionId' => $functionID,
+            ]);
     }
 
     public function editUserInfo(Request $request)
@@ -146,6 +168,6 @@ class HomeController extends Controller
         }
         $user->save();
 
-        return back()->withErrors('success', 'successfully updated your info');
+        return back()->withErrors('success', __('successfully updated your info'));
     }
 }

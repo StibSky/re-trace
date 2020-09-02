@@ -16,10 +16,10 @@
                         <td>{{ __("Stream name") }}: {{ $stream->name }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __("Description: {{ $stream->description }}</td>
+                        <td>{{ __("Description") }}: {{ $stream->description }}</td>
                     </tr>
                     <tr>
-                        <td>{{ __("Destination: {{ $stream->category }}</td>
+                        <td>{{ __("Origin") }}: {{ $stream->category }}</td>
                     </tr>
                     <tr>
                         <td>{{ __("Materials") }}:
@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Function:
+                        <td>{{ __("Function")}}:
                             <ul>
                                 @if($functionArray)
                                     @foreach($functionArray as $streamFunction)

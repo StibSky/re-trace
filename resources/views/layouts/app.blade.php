@@ -113,7 +113,7 @@ sets up the navbar and yields the content of the other pages
             </nav>
 
             <main class="py-4">
-                <div class="container">
+                <div class="container-fluid px-5">
                     @if(session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -161,5 +161,5 @@ sets up the navbar and yields the content of the other pages
 </div>
 </body>
 <!-- Site footer -->
-
+<script src="{{mix('/js/app.js')}}"></script>
 </html>

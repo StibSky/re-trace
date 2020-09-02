@@ -33,21 +33,27 @@ blade for adding a new building/project to a User
                     <div class="form-group">
                         <label for="streamName" class="sr-only">{{ __("Name") }}:</label>
                         <input type="text" class="form-control text-center" id="streamName" name="streamName"
-                               placeholder="STREAM NAME"
+                               placeholder="{{ __("STREAM NAME") }}:"
                                value="{{ session()->get('stream.name') }}">
                     </div>
                     <div class="form-group">
                         <label for="streamDescription" class="sr-only">{{ __("Description") }}:</label>
                         <textarea class="form-control text-center" id="streamDescription" name="streamDescription"
-                               placeholder="DESCRIPTION">{{ session()->get('stream.description') }}</textarea>
+                               placeholder="{{ __("DESCRIPTION") }}">{{ session()->get('stream.description') }}</textarea>
                     </div>
                     <div class="form-group">
                         {{ __("PLEASE SELECT AN ACTION") }}
                         <div class="radio-toolbar">
-                            <input type="radio" id="radioApple" name="streamAction" value="reuse">
+                            <input type="radio" id="radioApple" name="streamAction" value="reuse"
+                            @if( session()->get('stream.action') == "reuse")
+                                checked
+                                @endif>
                             <label for="radioApple">{{ __("Reuse") }}</label>
 
-                            <input type="radio" id="radioBanana" name="streamAction" value="recycle">
+                            <input type="radio" id="radioBanana" name="streamAction" value="recycle"
+                                   @if( session()->get('stream.action') == "recycle")
+                                   checked
+                                @endif>
                             <label for="radioBanana">{{ __("Recycle") }}</label>
                         </div>
                     </div>
@@ -66,7 +72,7 @@ blade for adding a new building/project to a User
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title">{{ __("Please upload a new ima") }}ge</h4>
+                    <h4 class="modal-title">{{ __("Please upload a new image")}}</h4>
                 </div>
                 <form action="{{ route('uploadStreamImage') }}" method="post" enctype="multipart/form-data">
                     @csrf
