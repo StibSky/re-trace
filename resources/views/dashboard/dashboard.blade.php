@@ -229,11 +229,9 @@ uses dynamic linking
                         <label for="type">{{ __("Select file type")}}:</label>
                         <select name="type">
                             <option value="Measuring state">{{ __("Measuring state")}}</option>
-                            <option value="Location">{{ __("Location")}}</option>
-                            <option value="Surface">{{ __("Surface")}}</option>
-                            <option value="Volume">{{ __("Volume")}}</option>
                             <option value="Material list">{{ __("Material list")}}</option>
                             <option value="Plans">{{ __("Plans")}}</option>
+                            <option value="Demolition plans">{{ __("Demolition plans")}}</option>
                             <option value="Photos exterior">{{ __("Photos exterior")}}</option>
                             <option value="Photos interior">{{ __("Photos interior")}}</option>
                         </select>
