@@ -143,8 +143,6 @@ uses dynamic linking
                     <div class="column w-75"> <p></p></div>
                     <div class="column w-75"> <p>{{ __("Stream")}}</p></div>
                     <div class="column w-75"> <p>{{ __("Action")}}</p></div>
-                    <div class="column w-75"> <p>{{ __("Material")}}</p></div>
-                    <div class="column w-75"> <p>{{ __("Function")}}</p></div>
                     <div class="column w-75"> <p>{{ __("Quantity")}}</p></div>
           </div>
 
@@ -160,8 +158,6 @@ uses dynamic linking
                                 <strong><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p>{{$stream->action}}</p>
-                                <a href="#">{{ __("Materials")}} </a>
-                                <a href="#">{{ __("Functions")}} </a>
                                 <p>{{$stream->quantity}}</p>
 
 
