@@ -23,7 +23,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     @endif
 
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
-        <div class="col-md-4 col-12 pr-2 ml-0" id="userInfo">
+        <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
                 <div class="card-header">{{ __("Profile")}}</div>
                 <div class="card-body">
@@ -87,8 +87,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
         </div>
-
-        <div class="col-md-7 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
+        <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 ml-3 card d-flex" id="projectInfo">
             <div class="card-body">
                 <div class="row" id="newSearch">
 {{--                    <div class="d-flex flex-column w-25">
