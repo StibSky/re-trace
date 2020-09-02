@@ -8,7 +8,7 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-stretch justify-content-center">
-        <div class="col-12 col-lg-6 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
+        <div class="col-12 col-lg-4 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
             <div class="row card" id="projectOverview">
                 <div class="card-header">
                     <h4>{{ $project->projectName ?? 'Project name' }}</h4>
@@ -134,7 +134,7 @@ uses dynamic linking
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch"
+        <div class="col-12 col-lg-7 card mt-lg-0 mt-3 ml-lg-3 ml-xl-4 mx-auto px-0 align-self-stretch"
              id="waste-streams">
             <div class="card-header">
                 <h4>{{ __("Waste Streams")}}</h4>
