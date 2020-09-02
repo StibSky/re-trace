@@ -15,6 +15,7 @@ use App\Valuta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Table;
 
 class DashboardController extends Controller
 {
@@ -54,10 +55,12 @@ class DashboardController extends Controller
         $streams = Stream::where('buildid', $id)->get();
 
         $tags = [];
-
         foreach ($streams as $stream) {
             array_push($tags, Tag::where('stream_id', $stream->id)->get());
         }
+
+        $user = Auth::user();
+        $userFolder = $user->first_name. "_" . $user->last_name;
 
         return view('dashboard.dashboard', [
             'project' => $project,
@@ -65,6 +68,7 @@ class DashboardController extends Controller
             'projecttypes' => $projecttypes,
             'streams' => $streams,
             'tags' => $tags,
+            'userFolder' => $userFolder
         ]);
     }
 
@@ -77,74 +81,89 @@ class DashboardController extends Controller
             return $materialName->name;
         } elseif (app()->getLocale() == "fr") {
             return $materialName->name_fr;
-        } elseif (app()->getLocale() == "nl"){
+        } elseif (app()->getLocale() == "nl") {
             return $materialName->name_nl;
-    }
-}
-
-public
-static function getFunctionName($id)
-{
-    $functionName = DB::table('materialFunction')
-        ->where('id', $id)->first();
-
-
-    if (app()->getLocale() == "en") {
-        return $functionName->name;
-    } elseif (app()->getLocale() == "fr") {
-        return $functionName->name_fr;
-    } elseif (app()->getLocale() == "nl"){
-        return $functionName->name_nl;
-    }
-}
-
-public
-function adminDashboard()
-{
-    //dashboardcontroller for administrators to see user info
-    if (Auth::user()->type != 'admin') {
-        return redirect()->back();
-    }
-    $privateUsers = User::where('type', 'Private')->get();
-    $businessUsers = User::where('type', 'Business')->get();
-    $privateBuildings = [];
-    foreach ($privateUsers as $privateUser) {
-        array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
-    }
-    $businessBuildings = [];
-    foreach ($businessUsers as $businessUser) {
-        array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
+        }
     }
 
-    return view('dashboard.adminDashboard', [
-        'privates' => $privateUsers,
-        'privateBuildings' => $privateBuildings,
-        'businesses' => $businessUsers,
-        'businessBuildings' => $businessBuildings
-    ]);
-}
-
-public
-function editDashInfo(Request $request, $id)
-{
-    $building = Building::where('id', $id)->first();
+    public
+    static function getFunctionName($id)
+    {
+        $functionName = DB::table('materialFunction')
+            ->where('id', $id)->first();
 
 
-    if ($request->input('streetName') != null && $request->input('streetNumber') != null) {
-        $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
+        if (app()->getLocale() == "en") {
+            return $functionName->name;
+        } elseif (app()->getLocale() == "fr") {
+            return $functionName->name_fr;
+        } elseif (app()->getLocale() == "nl") {
+            return $functionName->name_nl;
+        }
     }
 
-    if ($request->input('type') != null) {
-        $building->setType($request->input('type'));
+    public static function getStreamBuilding($id)
+    {
+        $buildingId = DB::table('streams')->where('id', $id)->first()->buildid;
+        $streamBuilding = DB::table('building')->where('id', $buildingId)->first()->projectName;
+
+        return $streamBuilding;
     }
 
-    if ($request->input('status') != null) {
-        $building->setStatus($request->input('status'));
+    public static function getStreamImage($id)
+    {
+        $streamImage = DB::table('stream_images')->where('streamId', $id)->first();
+
+        return $streamImage->name;
     }
 
-    $building->save();
+    public
+    function adminDashboard()
+    {
+        //dashboardcontroller for administrators to see user info
+        if (Auth::user()->type != 'admin') {
+            return redirect()->back();
+        }
+        $privateUsers = User::where('type', 'Private')->get();
+        $businessUsers = User::where('type', 'Business')->get();
+        $privateBuildings = [];
+        foreach ($privateUsers as $privateUser) {
+            array_push($privateBuildings, Building::where('userid', $privateUser->id)->get());
+        }
+        $businessBuildings = [];
+        foreach ($businessUsers as $businessUser) {
+            array_push($businessBuildings, Building::where('userid', $businessUser->id)->get());
+        }
 
-    return back()->withErrors('success', __("Successfully updated your info"));
-}
+        return view('dashboard.adminDashboard', [
+            'privates' => $privateUsers,
+            'privateBuildings' => $privateBuildings,
+            'businesses' => $businessUsers,
+            'businessBuildings' => $businessBuildings
+        ]);
+    }
+
+    public
+    function editDashInfo(Request $request, $id)
+    {
+        $building = Building::where('id', $id)->first();
+
+
+        if ($request->input('streetName') != null && $request->input('streetNumber') != null) {
+            $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
+        }
+
+        if ($request->input('type') != null) {
+            $building->setType($request->input('type'));
+        }
+
+        if ($request->input('status') != null) {
+            $building->setStatus($request->input('status'));
+        }
+
+        $building->save();
+
+        return back()->withErrors('success', __("Successfully updated your info"));
+    }
 
 }

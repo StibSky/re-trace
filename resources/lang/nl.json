@@ -168,6 +168,7 @@
     "Destination" : "Bestemming",
     "Materials" : "Materialen",
     "Function" : "Functie",
+    "Functions": "Functies",
     "Confirm input and add stream?" : "Input bevestigen en stroom toevoegen?",
     "Material added successfully!" : "Materiaal succesvol toegevoegd!",
     "Project created successfully" : "Project succesvol aangemaakt",
@@ -196,5 +197,8 @@
     "please select a file" : "Gelieve een file te selecteren",
     "file uploaded" : "File upgeload",
     "File deleted successfully" : "File succesvol verwijderd",
-    "PROJECT NAME": "PROJECTNAAM"
+    "PROJECT NAME": "PROJECTNAAM",
+    "Pick Function" : "Functie kiezen",
+    "Hide Functions" : "Functies Verbergen",
+    "Hide Materials" : "Materialen Verbergen"
 }
