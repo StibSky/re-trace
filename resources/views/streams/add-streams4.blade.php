@@ -30,10 +30,6 @@ blade for adding a new building/project to a User
                                    value="@if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
                         </div>
                         <div class="form-group">
-                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
-                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
-                        </div>
-                        <div class="form-group">
                             <label for="streamQuantity" class="sr-only">{{ __("Quantity") }}:</label>
                             <input type="text" class="form-control text-center" id="streamQuantity"
                                    name="streamQuantity"
@@ -71,6 +67,10 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>--}}
+                        <div class="form-group">
+                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
+                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
+                        </div>
                     </div>
                     <button type="submit" id="main-button" class="btn btn-primary"
                             name="newStream">{{ __("Next") }}</button>
