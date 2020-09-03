@@ -17,11 +17,13 @@ blade for adding a new building/project to a User
                 <h3><strong>re-trace.io</strong></h3>
             </div>
             <div class="card-body text-center">
-                <h4>{{ __("Please give the quantity and unit of your stream") }}</h4>
+                <h4>{{ __("Please give the price, quantity and unit of your stream") }}</h4>
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <div class="form-row d-flex align-items-center justify-content-between">
-                        <h5>€</h5>
+                    <div class="form-row d-flex flex-row align-items-center justify-content-between">
+                        <div class="pl-5">
+                            <h5>€</h5>
+                        </div>
                         <div class="form-group">
                             <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
                             <input type="text" class="form-control text-center" id="streamPrice"
