@@ -269,15 +269,15 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
 
-        if ($request->input("streamValuta") == null) {
+/*        if ($request->input("streamValuta") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a currency'));
-        }
+        }*/
 
         $price = $request->input("streamPrice");
         $price = str_replace(',', '.', $price);
 
         $stream->setPrice($price * 100);
-        $stream->setValutaId($request->input("streamValuta"));
+        $stream->setValutaId('1');
 
         $request->session()->put('stream', $stream);
 
