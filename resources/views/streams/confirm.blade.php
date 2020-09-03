@@ -48,7 +48,7 @@
                         <td>{{ __("Quantity") }}: {{ $stream->quantity / 1000}} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ $stream->price / 100}}</td>
+                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ number_format($stream->price / 100, 2, ',', '.')}}</td>
                     </tr>
                     <tr>
                         <td>{{ __("Action") }}: {{ $stream->action }}</td>
