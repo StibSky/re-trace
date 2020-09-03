@@ -45,10 +45,10 @@
 
                     </tr>
                     <tr>
-                        <td>{{ __("Quantity") }}: {{ $stream->quantity }} {{ $unit->short_name }}</td>
+                        <td>{{ __("Quantity") }}: {{ $stream->quantity / 1000}} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ $stream->price }}</td>
+                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ $stream->price / 100}}</td>
                     </tr>
                     <tr>
                         <td>{{ __("Action") }}: {{ $stream->action }}</td>

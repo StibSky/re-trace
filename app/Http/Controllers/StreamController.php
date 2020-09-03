@@ -160,7 +160,8 @@ class StreamController extends Controller
         $substanceSubCategory2 = DB::table('substance')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
-        $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
+        $functionHeadCategory = DB::table('materialFunction')
+            ->whereRaw("parent IS NULL")->get();
 
         $functionSubCategory1 = DB::table('materialFunction')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
@@ -258,7 +259,11 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
-        $stream->setQuantity($request->input("streamQuantity"));
+        $quantity = $request->input("streamQuantity");
+        if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
+            $quantity = str_replace(',', '.', $quantity);
+        }
+        $stream->setQuantity($quantity * 1000);
         $stream->setUnitId($request->input("streamUnit"));
 
         if ($request->input("streamPrice") == null) {
@@ -269,7 +274,9 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a currency'));
         }
 
-        $stream->setPrice($request->input("streamPrice"));
+        $price = $request->input("streamPrice");
+        $price = str_replace(',', '.', $price);
+        $stream->setPrice($price * 100);
         $stream->setValutaId($request->input("streamValuta"));
 
         $request->session()->put('stream', $stream);
@@ -280,6 +287,8 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
+
+        var_dump($request->session()->get('stream.price'));
 
         $functionArray = null;
 

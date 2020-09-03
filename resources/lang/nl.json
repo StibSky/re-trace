@@ -159,6 +159,7 @@
     "Please give the quantity and unit of your stream" : "Geef de hoeveelheid en eenheid van je stroom",
     "Quantity" : "Hoeveel",
     "Unit" : "Eenheid",
+    "UNIT": "EENHEID",
     "PLEASE SELECT A UNIT OF MEASUREMENT" : "SELECTEER EEN MEETSTAAT",
     "PLEASE SELECT A CURRENCY" :"SELECTEER EEN VALUTA",
     "Price" : "Prijs",

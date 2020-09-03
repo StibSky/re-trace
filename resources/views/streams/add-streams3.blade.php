@@ -120,7 +120,7 @@ blade for adding a new building/project to a User
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary"
+                    <button type="submit" id="main-button" class="btn btn-primary"
                             name="newStream">{{ __("Next")}}</button>
                 </form>
             </div>

@@ -39,7 +39,7 @@ blade for adding a new building/project to a User
                             @endif>
                         <label for="radioOrange">{{ __("Construction and demolition waste") }}</label>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
