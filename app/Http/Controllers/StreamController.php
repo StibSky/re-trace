@@ -259,9 +259,12 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
-        $quantity = $request->input("streamQuantity");
         if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
+            $quantity = $request->input("streamQuantity");
             $quantity = str_replace(',', '.', $quantity);
+        }
+        else {
+            $quantity = $request->input("streamQuantity");
         }
 
         $stream->setQuantity($quantity * 1000);
@@ -275,9 +278,12 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a currency'));
         }
 
-        $price = $request->input("streamPrice");
         if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
+            $price = $request->input("streamPrice");
             $price = str_replace(',', '.', $price);
+        }
+        else {
+            $price = $request->input("streamPrice");
         }
 
         $stream->setPrice($price * 100);
