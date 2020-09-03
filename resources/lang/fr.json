@@ -160,6 +160,7 @@
     "Please give the quantity and unit of your stream": "Veuillez indiquer la quantité et l'unité de votre flux",
     "Quantity": "Quantité",
     "Unit": "unité",
+    "UNIT": "UNITÉ",
     "PLEASE SELECT A UNIT OF MEASUREMENT": "VEUILLEZ CHOISIR UNE UNITÉ DE MESURE",
     "PLEASE SELECT A CURRENCY": "VEUILLEZ SÉLECTIONNER UNE MONNAIE",
     "Price": "Prix",

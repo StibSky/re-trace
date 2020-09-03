@@ -4,11 +4,12 @@
     height: 6em;
 }
 
-#projectInfo {
+#mapAndSearch {
     .card-footer {
         border: none;
         background-color: $retrace-light-blue;
     }
+    width: 100%;
 }
 
 @media (max-width: 1440px) {
@@ -75,4 +76,8 @@
 ul {
     padding: 0;
     list-style: none;
+}
+
+#categorySelect {
+    background-color: $retrace-pink;
 }

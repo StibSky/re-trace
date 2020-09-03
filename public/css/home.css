@@ -2,7 +2,11 @@
   height: 6em;
 }
 
-#projectInfo .card-footer {
+#mapAndSearch {
+  width: 100%;
+}
+
+#mapAndSearch .card-footer {
   border: none;
   background-color: #e2e6f0;
 }
@@ -70,5 +74,9 @@
 ul {
   padding: 0;
   list-style: none;
+}
+
+#categorySelect {
+  background-color: #f3bfba;
 }
 

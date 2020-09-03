@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
 @endsection
 @section('content')
     <!--
@@ -26,9 +26,9 @@ blade for adding a new building/project to a User
                         </div>
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Unit") }}:</label>
-                            <select name="streamUnit" id="streamUnit">
+                            <select name="streamUnit" id="streamUnit" class="custom-select text-center">
                                 <option selected disabled>
-                                    {{ __("PLEASE SELECT A UNIT OF MEASUREMENT") }}
+                                    {{ __("UNIT") }}
                                 </option>
                                 @foreach($units as $unit)
                                     <option value="{{ $unit->id }}">
@@ -43,16 +43,14 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Valuta") }}:</label>
                             <select name="streamValuta" id="streamValuta">
                                 <option selected disabled>
                                     {{ __("PLEASE SELECT A CURRENCY") }}
-                                 </option>
-                                 @foreach($valutas as $valuta)
-                                     <option value="{{ $valuta->id }}">
+                                </option>
+                                @foreach($valutas as $valuta)
+                                    <option value="{{ $valuta->id }}">
                                         {{ $valuta->symbol }}
                                     </option>
                                 @endforeach
@@ -65,7 +63,7 @@ blade for adding a new building/project to a User
                                    placeholder="{{ __("PRICE") }}" value="{{ session()->get('stream.price') }}">
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
