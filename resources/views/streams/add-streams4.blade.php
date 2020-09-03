@@ -22,7 +22,7 @@ blade for adding a new building/project to a User
                             <label for="streamQuantity" class="sr-only">{{ __("Quantity") }}:</label>
                             <input type="text" class="form-control text-center" id="streamQuantity"
                                    name="streamQuantity"
-                                   placeholder="QUANTITY" value="{{ session()->get('stream.quantity') }}">
+                                   placeholder="QUANTITY" value="{{ session()->get('stream.quantity') /1000 }}">
                         </div>
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Unit") }}:</label>
@@ -60,7 +60,7 @@ blade for adding a new building/project to a User
                             <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
                             <input type="text" class="form-control text-center" id="streamPrice"
                                    name="streamPrice"
-                                   placeholder="{{ __("PRICE") }}" value="{{ session()->get('stream.price') }}">
+                                   placeholder="{{ __("PRICE") }}" value="{{ session()->get('stream.price') /100 }}">
                         </div>
                     </div>
                     <button type="submit" id="main-button" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>

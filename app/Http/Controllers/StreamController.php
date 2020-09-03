@@ -106,7 +106,7 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please select an action'));
         }
 
-        if  ($request->session()->get('image') == null) {
+        if ($request->session()->get('image') == null) {
             return redirect()->back()->withInput()->with('error', __('please upload an image'));
         }
 
@@ -259,13 +259,8 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
-        if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
-            $quantity = $request->input("streamQuantity");
-            $quantity = str_replace(',', '.', $quantity);
-        }
-        else {
-            $quantity = $request->input("streamQuantity");
-        }
+        $quantity = $request->input("streamQuantity");
+        $quantity = str_replace(',', '.', $quantity);
 
         $stream->setQuantity($quantity * 1000);
         $stream->setUnitId($request->input("streamUnit"));
@@ -278,13 +273,8 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a currency'));
         }
 
-        if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
-            $price = $request->input("streamPrice");
-            $price = str_replace(',', '.', $price);
-        }
-        else {
-            $price = $request->input("streamPrice");
-        }
+        $price = $request->input("streamPrice");
+        $price = str_replace(',', '.', $price);
 
         $stream->setPrice($price * 100);
         $stream->setValutaId($request->input("streamValuta"));
@@ -397,6 +387,7 @@ class StreamController extends Controller
         $request->session()->forget('materialIds');
         $request->session()->forget('functionIds');
     }
+
     public function streamView($id)
     {
         $stream = DB::table('streams')->where('id', $id)->first();
