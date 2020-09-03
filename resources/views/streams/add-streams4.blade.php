@@ -21,6 +21,18 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-row d-flex align-items-center justify-content-between">
+                        <h5>€</h5>
+                        <div class="form-group">
+                            <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
+                            <input type="text" class="form-control text-center" id="streamPrice"
+                                   name="streamPrice"
+                                   placeholder="{{ __("PRICE") }}"
+                                   value="@if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
+                        </div>
+                        <div class="form-group">
+                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
+                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
+                        </div>
                         <div class="form-group">
                             <label for="streamQuantity" class="sr-only">{{ __("Quantity") }}:</label>
                             <input type="text" class="form-control text-center" id="streamQuantity"
@@ -59,18 +71,6 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>--}}
-                        <h5>€</h5>
-                        <div class="form-group">
-                            <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
-                            <input type="text" class="form-control text-center" id="streamPrice"
-                                   name="streamPrice"
-                                   placeholder="{{ __("PRICE") }}"
-                                   value="@if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
-                        </div>
-                        <div class="form-group">
-                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
-                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
-                        </div>
                     </div>
                     <button type="submit" id="main-button" class="btn btn-primary"
                             name="newStream">{{ __("Next") }}</button>
