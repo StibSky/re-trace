@@ -5,12 +5,12 @@
 @media (max-width: 1440px) {
 @media not all and (min-resolution: 0.001dpcm) {
     #streamPic {
-      height: 100%;
+      height: 90%;
     }
 }
 }
 
-#set-width {
+.card {
   width: 50vw;
 }
 
@@ -25,6 +25,12 @@
   width: 1px;
 }
 
+#categorySelect,
+#categorySelect2 {
+  height: 10vh;
+  overflow: scroll;
+}
+
 #categorySelect label,
 #categorySelect2 label,
 .radio-toolbar label {
@@ -33,7 +39,7 @@
   border-radius: 50px;
   border: none;
   background-color: white;
-  font-size: 12px;
+  font-size: 95%;
 }
 
 #categorySelect input:focus + label,
@@ -80,5 +86,14 @@
 .radio-toolbar label:hover {
   background-color: #f3bfba;
   color: white;
+}
+
+#main-button,
+#secondary-button {
+  width: 10vw;
+}
+
+#streamUnit {
+  background-color: #f3bfba;
 }
 

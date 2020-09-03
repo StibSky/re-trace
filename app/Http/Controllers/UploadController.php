@@ -39,7 +39,8 @@ class UploadController extends Controller
         $filename = Str::contains($filebasename, $originalExtension) ? $filebasename : $filebasename . "." . $originalExtension;
 
         $allowedFiles = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'image/png', 'image/jpeg',
-            'application/msword', 'text/plain', 'image/vnd.dwg', 'application/vnd.mcd', 'application/vnd.vwx', 'application/vnd.ifc', 'application/octet-stream'];
+            'application/msword', 'text/plain', 'image/vnd.dwg', 'application/vnd.mcd', 'application/vnd.vwx', 'application/vnd.ifc', 'application/octet-stream',
+            'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
 
         //make array and check met in_array
         $mimetype = $request->userfile->getMimeType();

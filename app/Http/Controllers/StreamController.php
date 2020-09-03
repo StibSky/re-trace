@@ -106,7 +106,7 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please select an action'));
         }
 
-        if  ($request->session()->get('image') == null) {
+        if ($request->session()->get('image') == null) {
             return redirect()->back()->withInput()->with('error', __('please upload an image'));
         }
 
@@ -160,7 +160,8 @@ class StreamController extends Controller
         $substanceSubCategory2 = DB::table('substance')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
-        $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
+        $functionHeadCategory = DB::table('materialFunction')
+            ->whereRaw("parent IS NULL")->get();
 
         $functionSubCategory1 = DB::table('materialFunction')
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
@@ -258,19 +259,25 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
-        $stream->setQuantity($request->input("streamQuantity"));
+        $quantity = $request->input("streamQuantity");
+        $quantity = str_replace(',', '.', $quantity);
+
+        $stream->setQuantity($quantity * 1000);
         $stream->setUnitId($request->input("streamUnit"));
 
         if ($request->input("streamPrice") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
 
-        if ($request->input("streamValuta") == null) {
+/*        if ($request->input("streamValuta") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a currency'));
-        }
+        }*/
 
-        $stream->setPrice($request->input("streamPrice"));
-        $stream->setValutaId($request->input("streamValuta"));
+        $price = $request->input("streamPrice");
+        $price = str_replace(',', '.', $price);
+
+        $stream->setPrice($price * 100);
+        $stream->setValutaId('1');
 
         $request->session()->put('stream', $stream);
 
@@ -280,6 +287,8 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
+
+        var_dump($request->session()->get('stream.price'));
 
         $functionArray = null;
 
@@ -378,6 +387,7 @@ class StreamController extends Controller
         $request->session()->forget('materialIds');
         $request->session()->forget('functionIds');
     }
+
     public function streamView($id)
     {
         $stream = DB::table('streams')->where('id', $id)->first();

@@ -23,11 +23,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     @endif
 
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
-        <div class="col-md-4 col-12 pr-2 ml-0" id="userInfo">
+        <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="card-header">{{ __("Profile")}}</div>
+                <div class="card-header"><h5>{{ __("Profile")}}</h5></div>
                 <div class="card-body">
-                    <div class="row px-3">
+                    <div class="row px-3 py-2">
                         <div class="col-lg-5 col-12 d-flex flex-column">
                             <div class="row">
                                 <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
@@ -54,18 +54,25 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
             <div class="row card mt-lg-5 mt-1">
-                <div class="card-header">{{ __("My projects")}}</div>
-                <div class="card-body" id="myProjects">
+                <div class="card-header"><h5>{{ __("My projects")}}</h5></div>
+                <div class="d-flex flex-row justify-content-between" id="titleBar">
+                    <span class="w-75">{{ __("Name")}}</span>
+                    <span class="w-100">{{ __("Type")}}</span>
+                    <span class="w-75">{{ __("Category")}}</span>
+                    <span class="w-75"> </span>
+                </div>
+                <div class="card-body text-left" id="myProjects">
                     @if(count($buildings) == 0)
                         <h5> - {{ __("Please add your first project to progress your profile")}}</h5>
                     @endif
                     <ul>
                         @foreach($buildings as $building)
                             <li class="d-flex flex-row justify-content-between">
-                                <a id="project-names"
+                                <a id="project-names" class="w-75"
                                    href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
                                 <span class="w-100">{{ $building->type }}</span>
-                                <div>
+                                <span class="w-75">{{ $building->status }}</span>
+                                <div class="w-75">
                                     @if(Auth::user()->type == 'admin')
                                         <button data-toggle="modal"
                                                 data-target="#myModal" class="btn btn-primary"
@@ -87,55 +94,53 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             </div>
 
         </div>
-        <div class="col-md-7 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
-            <div class="card-body">
-                <div class="row" id="newSearch">
-{{--                    <div class="d-flex flex-column w-25">
-                        <button type="button" id="moreMats" class="moreMats"
-                                onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
-                                    .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
-                        <button type="button" id="moreFuncts" class="moreFuncts"
-                                onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
-                                    .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
-                    </div>--}}
+        <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 mx-0 ml-md-3 card d-flex" id="mapAndSearch">
+            <div class="card-body d-flex">
+                <div class="col-4" id="newSearch">
+                    {{--                    <div class="d-flex flex-column w-25">
+                                            <button type="button" id="moreMats" class="moreMats"
+                                                    onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
+                                                        .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
+                                            <button type="button" id="moreFuncts" class="moreFuncts"
+                                                    onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
+                                                        .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
+                                        </div>--}}
                     <div id="newSearch">
-                        <form class="form text-center d-flex flex-column justify-content-center px-auto" action="{{ route('mysearch') }}" method="post" name="searchForm">
+                        <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                              action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
 
-                            <label class="materialDrop">{{ __("Pick material")}}:
-                                <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
-                                    <option selected disabled>{{ __("Please Select")}}</option>
-                                    @foreach($subCategories1 as $subCategory1)
-                                        <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                            @if(app()->getLocale() == "en")
-                                                {{ $subCategory1->name }}
-                                            @elseif(app()->getLocale() == "fr")
-                                                {{ $subCategory1->name_fr }}
-                                            @elseif(app()->getLocale() == "nl")
-                                                {{ $subCategory1->name_nl }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </label>
+
+                            <select name="substance" id="categorySelect" class="custom-select text-center my-2">
+                                <option selected disabled>{{ __("Material")}}</option>
+                                @foreach($subCategories1 as $subCategory1)
+                                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                        @if(app()->getLocale() == "en")
+                                            {{ $subCategory1->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $subCategory1->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $subCategory1->name_nl }}
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
                             <br>
-                            <label class="functionDrop">{{ __("Pick Function")}}:
-                                <select name="dbFunction" id="categorySelect" class="js-example-basic-single w-50">
-                                    <option selected disabled>{{ __("Please Select")}}</option>
-                                    @foreach($functionSubCategory1 as $functionSub)
-                                        <option value="{{ $functionSub->id }}" class="categoryOptions">
-                                            @if(app()->getLocale() == "en")
-                                                {{ $functionSub->name }}
-                                            @elseif(app()->getLocale() == "fr")
-                                                {{ $functionSub->name_fr }}
-                                            @elseif(app()->getLocale() == "nl")
-                                                {{ $functionSub->name_nl }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </label>
-                            <button type="submit">{{ __("Search") }}</button>
+                            <select name="dbFunction" id="categorySelect" class="custom-select text-center my-2">
+                                <option selected disabled>{{ __("Function")}}</option>
+                                @foreach($functionSubCategory1 as $functionSub)
+                                    <option value="{{ $functionSub->id }}" class="categoryOptions">
+                                        @if(app()->getLocale() == "en")
+                                            {{ $functionSub->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $functionSub->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $functionSub->name_nl }}
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
 
 
                             {{--                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
@@ -151,8 +156,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </form>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded w-100"></div>
+                <div class="col-8 mt-2">
+                    <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
             </div>
         </div>
@@ -171,6 +176,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                           enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
+
                             <label for="firstName">{{ __("First name")}}</label>
                             <input type="text" name="firstName" id="firstName">
                             <br>
@@ -215,6 +221,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </button>
                             </div>
                             <div class="modal-footer">
+
                             </div>
                         </form>
                     @endif

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/create_project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
+@endsection
+@section('head-script')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 @section('content')
     <!--
@@ -17,18 +20,18 @@ blade for adding a new building/project to a User
                 <h4>{{ __("Please give the quantity and unit of your stream") }}</h4>
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <div class="form-row">
+                    <div class="form-row d-flex align-items-center justify-content-between">
                         <div class="form-group">
                             <label for="streamQuantity" class="sr-only">{{ __("Quantity") }}:</label>
                             <input type="text" class="form-control text-center" id="streamQuantity"
                                    name="streamQuantity"
-                                   placeholder="QUANTITY" value="{{ session()->get('stream.quantity') }}">
+                                   placeholder="QUANTITY" value="{{ session()->get('stream.quantity') /1000 }}">
                         </div>
                         <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Unit") }}:</label>
-                            <select name="streamUnit" id="streamUnit">
+                            <select name="streamUnit" id="streamUnit" class="custom-select text-center">
                                 <option selected disabled>
-                                    {{ __("PLEASE SELECT A UNIT OF MEASUREMENT") }}
+                                    {{ __("UNIT") }}
                                 </option>
                                 @foreach($units as $unit)
                                     <option value="{{ $unit->id }}">
@@ -43,29 +46,34 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
+{{--                        <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Valuta") }}:</label>
                             <select name="streamValuta" id="streamValuta">
                                 <option selected disabled>
                                     {{ __("PLEASE SELECT A CURRENCY") }}
-                                 </option>
-                                 @foreach($valutas as $valuta)
-                                     <option value="{{ $valuta->id }}">
+                                </option>
+                                @foreach($valutas as $valuta)
+                                    <option value="{{ $valuta->id }}">
                                         {{ $valuta->symbol }}
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>--}}
+                        <h5>€</h5>
                         <div class="form-group">
                             <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
                             <input type="text" class="form-control text-center" id="streamPrice"
                                    name="streamPrice"
-                                   placeholder="{{ __("PRICE") }}" value="{{ session()->get('stream.price') }}">
+                                   placeholder="{{ __("PRICE") }}"
+                                   value="@if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
+                        </div>
+                        <div class="form-group">
+                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
+                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
+                    <button type="submit" id="main-button" class="btn btn-primary"
+                            name="newStream">{{ __("Next") }}</button>
                 </form>
             </div>
             <div class="card-footer text-center">
@@ -73,4 +81,24 @@ blade for adding a new building/project to a User
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            qty = $("#streamQuantity")
+            qty.keyup(function(){
+                var locale = $('html').attr('lang');
+                var ennumber = $("#streamPrice").val()
+                var globalnumber = ennumber.replace(",", ".")
+                var globalqty = qty.val().replace(",", ".")
+                var number = locale === 'en' ? ennumber : globalnumber
+                var streamquant = locale === 'en' ? qty.val() : globalqty
+                var subtotal= streamquant * number
+                console.log(subtotal)
+                var inttotal= (Math.round(subtotal * 100) / 100)
+                var entotal = inttotal.toFixed(2)
+                var globaltotal = entotal.replace(".", ",")
+                var total= locale === 'en' ? entotal : globaltotal
+                $("#total").val(total);
+            });
+        });
+    </script>
 @endsection
