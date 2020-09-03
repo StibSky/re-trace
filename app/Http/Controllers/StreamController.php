@@ -263,6 +263,7 @@ class StreamController extends Controller
         if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
             $quantity = str_replace(',', '.', $quantity);
         }
+
         $stream->setQuantity($quantity * 1000);
         $stream->setUnitId($request->input("streamUnit"));
 
@@ -275,7 +276,10 @@ class StreamController extends Controller
         }
 
         $price = $request->input("streamPrice");
-        $price = str_replace(',', '.', $price);
+        if(app()->getLocale() == 'nl' || app()->getLocale() == 'fr') {
+            $price = str_replace(',', '.', $price);
+        }
+
         $stream->setPrice($price * 100);
         $stream->setValutaId($request->input("streamValuta"));
 
