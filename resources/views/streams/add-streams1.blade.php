@@ -21,27 +21,27 @@ blade for adding a new building/project to a User
                     <div class="row mb-2">
                         <img src="{{ $targetFile && session()->get('image')? $image_data : asset('images/logos/resquare.png')}}" id="streamPic" class="w-50 mx-auto" alt="Placeholder">
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex justify-content-center">
                         <button type="button" id="secondary-button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#myModal">
                             {{ __("Upload image") }}
                         </button>
                     </div>
                 </div>
-                <form action="{{ route('add-streams1', $project->id) }}" method="post" class="mt-5">
+                <form action="{{ route('add-streams1', $project->id) }}" method="post" class="mt-4">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group w-50 m-auto">
                         <label for="streamName" class="sr-only">{{ __("Name") }}:</label>
                         <input type="text" class="form-control text-center" id="streamName" name="streamName"
-                               placeholder="{{ __("STREAM NAME") }}:"
+                               placeholder="{{ __("NAME") }}"
                                value="{{ session()->get('stream.name') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group w-50 m-auto">
                         <label for="streamDescription" class="sr-only">{{ __("Description") }}:</label>
                         <textarea class="form-control text-center" id="streamDescription" name="streamDescription"
                                placeholder="{{ __("DESCRIPTION") }}">{{ session()->get('stream.description') }}</textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group w-50 m-auto pt-4">
                         {{ __("PLEASE SELECT AN ACTION") }}
                         <div class="radio-toolbar">
                             <input type="radio" id="radioApple" name="streamAction" value="reuse"
@@ -57,7 +57,7 @@ blade for adding a new building/project to a User
                             <label for="radioBanana">{{ __("Recycle") }}</label>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
+                    <button type="submit" id="main-button" class="btn btn-primary" name="newStream">{{ __("Next") }}</button>
                 </form>
             </div>
             <div class="card-footer text-center">

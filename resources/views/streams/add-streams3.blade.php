@@ -105,12 +105,22 @@ blade for adding a new building/project to a User
                                            checked
                                         @endif>
                                     <label for="{{ $functionSubCategory1->id }}"
-                                           class="categoryOptions2">{{ $functionSubCategory1->name }}</label>
+                                           class="categoryOptions2">
+
+                                        @if(app()->getLocale() == "en")
+                                            {{ $functionSubCategory1->name }}
+                                        @elseif(app()->getLocale() == "fr")
+                                            {{ $functionSubCategory1->name_fr }}
+                                        @elseif(app()->getLocale() == "nl")
+                                            {{ $functionSubCategory1->name_nl }}
+                                        @endif
+
+                                    </label>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="main-button-wide" class="btn btn-primary"
+                    <button type="submit" id="main-button" class="btn btn-primary"
                             name="newStream">{{ __("Next")}}</button>
                 </form>
             </div>
