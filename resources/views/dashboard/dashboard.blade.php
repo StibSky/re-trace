@@ -149,47 +149,15 @@ uses dynamic linking
                 @if(count($streams) > 0)
                     <ul>
                         @foreach($streams as $stream)
-
                             <li class="d-flex flex-row justify-content-between">
                                 <div class="w-75">
-                                    <img id="streamImage" src="{{ asset('storage/userFiles/'. $userFolder . '/'   .
-
-                            \App\Http\Controllers\DashboardController::getStreamBuilding($stream->id) . '/' .
-                            \App\Http\Controllers\DashboardController::getStreamImage($stream->id)) }}"/>
+                                    <img id="streamImage" src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
                                 </div>
 
                                 <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
                                 <p class="w-50">{{$stream->quantity}}</p>
-
-
-                                {{--  @for ($i = 0; $i < count($tags); $i++)
-                                      @for ($j = 0; $j < count($tags[$i]); $j++)
-                                          @if($stream->id == $tags[$i][$j]['stream_id'])
-                                              @if($tags[$i][$j]['material_id'] != null)
-                                                 <p>
-                                                      {{\App\Http\Controllers\DashboardController::getMaterialName( $tags[$i][$j]['material_id'])}}
-                                                 </p>
-                                              @endif
-
-                                          @endif
-                                      @endfor
-                                  @endfor
-
-                                  @for ($i = 0; $i < count($tags); $i++)
-                                      @for ($j = 0; $j < count($tags[$i]); $j++)
-                                          @if($stream->id == $tags[$i][$j]['stream_id'])
-
-                                              @if($tags[$i][$j]['function_id'] != null)
-                                                 <p>
-                                                      {{\App\Http\Controllers\DashboardController::getFunctionName( $tags[$i][$j]['function_id'])}}
-                                                 </p>
-                                              @endif
-
-                                          @endif
-                                      @endfor
-                                  @endfor--}}
                             </li>
                             <hr class="py-0 my-2">
                         @endforeach
