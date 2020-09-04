@@ -166,7 +166,12 @@ class Stream extends Model
     public function Unit() {
         return $this->hasMany('App\Unit');
     }
+
     public function Valuta() {
         return $this->hasMany('App\Valuta');
+    }
+
+    public function StreamImage() {
+        return $this->hasMany('App\StreamImage');
     }
 }
