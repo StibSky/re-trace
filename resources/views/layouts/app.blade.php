@@ -71,7 +71,7 @@ sets up the navbar and yields the content of the other pages
                                     </div>
                                 </li>
                             @endif
-                            <!-- Authentication Links -->
+                        <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -93,7 +93,7 @@ sets up the navbar and yields the content of the other pages
                                             {{ __("My profile")}}
                                         </a>
                                         <a class="dropdown-item" href="https://re-trace.io" target="_blank">
-                                           {{ __("About")}}
+                                            {{ __("About")}}
                                         </a>
                                         <div style="border-top: 1px solid lightslategray;">
                                             <a class="dropdown-item" href="{{ route('logout') }}"

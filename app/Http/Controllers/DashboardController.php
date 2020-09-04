@@ -15,6 +15,7 @@ use App\Valuta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Table;
 
 class DashboardController extends Controller
@@ -62,13 +63,18 @@ class DashboardController extends Controller
         $user = Auth::user();
         $userFolder = $user->first_name. "_" . $user->last_name;
 
+
+        $project = Building::all()->find($id);
+
+
+
         return view('dashboard.dashboard', [
             'project' => $project,
             'buildingSubstances' => $buildingSubstances,
             'projecttypes' => $projecttypes,
             'streams' => $streams,
             'tags' => $tags,
-            'userFolder' => $userFolder
+            'userFolder' => $userFolder,
         ]);
     }
 
@@ -105,17 +111,39 @@ class DashboardController extends Controller
     public static function getStreamBuilding($id)
     {
         $buildingId = DB::table('streams')->where('id', $id)->first()->buildid;
-        $streamBuilding = DB::table('building')->where('id', $buildingId)->first()->projectName;
+        $streamBuilding = DB::table('building')->where('id', $buildingId)->first();
 
         return $streamBuilding;
     }
 
     public static function getStreamImage($id)
     {
-        $streamImage = DB::table('stream_images')->where('streamId', $id)->first();
+        $project = self::getStreamBuilding($id);
 
-        return $streamImage->name;
+        $filename = DB::table('stream_images')->where('streamId', $id)->first()->name;
+
+        $projectFolder = $project->projectName;
+        $firstname = User::where('id', $project->userid)->first()->first_name;
+        $lastname = User::where('id', $project->userid)->first()->last_name;
+
+        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
+
+        if (is_dir(Storage::path($targetFolder))) {
+            $targetFile = $targetFolder . '/' . $filename;
+
+            $fullPath = Storage::path($targetFile);
+
+            $base64 = base64_encode(Storage::get($targetFile));
+            $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+        } else {
+            $targetFile = null;
+            $image_data = null;
+        }
+
+
+        return $image_data;
     }
+
 
     public
     function adminDashboard()
