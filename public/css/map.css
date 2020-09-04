@@ -8,6 +8,20 @@
   #map {
     height: 55vh;
   }
+
+@media not all and (min-resolution: 0.001dpcm) {
+    #map {
+      height: 55vh;
+    }
+}
+}
+
+@media (max-width: 1440px) {
+@media not all and (min-resolution: 0.001dpcm) {
+    #map {
+      height: 63vh;
+    }
+}
 }
 
 #locationField,
