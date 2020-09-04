@@ -153,7 +153,6 @@ uses dynamic linking
                                 <div class="w-75">
                                     <img id="streamImage" src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
                                 </div>
-
                                 <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/add_streams.css') }}">
 @endsection
 @section('head-script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 @endsection
 @section('content')
     <!--
@@ -26,7 +26,7 @@ blade for adding a new building/project to a User
                             <input type="text" class="form-control text-center" id="streamPrice"
                                    name="streamPrice"
                                    placeholder="€ {{ __("PRICE") }}"
-                                   value="€ @if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
+                                   value="@if(app()->getLocale() == "en" && number_format(session()->get('stream.price')) > 0){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@elseif (number_format(session()->get('stream.price')) > 0)){{ number_format((session()->get('stream.price') /100), 2, ',', '.') }} @else € @endif">
                         </div>
                         <div class="form-group d-flex flex-column">
                             <label for="streamQuantity" class="text-center"><strong>{{ __("Quantity") }}</strong></label>
