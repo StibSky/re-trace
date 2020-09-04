@@ -34,13 +34,13 @@ body ul li a:hover {
 }
 
 body .card {
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
   border-color: #e2e6f0;
 }
 
 body .card .card-footer {
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
   border-color: #e2e6f0;
 }
@@ -138,6 +138,7 @@ body #main-button-small {
   text-align: center;
   transition: all 0.2s;
   white-space: nowrap;
+  font-size: 100%;
 }
 
 @media (max-width: 1440px) {

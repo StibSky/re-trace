@@ -2,7 +2,11 @@
   height: 6em;
 }
 
-#projectInfo .card-footer {
+#mapAndSearch {
+  width: 100%;
+}
+
+#mapAndSearch .card-footer {
   border: none;
   background-color: #e2e6f0;
 }
@@ -16,7 +20,7 @@
 }
 
 .card-header {
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
   background-color: #e2e6f0;
   border-color: #e2e6f0;
   width: 100%;
@@ -26,11 +30,15 @@
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
   height: 150px;
+  font-size: 100%;
 }
 
-#project-names {
+#titleBar {
+  padding-left: 1.3vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.19);
   width: 100%;
-  height: 20px;
 }
 
 #mysearch {
@@ -66,5 +74,9 @@
 ul {
   padding: 0;
   list-style: none;
+}
+
+#categorySelect {
+  background-color: #f3bfba;
 }
 
