@@ -61,8 +61,8 @@ Route::post('/add-streams2/{id}', 'StreamController@addStreams2')->name('add-str
 Route::post('/add-streams3/{id}', 'StreamController@addStreams3')->name('add-streams3');
 Route::post('/add-streams4/{id}', 'StreamController@addStreams4')->name('add-streams4');
 
-Route::get('/confirm/{id}', 'StreamController@confirm')->name('confirm');
-Route::post('/store/{id}', 'StreamController@store')->name('store');
+Route::get('/confirmStream/{id}', 'StreamController@confirm')->name('confirmStream');
+Route::post('/storeStream/{id}', 'StreamController@store')->name('storeStream');
 
 Route::get('/files/{id}', 'UploadController@viewFiles')->name('viewFiles');
 Route::get('/download/{id}', 'UploadController@downloadFile')->name('downloadFile');
@@ -93,7 +93,9 @@ Route::post('/saveadminfunctions', 'MaterialFunctionController@update')->name('s
 
 Route::post('/mysearch', 'HomeController@mysearch')->name('mysearch');
 Route::post('/editUserInfo', 'HomeController@editUserInfo')->name('editUserInfo');
+Route::post('/editDashInfo/{id}', 'DashboardController@editDashInfo')->name('editDashInfo');
 
+Route::get('/streamView/{id}', 'StreamController@streamView')->name('streamView');
 
 /*Route::get( '/verify-test', function () {
     // Get a user for demo purposes

@@ -16,6 +16,7 @@ use App\Valuta;
 use App\Unit;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use function Faker\Provider\pt_BR\check_digit;
 
 class StreamController extends Controller
 {
@@ -32,12 +33,19 @@ class StreamController extends Controller
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
 
-        $targetFile = ('/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
 
-        $fullPath = Storage::path($targetFile);
+        if (is_dir(Storage::path($targetFolder))) {
+            $targetFile = $targetFolder . '/' . $filename;
 
-        $base64 = base64_encode(Storage::get($targetFile));
-        $image_data = 'data:'.mime_content_type($fullPath) . ';base64,' . $base64;
+            $fullPath = Storage::path($targetFile);
+
+            $base64 = base64_encode(Storage::get($targetFile));
+            $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+        } else {
+            $targetFile = null;
+            $image_data = null;
+        }
 
         return view('streams.add-streams1', [
             'stream' => $stream,
@@ -66,7 +74,7 @@ class StreamController extends Controller
         $mimetype = $request->streamImage->getMimeType();
 
         if (!in_array($mimetype, $allowedFiles)) {
-            return back()->with('error', 'invalid file type');
+            return back()->with('error', __('invalid file type'));
         }
 
         $image->setName($imagename);
@@ -80,7 +88,7 @@ class StreamController extends Controller
 
         $request->streamImage->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $imagename, 'public');
 
-        return back()->with('success', 'image uploaded');
+        return back()->with('success', __('image uploaded'));
     }
 
     public function addStreams1(Request $request, $id)
@@ -92,10 +100,14 @@ class StreamController extends Controller
         }
 
         if ($request->input("streamName") == null) {
-            return redirect()->back()->withInput()->with('error', 'please fill in a name');
+            return redirect()->back()->withInput()->with('error', __('please fill in a name'));
         }
         if ($request->input("streamAction") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select an action');
+            return redirect()->back()->withInput()->with('error', __('please select an action'));
+        }
+
+        if  ($request->session()->get('image') == null) {
+            return redirect()->back()->withInput()->with('error', __('please upload an image'));
         }
 
         $stream->setName($request->input("streamName"));
@@ -127,7 +139,7 @@ class StreamController extends Controller
         }
 
         if ($request->input("category") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a destination');
+            return redirect()->back()->withInput()->with('error', 'please select an origin');
         }
 
         $stream->setCategory($request->input("category"));
@@ -141,13 +153,12 @@ class StreamController extends Controller
     {
         $tag = $request->session()->get('tag');
 
-        $substanceHeadCategory = Substance::whereNull('parent')->get();
-
+        $substanceHeadCategory = DB::table('substance')
+            ->whereRaw("parent IS NULL AND is_hazardous != 1")->get();
         $substanceSubCategory1 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)")->get();
-
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL)AND is_hazardous != 1")->get();
         $substanceSubCategory2 = DB::table('substance')
-            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)AND is_hazardous != 1")->get();
 
         $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
 
@@ -176,34 +187,42 @@ class StreamController extends Controller
 //        } else {
 //            $tag = $request->session()->get('tag');
 //        }
-
-        if ($request->input("substance") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a material');
+        if ($request->input("substance") == null && $request->input("materialFunction") == null) {
+            return redirect()->back()->withInput()->with('error', __('please select at least one material and/or function'));
         }
 
-        $allSelectedMaterials = [];
         $sessionMaterials = [];
-        for ($i = 0; $i < count($_POST["substance"]); $i++) {
-            ${'materialTag' . $i} = new Tag();
-            ${'materialTag' . $i}->setMaterialId($_POST["substance"][$i]);
-            array_push($sessionMaterials, ${'materialTag' . $i});
+        $materialIds = [];
+
+        if (isset($_POST["substance"])) {
+            for ($i = 0; $i < count($_POST["substance"]); $i++) {
+                ${'materialTag' . $i} = new Tag();
+                ${'materialTag' . $i}->setMaterialId($_POST["substance"][$i]);
+                array_push($sessionMaterials, ${'materialTag' . $i});
+
+                array_push($materialIds, $_POST["substance"][$i]);
+
+            }
         }
-
-
         $request->session()->put('materialSession', $sessionMaterials);
+        $request->session()->put('materialIds', $materialIds);
 
-
-        if ($request->input("materialFunction") == null) {
-            return redirect()->back()->withInput()->with('error', 'please select a function');
-        }
 
         $sessionFunctions = [];
-        for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
-            ${'functionTag' . $i} = new Tag();
-            ${'functionTag' . $i}->setFunctionId($_POST["materialFunction"][$i]);
-            array_push($sessionFunctions, ${'functionTag' . $i});
+        $functionIds = [];
+
+        if (isset($_POST["materialFunction"])) {
+            for ($i = 0; $i < count($_POST["materialFunction"]); $i++) {
+                ${'functionTag' . $i} = new Tag();
+                ${'functionTag' . $i}->setFunctionId($_POST["materialFunction"][$i]);
+                array_push($sessionFunctions, ${'functionTag' . $i});
+                array_push($functionIds, $_POST["materialFunction"][$i]);
+            }
         }
         $request->session()->put('functionSession', $sessionFunctions);
+        $request->session()->put('functionIds', $functionIds);
+
+
         return redirect('/add-streams4/' . $id);
     }
 
@@ -232,22 +251,22 @@ class StreamController extends Controller
         }
 
         if ($request->input("streamQuantity") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a quantity');
+            return redirect()->back()->withInput()->with('error', __('please give a quantity'));
         }
 
         if ($request->input("streamUnit") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a unit of measurement');
+            return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
         }
 
         $stream->setQuantity($request->input("streamQuantity"));
         $stream->setUnitId($request->input("streamUnit"));
 
         if ($request->input("streamPrice") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a price');
+            return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
 
         if ($request->input("streamValuta") == null) {
-            return redirect()->back()->withInput()->with('error', 'please give a currency');
+            return redirect()->back()->withInput()->with('error', __('please give a currency'));
         }
 
         $stream->setPrice($request->input("streamPrice"));
@@ -255,21 +274,42 @@ class StreamController extends Controller
 
         $request->session()->put('stream', $stream);
 
-        return redirect('/confirm/' . $id);
+        return redirect('/confirmStream/' . $id);
     }
 
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-        $tag = $request->session()->get('tag');
 
-        $material = Substance::with('tags')
-            ->where('id', $tag->getMaterialId())
-            ->first();
+        $functionArray = null;
 
-        $streamFunction = MaterialFunction::with('tags')
-            ->where('id', $tag->getFunctionId())
-            ->first();
+        $materialArray = null;
+
+        if ($request->session()->get('materialSession')) {
+            $materialArray = [];
+
+            $materialTags = $request->session()->get('materialSession');
+
+            foreach ($materialTags as $materialTag) {
+                $material = Substance::with('tags')
+                    ->where('id', $materialTag->getMaterialId())
+                    ->first();
+                array_push($materialArray, $material);
+            }
+        }
+
+        if ($request->session()->get('functionSession')) {
+            $functionArray = [];
+
+            $functionTags = $request->session()->get('functionSession');
+
+            foreach ($functionTags as $functionTag) {
+                $streamFunction = MaterialFunction::with('tags')
+                    ->where('id', $functionTag->getFunctionId())
+                    ->first();
+                array_push($functionArray, $streamFunction);
+            }
+        }
 
         $unit = Unit::with('stream')
             ->where('id', $stream->getUnitId())
@@ -281,10 +321,9 @@ class StreamController extends Controller
 
         return view('streams.confirm',
             ['stream' => $stream,
-                'tag' => $tag,
                 'id' => $id,
-                'material' => $material,
-                'streamFunction' => $streamFunction,
+                'materialArray' => $materialArray,
+                'functionArray' => $functionArray,
                 'unit' => $unit,
                 'valuta' => $valuta]);
     }
@@ -294,20 +333,29 @@ class StreamController extends Controller
         $stream = $request->session()->get('stream');
 
 
-        $materialTags = $request->session()->get('materialSession');
-        $functionTags = $request->session()->get('functionSession');
         $image = $request->session()->get('image');
 
         $stream->save();
 
-        foreach ($materialTags as $materialTag) {
-            $materialTag->setStreamId($stream->id);
-            $materialTag->save();
+        if ($request->session()->get('materialSession')) {
+
+            $materialTags = $request->session()->get('materialSession');
+
+            foreach ($materialTags as $materialTag) {
+                $materialTag->setStreamId($stream->id);
+                $materialTag->save();
+            }
         }
-        foreach ($functionTags as $functionTag) {
-            $functionTag->setStreamId($stream->id);
-            $functionTag->save();
+
+        if ($request->session()->get('functionSession')) {
+            $functionTags = $request->session()->get('functionSession');
+
+            foreach ($functionTags as $functionTag) {
+                $functionTag->setStreamId($stream->id);
+                $functionTag->save();
+            }
         }
+
         $image->setStreamId($stream->id);
         $image->save();
 
@@ -315,7 +363,72 @@ class StreamController extends Controller
         $request->session()->forget('materialSession');
         $request->session()->forget('functionSession');
         $request->session()->forget('image');
+        $request->session()->forget('materialIds');
+        $request->session()->forget('functionIds');
 
-        return redirect()->route('dash', $id)->with('success', 'Stream added successfully');
+        return redirect()->route('dash', $id)->with('success', __('Stream added successfully'));
+    }
+
+    public function cancel(Request $request)
+    {
+        $request->session()->forget('stream');
+        $request->session()->forget('materialSession');
+        $request->session()->forget('functionSession');
+        $request->session()->forget('image');
+        $request->session()->forget('materialIds');
+        $request->session()->forget('functionIds');
+    }
+    public function streamView($id)
+    {
+        $stream = DB::table('streams')->where('id', $id)->first();
+        $name = $stream->name;
+        $description = $stream->description;
+        $category = $stream->category;
+        $action = $stream->action;
+        $unit = DB::table('unit')->where('id', $stream->unit_id)->first()->short_name;
+        $quantity = $stream->quantity;
+        $valuta = DB::table('valuta')->where('id', $stream->valuta_id)->first()->symbol;
+        $price = $stream->price;
+
+        $materialTags = DB::table('tags')->whereRaw('stream_id = ' . $id . ' AND material_id IS NOT NULL')
+            ->get();
+
+        $materialIds = [];
+
+        foreach ($materialTags as $materialTag) {
+            array_push($materialIds, $materialTag->material_id);
+        }
+
+        $materials = [];
+        foreach ($materialIds as $materialId) {
+            array_push($materials, DB::table('substance')->where('id', $materialId)->first()->name);
+        }
+
+        $functionTags = DB::table('tags')->whereRaw('stream_id = ' . $id . ' AND function_id IS NOT NULL')
+            ->get();
+
+        $functionIds = [];
+
+        foreach ($functionTags as $functionTag) {
+            array_push($functionIds, $functionTag->function_id);
+        }
+
+        $functions = [];
+        foreach ($functionIds as $functionId) {
+            array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first()->name);
+        }
+
+        return view('streams.streamview', [
+            'name' => $name,
+            'description' => $description,
+            'category' => $category,
+            'action' => $action,
+            'unit' => $unit,
+            'quantity' => $quantity,
+            'valuta' => $valuta,
+            'price' => $price,
+            'materials' => $materials,
+            'functions' => $functions
+        ]);
     }
 }

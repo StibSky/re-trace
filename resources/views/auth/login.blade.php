@@ -33,7 +33,7 @@
                         <label for="password" class="sr-only">Password</label>
                         <input id="password" type="password"
                                class="form-control text-center @error('password') is-invalid @enderror"
-                               name="password" required autocomplete="current-password" placeholder="Password">
+                               name="password" required autocomplete="current-password" placeholder="{{ __("Password")}}">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                         <div class="text-right">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" id="forgot-password" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Password?') }}
+                                    {{ __('Forgot Your Password?') }}
                                 </a>
                             @endif
                         </div>
@@ -56,7 +56,7 @@
                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                             <label class="form-check-label" for="remember">
-                                Keep me logged in
+                                {{ __("Keep me logged in")}}
                             </label>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
             </form>
             <div class="card-footer text-center" id="login-footer">
                 <div>
-                    <p>Don't have an account?  <strong><a href="{{ route('register') }}">{{ __('Sign up') }}</a></strong></p>
+                    <p>{{ __("Don't have an account?")}}  <strong><a href="{{ route('register') }}">{{ __('Sign up') }}</a></strong></p>
 
                 </div>
             </div>

@@ -57,6 +57,18 @@ sets up the navbar and yields the content of the other pages
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
+                            @if(count(config('app.languages')) > 1)
+                                <li class="nav-item dropdown d-md-down-none">
+                                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                        {{ strtoupper(app()->getLocale()) }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        @foreach(config('app.languages') as $langLocale => $langName)
+                                            <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
+                                        @endforeach
+                                    </div>
+                                </li>
+                            @endif
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
@@ -76,10 +88,10 @@ sets up the navbar and yields the content of the other pages
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            My profile
+                                            {{ __("My profile")}}
                                         </a>
                                         <a class="dropdown-item" href="https://re-trace.io" target="_blank">
-                                            About
+                                           {{ __("About")}}
                                         </a>
                                         <div style="border-top: 1px solid lightslategray;">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,7 +113,7 @@ sets up the navbar and yields the content of the other pages
             </nav>
 
             <main class="py-4">
-                <div class="container">
+                <div class="container-fluid px-5">
                     @if(session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -121,7 +133,7 @@ sets up the navbar and yields the content of the other pages
                 <div class="row d-flex justify-content-between px-2">
                     <div class="col-12 col-md-3 col-lg">
                         <div class="links text-center text-md-left">
-                            <a href="https://re-trace.io" target="_blank"><span>About</span></a>
+                            <a href="https://re-trace.io" target="_blank"><span>{{ __("About")}}</span></a>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-lg">
@@ -149,5 +161,5 @@ sets up the navbar and yields the content of the other pages
 </div>
 </body>
 <!-- Site footer -->
-
+<script src="{{mix('/js/app.js')}}"></script>
 </html>

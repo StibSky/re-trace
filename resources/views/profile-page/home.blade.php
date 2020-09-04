@@ -18,179 +18,220 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 -->
     @if(session('verified'))
         <div class="alert alert-success">
-            You've successfully verified your email!
+            {{ __("You've successfully verified your email!")}}
         </div>
     @endif
-    <div class="d-flex flex-md-row flex-column justify-content-between">
-        <div class="col-md-5 col-lg-6 card col-12 px-0 mb-md-0 mb-5" id="userInfo">
-{{--            <div class="row card d-flex mb-5">--}}
-                <div class="card-header w-100"><h4>Profile</h4></div>
+
+    <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
+        <div class="col-md-4 col-12 pr-2 ml-0" id="userInfo">
+            <div class="row card d-flex mb-5">
+                <div class="card-header">{{ __("Profile")}}</div>
                 <div class="card-body">
-                    <div class="row flex-row">
+                    <div class="row px-3">
                         <div class="col-lg-5 col-12 d-flex flex-column">
                             <div class="row">
-                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto" alt="Placeholder">
+                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
+                                     alt="Placeholder">
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button" data-toggle="modal"
-                                   data-target="#editModal">Edit
+                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button"
+                                   data-toggle="modal"
+                                   data-target="#editModal">{{ __("Edit")}}
                                 </a>
                             </div>
                         </div>
-                        <div id="editModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Fill in the fields you want to edit, Leave the fields empty if you don't want to change anything</h4>
-
-                                    </div>
-                                    <form action="{{ route('editUserInfo') }}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="modal-body">
-                                            {{--                        <input type="text" name="name">--}}
-                                            <label for="firstName">First name</label>
-                                            <input type="text" name="firstName">
-                                            <br>
-                                            <label for="lastName">Last name</label>
-                                            <input type="text" name="lastName">
-                                            <br>
-                                            <label for="Email">Email</label>
-                                            <input type="text" name="Email">
-                                            <br>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <input type="submit" value="Submit" name="upload"/>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <div class="col-lg-6 col-12 d-flex flex-column pt-lg-2 pt-4 mx-auto">
-                            <h5>Personal details</h5>
+                        <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
+                            <h5>{{ __("Personal details")}}</h5>
                             <ul>
-                                <li>Full name: {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
-                                <li>Email address: {{ Auth::user()->email }}</li>
-                                <li>Profile Type: {{ Auth::user()->type }}</li>
+                                <li>{{ __("Full name")}}
+                                    : {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                                <li>{{ __("Email address")}}: {{ Auth::user()->email }}</li>
+                                <li>{{ __("Profile Type")}}: {{ Auth::user()->type }}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-{{--            </div>--}}
+            </div>
 
-        </div>
-        <div class="col-md-5 card col-12 px-0" id="projectInfo">
-            {{--                <div class="row card mt-lg-5 mt-1">--}}
-            <div class="card-header"><h4>My projects</h4></div>
-            <div class="card-body" id="myProjects">
-                @if(count($buildings) == 0)
-                    <h5> - Please add your first project to progress your profile</h5>
-                @endif
-                <ul>
-                    @foreach($buildings as $building)
-                        <li class="d-flex flex-row  justify-content-between">
-                            <a id="project-names"
-                               href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
-                            <span class="w-75 text-left">{{ $building->type }}</span>
-                            <div>
-                                @if(Auth::user()->type == 'admin')
-                                    <button data-toggle="modal"
-                                            data-target="#myModal" class="btn btn-primary w-100"
-                                            name="deleteBuilding"
-                                            id="main-button">Delete
-                                    </button>
-                                @endif
-                            </div>
-                        </li>
-                        <hr class="py-0 my-2">
-                        <div id="myModal" class="modal fade" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content text-left">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">X
+            <div class="row card mt-lg-5 mt-1">
+                <div class="card-header">{{ __("My projects")}}</div>
+                <div class="card-body" id="myProjects">
+                    @if(count($buildings) == 0)
+                        <h5> - {{ __("Please add your first project to progress your profile")}}</h5>
+                    @endif
+                    <ul>
+                        @foreach($buildings as $building)
+                            <li class="d-flex flex-row justify-content-between">
+                                <a id="project-names"
+                                   href="{{route('dash', $building->id)}}"> {{ $building->projectName ?? 'Project name' }}</a>
+                                <span class="w-100">{{ $building->type }}</span>
+                                <div>
+                                    @if(Auth::user()->type == 'admin')
+                                        <button data-toggle="modal"
+                                                data-target="#myModal" class="btn btn-primary"
+                                                name="deleteBuilding"
+                                                id="main-button-small">{{ __("Delete")}}
                                         </button>
-                                        <h4 class="modal-title">Are you sure you want to delete?</h4>
-                                    </div>
-                                    <form action="{{ route('deleteBuilding', $building) }}" method="post">
-                                        @csrf
-                                        <div class="modal-body">
-                                            <button value="{{ $building->id }}" class="btn btn-primary"
-                                                    name="deleteBuilding" id="main-button">Yes, delete
-                                                project
-                                            </button>
-                                            <button type="button" class="btn btn-default"
-                                                    id="secondary-button-small"
-                                                    data-dismiss="modal">No
-                                            </button>
-                                        </div>
-                                        <div class="modal-footer">
-
-                                        </div>
-                                    </form>
+                                    @endif
                                 </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                    @endforeach
-                </ul>
+                            </li>
+                            <hr class="py-0 my-2">
+                        @endforeach
+                    </ul>
+
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" id="main-button"
+                       href="{{ route('building') }}">{{ __("+ New Project")}}</a>
+                </div>
             </div>
-            <div class="card-footer">
-                <a class="btn btn-primary" id="main-button" href="{{ route('building') }}">+ New Project</a>
-            </div>
-            {{--                </div>--}}
+
         </div>
-        {{-- <div class="col-md-5 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
-             <div class="row d-flex">
-                 <div class="col-12 d-flex align-items-center pl-5 mb-lg-0 mb-md-3 mb-5" id="newSearch">
-                     <form class="form" action="{{ route('mysearch') }}" method="post" name="searchForm">
-                         @csrf
-                         <label>Pick material:
-                             <select name="substance" id="categorySelect" class="js-example-basic-single">
-                                 <option>Please select</option>
-                                 @foreach($headCategories as $headCategory)
-                                     <option value="{{ $headCategory->id }}" class="categoryOptions">
-                                         {{ $headCategory->name }}
-                                     </option>
-                                 @endforeach
-                                 @foreach($subCategories1 as $subCategory1)
 
-                                     <option value="{{ $subCategory1->id }}" class="categoryOptions">
-                                         ---{{$subCategory1->name }}
-                                     </option>
+        <div class="col-md-7 col-12 mt-md-0 mt-2 p-2 card d-flex" id="projectInfo">
+            <div class="card-body">
+                <div class="row" id="newSearch">
+{{--                    <div class="d-flex flex-column w-25">
+                        <button type="button" id="moreMats" class="moreMats"
+                                onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
+                                    .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
+                        <button type="button" id="moreFuncts" class="moreFuncts"
+                                onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
+                                    .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
+                    </div>--}}
+                    <div id="newSearch">
+                        <form class="form text-center d-flex flex-column justify-content-center px-auto" action="{{ route('mysearch') }}" method="post" name="searchForm">
+                            @csrf
 
-                                 @endforeach
-                                 @foreach($subCategories2 as $subCategory2)
 
-                                     <option value="{{ $subCategory2->id }}" class="categoryOptions">
-                                         ------{{ $subCategory2->name }}
-                                     </option>
+                            <label class="materialDrop">{{ __("Pick material")}}:
+                                <select name="substance" id="categorySelect" class="js-example-basic-single w-50">
+                                    <option selected disabled>{{ __("Please Select")}}</option>
+                                    @foreach($subCategories1 as $subCategory1)
+                                        <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                            @if(app()->getLocale() == "en")
+                                                {{ $subCategory1->name }}
+                                            @elseif(app()->getLocale() == "fr")
+                                                {{ $subCategory1->name_fr }}
+                                            @elseif(app()->getLocale() == "nl")
+                                                {{ $subCategory1->name_nl }}
+                                            @endif
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            <br>
+                            <label class="functionDrop">{{ __("Pick Function")}}:
+                                <select name="dbFunction" id="categorySelect" class="js-example-basic-single w-50">
+                                    <option selected disabled>{{ __("Please Select")}}</option>
+                                    @foreach($functionSubCategory1 as $functionSub)
+                                        <option value="{{ $functionSub->id }}" class="categoryOptions">
+                                            @if(app()->getLocale() == "en")
+                                                {{ $functionSub->name }}
+                                            @elseif(app()->getLocale() == "fr")
+                                                {{ $functionSub->name_fr }}
+                                            @elseif(app()->getLocale() == "nl")
+                                                {{ $functionSub->name_nl }}
+                                            @endif
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            <button type="submit">{{ __("Search") }}</button>
 
-                                 @endforeach
-                             </select>
-                         </label>
-                         <br>
-                         <div class="input-group" id="searchBar">
-                             <input class="form-control" type="text" placeholder="Search" aria-label="Search"
-                                    style="padding-left: 20px; border-radius: 40px;" id="filterCategories" name="mysearch">
-                             <div class="input-group-addon py-1"
-                                  style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                 <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                         id="search-btn"><i class="fa fa-search"></i></button>
-                             </div>
-                         </div>
-                     </form>
-                 </div>
-                 <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded"></div>
-             </div>
-         </div>--}}
+
+                            {{--                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
+                                                    <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
+                                                           style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                                                           name="mysearch">
+                                                    <div class="input-group-addon py-1"
+                                                         style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                                        <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                                                id="search-btn"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>--}}
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div id="map" class="border border-dark mb-5 ml-5 mr-5 rounded w-100"></div>
+                </div>
+            </div>
+        </div>
+        <div id="editModal" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">{{ __("Fill in the fields you want to edit")}},
+                            {{ __("Leave the fields empty if you don't want to change anything")}}</h4>
+                    </div>
+                    <form action="{{ route('editUserInfo') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+
+                            <label for="firstName">{{ __("First name")}}</label>
+                            <input type="text" name="firstName" id="firstName">
+                            <br>
+                            <label for="lastName">{{ __("Last name")}}</label>
+                            <input type="text" name="lastName" id="lastName">
+                            <br>
+                            <label for="Email">{{ __("Email")}}</label>
+                            <input type="text" name="Email" id="Email">
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                {{ __("Close")}}
+                            </button>
+                            <input type="submit" value="Submit" name="upload"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div id="myModal" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-left">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X
+                        </button>
+                        <h4 class="modal-title">{{ __("Are you sure you want to delete?")}}</h4>
+                    </div>
+                    @if(count($buildings) > 0)
+                        <form action="{{ route('deleteBuilding', $building) }}" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <button value="{{ $building->id }}" class="btn btn-primary"
+                                        name="deleteBuilding" id="main-button">Yes, delete
+                                    project
+                                </button>
+                                <button type="button" class="btn btn-default"
+                                        id="secondary-button-small"
+                                        data-dismiss="modal">No
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </form>
+                    @endif
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 
 
-{{--    <?php use App\Http\Controllers\HomeController;
+    <?php use App\Http\Controllers\HomeController;
     use App\Building; ?>
 
     <script defer
@@ -198,10 +239,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     </script>
     <script type="text/javascript">
         "use strict";
-
-        $(document).ready(function () {
-            $(".js-example-basic-single").select2();
-        });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
@@ -235,30 +272,43 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                     lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            console.log('test');
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
                 @endfor
+                @elseif(session('functionId') !=null )
+                @for($i=0; $i < count( session('materialLocations') ); $i++)
+            var location = {
+                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+            locationArray.push(location);
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+                @endfor
+
                 @else
                 @for($i=0; $i < count( $locations ); $i++)
             var location = {
                     lat: {!! HomeController::getLat($locations[$i]) !!},
                     lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
-            console.log(locationArray);
-                @endfor
-                @endif
-
-
-
-
-            for (let i = 0; i < locationArray.length; i++) {
-                new google.maps.Marker({
-                    position: locationArray[i],
-                    label: labels[labelIndex++ % labels.length],
-                    map: map
-                });
-            }
+            new google.maps.Marker({
+                position: locationArray['{{$i}}'],
+                label: labels[labelIndex++ % labels.length],
+                map: map,
+                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+            });
+            @endfor
+            @endif
         }
-    </script>--}}
+    </script>
     {{--  <div class="container mt-3">
           Profile Progress
           --}}{{--            <div class="progress">--}}{{--

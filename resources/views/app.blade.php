@@ -19,7 +19,7 @@ the landing page, this is where you go to when you click home as a logged in use
 @extends('layouts.app')
 
 @section('content')
-<body>
+    <body>
     <div class="d-flex justify-content-center mt-5">
         <div class="content">
             <div class="title m-b-md" id="logo">
@@ -27,7 +27,7 @@ the landing page, this is where you go to when you click home as a logged in use
             </div>
         </div>
     </div>
-</body>
+    </body>
 @endsection
 </html>
 

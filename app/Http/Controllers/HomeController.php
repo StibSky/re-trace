@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Building;
 use App\Materiallist;
 use App\Substance;
+use App\MaterialFunction;
 use App\Unit;
 use App\User;
 use Illuminate\Http\Request;
@@ -55,14 +56,29 @@ class HomeController extends Controller
                     ->get()
             );
         }
+        $decodedarray = [];
+        foreach ($locations as $location) {
+            $location = json_decode($location, true);
+            array_push($decodedarray, $location);
+        }
+        //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
+
         //move to class
-        $headCategory = Substance::where(DB::raw('LENGTH(code)'), '=', '4')->get();
+        $headCategory = Substance::whereNull('parent')->get();
 
-        $subCategory1 = Substance::where(DB::raw('LENGTH(code)'), '=', '6')->get();
+        $subCategory1 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NULL) AND is_hazardous IS FALSE")->get();
 
-        $subCategory2 = Substance::where(DB::raw('LENGTH(code)'), '=', '10')->get();
+        $subCategory2 = DB::table('substance')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM substance WHERE parent IS NOT NULL)")->get();
 
+        $functionHeadCategory = MaterialFunction::whereNull('parent')->get();
 
+        $functionSubCategory1 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NULL)")->get();
+
+        $functionSubCategory2 = DB::table('materialFunction')
+            ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
         $unit = Unit::all();
 
         return view('profile-page.home', [
@@ -73,7 +89,11 @@ class HomeController extends Controller
             'headCategories' => $headCategory,
             'subCategories1' => $subCategory1,
             'subCategories2' => $subCategory2,
+            'functionHeadCategory' => $functionHeadCategory,
+            'functionSubCategory1' => $functionSubCategory1,
+            'functionSubCategory2' => $functionSubCategory2,
             'units' => $unit,
+            'decodedarray' => $decodedarray,
         ]);
     }
 
@@ -90,65 +110,64 @@ class HomeController extends Controller
         return $decodeLocation['results'][0]['geometry']['location']['lat'];
     }
 
-
     public function mysearch(Request $request)
     {
         $inputsearch = $request->input('mysearch');
 
         $substanceId = $request->input('substance');
 
-        if (Materiallist::where('substanceId', $substanceId)->first() == null) {
-            return back()->with('error', 'material not found');
-        }
-        //shows array of materiallist
-        /** @var Materiallist[] $buildMaterials */
-        $buildMaterials = Materiallist::where('substanceId', $substanceId)->get();
-        $buildIds = [];
+        $functionID = $request->input('dbFunction');
 
-        // consider changing array_push to $list [] = 'new item';
-        foreach ($buildMaterials as $buildMaterial) {
-            array_push($buildIds, $buildMaterial->buildid);
+
+        if ($substanceId == null && $functionID == null) {
+            return back()->with('error', __('please select a material or function '));
         }
-        $buildMaterialBuildings = [];
-        //convert them all to foreach
-        //watch out with count
-        for ($i = 0; $i < count($buildIds); $i++) {
-            array_push($buildMaterialBuildings, Building::where('id', $buildIds[$i])->first());
+
+        if ($substanceId !=null && $functionID != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . ") )")->get();
         }
+        elseif ($substanceId != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
+        } elseif ($functionID != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . "))")->get();
+        }
+
         $materialLocations = [];
-
-        for ($i = 0; $i < count($buildMaterialBuildings); $i++) {
+        foreach ($buildings as $building) {
             array_push($materialLocations,
                 \GoogleMaps::load('geocoding')
-                    ->setParam(['address' => $buildMaterialBuildings[$i]->address1 . ' ' . $buildMaterialBuildings[$i]->city . ' ' . $buildMaterialBuildings[$i]->postcode,
+                    ->setParam(['address' => $building->address1 . ' ' . $building->city . ' ' . $building->postcode,
                     ])
                     ->get()
             );
         }
-
-
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
-                'materialLocations' => $materialLocations]);
+                'materialLocations' => $materialLocations,
+                'functionId' => $functionID,
+            ]);
     }
 
     public function editUserInfo(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($request->input('firstName') != null ) {
+        $user = User::where('id', Auth::user()->id)->first();
+        if ($request->input('firstName') != null) {
             $user->setFirstName($request->input('firstName'));
         }
 
-        if ($request->input('Email') !=null){
-        $user->setEmail($request->input('Email'));
+        if ($request->input('Email') != null) {
+            $user->setEmail($request->input('Email'));
         }
 
-        if ($request->input('lastName') !=null){
+        if ($request->input('lastName') != null) {
             $user->setLastName($request->input('lastName'));
         }
         $user->save();
 
-        return back()->withErrors('success', 'successfully updated your info');
+        return back()->withErrors('success', __('successfully updated your info'));
     }
 }
