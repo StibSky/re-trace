@@ -275,6 +275,7 @@ class StreamController extends Controller
 
         $price = $request->input("streamPrice");
         $price = str_replace(',', '.', $price);
+        $price = str_replace('€', '', $price);
 
         $stream->setPrice($price * 100);
         $stream->setValutaId('1');
@@ -287,8 +288,6 @@ class StreamController extends Controller
     public function confirm(Request $request, $id)
     {
         $stream = $request->session()->get('stream');
-
-        var_dump($request->session()->get('stream.price'));
 
         $functionArray = null;
 

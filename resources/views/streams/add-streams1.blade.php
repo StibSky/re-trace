@@ -28,7 +28,7 @@ blade for adding a new building/project to a User
                         </button>
                     </div>
                 </div>
-                <form action="{{ route('add-streams1', $project->id) }}" method="post" class="mt-5">
+                <form action="{{ route('add-streams1', $project->id) }}" method="post" class="mt-4">
                     @csrf
                     <div class="form-group w-50 m-auto">
                         <label for="streamName" class="sr-only">{{ __("Name") }}:</label>
@@ -41,7 +41,7 @@ blade for adding a new building/project to a User
                         <textarea class="form-control text-center" id="streamDescription" name="streamDescription"
                                placeholder="{{ __("DESCRIPTION") }}">{{ session()->get('stream.description') }}</textarea>
                     </div>
-                    <div class="form-group w-50 m-auto">
+                    <div class="form-group w-50 m-auto pt-4">
                         {{ __("PLEASE SELECT AN ACTION") }}
                         <div class="radio-toolbar">
                             <input type="radio" id="radioApple" name="streamAction" value="reuse"
