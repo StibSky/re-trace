@@ -28,11 +28,11 @@
 
 #categorySelect, #categorySelect2 {
     height: 10vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #categorySelect label, #categorySelect2 label, .radio-toolbar label {
-    margin: 10px;
+    margin: 0.2vw;
     padding: 3px 7px;
     border-radius: 50px;
     border: none;

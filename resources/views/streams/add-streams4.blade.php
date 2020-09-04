@@ -21,24 +21,21 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-row d-flex flex-row align-items-center justify-content-between">
-                        <div class="pl-5">
-                            <h5>€</h5>
-                        </div>
-                        <div class="form-group">
-                            <label for="streamPrice" class="sr-only">{{ __("Price") }}:</label>
+                        <div class="form-group d-flex flex-column">
+                            <label for="streamPrice" class="text-center"><strong>{{ __("Price") }}</strong></label>
                             <input type="text" class="form-control text-center" id="streamPrice"
                                    name="streamPrice"
-                                   placeholder="{{ __("PRICE") }}"
-                                   value="@if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
+                                   placeholder="€ {{ __("PRICE") }}"
+                                   value="€ @if(app()->getLocale() == "en"){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@else{{ number_format((session()->get('stream.price') /100), 2, ',', '.') }}@endif">
                         </div>
-                        <div class="form-group">
-                            <label for="streamQuantity" class="sr-only">{{ __("Quantity") }}:</label>
+                        <div class="form-group d-flex flex-column">
+                            <label for="streamQuantity" class="text-center"><strong>{{ __("Quantity") }}</strong></label>
                             <input type="text" class="form-control text-center" id="streamQuantity"
                                    name="streamQuantity"
                                    placeholder="QUANTITY" value="{{ session()->get('stream.quantity') /1000 }}">
                         </div>
-                        <div class="form-group">
-                            <label for="streamUnit" class="sr-only">{{ __("Unit") }}:</label>
+                        <div class="form-group d-flex flex-column">
+                            <label for="streamUnit" class="text-center"><strong>{{ __("Unit") }}</strong></label>
                             <select name="streamUnit" id="streamUnit" class="custom-select text-center">
                                 <option selected disabled>
                                     {{ __("UNIT") }}
@@ -69,9 +66,9 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>--}}
-                        <div class="form-group">
-                            <label for="total" class="sr-only">{{ __("Total") }}:</label>
-                            <input type="text" name="total" id="total" placeholder="{{ __("TOTAL") }}" class="text-center" style="color: black" disabled>
+                        <div class="form-group d-flex flex-column">
+                            <label for="total" class="text-center"><strong>{{ __("Total") }}</strong></label>
+                            <input type="text" name="total" id="total" placeholder="@if(app()->getLocale() == "en"){{" € 0.00 "}}@else{{" € 0,00 "}}@endif" class="text-center p-1" style="color: black" disabled>
                         </div>
                     </div>
                     <button type="submit" id="main-button" class="btn btn-primary"
@@ -88,18 +85,19 @@ blade for adding a new building/project to a User
             qty = $("#streamQuantity")
             qty.keyup(function(){
                 var locale = $('html').attr('lang');
-                var ennumber = $("#streamPrice").val()
+                var streamPrice = $("#streamPrice").val()
+                var ennumber = streamPrice.replace('€', '').replace('&euro; ', '')
                 var globalnumber = ennumber.replace(",", ".")
                 var globalqty = qty.val().replace(",", ".")
                 var number = locale === 'en' ? ennumber : globalnumber
                 var streamquant = locale === 'en' ? qty.val() : globalqty
                 var subtotal= streamquant * number
-                console.log(subtotal)
                 var inttotal= (Math.round(subtotal * 100) / 100)
                 var entotal = inttotal.toFixed(2)
                 var globaltotal = entotal.replace(".", ",")
                 var total= locale === 'en' ? entotal : globaltotal
-                $("#total").val(total);
+                var totalstring = "€ "+total
+                $("#total").val(totalstring);
             });
         });
     </script>
