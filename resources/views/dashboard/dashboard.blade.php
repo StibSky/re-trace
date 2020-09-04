@@ -154,7 +154,6 @@ uses dynamic linking
                             \App\Http\Controllers\DashboardController::getStreamBuilding($stream->id) . '/' .
                             \App\Http\Controllers\DashboardController::getStreamImage($stream->id)) }}"/>
                                 </div>
-
                                 <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>

@@ -15,6 +15,8 @@ sets up the navbar and yields the content of the other pages
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/bootstrap') }}"></script>
+
 @yield('head-script')
 
 
