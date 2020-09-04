@@ -11,12 +11,10 @@
   background-color: #e2e6f0;
 }
 
-@media (max-width: 1440px) {
 @media not all and (min-resolution: 0.001dpcm) {
-    #profilePic {
-      height: 100%;
-    }
-}
+  #profilePic {
+    height: 100%;
+  }
 }
 
 .card-header {
@@ -78,5 +76,9 @@ ul {
 
 #categorySelect {
   background-color: #f3bfba;
+}
+
+.categoryOptions {
+  background-color: #ffffee;
 }
 
