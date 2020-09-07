@@ -16,7 +16,11 @@
 }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1439px) {
+  #map {
+    height: 70vh;
+  }
+
 @media not all and (min-resolution: 0.001dpcm) {
     #map {
       height: 63vh;

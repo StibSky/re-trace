@@ -10,7 +10,8 @@
         }
     }
 
-    @media (max-width: 1440px) {
+    @media (max-width: 1439px) {
+        height: 70vh;
         @media not all and (min-resolution: .001dpcm) {
             height: 63vh;
         }

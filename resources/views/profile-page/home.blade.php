@@ -9,7 +9,7 @@
 @section('head-script')
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 @endsection
 @section('content')
@@ -311,6 +311,13 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             @endfor
             @endif
         }
+    </script>
+    <script>
+        $( document ).ready(function() {
+            if (jQuery.ui) {
+                alert("loaded");
+            }
+        });
     </script>
     {{--  <div class="container mt-3">
           Profile Progress
