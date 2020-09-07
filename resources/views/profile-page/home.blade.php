@@ -96,7 +96,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
         <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 mx-0 ml-md-3 card d-flex" id="mapAndSearch">
             <div class="card-body d-flex">
-                <div class="col-4" id="newSearch">
+                <div class="col-4">
                     {{--                    <div class="d-flex flex-column w-25">
                                             <button type="button" id="moreMats" class="moreMats"
                                                     onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
@@ -106,6 +106,16 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
+                        <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
+                            <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
+                                   style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                                   name="mysearch">
+                            <div class="input-group-addon py-1"
+                                 style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                        id="search-btn"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
                         <form class="form text-center d-flex flex-column justify-content-center px-auto"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
@@ -141,18 +151,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 @endforeach
                             </select>
                             <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
-
-
-                            {{--                    <div class="input-group w-75 text-center d-flex justify-content-center mx-auto" id="searchBar">
-                                                    <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
-                                                           style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
-                                                           name="mysearch">
-                                                    <div class="input-group-addon py-1"
-                                                         style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                                        <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                                                id="search-btn"><i class="fa fa-search"></i></button>
-                                                    </div>
-                                                </div>--}}
                         </form>
                     </div>
                 </div>

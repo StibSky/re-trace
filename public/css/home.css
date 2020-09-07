@@ -65,7 +65,19 @@
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   #searchBar {
-    width: 20vw;
+    width: 18.5vw;
+  }
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1799px) {
+  #searchBar {
+    width: 15vw;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  #searchBar {
+    width: 17.5vw;
   }
 }
 

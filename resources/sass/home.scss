@@ -64,7 +64,13 @@
         width: 65vw;
     }
     @media screen and (min-width: 768px) and (max-width: 1200px) {
-        width: 20vw;
+        width: 18.5vw;
+    }
+    @media screen and (min-width: 1201px) and (max-width: 1799px) {
+        width: 15vw;
+    }
+    @media screen and (min-width: 1800px) {
+        width: 17.5vw;
     }
 }
 
