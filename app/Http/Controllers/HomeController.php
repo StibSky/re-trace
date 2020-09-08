@@ -135,6 +135,13 @@ class HomeController extends Controller
             return back()->with('error', __('Please enter a search query'));
         }
 
+        $searchterm = DB::table('building')
+            ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%') ))")->get();
+
+        if(count($searchterm) == 0) {
+            return back()->with('error', __('Nothing found'));
+        }
 /*        if ($substanceId == null && $functionId == null) {
             return back()->with('error', __('please select a material or function '));
         }*/
@@ -156,7 +163,7 @@ class HomeController extends Controller
                 (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN
                 (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") OR id IN
                 (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name like '%$inputsearch%')
+                (SELECT id FROM substance WHERE name like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%')
                 ))")->get();
             //stream id van de tag id waar u substance/functie de opgegeven text bevat
         }
@@ -167,7 +174,7 @@ class HomeController extends Controller
                 (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") AND id IN
                 (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") AND id IN
                 (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name like '%$inputsearch%')
+                (SELECT id FROM substance WHERE name like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%')
                 ))")->get();
             //stream id van de tag id waar u substance/functie de opgegeven text bevat
         }
@@ -180,9 +187,9 @@ class HomeController extends Controller
         } elseif ($functionId == null && $substanceId == null && $inputsearch != null) {
             $buildings = DB::table('building')
                 ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%')))")->get();
+                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%') ))")->get();
         }
-        
+
         $materialLocations = [];
         if (count($buildings) > 0) {
             foreach ($buildings as $building) {
@@ -193,6 +200,9 @@ class HomeController extends Controller
                         ->get()
                 );
             }
+        }
+        else {
+            return back()->with('error', __('Nothing found'));
         }
 
         return back()->with(
