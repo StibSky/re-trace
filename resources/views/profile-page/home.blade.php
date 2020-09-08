@@ -303,7 +303,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
                 map: map,
+                @if($decodedarray[0]['status'] != 'ZERO_RESULTS')
                 title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                @endif
             });
             @endfor
             @endif

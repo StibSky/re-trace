@@ -181,6 +181,10 @@ class DashboardController extends Controller
             $building->setAddress1($request->input('streetName') . " " . $request->input('streetNumber'));
         }
 
+        if ($request->input('city') !=null) {
+            $building->setCity($request->input('city'));
+        }
+
         if ($request->input('type') != null) {
             $building->setType($request->input('type'));
         }
