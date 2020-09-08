@@ -169,9 +169,7 @@ class HomeController extends Controller
                 ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE name LIKE '%$inputsearch%')))")->get();
         }
-
-        dd($buildings);
-
+        
         $materialLocations = [];
         if (count($buildings) > 0) {
             foreach ($buildings as $building) {
