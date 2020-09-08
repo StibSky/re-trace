@@ -168,6 +168,7 @@
     "description" : "la description",
     "Destination" : "Bestemming",
     "Materials" : "Materialen",
+    "Material": "Materiaal",
     "Function" : "Functie",
     "Functions": "Functies",
     "Confirm input and add stream?" : "Input bevestigen en stroom toevoegen?",

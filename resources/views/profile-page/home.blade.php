@@ -113,11 +113,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
                                        style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
                                        name="mysearch">
-                                <div class="input-group-addon py-1"
-                                     style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                            id="search-btn"><i class="fa fa-search"></i></button>
-                                </div>
                             </div>
 
                             <select name="substance" id="categorySelect" class="custom-select text-center my-2">
