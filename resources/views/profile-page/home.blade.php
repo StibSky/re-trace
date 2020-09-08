@@ -106,20 +106,19 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
-                        <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
-                            <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
-                                   style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
-                                   name="mysearch">
-                            <div class="input-group-addon py-1"
-                                 style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                        id="search-btn"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
                         <form class="form text-center d-flex flex-column justify-content-center px-auto"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-
+                            <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
+                                <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
+                                       style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                                       name="mysearch">
+                                <div class="input-group-addon py-1"
+                                     style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
+                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
+                                            id="search-btn"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
 
                             <select name="substance" id="categorySelect" class="custom-select text-center my-2">
                                 <option selected disabled>{{ __("Material")}}</option>
@@ -267,7 +266,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('substanceId') !=null )
+                @if(session('materialLocations') != null)
                 @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
@@ -280,7 +279,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
             });
                 @endfor
-                @elseif(session('functionId') !=null )
+{{--                @elseif(session('functionId') !=null )
                 @for($i=0; $i < count( session('materialLocations') ); $i++)
             var location = {
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
@@ -292,7 +291,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 map: map,
                 title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
             });
-                @endfor
+                @endfor--}}
 
                 @else
                 @for($i=0; $i < count( $locations ); $i++)
