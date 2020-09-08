@@ -8,6 +8,7 @@ use App\Substance;
 use App\MaterialFunction;
 use App\Unit;
 use App\User;
+use bar\baz\source_with_namespace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index()
         //referencing foreign key
@@ -57,10 +58,14 @@ class HomeController extends Controller
             );
         }
         $decodedarray = [];
+
         foreach ($locations as $location) {
             $location = json_decode($location, true);
             array_push($decodedarray, $location);
         }
+
+
+
         //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
 
         //move to class
@@ -101,13 +106,21 @@ class HomeController extends Controller
     public static function getLng($location)
     {
         $decodeLocation = json_decode($location, true);
+        if ($decodeLocation['results'] != null) {
         return $decodeLocation['results'][0]['geometry']['location']['lng'];
+        } else {
+            return back()->with('error', "Please make sure your projects have existing locations");
+        }
     }
 
     public static function getLat($location)
     {
         $decodeLocation = json_decode($location, true);
-        return $decodeLocation['results'][0]['geometry']['location']['lat'];
+        if ($decodeLocation['results'] != null) {
+            return $decodeLocation['results'][0]['geometry']['location']['lat'];
+        } else {
+            return back()->with('error', "Please make sure your projects have existing locations");
+        }
     }
 
     public function mysearch(Request $request)

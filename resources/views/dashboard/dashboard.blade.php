@@ -48,6 +48,9 @@ uses dynamic linking
                                                     <label for="streetNumber">{{ __("Street number")}}"</label>
                                                     <input type="text" name="streetNumber" id="streetNumber">
                                                     <br>
+                                                    <label for="city">{{ __("City")}}"</label>
+                                                    <input type="text" name="city" id="City">
+                                                    <br>
                                                     <label for="typeButtonSelect">{{ __("Type")}}</label>
                                                     <select name="type" id="typeButtonSelect" multiple>
                                                         <option
