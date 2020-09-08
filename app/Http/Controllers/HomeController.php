@@ -129,39 +129,79 @@ class HomeController extends Controller
 
         $substanceId = $request->input('substance');
 
-        $functionID = $request->input('dbFunction');
+        $functionId = $request->input('dbFunction');
 
+        if ($substanceId == null && $functionId == null && $inputsearch == null) {
+            return back()->with('error', __('Please enter a search query'));
+        }
 
-        if ($substanceId == null && $functionID == null) {
+/*        if ($substanceId == null && $functionId == null) {
             return back()->with('error', __('please select a material or function '));
-        }
+        }*/
 
-        if ($substanceId !=null && $functionID != null) {
+        if ($substanceId !=null && $functionId != null && $inputsearch == null) {
             $buildings = DB::table('building')
-                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . ") )")->get();
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") )")->get();
         }
-        elseif ($substanceId != null) {
+        elseif (($substanceId !=null or $functionId != null) && $inputsearch != null) {
+            if($substanceId == null) {
+                $substanceId = 0;
+            }
+            if($functionId == null) {
+                $functionId = 0;
+            }
+            $buildings = DB::table('building')
+                ->whereRaw("id IN
+                (SELECT buildid FROM streams WHERE id IN
+                (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") OR id IN
+                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") OR id IN
+                (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE name like '%$inputsearch%')
+                ))")->get();
+            //stream id van de tag id waar u substance/functie de opgegeven text bevat
+        }
+        elseif ($substanceId !=null && $functionId != null && $inputsearch != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN
+                (SELECT buildid FROM streams WHERE id IN
+                (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . ") AND id IN
+                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") AND id IN
+                (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE name like '%$inputsearch%')
+                ))")->get();
+            //stream id van de tag id waar u substance/functie de opgegeven text bevat
+        }
+        elseif ($substanceId != null && $functionId == null && $inputsearch == null) {
             $buildings = DB::table('building')
                 ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-        } elseif ($functionID != null) {
+        } elseif ($functionId != null && $substanceId == null && $inputsearch == null) {
             $buildings = DB::table('building')
-                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionID . "))")->get();
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
+        } elseif ($functionId == null && $substanceId == null && $inputsearch != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%')))")->get();
         }
 
+        dd($buildings);
+
         $materialLocations = [];
-        foreach ($buildings as $building) {
-            array_push($materialLocations,
-                \GoogleMaps::load('geocoding')
-                    ->setParam(['address' => $building->address1 . ' ' . $building->city . ' ' . $building->postcode,
-                    ])
-                    ->get()
-            );
+        if (count($buildings) > 0) {
+            foreach ($buildings as $building) {
+                array_push($materialLocations,
+                    \GoogleMaps::load('geocoding')
+                        ->setParam(['address' => $building->address1 . ' ' . $building->city . ' ' . $building->postcode,
+                        ])
+                        ->get()
+                );
+            }
         }
+
         return back()->with(
             ['mysearch' => $inputsearch,
                 'substanceId' => $substanceId,
                 'materialLocations' => $materialLocations,
-                'functionId' => $functionID,
+                'functionId' => $functionId,
             ]);
     }
 
