@@ -21,7 +21,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             {{ __("You've successfully verified your email!")}}
         </div>
     @endif
-
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
         <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
