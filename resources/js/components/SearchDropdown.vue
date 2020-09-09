@@ -8,6 +8,7 @@
         :maxItem="10"
         placeholder="Please select an option">
     </Dropdown>
+    <p>This is my vue component</p>
 </template>
 
 <script>

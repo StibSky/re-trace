@@ -1,6 +1,6 @@
-#newSearch {
-  height: 6em;
-}
+/*#newSearch {
+    height: 6em;
+}*/
 
 #mapAndSearch {
   width: 100%;
@@ -86,11 +86,7 @@ ul {
   list-style: none;
 }
 
-#categorySelect {
+.selectpicker {
   background-color: #f3bfba;
-}
-
-.categoryOptions {
-  background-color: #ffffee;
 }
 

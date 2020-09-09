@@ -2,15 +2,26 @@
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+    {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">--}}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+    <style type="text/css">
+
+        .dropdown-toggle {
+
+            height: 4vh;
+
+            width: 40vw; !important;
+
+        }
+
+    </style>
 @endsection
 @section('head-script')
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    {{--    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 @endsection
 @section('content')
     <!--
@@ -109,20 +120,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
                             <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
-                                <input class="form-control" type="text" placeholder="{{ __("Search")}}" aria-label="Search"
+                                <input class="form-control" type="text" placeholder="{{ __("Search")}}"
+                                       aria-label="Search"
                                        style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
                                        name="mysearch">
-                                <div class="input-group-addon py-1"
-                                     style="margin-left: -50px; z-index: 3; border-radius: 40px; border:none;">
-                                    <button class="btn btn-warning btn-sm" type="submit" style="border-radius: 20px;"
-                                            id="search-btn"><i class="fa fa-search"></i></button>
-                                </div>
                             </div>
-
-                            <select name="substance" id="categorySelect" class="custom-select text-center my-2">
-                                <option selected disabled>{{ __("Material")}}</option>
+                            <label for="substance[]">Material:</label>
+                            <select class="selectpicker" multiple data-live-search="true" name="substance[]">
                                 @foreach($subCategories1 as $subCategory1)
-                                    <option value="{{ $subCategory1->id }}" class="categoryOptions">
+                                    <option value="{{ $subCategory1->id }}">
                                         @if(app()->getLocale() == "en")
                                             {{ $subCategory1->name }}
                                         @elseif(app()->getLocale() == "fr")
@@ -133,11 +139,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </option>
                                 @endforeach
                             </select>
-                            <br>
-                            <select name="dbFunction" id="categorySelect" class="custom-select text-center my-2">
-                                <option selected disabled>{{ __("Function")}}</option>
+                            <label for="dbFunction[]">Function:</label>
+                            <select  class="selectpicker" multiple data-live-search="true" name="dbFunction[]">
                                 @foreach($functionSubCategory1 as $functionSub)
-                                    <option value="{{ $functionSub->id }}" class="categoryOptions">
+                                    <option value="{{ $functionSub->id }}">
                                         @if(app()->getLocale() == "en")
                                             {{ $functionSub->name }}
                                         @elseif(app()->getLocale() == "fr")
@@ -228,16 +233,19 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         </div>
 
     </div>
-
-
+@endsection
+@push('script')
     <?php use App\Http\Controllers\HomeController;
     use App\Building; ?>
-
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxZFeQzEx6mmfOypA8Q4uZOU5zmO6lS0&callback=initMap">
     </script>
     <script type="text/javascript">
         "use strict";
+
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
@@ -266,7 +274,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
             let locationArray = [];
                 @if(session('materialLocations') != null)
-                @for($i=0; $i < count( session('materialLocations') ); $i++)
+                @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
             var location = {
                     lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                     lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
@@ -278,19 +286,19 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
             });
                 @endfor
-{{--                @elseif(session('functionId') !=null )
-                @for($i=0; $i < count( session('materialLocations') ); $i++)
-            var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-            locationArray.push(location);
-            new google.maps.Marker({
-                position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map,
-                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-            });
-                @endfor--}}
+                {{--                @elseif(session('functionId') !=null )
+                                @for($i=0; $i < count( session('materialLocations') ); $i++)
+                            var location = {
+                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                            locationArray.push(location);
+                            new google.maps.Marker({
+                                position: locationArray['{{$i}}'],
+                                label: labels[labelIndex++ % labels.length],
+                                map: map,
+                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                            });
+                                @endfor--}}
 
                 @else
                 @for($i=0; $i < count( $locations ); $i++)
@@ -310,13 +318,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             @endif
         }
     </script>
-    <script>
-        $( document ).ready(function() {
-            if (jQuery.ui) {
-                alert("loaded");
-            }
-        });
-    </script>
     {{--  <div class="container mt-3">
           Profile Progress
           --}}{{--            <div class="progress">--}}{{--
@@ -328,4 +329,4 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
               @endif
           </div>
       </div>--}}
-@endsection
+@endpush

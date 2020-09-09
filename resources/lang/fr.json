@@ -169,6 +169,7 @@
     "description": "la description",
     "Destination": "Destination",
     "Materials": "Matériaux",
+    "Material": "Matériel",
     "Function": "Fonction",
     "Functions": "Fonctions",
     "Confirm input and add stream?": "Confirmer l'entrée et ajouter un flux?",
