@@ -14,7 +14,6 @@
             width: 40vw; !important;
 
         }
-
     </style>
 @endsection
 @section('head-script')
