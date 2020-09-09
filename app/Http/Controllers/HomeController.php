@@ -160,119 +160,41 @@ class HomeController extends Controller
 
         $buildArray = [];
 
-        if ($substanceInput !=null && $functionInput != null && $inputsearch == null) {
+        if($substanceInput !=null) {
             foreach($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
                 array_push($buildArray, $buildings);
             }
-
+        }
+        if($functionInput != null) {
             foreach($functionInput as $functionId) {
                 $buildings = DB::table('building')
-                    ->whereRaw("id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") )")->get();
+                    ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
                 array_push($buildArray, $buildings);
             }
         }
-        elseif (($substanceInput !=null or $functionInput != null) && $inputsearch != null) {
-            if($substanceInput == null) {
-                $substanceInput = 0;
-            }
-            if($functionInput == null) {
-                $functionInput = 0;
-            }
-            if(app()->getLocale() == 'en') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") OR id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") OR id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            elseif(app()->getLocale() == 'nl') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") OR id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") OR id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_nl like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name_nl LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            elseif(app()->getLocale() == 'fr') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") OR id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") OR id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_fr like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name_fr LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            //stream id van de tag id waar u substance/functie de opgegeven text bevat
-        }
-        elseif ($substanceInput !=null && $functionInput != null && $inputsearch != null) {
-            if(app()->getLocale() == 'en') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") AND id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") AND id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            elseif(app()->getLocale() == 'nl') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") AND id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") AND id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_nl like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name_nl LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            elseif(app()->getLocale() == 'fr') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN
-                (SELECT buildid FROM streams WHERE id IN
-                (SELECT stream_id FROM tags WHERE material_id = " . $substanceInput . ") AND id IN
-                (SELECT stream_id FROM tags WHERE function_id = " . $functionId . ") AND id IN
-                (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_fr like '%$inputsearch%')  OR function_id IN (SELECT id FROM materialFunction WHERE name_fr LIKE '%$inputsearch%')
-                ))")->get();
-            }
-            //stream id van de tag id waar u substance/functie de opgegeven text bevat
-        }
-        elseif ($substanceInput != null && $functionInput == null && $inputsearch == null) {
-            foreach ($substanceInput as $substanceId) {
-                $buildings = DB::table('building')
-                    ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-                array_push($buildArray, $buildings);
-            }
-        } elseif ($functionInput != null && $substanceInput == null && $inputsearch == null) {
-            $buildings = DB::table('building')
-                ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
-        } elseif ($functionInput == null && $substanceInput == null && $inputsearch != null) {
+        if($inputsearch != null) {
             if(app()->getLocale() == 'en') {
                 $buildings = DB::table('building')
                     ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE name LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%') ))")->get();
+                array_push($buildArray, $buildings);
             }
             elseif(app()->getLocale() == 'nl') {
                 $buildings = DB::table('building')
                     ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE name_nl LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_nl LIKE '%$inputsearch%') ))")->get();
+                array_push($buildArray, $buildings);
             }
             elseif(app()->getLocale() == 'fr') {
                 $buildings = DB::table('building')
                     ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE name_fr LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_fr LIKE '%$inputsearch%') ))")->get();
+                array_push($buildArray, $buildings);
             }
         }
-
-
+        
         $materialLocations = [];
 
         if ($buildArray != null) {
@@ -296,6 +218,7 @@ class HomeController extends Controller
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
+                'decodedResults' => $decodedResults
             ]);
     }
 

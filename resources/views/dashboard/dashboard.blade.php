@@ -159,7 +159,7 @@ uses dynamic linking
                                 <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
-                                <p class="w-50">{{$stream->quantity}}</p>
+                                <p class="w-50">{{$stream->quantity / 1000}}</p>
                             </li>
                             <hr class="py-0 my-2">
                         @endforeach

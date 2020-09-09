@@ -59,6 +59,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <li>{{ __("Email address")}}: {{ Auth::user()->email }}</li>
                                 <li>{{ __("Profile Type")}}: {{ Auth::user()->type }}</li>
                             </ul>
+                            <div id="app">
+                                <search-dropdown></search-dropdown>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,8 +286,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
-                map: map,
-                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                map: map
             });
                 @endfor
                 {{--                @elseif(session('functionId') !=null )
@@ -310,10 +312,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
-                map: map,
-                @if($decodedarray[0]['status'] != 'ZERO_RESULTS')
-                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                @endif
+                map: map
             });
             @endfor
             @endif
