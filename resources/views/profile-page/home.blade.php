@@ -9,7 +9,7 @@
 
         .dropdown-toggle {
 
-            height: 5vh;
+            height: 4vh;
 
             width: 40vw; !important;
 
