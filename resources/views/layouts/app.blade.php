@@ -14,24 +14,20 @@ sets up the navbar and yields the content of the other pages
     <title>Re-trace.io</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap') }}"></script>
 
-@yield('head-script')
-
-
-<!-- Fonts -->
+    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+@yield('head-script')
+<!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/webkit.css')}}" media="screen and (-webkit-min-device-pixel-ratio:0)" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/webkit.css')}}" media="screen and (-webkit-min-device-pixel-ratio:0)"
+          type="text/css"/>
     @yield('stylesheet')
-
 </head>
 
 <body>
@@ -62,12 +58,15 @@ sets up the navbar and yields the content of the other pages
                         <ul class="navbar-nav ml-auto">
                             @if(count(config('app.languages')) > 1)
                                 <li class="nav-item dropdown d-md-down-none">
-                                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                                       aria-haspopup="true" aria-expanded="false">
                                         {{ strtoupper(app()->getLocale()) }}
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         @foreach(config('app.languages') as $langLocale => $langName)
-                                            <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
+                                            <a class="dropdown-item"
+                                               href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }}
+                                                ({{ $langName }})</a>
                                         @endforeach
                                     </div>
                                 </li>
@@ -159,14 +158,17 @@ sets up the navbar and yields the content of the other pages
             </div>
         </footer>
     </div>
-
-    @yield('script')
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="{{mix('/js/app.js')}}"></script>
+@stack('script')
 </body>
 <!-- Site footer -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="{{mix('/js/app.js')}}"></script>
 
 </html>

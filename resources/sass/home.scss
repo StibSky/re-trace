@@ -1,8 +1,8 @@
 @import 'variables';
 
-#newSearch {
+/*#newSearch {
     height: 6em;
-}
+}*/
 
 #mapAndSearch {
     .card-footer {
@@ -79,10 +79,6 @@ ul {
     list-style: none;
 }
 
-#categorySelect {
+.selectpicker {
     background-color: $retrace-pink;
-}
-
-.categoryOptions {
-    background-color: $retrace-sand;
 }

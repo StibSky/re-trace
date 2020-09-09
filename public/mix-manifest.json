@@ -1,12 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/home.css": "/css/home.css",
     "/css/auth.css": "/css/auth.css",
     "/css/dashboard.css": "/css/dashboard.css",
     "/css/footer.css": "/css/footer.css",
     "/css/map.css": "/css/map.css",
     "/css/create_project.css": "/css/create_project.css",
     "/css/add_streams.css": "/css/add_streams.css",
-    "/css/master.css": "/css/master.css",
-    "/css/home.css": "/css/home.css"
+    "/css/master.css": "/css/master.css"
 }
