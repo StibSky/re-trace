@@ -194,7 +194,7 @@ class HomeController extends Controller
                 array_push($buildArray, $buildings);
             }
         }
-        
+
         $materialLocations = [];
 
         if ($buildArray != null) {

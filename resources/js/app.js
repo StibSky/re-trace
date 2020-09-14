@@ -13,8 +13,5 @@ Vue.component('stream-form', require('./components/StreamForm.vue').default);
 Vue.component('search-dropdown', require('./components/SearchDropdown.vue').default);
 
 const app = new Vue({
-    el: '#app',
-    components: {
-        'search-dropdown': require('./components/SearchDropdown.vue').default
-    }
+    el: '#app'
 });
