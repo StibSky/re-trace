@@ -35,7 +35,6 @@ uses dynamic linking
                                                 {{ __("To change street please fill in Name and Number")}}</h4>
 
 
-
                                         </div>
                                         <form action="{{ route('editDashInfo', $project->id) }}" method="post"
                                               enctype="multipart/form-data">
@@ -127,6 +126,12 @@ uses dynamic linking
                             <hr class="py-0 my-2">
                         @endforeach
                     </ul>
+                    <search-dropdown
+                        :options="{{ $projecttypes->toJson() }}"
+                        selected.sync="selected"
+                        placeholder="Material"
+                        tag-placeholder="Please select tag"
+                    ></search-dropdown>
                 </div>
                 <div class="card-footer" id="dashboard-footer2">
                     <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"
@@ -142,7 +147,7 @@ uses dynamic linking
                 <h5>{{ __("Waste Streams")}}</h5>
             </div>
             <div class="d-flex flex-row justify-content-between text-left" id="titleBar">
-                <div class="column w-75"> </div>
+                <div class="column w-75"></div>
                 <div class="column w-100"><p>{{ __("Stream")}}</p></div>
                 <div class="column w-100"><p>{{ __("Action")}}</p></div>
                 <div class="column w-50"><p>{{ __("Quantity")}}</p></div>
@@ -154,9 +159,11 @@ uses dynamic linking
                         @foreach($streams as $stream)
                             <li class="d-flex flex-row justify-content-between">
                                 <div class="w-75">
-                                    <img id="streamImage" src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
+                                    <img id="streamImage"
+                                         src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
                                 </div>
-                                <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+                                <strong class="w-100"><a
+                                        href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
                                 <p class="w-50">{{$stream->quantity / 1000}}</p>
@@ -252,6 +259,5 @@ uses dynamic linking
                         25% Completed Profile
                     </div>
                 </div>--}}
-
 
 @endsection
