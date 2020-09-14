@@ -189,7 +189,14 @@ uses dynamic linking
                                         href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
-                                <p class="w-50">{{$stream->quantity / 1000}}</p>
+                                <p class="w-50">{{$stream->quantity / 1000}}                                 @foreach($units as $unit)
+                                        @if($stream->unit_id == $unit[0]['id'])
+                                            {{ $unit[0]['short_name'] }}
+                                            @break
+                                        @endif
+                                    @endforeach</p>
+
+
                             </li>
                             <hr class="py-0 my-2">
                         @endforeach
