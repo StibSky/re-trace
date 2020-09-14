@@ -1,22 +1,47 @@
 <template>
-    <Dropdown
-        :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
-        v-on:selected="validateSelection"
-        v-on:filter="getDropdownValues"
-        :disabled="false"
-        name="zipcode"
-        :maxItem="10"
-        placeholder="Please select an option">
-    </Dropdown>
-    <p>This is my vue component</p>
+    <multiselect
+        v-model="value"
+        :selected.sync="selected"
+        :show-labels="true"
+        :options="options"
+        :placeholder="placeholder"
+        tag-placeholder="tag-placeholder"
+        :searchable="true"
+        :allow-empty="true"
+        :multiple="true"
+        key="id"
+        label="name"
+        :close-on-select="false"
+        :clear-on-select="false"
+        :taggable="true"
+    ></multiselect>
 </template>
 
 <script>
+    import {Multiselect} from 'vue-multiselect';
+
     export default {
-        name: "SearchDropdown"
+        name: "SearchDropdown",
+        components: {Multiselect},
+        props: {
+            options: {
+                type: Array,
+                default: function() {
+                    return [];
+                },
+            },
+            appear: true,
+            placeholder: {
+                default: 'Select one'
+            },
+            showLabel: {
+                type: Boolean,
+                default: true
+            },
+            selected: ''
+        }
     }
 </script>
 
-<style scoped>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-</style>
