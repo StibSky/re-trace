@@ -119,19 +119,42 @@ uses dynamic linking
                     <h5> - Please add your first files to progress your profile</h5>
                 @endif--}}
                     <ul>
-                        @foreach($projecttypes as $projecttype)
                             <li class="d-flex flex-row  justify-content-between">
-                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>
+{{--                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>--}}
                             </li>
-                            <hr class="py-0 my-2">
-                        @endforeach
                     </ul>
-                    <search-dropdown
-                        :options="{{ $projecttypes->toJson() }}"
-                        selected.sync="selected"
-                        placeholder="Material"
-                        tag-placeholder="Please select tag"
-                    ></search-dropdown>
+                    <ul>
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Measuring state"))
+                                <a href="{{route(str_replace(' ', '', 'Measuring state'), $project->id)}}">{{ __("Measuring state")}}</a>
+                                                                                 @else{{ __("Measuring state")}}
+                        @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Material list"))
+                                <a href="{{route(str_replace(' ', '', 'Material list'), $project->id)}}">{{ __("Material list")}}</a>
+                            @else{{ __("Material list")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Plans"))
+                                <a href="{{route(str_replace(' ', '', 'Plans'), $project->id)}}">{{ __("Plans")}}</a>
+                            @else{{ __("Plans")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Demolition plans"))
+                                <a href="{{route(str_replace(' ', '', 'Demolition plans'), $project->id)}}">{{ __("Demolition plans")}}</a>
+                            @else{{ __("Demolition plans")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Photos exterior"))
+                                <a href="{{route(str_replace(' ', '', 'Photos exterior'), $project->id)}}">{{ __("Photos exterior")}}</a>
+                            @else{{ __("Photos exterior")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Photos interior"))
+                                <a href="{{route(str_replace(' ', '', 'Photos interior'), $project->id)}}">{{ __("Photos interior")}}</a>
+                            @else{{ __("Photos interior")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                    </ul>
                 </div>
                 <div class="card-footer" id="dashboard-footer2">
                     <button type="button" id="main-button" class="btn btn-primary" data-toggle="modal"

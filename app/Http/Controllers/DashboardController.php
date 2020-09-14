@@ -10,6 +10,7 @@ use App\Stream;
 use App\Substance;
 use App\Tag;
 use App\Unit;
+use App\UploadedFile;
 use App\User;
 use App\Valuta;
 use Illuminate\Http\Request;
@@ -50,6 +51,7 @@ class DashboardController extends Controller
         $projectfiles = DB::table('uploaded_file')
             ->where('projectId', $id)
             ->get();
+
 
         $projecttypes = $projectfiles->pluck("type")->unique();
 
