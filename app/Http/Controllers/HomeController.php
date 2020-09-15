@@ -86,6 +86,7 @@ class HomeController extends Controller
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
         $unit = Unit::all();
 
+
         return view('profile-page.home', [
             'buildings' => $userBuilding,
             'substances' => $substances,
