@@ -18,6 +18,16 @@ export default {
         return {
             value: null,
             options: ['list', 'of', 'options']
+
+    export default {
+        name: "SearchDropdown",
+        components: {Multiselect},
+        data () {
+            return {
+                selected: null,
+                options: []
+            }
+
         }
     }
 }

@@ -3,15 +3,17 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">--}}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+    {{--    <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">--}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <style type="text/css">
 
         .dropdown-toggle {
 
             height: 4vh;
 
-            width: 40vw; !important;
+            width: 40vw;
+        !important;
 
         }
 
@@ -19,12 +21,12 @@
 @endsection
 @section('head-script')
     {{--    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>--}}
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-    <link href="https://unpkg.com/vue-multiselect@2.0.0-beta.14/dist/vue-multiselect.min.css" rel="stylesheet"/>
-    <script src="https://unpkg.com/vue-multiselect@2.0.0-beta.14"></script>
-    <script src="https://vuejs.org/js/vue.min.js"></script>
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
+    {{--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 @endsection
 @section('content')
     <!--
@@ -129,8 +131,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                        style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
                                        name="mysearch">
                             </div>
-{{--                            <label for="substance[]">Material:</label>
-                            <select class="selectpicker" multiple data-live-search="true" name="substance[]">
+                            <label for="substance[]">Material:</label>
+                            <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                    name="substance[]" data-placeholder="Select material">
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}">
                                         @if(app()->getLocale() == "en")
@@ -144,7 +147,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 @endforeach
                             </select>
                             <label for="dbFunction[]">Function:</label>
-                            <select  class="selectpicker" multiple data-live-search="true" name="dbFunction[]">
+                            <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                    name="dbFunction[]" data-placeholder="Select function">
                                 @foreach($functionSubCategory1 as $functionSub)
                                     <option value="{{ $functionSub->id }}">
                                         @if(app()->getLocale() == "en")
@@ -156,20 +160,20 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         @endif
                                     </option>
                                 @endforeach
-                            </select>--}}
-
-                                <div id="app">
-                                        <search-dropdown>
-                                            <label class="typo__label">Single select</label>
-                                            <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect>
-                                            <pre class="language-json"><code>{{$subCategories1}}</code></pre>
-                                        </search-dropdown>
-                                </div>
-
+                            </select>
+                            {{--                            <div class="form-group">
+                                                            <search-dropdown
+                                                                :options="{{ $subCategories1->toJson() }}"
+                                                                selected.sync="selected"
+                                                                placeholder="Material"
+                                                                tag-placeholder="Please select tag"
+                                                            ></search-dropdown>
+                                                        </div>--}}
                             <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
                         </form>
                     </div>
                 </div>
+                <example-component></example-component>
                 <div class="col-8 mt-2">
                     <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
@@ -256,7 +260,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         "use strict";
 
         $(document).ready(function () {
-            $('.selectpicker').selectpicker();
+            $('.js-example-basic-multiple').select2();
         });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -285,37 +289,37 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('materialLocations') != null)
-                @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations') != null)
+            @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
                 map: map
             });
-                @endfor
-                {{--                @elseif(session('functionId') !=null )
-                                @for($i=0; $i < count( session('materialLocations') ); $i++)
-                            var location = {
-                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                            locationArray.push(location);
-                            new google.maps.Marker({
-                                position: locationArray['{{$i}}'],
-                                label: labels[labelIndex++ % labels.length],
-                                map: map,
-                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                            });
-                                @endfor--}}
+            @endfor
+            {{--                @elseif(session('functionId') !=null )
+                            @for($i=0; $i < count( session('materialLocations') ); $i++)
+                        var location = {
+                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                        locationArray.push(location);
+                        new google.maps.Marker({
+                            position: locationArray['{{$i}}'],
+                            label: labels[labelIndex++ % labels.length],
+                            map: map,
+                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                        });
+                            @endfor--}}
 
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],

@@ -131,7 +131,7 @@ class HomeController extends Controller
         $substanceInput = $request->input('substance');
 
         $functionInput = $request->input('dbFunction');
-
+        
         if ($substanceInput == null && $functionInput == null && $inputsearch == null) {
             return back()->with('error', __('Please enter a search query'));
         }
@@ -219,7 +219,6 @@ class HomeController extends Controller
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
-                'decodedResults' => $decodedResults
             ]);
     }
 
