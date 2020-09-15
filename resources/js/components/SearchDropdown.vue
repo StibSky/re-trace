@@ -23,22 +23,11 @@
     export default {
         name: "SearchDropdown",
         components: {Multiselect},
-        props: {
-            options: {
-                type: Array,
-                default: function() {
-                    return [];
-                },
-            },
-            appear: true,
-            placeholder: {
-                default: 'Select one'
-            },
-            showLabel: {
-                type: Boolean,
-                default: true
-            },
-            selected: ''
+        data () {
+            return {
+                selected: null,
+                options: []
+            }
         }
     }
 </script>
