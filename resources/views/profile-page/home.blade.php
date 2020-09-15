@@ -19,9 +19,12 @@
 @endsection
 @section('head-script')
     {{--    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>--}}
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
-{{--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link href="https://unpkg.com/vue-multiselect@2.0.0-beta.14/dist/vue-multiselect.min.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/vue-multiselect@2.0.0-beta.14"></script>
+    <script src="https://vuejs.org/js/vue.min.js"></script>
 @endsection
 @section('content')
     <!--
@@ -154,14 +157,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </option>
                                 @endforeach
                             </select>--}}
-                            <div class="form-group">
-                                <search-dropdown
-                                    :options="{{ $subCategories1->toJson() }}"
-                                    selected.sync="selected"
-                                    placeholder="Material"
-                                    tag-placeholder="Please select tag"
-                                ></search-dropdown>
-                            </div>
+
+                                <div id="app">
+                                        <search-dropdown>
+                                            <label class="typo__label">Single select</label>
+                                            <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect>
+                                            <pre class="language-json"><code>{{$subCategories1}}</code></pre>
+                                        </search-dropdown>
+                                </div>
+
                             <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
                         </form>
                     </div>

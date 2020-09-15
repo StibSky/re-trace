@@ -12,6 +12,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('stream-form', require('./components/StreamForm.vue').default);
 Vue.component('search-dropdown', require('./components/SearchDropdown.vue').default);
 
+var MsComponent = require('./components/SearchDropdown.vue');
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        MsComponent
+    }
 });
