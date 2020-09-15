@@ -173,7 +173,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         </form>
                     </div>
                 </div>
-                <example-component></example-component>
                 <div class="col-8 mt-2">
                     <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
