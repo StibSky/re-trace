@@ -299,37 +299,37 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('materialLocations') != null)
-                @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations') != null)
+            @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
                 map: map
             });
-                @endfor
-                {{--                @elseif(session('functionId') !=null )
-                                @for($i=0; $i < count( session('materialLocations') ); $i++)
-                            var location = {
-                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                            locationArray.push(location);
-                            new google.maps.Marker({
-                                position: locationArray['{{$i}}'],
-                                label: labels[labelIndex++ % labels.length],
-                                map: map,
-                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                            });
-                                @endfor--}}
+            @endfor
+            {{--                @elseif(session('functionId') !=null )
+                            @for($i=0; $i < count( session('materialLocations') ); $i++)
+                        var location = {
+                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                        locationArray.push(location);
+                        new google.maps.Marker({
+                            position: locationArray['{{$i}}'],
+                            label: labels[labelIndex++ % labels.length],
+                            map: map,
+                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                        });
+                            @endfor--}}
 
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],

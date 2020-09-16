@@ -1,24 +1,23 @@
+<!-- Vue component -->
 <template>
-    <multiselect
-        v-model="value"
-        :selected.sync="selected"
-        :show-labels="true"
-        :options="options"
-        :placeholder="placeholder"
-        tag-placeholder="tag-placeholder"
-        :searchable="true"
-        :allow-empty="true"
-        :multiple="true"
-        key="id"
-        label="name"
-        :close-on-select="false"
-        :clear-on-select="false"
-        :taggable="true"
-    ></multiselect>
+    <div>
+        <multiselect v-model="value" :options="options"></multiselect>
+    </div>
 </template>
 
 <script>
-    import {Multiselect} from 'vue-multiselect';
+import Multiselect from 'vue-multiselect'
+
+// register globally
+Vue.component('multiselect', Multiselect)
+
+export default {
+    // OR register locally
+    components: { Multiselect },
+    data () {
+        return {
+            value: null,
+            options: ['list', 'of', 'options']
 
     export default {
         name: "SearchDropdown",
@@ -28,9 +27,13 @@
                 selected: null,
                 options: []
             }
+
         }
     }
+}
 </script>
 
+<!-- New step!
+     Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
