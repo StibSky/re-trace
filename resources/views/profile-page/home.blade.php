@@ -41,20 +41,24 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
         <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="card-header"><h5>{{ __("Profile")}}</h5></div>
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <h5>{{ __("Profile")}}</h5>
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false" id="cog-link">
+                        <img id="cog" src="{{ asset('images/cog-24.png') }}" alt="cog" class="align-self-center">
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" name="editProfile"
+                               data-toggle="modal"
+                               data-target="#editModal">{{ __("Edit")}}
+                            </a>
+                        </div>
+                    </a>
+                </div>
                 <div class="card-body">
                     <div class="row px-3 py-2">
                         <div class="col-lg-5 col-12 d-flex flex-column">
-                            <div class="row">
                                 <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
                                      alt="Placeholder">
-                            </div>
-                            <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button"
-                                   data-toggle="modal"
-                                   data-target="#editModal">{{ __("Edit")}}
-                                </a>
-                            </div>
                         </div>
                         <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
                             <h5>{{ __("Personal details")}}</h5>
@@ -125,10 +129,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         <form class="form text-center d-flex flex-column justify-content-center px-auto"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-                            <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
+                            <div class="input-group text-center d-flex justify-content-center px-0" id="searchBar">
                                 <input class="form-control" type="text" placeholder="{{ __("Search")}}"
                                        aria-label="Search"
-                                       style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                                       id="filterCategories"
                                        name="mysearch">
                             </div>
                             <label for="substance[]">Material:</label>
@@ -260,6 +264,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
         $(document).ready(function () {
             $('.js-example-basic-multiple').select2();
+
         });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
