@@ -6,6 +6,7 @@
     {{--    <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" />
     <style type="text/css">
 
         .dropdown-toggle {
@@ -57,8 +58,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 <div class="card-body">
                     <div class="row px-3 py-2">
                         <div class="col-lg-5 col-12 d-flex flex-column">
-                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
-                                     alt="Placeholder">
+                            <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
+                                 alt="Placeholder">
                         </div>
                         <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
                             <h5>{{ __("Personal details")}}</h5>
@@ -137,7 +138,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             </div>
                             <label for="substance[]">Material:</label>
                             <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="substance[]" data-placeholder="Select material">
+                                    name="substance[]">
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}">
                                         @if(app()->getLocale() == "en")
@@ -152,7 +153,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             </select>
                             <label for="dbFunction[]">Function:</label>
                             <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="dbFunction[]" data-placeholder="Select function">
+                                    name="dbFunction[]">
                                 @foreach($functionSubCategory1 as $functionSub)
                                     <option value="{{ $functionSub->id }}">
                                         @if(app()->getLocale() == "en")
@@ -263,8 +264,13 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         "use strict";
 
         $(document).ready(function () {
-            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').select2({
+                theme: "material"
+            });
 
+            $(".select2-selection__arrow")
+                .addClass("material-icons")
+                .html("arrow_drop_down");
         });
 
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -293,37 +299,37 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
 
             let locationArray = [];
-                @if(session('materialLocations') != null)
-                @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations') != null)
+            @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 label: labels[labelIndex++ % labels.length],
                 map: map
             });
-                @endfor
-                {{--                @elseif(session('functionId') !=null )
-                                @for($i=0; $i < count( session('materialLocations') ); $i++)
-                            var location = {
-                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                            locationArray.push(location);
-                            new google.maps.Marker({
-                                position: locationArray['{{$i}}'],
-                                label: labels[labelIndex++ % labels.length],
-                                map: map,
-                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                            });
-                                @endfor--}}
+            @endfor
+            {{--                @elseif(session('functionId') !=null )
+                            @for($i=0; $i < count( session('materialLocations') ); $i++)
+                        var location = {
+                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                        locationArray.push(location);
+                        new google.maps.Marker({
+                            position: locationArray['{{$i}}'],
+                            label: labels[labelIndex++ % labels.length],
+                            map: map,
+                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                        });
+                            @endfor--}}
 
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
