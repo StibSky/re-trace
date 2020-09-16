@@ -58,6 +58,7 @@ class UploadController extends Controller
             $file->setProjectId($request->input("projectId"));
             $file->save();
         }
+        $authid = Auth::user()->id;
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
@@ -65,7 +66,7 @@ class UploadController extends Controller
         $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
         //dd($request->userfile->getMimeType());
 
-        $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+        $request->userfile->storeAs('userFiles/' . $authid . "/" . $projectFolder, $filename, 'public');
 
         return back()->with('success', __('file uploaded'));
 
@@ -100,13 +101,16 @@ class UploadController extends Controller
     public
     function downloadFile($id)
     {
+
+        $authid = Auth::user()->id;
+
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
 
         return response()->download($targetFile);
     }
@@ -117,12 +121,13 @@ class UploadController extends Controller
         $file = UploadedFile::where('id', $request->input("fileId"))->first();
 
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+        $authid = Auth::user()->id;
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
 
         unlink($targetFile);
 
@@ -144,7 +149,7 @@ class UploadController extends Controller
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-            $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+            $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
         //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [
