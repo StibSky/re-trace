@@ -61,11 +61,13 @@ class UploadController extends Controller
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
+        $authid = Auth::user()->id;
+
 
         $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
         //dd($request->userfile->getMimeType());
 
-        $request->userfile->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $filename, 'public');
+        $request->userfile->storeAs('userFiles/' . $authid . "/" . $projectFolder, $filename, 'public');
 
         return back()->with('success', __('file uploaded'));
 
@@ -105,8 +107,10 @@ class UploadController extends Controller
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
+        $authid = Auth::user()->id;
 
-        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+
+        $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
 
         return response()->download($targetFile);
     }
@@ -120,9 +124,11 @@ class UploadController extends Controller
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
+        $authid = Auth::user()->id;
+
         $filename = $file->name;
 
-        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
 
         unlink($targetFile);
 
@@ -140,11 +146,11 @@ class UploadController extends Controller
         if ($registeredUser !=null ){
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
-        $firstname = User::where('id', $file->userId)->first()->first_name;
-        $lastname = User::where('id', $file->userId)->first()->last_name;
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-        $targetFile = ('storage/app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
         //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [
