@@ -165,7 +165,7 @@ class HomeController extends Controller
             foreach($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-                if($buildings == 0) {
+                if(count($buildings) == 0) {
                     return back()->with('error', __('Nothing found'));
                 } else {
                     array_push($buildArray, $buildings);
@@ -177,7 +177,7 @@ class HomeController extends Controller
             foreach($functionInput as $functionId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
-                if($buildings == 0) {
+                if(count($buildings) == 0) {
                     return back()->with('error', __('Nothing found'));
                 }
                 else {
