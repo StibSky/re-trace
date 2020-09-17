@@ -50,6 +50,7 @@ Route::post('/store', 'NewBuildingController@store')->name('store');
 
 //route with dynamic linking for specific buildings
 Route::get('/dashboard/{id}', 'DashboardController@index')->name('dash');
+Route::get('/overview/{id}', 'DashboardController@overview')->name('overview');
 Route::get('/admindashboard', 'DashboardController@adminDashboard')->name('adminDashboard');
 
 Route::get('/add-streams1/{id}', 'StreamController@streams1')->name('streams1');

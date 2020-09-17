@@ -192,7 +192,13 @@ uses dynamic linking
                                 <p class="w-50">{{$stream->quantity / 1000}}
                                     @foreach($units as $unit)
                                         @if($stream->unit_id == $unit[0]['id'])
-                                            {{ $unit[0]['short_name'] }}
+                                            @if(app()->getLocale() == "en")
+                                                {{ $unit[0]['short_name'] }}
+                                            @elseif(app()->getLocale() == "fr")
+                                                {{ $unit[0]['short_name_fr'] }}
+                                            @elseif(app()->getLocale() == "nl")
+                                                {{ $unit[0]['short_name_nl'] }}
+                                            @endif
                                             @break
                                         @endif
                                     @endforeach</p>

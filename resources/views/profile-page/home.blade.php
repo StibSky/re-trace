@@ -304,9 +304,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             marker = new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
+                title: "Click to contact"
             });
             google.maps.event.addListener(marker, 'click', function() {
-                window.location.href = "dashboard/";
+                window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
             @endfor
 

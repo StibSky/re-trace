@@ -208,6 +208,7 @@ class HomeController extends Controller
         }
 
         $materialLocations = [];
+        $buildIds = [];
 
         if ($buildArray != null) {
             foreach($buildArray as $buildings) {
@@ -219,6 +220,7 @@ class HomeController extends Controller
                                 ])
                                 ->get()
                         );
+                        array_push($buildIds, $building->id);
                     }
                 }
             }
@@ -227,10 +229,10 @@ class HomeController extends Controller
             return back()->with('error', __('Nothing found'));
         }
 
-
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
+                'buildIds' => $buildIds
             ]);
     }
 
