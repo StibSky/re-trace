@@ -301,10 +301,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                 lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
+            var icon = {
+                url: '/images/map_pin_rood.svg', // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            }
             marker = new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
-                title: "Click to contact"
+                title: "Click to contact",
+                icon: icon
             });
             google.maps.event.addListener(marker, 'click', function() {
                 window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
@@ -332,10 +337,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 lat: {!! HomeController::getLat($locations[$i]) !!},
                 lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
+
+            var icon = {
+                url: '/images/map_pin.svg', // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            }
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
-                icon: '/images/map_pin.svg'
+                icon: icon
             });
             @endfor
             @endif

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/overview.css') }}">
 @endsection
 @section('content')
     <!--
@@ -22,8 +22,7 @@ uses dynamic linking
                             <ul>
                                 <li>{{ __("Name contact")}}: {{ $user->first_name }} {{ $user->last_name }}
                                 </li>
-                                <li>{{ __("Type")}}: {{ $project["type"] }}</li>
-                                <li>{{ __("Action")}}: {{ $project["status"] }}</li>
+                                <li>{{ __("Email address")}}: <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                             </ul>
                         </div>
                     </div>
