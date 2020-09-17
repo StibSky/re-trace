@@ -127,10 +127,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
-                        <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                        <form class="form"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-                            <div class="input-group text-center d-flex justify-content-center px-0" id="searchBar">
+                            <div class="input-group text-center" id="searchBar">
                                 <input class="form-control" type="text" placeholder="{{ __("Search")}}"
                                        aria-label="Search"
                                        id="filterCategories"
@@ -174,11 +174,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                                 tag-placeholder="Please select tag"
                                                             ></search-dropdown>
                                                         </div>--}}
-                            <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
+                            <button class="btn btn-light mt-5" type="submit">{{ __("Search") }}</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-8 mt-2">
+                <div class="col-8">
                     <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
             </div>
@@ -273,7 +273,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 .html("arrow_drop_down");
         });
 
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
 
         const BELGIUM_BOUNDS = {
@@ -290,27 +289,29 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
-                restriction: {
-                    latLngBounds: BELGIUM_BOUNDS,
-                    strictBounds: false
-                },
                 zoom: 8
             });
 
+            let marker;
 
             let locationArray = [];
-            @if(session('materialLocations') != null)
-            @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations'))
+            @for($i=0; $i < (count( session('materialLocations') )); $i++)
             var location = {
                 lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                 lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                title: "Click to contact"
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
             @endfor
+
+
             {{--                @elseif(session('functionId') !=null )
                             @for($i=0; $i < count( session('materialLocations') ); $i++)
                         var location = {
@@ -333,8 +334,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                icon: '/images/map_pin.svg'
             });
             @endfor
             @endif

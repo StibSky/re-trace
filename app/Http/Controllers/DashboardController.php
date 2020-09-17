@@ -202,4 +202,24 @@ class DashboardController extends Controller
         return back()->withErrors('success', __("Successfully updated your info"));
     }
 
+    public function overview($id)
+    {
+        $project = Building::where('id', $id)->first();
+
+        $streams = Stream::where('buildid', $id)->get();
+
+        $units = [];
+        foreach ($streams as $stream) {
+            array_push($units, Unit::where('id', $stream->unit_id)->get());
+        }
+
+        $user = User::where('id', $project->userid)->first();
+
+        return view('dashboard.overview', [
+            'project' => $project,
+            'streams' => $streams,
+            'user' => $user,
+            'units' => $units
+        ]);
+    }
 }

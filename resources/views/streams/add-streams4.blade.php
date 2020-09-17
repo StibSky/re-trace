@@ -99,6 +99,24 @@ blade for adding a new building/project to a User
                 var totalstring = "€ "+total
                 $("#total").val(totalstring);
             });
+            price= $("#streamPrice")
+            price.keyup(function(){
+                var locale = $('html').attr('lang');
+                var qty = $("#streamQuantity")
+                var streamPrice = price.val()
+                var ennumber = streamPrice.replace('€', '').replace('&euro; ', '')
+                var globalnumber = ennumber.replace(",", ".")
+                var globalqty = qty.val().replace(",", ".")
+                var number = locale === 'en' ? ennumber : globalnumber
+                var streamquant = locale === 'en' ? qty.val() : globalqty
+                var subtotal= streamquant * number
+                var inttotal= (Math.round(subtotal * 100) / 100)
+                var entotal = inttotal.toFixed(2)
+                var globaltotal = entotal.replace(".", ",")
+                var total= locale === 'en' ? entotal : globaltotal
+                var totalstring = "€ "+total
+                $("#total").val(totalstring);
+            });
         });
     </script>
 @endsection
