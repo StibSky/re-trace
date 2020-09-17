@@ -136,9 +136,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                        id="filterCategories"
                                        name="mysearch">
                             </div>
-                            <label for="substance[]">Material:</label>
+                            <label for="substance[]" class="my-2">Material:</label>
                             <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="substance[]">
+                                    name="substance[]" data-placeholder="Filter by material">
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}">
                                         @if(app()->getLocale() == "en")
@@ -151,9 +151,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </option>
                                 @endforeach
                             </select>
-                            <label for="dbFunction[]">Function:</label>
+                            <label for="dbFunction[]" class="my-2">Function:</label>
                             <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="dbFunction[]">
+                                    name="dbFunction[]" data-placeholder="Filter by function">
                                 @foreach($functionSubCategory1 as $functionSub)
                                     <option value="{{ $functionSub->id }}">
                                         @if(app()->getLocale() == "en")
