@@ -161,20 +161,31 @@ class HomeController extends Controller
 
         $buildArray = [];
 
-        if($substanceInput !=null) {
+        if($substanceInput != null) {
             foreach($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-                array_push($buildArray, $buildings);
+                if(count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                } else {
+                    array_push($buildArray, $buildings);
+                }
             }
         }
+
         if($functionInput != null) {
             foreach($functionInput as $functionId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
-                array_push($buildArray, $buildings);
+                if(count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                }
+                else {
+                    array_push($buildArray, $buildings);
+                }
             }
         }
+
         if($inputsearch != null) {
             if(app()->getLocale() == 'en') {
                 $buildings = DB::table('building')
