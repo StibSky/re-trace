@@ -129,8 +129,10 @@ class DashboardController extends Controller
         $projectFolder = $project->projectName;
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
+        $authid = User::where('id', $project->userid)->first()->id;
 
-        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
+
+        $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
 
         if (is_dir(Storage::path($targetFolder))) {
             $targetFile = $targetFolder . '/' . $filename;
