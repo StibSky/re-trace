@@ -35,7 +35,6 @@ uses dynamic linking
                                                 {{ __("To change street please fill in Name and Number")}}</h4>
 
 
-
                                         </div>
                                         <form action="{{ route('editDashInfo', $project->id) }}" method="post"
                                               enctype="multipart/form-data">
@@ -120,12 +119,41 @@ uses dynamic linking
                     <h5> - Please add your first files to progress your profile</h5>
                 @endif--}}
                     <ul>
-                        @foreach($projecttypes as $projecttype)
                             <li class="d-flex flex-row  justify-content-between">
-                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>
+{{--                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>--}}
                             </li>
-                            <hr class="py-0 my-2">
-                        @endforeach
+                    </ul>
+                    <ul>
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Measuring state"))
+                                <a href="{{route(str_replace(' ', '', 'Measuring state'), $project->id)}}">{{ __("Measuring state")}}</a>
+                                                                                 @else{{ __("Measuring state")}}
+                        @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Material list"))
+                                <a href="{{route(str_replace(' ', '', 'Material list'), $project->id)}}">{{ __("Material list")}}</a>
+                            @else{{ __("Material list")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Plans"))
+                                <a href="{{route(str_replace(' ', '', 'Plans'), $project->id)}}">{{ __("Plans")}}</a>
+                            @else{{ __("Plans")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Demolition plans"))
+                                <a href="{{route(str_replace(' ', '', 'Demolition plans'), $project->id)}}">{{ __("Demolition plans")}}</a>
+                            @else{{ __("Demolition plans")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Photos exterior"))
+                                <a href="{{route(str_replace(' ', '', 'Photos exterior'), $project->id)}}">{{ __("Photos exterior")}}</a>
+                            @else{{ __("Photos exterior")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
+                        <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Photos interior"))
+                                <a href="{{route(str_replace(' ', '', 'Photos interior'), $project->id)}}">{{ __("Photos interior")}}</a>
+                            @else{{ __("Photos interior")}}
+                            @endif</li>
+                        <hr class="py-0 my-2">
                     </ul>
                 </div>
                 <div class="card-footer" id="dashboard-footer2">
@@ -142,7 +170,7 @@ uses dynamic linking
                 <h5>{{ __("Waste Streams")}}</h5>
             </div>
             <div class="d-flex flex-row justify-content-between text-left" id="titleBar">
-                <div class="column w-75"> </div>
+                <div class="column w-75"></div>
                 <div class="column w-100"><p>{{ __("Stream")}}</p></div>
                 <div class="column w-100"><p>{{ __("Action")}}</p></div>
                 <div class="column w-50"><p>{{ __("Quantity")}}</p></div>
@@ -154,12 +182,20 @@ uses dynamic linking
                         @foreach($streams as $stream)
                             <li class="d-flex flex-row justify-content-between">
                                 <div class="w-75">
-                                    <img id="streamImage" src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
+                                    <img id="streamImage"
+                                         src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
                                 </div>
-                                <strong class="w-100"><a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+                                <strong class="w-100"><a
+                                        href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
-                                <p class="w-50">{{$stream->quantity}}</p>
+                                <p class="w-50">{{$stream->quantity / 1000}}
+                                    @foreach($units as $unit)
+                                        @if($stream->unit_id == $unit[0]['id'])
+                                            {{ $unit[0]['short_name'] }}
+                                            @break
+                                        @endif
+                                    @endforeach</p>
                             </li>
                             <hr class="py-0 my-2">
                         @endforeach
@@ -252,6 +288,5 @@ uses dynamic linking
                         25% Completed Profile
                     </div>
                 </div>--}}
-
 
 @endsection

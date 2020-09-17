@@ -1,21 +1,39 @@
+<!-- Vue component -->
 <template>
-    <Dropdown
-        :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
-        v-on:selected="validateSelection"
-        v-on:filter="getDropdownValues"
-        :disabled="false"
-        name="zipcode"
-        :maxItem="10"
-        placeholder="Please select an option">
-    </Dropdown>
+    <div>
+        <multiselect v-model="value" :options="options"></multiselect>
+    </div>
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
+
+// register globally
+Vue.component('multiselect', Multiselect)
+
+export default {
+    // OR register locally
+    components: { Multiselect },
+    data () {
+        return {
+            value: null,
+            options: ['list', 'of', 'options']
+
     export default {
-        name: "SearchDropdown"
+        name: "SearchDropdown",
+        components: {Multiselect},
+        data () {
+            return {
+                selected: null,
+                options: []
+            }
+
+        }
     }
+}
 </script>
 
-<style scoped>
+<!-- New step!
+     Add Multiselect CSS. Can be added as a static asset or inside a component. -->
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-</style>

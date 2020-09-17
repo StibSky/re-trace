@@ -58,6 +58,7 @@ class UploadController extends Controller
             $file->setProjectId($request->input("projectId"));
             $file->save();
         }
+        $authid = Auth::user()->id;
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
@@ -102,6 +103,9 @@ class UploadController extends Controller
     public
     function downloadFile($id)
     {
+
+        $authid = Auth::user()->id;
+
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
         $firstname = Auth::user()->first_name;
@@ -121,6 +125,7 @@ class UploadController extends Controller
         $file = UploadedFile::where('id', $request->input("fileId"))->first();
 
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+        $authid = Auth::user()->id;
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
@@ -150,7 +155,9 @@ class UploadController extends Controller
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
+
         $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
+
         //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [

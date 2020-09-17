@@ -10,6 +10,7 @@ use App\Stream;
 use App\Substance;
 use App\Tag;
 use App\Unit;
+use App\UploadedFile;
 use App\User;
 use App\Valuta;
 use Illuminate\Http\Request;
@@ -51,18 +52,20 @@ class DashboardController extends Controller
             ->where('projectId', $id)
             ->get();
 
+
         $projecttypes = $projectfiles->pluck("type")->unique();
 
         $streams = Stream::where('buildid', $id)->get();
 
         $tags = [];
+        $units = [];
         foreach ($streams as $stream) {
             array_push($tags, Tag::where('stream_id', $stream->id)->get());
+            array_push($units, Unit::where('id', $stream->unit_id)->get());
         }
 
         $user = Auth::user();
         $userFolder = $user->first_name. "_" . $user->last_name;
-
 
         $project = Building::all()->find($id);
 
@@ -75,6 +78,7 @@ class DashboardController extends Controller
             'streams' => $streams,
             'tags' => $tags,
             'userFolder' => $userFolder,
+            'units' => $units
         ]);
     }
 
