@@ -292,6 +292,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 zoom: 8
             });
 
+            let marker;
 
             let locationArray = [];
             @if(session('materialLocations'))
@@ -300,12 +301,16 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                 lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
-
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = "dashboard/";
             });
             @endfor
+
+
             {{--                @elseif(session('functionId') !=null )
                             @for($i=0; $i < count( session('materialLocations') ); $i++)
                         var location = {

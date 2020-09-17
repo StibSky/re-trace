@@ -12,23 +12,14 @@ import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
 export default {
-    // OR register locally
-    components: { Multiselect },
-    data () {
+    name: "SearchDropdown",
+    components: {Multiselect},
+    data() {
         return {
-            value: null,
-            options: ['list', 'of', 'options']
-
-    export default {
-        name: "SearchDropdown",
-        components: {Multiselect},
-        data () {
-            return {
-                selected: null,
-                options: []
-            }
-
+            selected: null,
+            options: []
         }
+
     }
 }
 </script>
@@ -36,4 +27,3 @@ export default {
 <!-- New step!
      Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-
