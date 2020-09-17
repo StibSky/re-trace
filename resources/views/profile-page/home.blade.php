@@ -290,17 +290,13 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
-                restriction: {
-                    latLngBounds: BELGIUM_BOUNDS,
-                    strictBounds: false
-                },
                 zoom: 8
             });
 
 
             let locationArray = [];
-            @if(session('materialLocations') != null)
-            @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations'))
+            @for($i=0; $i < count( session('materialLocations') ) ; $i++)
             var location = {
                 lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                 lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};

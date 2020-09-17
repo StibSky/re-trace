@@ -216,6 +216,7 @@ class HomeController extends Controller
             return back()->with('error', __('Nothing found'));
         }
 
+
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
