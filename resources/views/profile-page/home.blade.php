@@ -273,7 +273,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 .html("arrow_drop_down");
         });
 
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
 
         const BELGIUM_BOUNDS = {
@@ -296,15 +295,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
 
             let locationArray = [];
             @if(session('materialLocations'))
-            @for($i=0; $i < count( session('materialLocations') ) ; $i++)
+            @for($i=0; $i < (count( session('materialLocations') )); $i++)
             var location = {
                 lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
                 lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+
             });
             @endfor
             {{--                @elseif(session('functionId') !=null )
@@ -329,8 +328,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             locationArray.push(location);
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                icon: '/images/bluetiny.png'
             });
             @endfor
             @endif
