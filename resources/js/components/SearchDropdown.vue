@@ -6,23 +6,17 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
+    import Multiselect from 'vue-multiselect'
 
-// register globally
-Vue.component('multiselect', Multiselect)
+    // register globally
+    Vue.component('multiselect', Multiselect)
 
-export default {
     // OR register locally
-    components: { Multiselect },
-    data () {
-        return {
-            value: null,
-            options: ['list', 'of', 'options']
 
     export default {
         name: "SearchDropdown",
         components: {Multiselect},
-        data () {
+        data() {
             return {
                 selected: null,
                 options: []
@@ -30,7 +24,7 @@ export default {
 
         }
     }
-}
+
 </script>
 
 <!-- New step!
