@@ -127,10 +127,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
-                        <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                        <form class="form"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-                            <div class="input-group text-center d-flex justify-content-center px-0" id="searchBar">
+                            <div class="input-group text-center" id="searchBar">
                                 <input class="form-control" type="text" placeholder="{{ __("Search")}}"
                                        aria-label="Search"
                                        id="filterCategories"
@@ -174,11 +174,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                                 tag-placeholder="Please select tag"
                                                             ></search-dropdown>
                                                         </div>--}}
-                            <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
+                            <button class="btn btn-light mt-5" type="submit">{{ __("Search") }}</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-8 mt-2">
+                <div class="col-8">
                     <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
             </div>
@@ -329,7 +329,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
-                icon: '/images/bluetiny.png'
+                icon: '/images/map_pin.svg'
             });
             @endfor
             @endif
