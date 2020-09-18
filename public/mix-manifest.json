@@ -9,6 +9,7 @@
     "/css/create_project.css": "/css/create_project.css",
     "/css/add_streams.css": "/css/add_streams.css",
     "/css/master.css": "/css/master.css",
+    "/css/overview.css": "/css/overview.css",
     "/css/vue-multiselect.min.css": "/css/vue-multiselect.min.css",
     "/js/vue-multiselect.min.js": "/js/vue-multiselect.min.js"
 }
