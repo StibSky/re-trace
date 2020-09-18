@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/create_project.scss', 'public/css')
     .sass('resources/sass/add_streams.scss', 'public/css')
     .sass('resources/sass/master.scss', 'public/css')
+    .sass('resources/sass/overview.scss', 'public/css')
     .copy('node_modules/vue-multiselect/dist/vue-multiselect.min.css', 'public/css/vue-multiselect.min.css')
     .copy('node_modules/vue-multiselect/dist/vue-multiselect.min.js', 'public/js/vue-multiselect.min.js')
     .sourceMaps();

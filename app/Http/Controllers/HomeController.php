@@ -86,6 +86,7 @@ class HomeController extends Controller
             ->whereRaw("parent IS NOT NULL AND parent IN (SELECT id FROM materialFunction WHERE parent IS NOT NULL)")->get();
         $unit = Unit::all();
 
+
         return view('profile-page.home', [
             'buildings' => $userBuilding,
             'substances' => $substances,
@@ -160,20 +161,31 @@ class HomeController extends Controller
 
         $buildArray = [];
 
-        if($substanceInput !=null) {
+        if($substanceInput != null) {
             foreach($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-                array_push($buildArray, $buildings);
+                if(count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                } else {
+                    array_push($buildArray, $buildings);
+                }
             }
         }
+
         if($functionInput != null) {
             foreach($functionInput as $functionId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
-                array_push($buildArray, $buildings);
+                if(count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                }
+                else {
+                    array_push($buildArray, $buildings);
+                }
             }
         }
+
         if($inputsearch != null) {
             if(app()->getLocale() == 'en') {
                 $buildings = DB::table('building')
@@ -196,6 +208,7 @@ class HomeController extends Controller
         }
 
         $materialLocations = [];
+        $buildIds = [];
 
         if ($buildArray != null) {
             foreach($buildArray as $buildings) {
@@ -207,6 +220,7 @@ class HomeController extends Controller
                                 ])
                                 ->get()
                         );
+                        array_push($buildIds, $building->id);
                     }
                 }
             }
@@ -218,7 +232,7 @@ class HomeController extends Controller
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
-                'decodedResults' => $decodedResults
+                'buildIds' => $buildIds
             ]);
     }
 

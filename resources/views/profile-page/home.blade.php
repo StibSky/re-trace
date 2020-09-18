@@ -3,24 +3,30 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">--}}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+    {{--    <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">--}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" />
     <style type="text/css">
 
         .dropdown-toggle {
 
             height: 4vh;
 
-            width: 40vw; !important;
+            width: 40vw;
+        !important;
 
         }
     </style>
 @endsection
 @section('head-script')
     {{--    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>--}}
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>--}}
+    {{--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 @endsection
 @section('content')
     <!--
@@ -34,20 +40,24 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <div class="d-flex flex-md-row flex-column align-items-stretch justify-content-between">
         <div class="col-md-4 mr-1 col-12 pr-2 ml-0" id="userInfo">
             <div class="row card d-flex mb-5">
-                <div class="card-header"><h5>{{ __("Profile")}}</h5></div>
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <h5>{{ __("Profile")}}</h5>
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false" id="cog-link">
+                        <img id="cog" src="{{ asset('images/cog-24.png') }}" alt="cog" class="align-self-center">
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" name="editProfile"
+                               data-toggle="modal"
+                               data-target="#editModal">{{ __("Edit")}}
+                            </a>
+                        </div>
+                    </a>
+                </div>
                 <div class="card-body">
                     <div class="row px-3 py-2">
                         <div class="col-lg-5 col-12 d-flex flex-column">
-                            <div class="row">
-                                <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
-                                     alt="Placeholder">
-                            </div>
-                            <div class="row">
-                                <a class="btn btn-primary mx-auto" name="editProfile" id="main-button"
-                                   data-toggle="modal"
-                                   data-target="#editModal">{{ __("Edit")}}
-                                </a>
-                            </div>
+                            <img src="{{ asset('images/logos/resquare.png') }}" id="profilePic" class="w-50 mx-auto"
+                                 alt="Placeholder">
                         </div>
                         <div class="col-6 d-flex flex-column pt-lg-2 pt-4">
                             <h5>{{ __("Personal details")}}</h5>
@@ -115,17 +125,18 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
-                        <form class="form text-center d-flex flex-column justify-content-center px-auto"
+                        <form class="form"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-                            <div class="input-group text-center d-flex justify-content-center px-auto" id="searchBar">
+                            <div class="input-group text-center" id="searchBar">
                                 <input class="form-control" type="text" placeholder="{{ __("Search")}}"
                                        aria-label="Search"
-                                       style="padding-left: 20px; border-radius: 40px;" id="filterCategories"
+                                       id="filterCategories"
                                        name="mysearch">
                             </div>
-{{--                            <label for="substance[]">Material:</label>
-                            <select class="selectpicker" multiple data-live-search="true" name="substance[]">
+                            <label for="substance[]" class="my-2">Material:</label>
+                            <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                    name="substance[]" data-placeholder="Filter by material">
                                 @foreach($subCategories1 as $subCategory1)
                                     <option value="{{ $subCategory1->id }}">
                                         @if(app()->getLocale() == "en")
@@ -138,8 +149,9 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </option>
                                 @endforeach
                             </select>
-                            <label for="dbFunction[]">Function:</label>
-                            <select  class="selectpicker" multiple data-live-search="true" name="dbFunction[]">
+                            <label for="dbFunction[]" class="my-2">Function:</label>
+                            <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                    name="dbFunction[]" data-placeholder="Filter by function">
                                 @foreach($functionSubCategory1 as $functionSub)
                                     <option value="{{ $functionSub->id }}">
                                         @if(app()->getLocale() == "en")
@@ -151,20 +163,20 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         @endif
                                     </option>
                                 @endforeach
-                            </select>--}}
-                            <div class="form-group">
-                                <search-dropdown
-                                    :options="{{ $subCategories1->toJson() }}"
-                                    selected.sync="selected"
-                                    placeholder="Material"
-                                    tag-placeholder="Please select tag"
-                                ></search-dropdown>
-                            </div>
-                            <button class="btn btn-light" type="submit">{{ __("Search") }}</button>
+                            </select>
+                            {{--                            <div class="form-group">
+                                                            <search-dropdown
+                                                                :options="{{ $subCategories1->toJson() }}"
+                                                                selected.sync="selected"
+                                                                placeholder="Material"
+                                                                tag-placeholder="Please select tag"
+                                                            ></search-dropdown>
+                                                        </div>--}}
+                            <button class="btn btn-light mt-5" type="submit">{{ __("Search") }}</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-8 mt-2">
+                <div class="col-8">
                     <div id="map" class="border border-dark rounded w-100"></div>
                 </div>
             </div>
@@ -250,10 +262,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         "use strict";
 
         $(document).ready(function () {
-            $('.selectpicker').selectpicker();
+            $('.js-example-basic-multiple').select2({
+                theme: "material"
+            });
+
+            $(".select2-selection__arrow")
+                .addClass("material-icons")
+                .html("arrow_drop_down");
         });
 
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         var labelIndex = 0;
 
         const BELGIUM_BOUNDS = {
@@ -270,51 +287,63 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
-                restriction: {
-                    latLngBounds: BELGIUM_BOUNDS,
-                    strictBounds: false
-                },
                 zoom: 8
             });
 
+            let marker;
 
             let locationArray = [];
-                @if(session('materialLocations') != null)
-                @for($i=0; $i < (count( session('materialLocations') ) - 1); $i++)
+            @if(session('materialLocations'))
+            @for($i=0; $i < (count( session('materialLocations') )); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
-            new google.maps.Marker({
+            var icon = {
+                url: '/images/map_pin_rood.svg', // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            }
+            marker = new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                title: "Click to contact",
+                icon: icon
             });
-                @endfor
-                {{--                @elseif(session('functionId') !=null )
-                                @for($i=0; $i < count( session('materialLocations') ); $i++)
-                            var location = {
-                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                            locationArray.push(location);
-                            new google.maps.Marker({
-                                position: locationArray['{{$i}}'],
-                                label: labels[labelIndex++ % labels.length],
-                                map: map,
-                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                            });
-                                @endfor--}}
+            google.maps.event.addListener(marker, 'click', function() {
+                window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
+            });
+            @endfor
 
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+
+            {{--                @elseif(session('functionId') !=null )
+                            @for($i=0; $i < count( session('materialLocations') ); $i++)
+                        var location = {
+                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                        locationArray.push(location);
+                        new google.maps.Marker({
+                            position: locationArray['{{$i}}'],
+                            label: labels[labelIndex++ % labels.length],
+                            map: map,
+                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                        });
+                            @endfor--}}
+
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
+
+            var icon = {
+                url: '/images/map_pin.svg', // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            }
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
-                label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                icon: icon
             });
             @endfor
             @endif

@@ -126,11 +126,11 @@ class DashboardController extends Controller
 
         $filename = DB::table('stream_images')->where('streamId', $id)->first()->name;
 
-        $projectFolder = $project->projectName;
-        $firstname = User::where('id', $project->userid)->first()->first_name;
-        $lastname = User::where('id', $project->userid)->first()->last_name;
 
-        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
+        $projectFolder = $project->projectName;
+        $authid = User::where('id', $project->userid)->first()->id;
+
+        $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
 
         if (is_dir(Storage::path($targetFolder))) {
             $targetFile = $targetFolder . '/' . $filename;
@@ -202,4 +202,24 @@ class DashboardController extends Controller
         return back()->withErrors('success', __("Successfully updated your info"));
     }
 
+    public function overview($id)
+    {
+        $project = Building::where('id', $id)->first();
+
+        $streams = Stream::where('buildid', $id)->get();
+
+        $units = [];
+        foreach ($streams as $stream) {
+            array_push($units, Unit::where('id', $stream->unit_id)->get());
+        }
+
+        $user = User::where('id', $project->userid)->first();
+
+        return view('dashboard.overview', [
+            'project' => $project,
+            'streams' => $streams,
+            'user' => $user,
+            'units' => $units
+        ]);
+    }
 }
