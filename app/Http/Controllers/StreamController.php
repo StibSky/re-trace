@@ -32,8 +32,9 @@ class StreamController extends Controller
         $projectFolder = $project->projectName;
         $firstname = User::where('id', $project->userid)->first()->first_name;
         $lastname = User::where('id', $project->userid)->first()->last_name;
+        $authid = User::where('id', $project->userid)->first()->id;
 
-        $targetFolder = '/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder;
+        $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
 
         if (is_dir(Storage::path($targetFolder))) {
             $targetFile = $targetFolder . '/' . $filename;
@@ -83,10 +84,11 @@ class StreamController extends Controller
 
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
+        $authid = Auth::user()->id;
 
         $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
 
-        $request->streamImage->storeAs('userFiles/' . $firstname . "_" . $lastname . "/" . $projectFolder, $imagename, 'public');
+        $request->streamImage->storeAs('userFiles/' . $authid . "/" . $projectFolder, $imagename, 'public');
 
         return back()->with('success', __('image uploaded'));
     }
