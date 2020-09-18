@@ -79,7 +79,6 @@ ul {
     padding: 0;
     list-style: none;
     margin: 0;
-
 }
 
 .selectpicker {
@@ -177,44 +176,44 @@ ul {
         /**
          * Multiple selected option clear button
          */
-/*        .select2-selection__choice__remove {
-            !* Hide default content *!
-            font-size: 0;
+        /*        .select2-selection__choice__remove {
+                    !* Hide default content *!
+                    font-size: 0;
 
-            opacity: 0.38;
-            cursor: pointer;
-            float: right;
-            margin-top: 4px;
-            margin-right: -6px;
-            margin-left: 6px;
+                    opacity: 0.38;
+                    cursor: pointer;
+                    float: right;
+                    margin-top: 4px;
+                    margin-right: -6px;
+                    margin-left: 6px;
 
-            transition: opacity;
+                    transition: opacity;
 
-            &::before {
-                content: "cancel";
+                    &::before {
+                        content: "cancel";
 
-                !* @extend .material-icons *!
-                font-family: 'Material Icons';
-                font-weight: normal;
-                font-style: normal;
-                font-size: 24px;
-                line-height: 1;
-                letter-spacing: normal;
-                text-transform: none;
-                display: inline-block;
-                white-space: nowrap;
-                word-wrap: normal;
-                direction: ltr;
-                -webkit-font-feature-settings: 'liga';
-                -webkit-font-smoothing: antialiased;
+                        !* @extend .material-icons *!
+                        font-family: 'Material Icons';
+                        font-weight: normal;
+                        font-style: normal;
+                        font-size: 24px;
+                        line-height: 1;
+                        letter-spacing: normal;
+                        text-transform: none;
+                        display: inline-block;
+                        white-space: nowrap;
+                        word-wrap: normal;
+                        direction: ltr;
+                        -webkit-font-feature-settings: 'liga';
+                        -webkit-font-smoothing: antialiased;
 
-                color: #000;
-            }
+                        color: #000;
+                    }
 
-            &:hover {
-                opacity: 0.54;
-            }
-        }*/
+                    &:hover {
+                        opacity: 0.54;
+                    }
+                }*/
     }
 
     .select2-search--inline {
@@ -227,6 +226,12 @@ ul {
             margin-top: 0 !important;
             margin-left: 0 !important;
             border-radius: 5px;
+            padding: 0.6vh 0 0.6vh 0.9vw !important;
+            font-size: 0.9rem !important;
+            font-weight: 400 !important;
+            color: #495057 !important;
+            font: $font-family-sans-serif !important;
+            line-height: $line-height-base !important;
         }
     }
 
@@ -346,33 +351,33 @@ ul {
      * Focused textbox
      */
 
-/*    &.select2-container--focus {
-        .select2-selection {
-            !* @extend input[type=text]:focus *!
-            border-bottom: 1px solid #4285f4;
-            box-shadow: 0 1px 0 0 #4585f4;
-        }
-    }*/
-
-
-
-/*    !**
-     * Disabled textbox
-     *!
-
-    &.select2-container--disabled {
-        .select2-selection {
-            !* @extend .select-wrapper input.select-dropdown:disabled *!
-            color: rgba(0,0,0,.3);
-            cursor: default;
-            user-select: none;
-            border-bottom: 1px solid rgba(0,0,0,.3);
-        }
-
-        &.select2-container--focus {
+    /*    &.select2-container--focus {
             .select2-selection {
-                box-shadow: none;
+                !* @extend input[type=text]:focus *!
+                border-bottom: 1px solid #4285f4;
+                box-shadow: 0 1px 0 0 #4585f4;
             }
-        }
-    }*/
+        }*/
+
+
+
+    /*    !**
+         * Disabled textbox
+         *!
+
+        &.select2-container--disabled {
+            .select2-selection {
+                !* @extend .select-wrapper input.select-dropdown:disabled *!
+                color: rgba(0,0,0,.3);
+                cursor: default;
+                user-select: none;
+                border-bottom: 1px solid rgba(0,0,0,.3);
+            }
+
+            &.select2-container--focus {
+                .select2-selection {
+                    box-shadow: none;
+                }
+            }
+        }*/
 }
