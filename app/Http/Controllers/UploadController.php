@@ -140,11 +140,11 @@ class UploadController extends Controller
         if ($registeredUser !=null ){
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
-        $firstname = User::where('id', $file->userId)->first()->first_name;
-        $lastname = User::where('id', $file->userId)->first()->last_name;
+        $firstname = Auth::user()->first_name;
+        $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-        $targetFile = ('storage/app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
+        $targetFile = storage_path('app/public/userFiles/' . $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
         //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
         /* return view('dashboard.previewFiles', [
