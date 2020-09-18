@@ -149,9 +149,10 @@ class UploadController extends Controller
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
 
-            $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
-        //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
 
+            $targetFile = storage_path('app/public/userFiles/' . $authid . '/' . $projectFolder . '/' . $filename);
+
+        //$targetFile =  ('storage/userFiles/'. $firstname . '_' . $lastname . '/' . $projectFolder . '/' . $filename);
         /* return view('dashboard.previewFiles', [
              'targetFile' => $targetFile,
          ]);*/
