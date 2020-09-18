@@ -354,3 +354,27 @@ ul {
   background-color: #ddd;
 }
 
+.searchTags {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 16px;
+  background-color: #f3bfba;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 2px 0;
+  white-space: nowrap;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+#searchField {
+  height: 37vh;
+  overflow-y: scroll;
+}
+
+#prevTags {
+  height: 20vh;
+}
+
