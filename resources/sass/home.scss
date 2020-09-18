@@ -79,7 +79,6 @@ ul {
     padding: 0;
     list-style: none;
     margin: 0;
-
 }
 
 .selectpicker {
@@ -227,6 +226,12 @@ ul {
             margin-top: 0 !important;
             margin-left: 0 !important;
             border-radius: 5px;
+            padding: 0.6vh 0 0.6vh 0.9vw !important;
+            font-size: 0.9rem !important;
+            font-weight: 400 !important;
+            color: #495057 !important;
+            font: $font-family-sans-serif !important;
+            line-height: $line-height-base !important;
         }
     }
 
