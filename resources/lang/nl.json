@@ -146,11 +146,13 @@
     "Upload image" : "Afbeelding uploaden"  ,
     "STREAM NAME" : "naam",
     "DESCRIPTION" : "BESCHRIJVING",
+    "Description" : "Beschrijving",
     "PLEASE SELECT AN ACTION" : "SELECTEER EEN ACTIE" ,
     "Reuse" : "Hergebruiken",
     "Recycle" :"Recycleren" ,
     "Please upload a new image" : "Upload een nieuwe image",
     "What's the origin of your stream?" : "Wat is de herkomst van je stroom?" ,
+    "Origin": "herkomst",
     "Production surplus" : "Productie overschotten",
     "Overstock" : "Overstock",
     "Construction and demolition waste" : "Bouw en sloop afval",
@@ -202,5 +204,8 @@
     "PROJECT NAME": "PROJECTNAAM",
     "Pick Function" : "Functie kiezen",
     "Hide Functions" : "Functies Verbergen",
-    "Hide Materials" : "Materialen Verbergen"
+    "Hide Materials" : "Materialen Verbergen",
+    "Filter by material" : "Filter op Materiaal",
+    "Filter by function" : "Filter op functie",
+    "Category" : "Categorie"
 }

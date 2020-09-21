@@ -167,6 +167,7 @@
     "PRICE": "PRIX",
     "Stream name": "Nom du Stream",
     "description": "la description",
+    "Description": "La Description",
     "Destination": "Destination",
     "Materials": "Matériaux",
     "Material": "Matériel",
@@ -190,6 +191,7 @@
     "please select an action" : "veuillez sélectionner une action" ,
     "please upload an image" : "veuillez télécharger une image",
     "please select an origin" : "veuillez sélectionner une origine",
+    "Origin": "origine",
     "please select at least one material and/or function" :"veuillez sélectionner au moins un matériau et / ou une fonction" ,
     "please give a quantity" : "veuillez donner une quantité",
     "please give a unit of measurement" :"veuillez donner une unité de mesure" ,
@@ -203,5 +205,8 @@
     "PROJECT NAME": "NOM DE PROJET",
     "Pick Function" : "Choisissez la Fonction",
     "Hide Functions" : "Masquer les Fonctions",
-    "Hide Materials" : "Masquer les matériaux"
+    "Hide Materials" : "Masquer les matériaux",
+    "Filter by material" : "Filtrer par matériaux",
+    "Filter by function" : "Filtrer par fonction",
+    "Category" : "Catégorie"
 }

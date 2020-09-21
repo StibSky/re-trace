@@ -6,18 +6,16 @@
     {{--    <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"
+          integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA=="
+          crossorigin="anonymous"/>
     <style type="text/css">
-
         .dropdown-toggle {
-
             height: 4vh;
-
             width: 40vw;
         !important;
-
         }
-
     </style>
 @endsection
 @section('head-script')
@@ -127,45 +125,46 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
-                        <form class="form"
+                        <form class="form d-flex flex-column justify-content-center"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
                             @csrf
-                            <div class="input-group text-center" id="searchBar">
-                                <input class="form-control" type="text" placeholder="{{ __("Search")}}"
-                                       aria-label="Search"
-                                       id="filterCategories"
-                                       name="mysearch">
-                            </div>
-                            <label for="substance[]" class="my-2">Material:</label>
-                            <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="substance[]" data-placeholder="Filter by material">
-                                @foreach($subCategories1 as $subCategory1)
-                                    <option value="{{ $subCategory1->id }}">
-                                        @if(app()->getLocale() == "en")
-                                            {{ $subCategory1->name }}
-                                        @elseif(app()->getLocale() == "fr")
-                                            {{ $subCategory1->name_fr }}
-                                        @elseif(app()->getLocale() == "nl")
-                                            {{ $subCategory1->name_nl }}
-                                        @endif
-                                    </option>
-                                @endforeach
-                            </select>
-                            <label for="dbFunction[]" class="my-2">Function:</label>
-                            <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                    name="dbFunction[]" data-placeholder="Filter by function">
-                                @foreach($functionSubCategory1 as $functionSub)
+                            <div id="searchField">
+                                <div class="input-group text-center" id="searchBar">
+                                    <input class="form-control" type="text" placeholder="{{ __("Search")}}"
+                                           aria-label="Search" value="{{ session()->get('mysearch') }}"
+                                           id="filterCategories"
+                                           name="mysearch">
+                                </div>
+                                <label for="substance[]" class="my-2">Material:</label>
+                                <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                        name="substance[]" data-placeholder="{{ __("Filter by material") }}">
+                                    @foreach($subCategories1 as $subCategory1)
+                                        <option value="{{ $subCategory1->id }}">
+                                            @if(app()->getLocale() == "en")
+                                                {{ $subCategory1->name }}
+                                            @elseif(app()->getLocale() == "fr")
+                                                {{ $subCategory1->name_fr }}
+                                            @elseif(app()->getLocale() == "nl")
+                                                {{ $subCategory1->name_nl }}
+                                            @endif
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="dbFunction[]" class="my-2">Function:</label>
+                                <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                        name="dbFunction[]" data-placeholder="{{ __("Filter by function") }}">
+                                    @foreach($functionSubCategory1 as $functionSub)
                                     <option value="{{ $functionSub->id }}">
-                                        @if(app()->getLocale() == "en")
-                                            {{ $functionSub->name }}
-                                        @elseif(app()->getLocale() == "fr")
-                                            {{ $functionSub->name_fr }}
-                                        @elseif(app()->getLocale() == "nl")
-                                            {{ $functionSub->name_nl }}
-                                        @endif
-                                    </option>
+                                @if(app()->getLocale() == "en")
+                                {{ $functionSub->name }}
+                                @elseif(app()->getLocale() == "fr")
+                                {{ $functionSub->name_fr }}
+                                @elseif(app()->getLocale() == "nl")
+                                {{ $functionSub->name_nl }}
+                                @endif
+                                </option>
                                 @endforeach
-                            </select>
+                                </select></div>
                             {{--                            <div class="form-group">
                                                             <search-dropdown
                                                                 :options="{{ $subCategories1->toJson() }}"
@@ -174,8 +173,26 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                                 tag-placeholder="Please select tag"
                                                             ></search-dropdown>
                                                         </div>--}}
-                            <button class="btn btn-light mt-5" type="submit">{{ __("Search") }}</button>
+                            <button class="btn btn-primary mb-1" type="submit" id="main-button">{{ __("Search") }}</button>
                         </form>
+                    </div>
+                    <div class="mt-1 d-flex flex-column" id="prevTags">
+                        @if(session('materialTagArray'))
+                            <p>Material filters:</p>
+                            @for($i=0; $i < (count( session('materialTagArray') )); $i++)
+                                <div class="d-flex">
+                                    <span class="btn btn-primary searchTags inline">{{ session('materialTagArray')[$i] }}</span>
+                                </div>
+                            @endfor
+                        @endif
+                        @if(session('functionTagArray'))
+                            <p>Function filters:</p>
+                            @for($i=0; $i < (count( session('functionTagArray') )); $i++)
+                                <div class="d-flex">
+                                    <span class="btn btn-primary searchTags inline">{{ session('functionTagArray')[$i] }}</span>
+                                </div>
+                            @endfor
+                        @endif
                     </div>
                 </div>
                 <div class="col-8">
@@ -262,19 +279,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     </script>
     <script type="text/javascript">
         "use strict";
-
         $(document).ready(function () {
             $('.js-example-basic-multiple').select2({
                 theme: "material"
             });
-
             $(".select2-selection__arrow")
                 .addClass("material-icons")
                 .html("arrow_drop_down");
         });
-
         var labelIndex = 0;
-
         const BELGIUM_BOUNDS = {
             north: 49.56,
             south: 51.47,
@@ -285,15 +298,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             lat: 51.22,
             lng: 4.4
         };
-
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
                 zoom: 8
             });
-
             let marker;
-
             let locationArray = [];
             @if(session('materialLocations'))
             @for($i=0; $i < (count( session('materialLocations') )); $i++)
@@ -311,12 +321,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 title: "Click to contact",
                 icon: icon
             });
-            google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function () {
                 window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
             @endfor
-
-
             {{--                @elseif(session('functionId') !=null )
                             @for($i=0; $i < count( session('materialLocations') ); $i++)
                         var location = {
@@ -330,14 +338,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                             title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
                         });
                             @endfor--}}
-
             @else
             @for($i=0; $i < count( $locations ); $i++)
             var location = {
                 lat: {!! HomeController::getLat($locations[$i]) !!},
                 lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
-
             var icon = {
                 url: '/images/map_pin.svg', // url
                 scaledSize: new google.maps.Size(40, 40), // scaled size
