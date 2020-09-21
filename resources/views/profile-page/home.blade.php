@@ -154,16 +154,16 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 <select class="js-example-basic-multiple" multiple data-live-search="true"
                                         name="dbFunction[]" data-placeholder="{{ __("Filter by function") }}">
                                     @foreach($functionSubCategory1 as $functionSub)
-                                    <option value="{{ $functionSub->id }}">
-                                @if(app()->getLocale() == "en")
-                                {{ $functionSub->name }}
-                                @elseif(app()->getLocale() == "fr")
-                                {{ $functionSub->name_fr }}
-                                @elseif(app()->getLocale() == "nl")
-                                {{ $functionSub->name_nl }}
-                                @endif
-                                </option>
-                                @endforeach
+                                        <option value="{{ $functionSub->id }}">
+                                            @if(app()->getLocale() == "en")
+                                                {{ $functionSub->name }}
+                                            @elseif(app()->getLocale() == "fr")
+                                                {{ $functionSub->name_fr }}
+                                            @elseif(app()->getLocale() == "nl")
+                                                {{ $functionSub->name_nl }}
+                                            @endif
+                                        </option>
+                                    @endforeach
                                 </select></div>
                             {{--                            <div class="form-group">
                                                             <search-dropdown

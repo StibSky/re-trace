@@ -161,6 +161,9 @@ class HomeController extends Controller
 
         $buildArray = [];
 
+        $materialTagArray = [];
+        $functionTagArray = [];
+
         if($substanceInput != null) {
             foreach($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
@@ -169,6 +172,7 @@ class HomeController extends Controller
                     return back()->with('error', __('Nothing found'));
                 } else {
                     array_push($buildArray, $buildings);
+                    array_push($materialTagArray, Substance::where('id', $substanceId)->first()->name);
                 }
             }
         }
@@ -182,6 +186,7 @@ class HomeController extends Controller
                 }
                 else {
                     array_push($buildArray, $buildings);
+                    array_push($functionTagArray, MaterialFunction::where('id', $functionId)->first()->name);
                 }
             }
         }
@@ -232,7 +237,10 @@ class HomeController extends Controller
         return back()->with(
             ['mysearch' => $inputsearch,
                 'materialLocations' => $materialLocations,
-                'buildIds' => $buildIds
+                'buildIds' => $buildIds,
+                'materialTagArray' => $materialTagArray,
+                'functionTagArray' => $functionTagArray,
+                'inputsearch' => $inputsearch
             ]);
     }
 
