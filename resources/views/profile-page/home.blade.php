@@ -11,16 +11,11 @@
           integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA=="
           crossorigin="anonymous"/>
     <style type="text/css">
-
         .dropdown-toggle {
-
             height: 4vh;
-
             width: 40vw;
         !important;
-
         }
-
     </style>
 @endsection
 @section('head-script')
@@ -193,7 +188,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                     <div class="mt-1 d-flex flex-column" id="prevTags">
                         @if(session('materialTagArray'))
                             <p>Material filters:</p>
-                        @for($i=0; $i < (count( session('materialTagArray') )); $i++)
+                            @for($i=0; $i < (count( session('materialTagArray') )); $i++)
                                 <div class="d-flex">
                                     <span class="btn btn-primary searchTags inline">{{ session('materialTagArray')[$i] }}</span>
                                 </div>
@@ -202,12 +197,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                         @if(session('functionTagArray'))
                             <p>Function filters:</p>
                             @for($i=0; $i < (count( session('functionTagArray') )); $i++)
-                                    <div class="d-flex">
-                                        <span class="btn btn-primary searchTags inline">{{ session('functionTagArray')[$i] }}</span>
-                                    </div>
+                                <div class="d-flex">
+                                    <span class="btn btn-primary searchTags inline">{{ session('functionTagArray')[$i] }}</span>
+                                </div>
                             @endfor
                         @endif
-                </div>
+                    </div>
                 </div>
                 <div class="col-8">
                     <div id="map" class="border border-dark rounded w-100"></div>
@@ -293,7 +288,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     </script>
     <script type="text/javascript">
         "use strict";
-
         $(document).ready(function () {
 
             $('#materialDropdown').parent().hide();
@@ -311,14 +305,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             $('.js-example-basic-multiple').select2({
                 theme: "material",
             });
-
             $(".select2-selection__arrow")
                 .addClass("material-icons")
                 .html("arrow_drop_down");
         });
-
         var labelIndex = 0;
-
         const BELGIUM_BOUNDS = {
             north: 49.56,
             south: 51.47,
@@ -329,21 +320,18 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             lat: 51.22,
             lng: 4.4
         };
-
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
                 zoom: 8
             });
-
             let marker;
-
             let locationArray = [];
-                @if(session('materialLocations'))
-                @for($i=0; $i < (count( session('materialLocations') )); $i++)
+            @if(session('materialLocations'))
+            @for($i=0; $i < (count( session('materialLocations') )); $i++)
             var location = {
-                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             var icon = {
                 url: '/images/map_pin_rood.svg', // url
@@ -358,30 +346,26 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             google.maps.event.addListener(marker, 'click', function () {
                 window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
-                @endfor
-
-
-                {{--                @elseif(session('functionId') !=null )
-                                @for($i=0; $i < count( session('materialLocations') ); $i++)
-                            var location = {
-                                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                            locationArray.push(location);
-                            new google.maps.Marker({
-                                position: locationArray['{{$i}}'],
-                                label: labels[labelIndex++ % labels.length],
-                                map: map,
-                                title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                            });
-                                @endfor--}}
-
-                @else
-                @for($i=0; $i < count( $locations ); $i++)
+            @endfor
+            {{--                @elseif(session('functionId') !=null )
+                            @for($i=0; $i < count( session('materialLocations') ); $i++)
+                        var location = {
+                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                        locationArray.push(location);
+                        new google.maps.Marker({
+                            position: locationArray['{{$i}}'],
+                            label: labels[labelIndex++ % labels.length],
+                            map: map,
+                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
+                        });
+                            @endfor--}}
+            @else
+            @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                    lat: {!! HomeController::getLat($locations[$i]) !!},
-                    lng: {!! HomeController::getLng($locations[$i]) !!}};
+                lat: {!! HomeController::getLat($locations[$i]) !!},
+                lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
-
             var icon = {
                 url: '/images/map_pin.svg', // url
                 scaledSize: new google.maps.Size(40, 40), // scaled size
