@@ -405,3 +405,12 @@ ul {
 #prevTags {
     height: 20vh
 }
+
+select{display: none}
+
+#toggleMaterial, #toggleFunction {
+    width: 16vw;
+    background-color: $retrace-pink;
+    border-color: $retrace-pink;
+    color: white;
+}

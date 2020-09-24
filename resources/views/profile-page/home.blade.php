@@ -121,12 +121,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 mx-0 ml-md-3 card d-flex" id="mapAndSearch">
             <div class="card-body d-flex">
                 <div class="col-4">
-                    {{--                    <div class="d-flex flex-column w-25">
+{{--                    <div class="d-flex flex-column w-25">
                                             <button type="button" id="moreMats" class="moreMats"
-                                                    onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('.materialDrop')
+                                                    onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('#materialDropdown')
                                                         .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
                                             <button type="button" id="moreFuncts" class="moreFuncts"
-                                                    onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('.functionDrop')
+                                                    onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('#functionDropdown')
                                                         .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
                                         </div>--}}
                     <div id="newSearch">
@@ -140,36 +140,45 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                            id="filterCategories"
                                            name="mysearch">
                                 </div>
-                                <label for="substance[]" class="my-2">Material:</label>
-                                <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                        name="substance[]" data-placeholder="Filter by material">
-                                    @foreach($subCategories1 as $subCategory1)
-                                        <option value="{{ $subCategory1->id }}">
-                                            @if(app()->getLocale() == "en")
-                                                {{ $subCategory1->name }}
-                                            @elseif(app()->getLocale() == "fr")
-                                                {{ $subCategory1->name_fr }}
-                                            @elseif(app()->getLocale() == "nl")
-                                                {{ $subCategory1->name_nl }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <label for="dbFunction[]" class="my-2">Function:</label>
-                                <select class="js-example-basic-multiple" multiple data-live-search="true"
-                                        name="dbFunction[]" data-placeholder="Filter by function">
-                                    @foreach($functionSubCategory1 as $functionSub)
-                                        <option value="{{ $functionSub->id }}">
-                                            @if(app()->getLocale() == "en")
-                                                {{ $functionSub->name }}
-                                            @elseif(app()->getLocale() == "fr")
-                                                {{ $functionSub->name_fr }}
-                                            @elseif(app()->getLocale() == "nl")
-                                                {{ $functionSub->name_nl }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select></div>
+                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between" id="toggleMaterial"><div>{{ __("Filter by material")}}</div>
+                                    <div><i class="arrow down"></i></div></a>
+                                <div class="materialContainer">
+                                    <label for="substance[]" class="sr-only">Material</label>
+                                    <select class="js-example-basic-multiple" multiple data-live-search="true" id="materialDropdown"
+                                            name="substance[]" data-placeholder="{{ __("Search")}}...">
+                                        @foreach($subCategories1 as $subCategory1)
+                                            <option value="{{ $subCategory1->id }}">
+                                                @if(app()->getLocale() == "en")
+                                                    {{ $subCategory1->name }}
+                                                @elseif(app()->getLocale() == "fr")
+                                                    {{ $subCategory1->name_fr }}
+                                                @elseif(app()->getLocale() == "nl")
+                                                    {{ $subCategory1->name_nl }}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between" id="toggleFunction"><div>{{ __("Filter by function")}}</div><div><i class="arrow down"></i></div></a>
+                                <div id="functionContainer">
+                                    <label for="dbFunction[]" class="sr-only">Function</label>
+                                    <select class="js-example-basic-multiple" multiple
+                                            data-live-search="true" id="functionDropdown"
+                                            name="dbFunction[]" data-placeholder="{{ __("Search")}}...">
+                                        @foreach($functionSubCategory1 as $functionSub)
+                                            <option value="{{ $functionSub->id }}" class="dropdown-item">
+                                                @if(app()->getLocale() == "en")
+                                                    {{ $functionSub->name }}
+                                                @elseif(app()->getLocale() == "fr")
+                                                    {{ $functionSub->name_fr }}
+                                                @elseif(app()->getLocale() == "nl")
+                                                    {{ $functionSub->name_nl }}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             {{--                            <div class="form-group">
                                                             <search-dropdown
                                                                 :options="{{ $subCategories1->toJson() }}"
@@ -286,8 +295,21 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         "use strict";
 
         $(document).ready(function () {
+
+            $('#materialDropdown').parent().hide();
+            $(document).on('click', '#toggleMaterial', function () {
+                // ($('#materialDropdown').parent().is(':hidden')) ? $('#materialDropdown').parent().slideDown() : $('#materialDropdown').parent().slideUp();
+                $('#materialDropdown').parent().slideToggle();
+                });
+
+
+            $('#functionDropdown').parent().hide();
+            $(document).on('click', '#toggleFunction', function () {
+                $('#functionDropdown').parent().slideToggle();
+            });
+
             $('.js-example-basic-multiple').select2({
-                theme: "material"
+                theme: "material",
             });
 
             $(".select2-selection__arrow")
