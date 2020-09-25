@@ -21,6 +21,7 @@ blade for adding a new building/project to a User
                 <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
                     @csrf
                     <div class="form-row d-flex flex-row align-items-center justify-content-between">
+                        {{--Gewenste prijs per éénheid en gratis filter checkbox--}}
                         <div class="form-group d-flex flex-column">
                             <label for="streamPrice" class="text-center"><strong>{{ __("Price") }}</strong></label>
                             <input type="text" class="form-control text-center" id="streamPrice"

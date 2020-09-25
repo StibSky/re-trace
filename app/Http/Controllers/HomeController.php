@@ -65,7 +65,6 @@ class HomeController extends Controller
         }
 
 
-
         //dd($decodedarray[0]['results'][0]['address_components'][2]['long_name']);
 
         //move to class
@@ -108,7 +107,7 @@ class HomeController extends Controller
     {
         $decodeLocation = json_decode($location, true);
         if ($decodeLocation['results'] != null) {
-        return $decodeLocation['results'][0]['geometry']['location']['lng'];
+            return $decodeLocation['results'][0]['geometry']['location']['lng'];
         } else {
             return back()->with('error', "Please make sure your projects have existing locations");
         }
@@ -136,39 +135,29 @@ class HomeController extends Controller
             return back()->with('error', __('Please enter a search query'));
         }
 
-        if(app()->getLocale() == 'en') {
-            $searchterm = DB::table('building')
-                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%') ))")->get();
-        }
-        elseif(app()->getLocale() == 'nl') {
-            $searchterm = DB::table('building')
-                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_nl LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_nl LIKE '%$inputsearch%') ))")->get();
-        }
-        elseif(app()->getLocale() == 'fr') {
-            $searchterm = DB::table('building')
-                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_fr LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_fr LIKE '%$inputsearch%') ))")->get();
-        }
+        $searchterm = DB::table('building')
+            ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') ))")->get();
+        //Search by name and description + OR in different languages
+        //how to get scrollbar to only show up when you need to scroll?
 
-        if(count($searchterm) == 0) {
+        if (count($searchterm) == 0) {
             return back()->with('error', __('Nothing found'));
         }
-/*        if ($substanceId == null && $functionInput == null) {
-            return back()->with('error', __('please select a material or function '));
-        }*/
+        /*        if ($substanceId == null && $functionInput == null) {
+                    return back()->with('error', __('please select a material or function '));
+                }*/
 
         $buildArray = [];
 
         $materialTagArray = [];
         $functionTagArray = [];
 
-        if($substanceInput != null) {
-            foreach($substanceInput as $substanceId) {
+        if ($substanceInput != null) {
+            foreach ($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
-                if(count($buildings) == 0) {
+                if (count($buildings) == 0) {
                     return back()->with('error', __('Nothing found'));
                 } else {
                     array_push($buildArray, $buildings);
@@ -177,46 +166,31 @@ class HomeController extends Controller
             }
         }
 
-        if($functionInput != null) {
-            foreach($functionInput as $functionId) {
+        if ($functionInput != null) {
+            foreach ($functionInput as $functionId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
-                if(count($buildings) == 0) {
+                if (count($buildings) == 0) {
                     return back()->with('error', __('Nothing found'));
-                }
-                else {
+                } else {
                     array_push($buildArray, $buildings);
                     array_push($functionTagArray, MaterialFunction::where('id', $functionId)->first()->name);
                 }
             }
         }
 
-        if($inputsearch != null) {
-            if(app()->getLocale() == 'en') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name LIKE '%$inputsearch%') ))")->get();
-                array_push($buildArray, $buildings);
-            }
-            elseif(app()->getLocale() == 'nl') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_nl LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_nl LIKE '%$inputsearch%') ))")->get();
-                array_push($buildArray, $buildings);
-            }
-            elseif(app()->getLocale() == 'fr') {
-                $buildings = DB::table('building')
-                    ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
-                (SELECT id FROM substance WHERE name_fr LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE name_fr LIKE '%$inputsearch%') ))")->get();
-                array_push($buildArray, $buildings);
-            }
+        if ($inputsearch != null) {
+            $buildings = DB::table('building')
+                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') ))")->get();
+            array_push($buildArray, $buildings);
         }
 
         $materialLocations = [];
         $buildIds = [];
 
         if ($buildArray != null) {
-            foreach($buildArray as $buildings) {
+            foreach ($buildArray as $buildings) {
                 if (count($buildings) > 0) {
                     foreach ($buildings as $building) {
                         array_push($materialLocations,
@@ -229,8 +203,7 @@ class HomeController extends Controller
                     }
                 }
             }
-        }
-        else {
+        } else {
             return back()->with('error', __('Nothing found'));
         }
 

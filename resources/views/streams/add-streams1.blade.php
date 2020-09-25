@@ -36,6 +36,7 @@ blade for adding a new building/project to a User
                                placeholder="{{ __("NAME") }}"
                                value="{{ session()->get('stream.name') }}">
                     </div>
+                    {{--Old descriptions--}}
                     <div class="form-group w-50 m-auto">
                         <label for="streamDescription" class="sr-only">{{ __("Description") }}:</label>
                         <textarea class="form-control text-center" id="streamDescription" name="streamDescription"

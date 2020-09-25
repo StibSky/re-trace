@@ -8,6 +8,8 @@ blade for the specific user projects
 uses dynamic linking
 -->
     <div class="d-flex flex-lg-row flex-column align-items-stretch justify-content-center">
+        {{--No longer available/verwijderen naast stream--}}
+        {{--Soft delete--}}
         <div class="col-12 col-lg-4 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
             <div class="row card" id="projectOverview">
                 <div class="card-header d-flex flex-row justify-content-between">
