@@ -378,3 +378,19 @@ ul {
   height: 20vh;
 }
 
+select {
+  display: none;
+}
+
+#bottomFilters {
+  border-bottom: solid darkslategray 1px;
+}
+
+#toggleMaterial,
+#toggleFunction {
+  width: 16vw;
+  background-color: #f3bfba;
+  border-color: #f3bfba;
+  color: white;
+}
+

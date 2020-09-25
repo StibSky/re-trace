@@ -271,9 +271,9 @@ class StreamController extends Controller
             return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
 
-/*        if ($request->input("streamValuta") == null) {
-            return redirect()->back()->withInput()->with('error', __('please give a currency'));
-        }*/
+        /*        if ($request->input("streamValuta") == null) {
+                    return redirect()->back()->withInput()->with('error', __('please give a currency'));
+                }*/
 
         $price = $request->input("streamPrice");
         $price = str_replace(',', '.', $price);
@@ -412,7 +412,7 @@ class StreamController extends Controller
 
         $materials = [];
         foreach ($materialIds as $materialId) {
-            array_push($materials, DB::table('substance')->where('id', $materialId)->first()->name);
+            array_push($materials, DB::table('substance')->where('id', $materialId)->first());
         }
 
         $functionTags = DB::table('tags')->whereRaw('stream_id = ' . $id . ' AND function_id IS NOT NULL')
@@ -426,7 +426,7 @@ class StreamController extends Controller
 
         $functions = [];
         foreach ($functionIds as $functionId) {
-            array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first()->name);
+            array_push($functions, DB::table('materialFunction')->where('id', $functionId)->first());
         }
 
         return view('streams.streamview', [
