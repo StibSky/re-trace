@@ -154,6 +154,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         @endforeach
                                     </select>
                                 </div>
+                                <a class="btn" id="resetMaterial">{{ __("Clear material filters")}}</a>
+
                                 <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between" id="toggleFunction"><div>{{ __("Filter by function")}}</div><div><i class="arrow down"></i></div></a>
                                 <div id="functionContainer">
                                     <label for="dbFunction[]" class="sr-only">Function</label>
@@ -173,6 +175,8 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                         @endforeach
                                     </select>
                                 </div>
+                                <a class="btn" id="resetFunction">{{ __("Clear function filters")}}</a>
+
                             </div>
                             {{--                            <div class="form-group">
                                                             <search-dropdown
@@ -182,7 +186,10 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                                 tag-placeholder="Please select tag"
                                                             ></search-dropdown>
                                                         </div>--}}
-                            <button class="btn btn-primary mb-1" type="submit" id="main-button">{{ __("Search") }}</button>
+                            <div class="d-flex flex-row justify-content-between" id="bottomFilters"><span>Filters</span><a class="btn text-right" id="resetFilters">{{ __("Clear all")}}</a></div>
+
+
+                            <button class="btn btn-primary mt-2 mb-1" type="submit" id="main-button">{{ __("Search") }}</button>
                         </form>
                     </div>
                     <div class="mt-1 d-flex flex-column" id="prevTags">
@@ -289,12 +296,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
     <script type="text/javascript">
         "use strict";
         $(document).ready(function () {
-
             $('#materialDropdown').parent().hide();
+
             $(document).on('click', '#toggleMaterial', function () {
                 // ($('#materialDropdown').parent().is(':hidden')) ? $('#materialDropdown').parent().slideDown() : $('#materialDropdown').parent().slideUp();
                 $('#materialDropdown').parent().slideToggle();
-                });
+            });
 
 
             $('#functionDropdown').parent().hide();
@@ -308,7 +315,18 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             $(".select2-selection__arrow")
                 .addClass("material-icons")
                 .html("arrow_drop_down");
+
+            $('#resetMaterial').on('click', function() {
+                $('#materialDropdown').val(null).trigger("change");
+            });
+            $('#resetFunction').on('click', function() {
+                $('#functionDropdown').val(null).trigger("change");
+            });
+            $('#resetFilters').on('click', function() {
+                $('.js-example-basic-multiple').val(null).trigger("change");
+            });
         });
+
         var labelIndex = 0;
         const BELGIUM_BOUNDS = {
             north: 49.56,
