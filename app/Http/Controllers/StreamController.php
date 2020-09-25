@@ -256,6 +256,9 @@ class StreamController extends Controller
         if ($request->input("streamQuantity") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a quantity'));
         }
+        if(!is_numeric($request->input("streamQuantity"))) {
+            return redirect()->back()->withInput()->with('error', __('please only fill in numbers'));
+        }
 
         if ($request->input("streamUnit") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a unit of measurement'));
@@ -269,6 +272,9 @@ class StreamController extends Controller
 
         if ($request->input("streamPrice") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a price'));
+        }
+        if(!is_numeric($request->input("streamPrice"))) {
+            return redirect()->back()->withInput()->with('error', __('please only fill in numbers'));
         }
 
         /*        if ($request->input("streamValuta") == null) {
