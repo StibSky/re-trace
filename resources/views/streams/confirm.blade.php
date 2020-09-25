@@ -26,7 +26,13 @@
                             <ul>
                                 @if($materialArray)
                                     @foreach($materialArray as $material)
-                                        <li>{{ $material->name }}</li>
+                                        @if(app()->getLocale() == 'en')
+                                            <li>{{$material->name}}</li>
+                                        @elseif(app()->getLocale() == 'nl')
+                                            <li>{{$material->name_nl}}</li>
+                                        @elseif(app()->getLocale() == 'fr')
+                                            <li>{{$material->name_fr}}</li>
+                                        @endif
                                     @endforeach
                                 @endif
                             </ul>
@@ -37,7 +43,13 @@
                             <ul>
                                 @if($functionArray)
                                     @foreach($functionArray as $streamFunction)
-                                        <li>{{ $streamFunction->name }}</li>
+                                        @if(app()->getLocale() == 'en')
+                                            <li>{{$streamFunction->name}}</li>
+                                        @elseif(app()->getLocale() == 'nl')
+                                            <li>{{$streamFunction->name_nl}}</li>
+                                        @elseif(app()->getLocale() == 'fr')
+                                            <li>{{$streamFunction->name_fr}}</li>
+                                        @endif
                                     @endforeach
                                 @endif
                             </ul>
@@ -48,7 +60,8 @@
                         <td>{{ __("Quantity") }}: {{ $stream->quantity / 1000}} {{ $unit->short_name }}</td>
                     </tr>
                     <tr>
-                        <td>{{__("Price")}}: {{ $valuta->symbol }}{{ number_format($stream->price / 100, 2, ',', '.')}}</td>
+                        <td>{{__("Price")}}
+                            : {{ $valuta->symbol }}{{ number_format($stream->price / 100, 2, ',', '.')}}</td>
                     </tr>
                     <tr>
                         <td>{{ __("Action") }}: {{ $stream->action }}</td>
@@ -56,7 +69,8 @@
                 </table>
                 <form action="{{ route('storeStream', $id) }}" method="post" class="mt-5">
                     @csrf
-                    <button type="submit" id="main-button" class="btn btn-primary" name="confirm">{{ __("Create") }}</button>
+                    <button type="submit" id="main-button" class="btn btn-primary"
+                            name="confirm">{{ __("Create") }}</button>
                 </form>
             </div>
 

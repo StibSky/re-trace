@@ -10,17 +10,30 @@ uses dynamic linking
     <div class="d-flex flex-lg-row flex-column align-items-stretch justify-content-center">
         <div class="col-12 col-lg-4 mr-lg-2 mr-xl-3 mx-auto px-0 align-self-stretch">
             <div class="row card" id="projectOverview">
-                <div class="card-header">
+                <div class="card-header d-flex flex-row justify-content-between">
                     <h5>{{ $project->projectName ?? 'Project name' }}</h5>
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false" id="cog-link">
+                        <img id="cog" src="{{ asset('images/cog-24.png') }}" alt="cog"
+                             class="align-self-center">
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" name="editProfile"
+                               data-toggle="modal"
+                               data-target="#editDashModal">{{ __("Edit")}}
+                            </a>
+                            @if(Auth::user()->type == 'admin')
+                                <a data-toggle="modal"
+                                   data-target="#deleteModal" class="dropdown-item"
+                                   name="deleteBuilding">{{ __("Delete")}}
+                                </a>
+                            @endif
+                        </div>
+                    </a>
                 </div>
                 <div class="card-body mb-lg-2 mb-3">
                     <div class="row">
                         <figure class="d-flex flex-column col-12 col-lg-6">
                             <img class="mx-auto" id="projectPic" src="{{ asset('images/coolbuilding.jpg') }}">
-                            <button type="button" id="main-button" class="btn btn-primary mt-3 mx-auto" name="editDash"
-                                    data-toggle="modal"
-                                    data-target="#editDashModal">{{ __("Edit")}}
-                            </button>
                             <div id="editDashModal" class="modal fade">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -87,14 +100,6 @@ uses dynamic linking
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
-
-                            @if(Auth::user()->type == 'admin')
-                                <button data-toggle="modal"
-                                        data-target="#deleteModal" class="btn btn-primary mx-auto mt-1"
-                                        name="deleteBuilding"
-                                        id="main-button">Delete
-                                </button>
-                            @endif
                         </figure>
                         <div class="col-12 col-lg-6">
                             <ul>
@@ -119,15 +124,15 @@ uses dynamic linking
                     <h5> - Please add your first files to progress your profile</h5>
                 @endif--}}
                     <ul>
-                            <li class="d-flex flex-row  justify-content-between">
-{{--                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>--}}
-                            </li>
+                        <li class="d-flex flex-row  justify-content-between">
+                            {{--                                <a href="{{route(str_replace(' ', '', $projecttype), $project->id)}}">{{ $projecttype }}</a>--}}
+                        </li>
                     </ul>
                     <ul>
                         <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Measuring state"))
                                 <a href="{{route(str_replace(' ', '', 'Measuring state'), $project->id)}}">{{ __("Measuring state")}}</a>
-                                                                                 @else{{ __("Measuring state")}}
-                        @endif</li>
+                            @else{{ __("Measuring state")}}
+                            @endif</li>
                         <hr class="py-0 my-2">
                         <li class="d-flex flex-row  justify-content-between">@if($projecttypes->contains("Material list"))
                                 <a href="{{route(str_replace(' ', '', 'Material list'), $project->id)}}">{{ __("Material list")}}</a>
