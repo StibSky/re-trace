@@ -97,3 +97,8 @@
   background-color: #f3bfba;
 }
 
+#priceForm input {
+  width: 50%;
+  align-self: center;
+}
+

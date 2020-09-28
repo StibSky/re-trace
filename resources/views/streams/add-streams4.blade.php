@@ -18,16 +18,16 @@ blade for adding a new building/project to a User
             </div>
             <div class="card-body text-center">
                 <h4>{{ __("Please give the price, quantity and unit of your stream") }}</h4>
-                <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5">
+                <form action="{{ route('add-streams4', $id) }}" method="post" class="mt-5" id="priceForm">
                     @csrf
-                    <div class="form-row d-flex flex-row align-items-center justify-content-between">
+                    <div class="form-row d-flex flex-row justify-content-between flex-nowrap">
                         {{--Gewenste prijs per éénheid en gratis filter checkbox--}}
                         <div class="form-group d-flex flex-column">
-                            <label for="streamPrice" class="text-center"><strong>{{ __("Price") }}</strong></label>
-                            <input type="text" class="form-control text-center" id="streamPrice"
+                            <label for="streamPrice" class="text-center"><strong>{{ __("Wanted price per unit") }}</strong></label>
+                            <input type="text" class="form-control" id="streamPrice"
                                    name="streamPrice"
                                    placeholder="€ {{ __("PRICE") }}"
-                                   value="@if(app()->getLocale() == "en" && number_format(session()->get('stream.price')) > 0){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@elseif (number_format(session()->get('stream.price')) > 0)){{ number_format((session()->get('stream.price') /100), 2, ',', '.') }} @else € @endif">
+                                   value="@if(app()->getLocale() == "en" && number_format(session()->get('stream.price')) > 0){{ number_format((session()->get('stream.price') /100), 2, '.', ',')  }}@elseif (number_format(session()->get('stream.price')) > 0){{ number_format((session()->get('stream.price') /100), 2, ',', '.') }} @else € @endif">
                         </div>
                         <div class="form-group d-flex flex-column">
                             <label for="streamQuantity" class="text-center"><strong>{{ __("Quantity") }}</strong></label>
@@ -54,6 +54,10 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group d-flex flex-column">
+                            <label for="total" class="text-center"><strong>{{ __("Total") }}</strong></label>
+                            <input type="text" name="total" id="total" placeholder="@if(app()->getLocale() == "en"){{" € 0.00 "}}@else{{" € 0,00 "}}@endif" class="text-center p-1  mx-5" style="color: black" disabled>
+                        </div>
 {{--                        <div class="form-group">
                             <label for="streamUnit" class="sr-only">{{ __("Valuta") }}:</label>
                             <select name="streamValuta" id="streamValuta">
@@ -67,10 +71,9 @@ blade for adding a new building/project to a User
                                 @endforeach
                             </select>
                         </div>--}}
-                        <div class="form-group d-flex flex-column">
-                            <label for="total" class="text-center"><strong>{{ __("Total") }}</strong></label>
-                            <input type="text" name="total" id="total" placeholder="@if(app()->getLocale() == "en"){{" € 0.00 "}}@else{{" € 0,00 "}}@endif" class="text-center p-1" style="color: black" disabled>
-                        </div>
+                    </div>
+                    <div class="form-group d-flex">
+                        <input type="checkbox" name="chkIsFree" id="chkIsFree" class="ml-0 pl-0"><label for="chkIsFree">{{ __("Check if items are free") }}</label>
                     </div>
                     <button type="submit" id="main-button" class="btn btn-primary"
                             name="newStream">{{ __("Next") }}</button>
@@ -83,6 +86,14 @@ blade for adding a new building/project to a User
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#chkIsFree').change(function(){
+                if ($('#chkIsFree').is(':checked') == true){
+                    $('#streamPrice').val('0').prop('disabled', true);
+                } else {
+                    $('#streamPrice').val('').prop('disabled', false);
+                }
+            });
+
             qty = $("#streamQuantity")
             qty.keyup(function(){
                 var locale = $('html').attr('lang');

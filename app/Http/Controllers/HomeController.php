@@ -136,7 +136,7 @@ class HomeController extends Controller
         }
 
         $searchterm = DB::table('building')
-            ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+            ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE name LIKE '%$inputsearch%' OR description LIKE '%$inputsearch%' OR id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') ))")->get();
         //Search by name and description + OR in different languages
         //how to get scrollbar to only show up when you need to scroll?
@@ -181,7 +181,7 @@ class HomeController extends Controller
 
         if ($inputsearch != null) {
             $buildings = DB::table('building')
-                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id IN
+                ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE name LIKE '%$inputsearch%' OR description LIKE '%$inputsearch%' OR id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') ))")->get();
             array_push($buildArray, $buildings);
         }

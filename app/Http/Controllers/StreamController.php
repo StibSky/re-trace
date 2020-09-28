@@ -30,29 +30,42 @@ class StreamController extends Controller
 
         $filename = $request->session()->get('image.name');
         $projectFolder = $project->projectName;
-        $firstname = User::where('id', $project->userid)->first()->first_name;
-        $lastname = User::where('id', $project->userid)->first()->last_name;
         $authid = User::where('id', $project->userid)->first()->id;
+
+        if (empty($request->session()->get('projectId'))) {
+            $projectId = $project->id;
+        } else {
+            $projectId = $request->session()->get('projectId');
+        }
+
+        //dd($request->session()->get('projectId'));
 
         $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
 
-        if (is_dir(Storage::path($targetFolder))) {
+        if (is_dir(Storage::path($targetFolder)) && $projectId == $project->id) {
             $targetFile = $targetFolder . '/' . $filename;
 
             $fullPath = Storage::path($targetFile);
 
             $base64 = base64_encode(Storage::get($targetFile));
             $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+
         } else {
             $targetFile = null;
             $image_data = null;
         }
 
+        $inputStreamName = $request->session()->get('inputStreamName');
+
+        $inputStreamDescription = $request->session()->get('inputStreamDescription');
+
         return view('streams.add-streams1', [
             'stream' => $stream,
             'project' => $project,
             'targetFile' => $targetFile,
-            'image_data' => $image_data
+            'image_data' => $image_data,
+            'inputStreamName' => $inputStreamName,
+            'inputStreamDescription' => $inputStreamDescription
         ]);
     }
 
@@ -62,6 +75,12 @@ class StreamController extends Controller
             $image = new StreamImage();
         } else {
             $image = $request->session()->get('image');
+        }
+
+        if (empty($request->session()->get('stream'))) {
+            $stream = new Stream();
+        } else {
+            $stream = $request->session()->get('stream');
         }
 
         $imagebasename = $request->input("name") ?? $request->streamImage->getClientOriginalName();
@@ -82,13 +101,20 @@ class StreamController extends Controller
 
         $request->session()->put('image', $image);
 
-        $firstname = Auth::user()->first_name;
-        $lastname = Auth::user()->last_name;
+        $projectId = $project = Building::all()->find($request->input("projectId"))->id;
+
+        $request->session()->put('projectId', $projectId);
+
         $authid = Auth::user()->id;
 
         $projectFolder = Building::where('id', $request->input("projectId"))->first()->projectName;
 
         $request->streamImage->storeAs('userFiles/' . $authid . "/" . $projectFolder, $imagename, 'public');
+
+
+
+        $request->session()->put('inputStreamName', $request->input("streamNameModal"));
+        $request->session()->put('inputStreamDescription', $request->input("streamDescriptionModal"));
 
         return back()->with('success', __('image uploaded'));
     }
@@ -256,7 +282,7 @@ class StreamController extends Controller
         if ($request->input("streamQuantity") == null) {
             return redirect()->back()->withInput()->with('error', __('please give a quantity'));
         }
-        if(!is_numeric($request->input("streamQuantity"))) {
+        if (!is_numeric($request->input("streamQuantity"))) {
             return redirect()->back()->withInput()->with('error', __('please only fill in numbers'));
         }
 
@@ -270,10 +296,19 @@ class StreamController extends Controller
         $stream->setQuantity($quantity * 1000);
         $stream->setUnitId($request->input("streamUnit"));
 
-        if ($request->input("streamPrice") == null) {
+
+        if ($request->input("streamPrice") == null && !$request->has('chkIsFree')) {
             return redirect()->back()->withInput()->with('error', __('please give a price'));
         }
-        if(!is_numeric($request->input("streamPrice"))) {
+
+        $inputPrice = $request->input("streamPrice");
+
+        function unichr($u)
+        {
+            return mb_convert_encoding('&#' . intval($u) . ';', 'UTF-8', 'HTML-ENTITIES');
+        }
+
+        if (!preg_match("#(USD|EUR|€|\$)\s?(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2}))|(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?)\s?(USD|EUR|€|\$)#", $inputPrice) && !$request->has('chkIsFree')) {
             return redirect()->back()->withInput()->with('error', __('please only fill in numbers'));
         }
 
@@ -281,7 +316,12 @@ class StreamController extends Controller
                     return redirect()->back()->withInput()->with('error', __('please give a currency'));
                 }*/
 
-        $price = $request->input("streamPrice");
+        if ($request->has('chkIsFree')) {
+            $price = 0;
+        } else {
+            $price = $request->input("streamPrice");
+        }
+
         $price = str_replace(',', '.', $price);
         $price = str_replace('€', '', $price);
 

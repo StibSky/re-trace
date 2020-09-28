@@ -34,13 +34,13 @@ blade for adding a new building/project to a User
                         <label for="streamName" class="sr-only">{{ __("Name") }}:</label>
                         <input type="text" class="form-control text-center" id="streamName" name="streamName"
                                placeholder="{{ __("NAME") }}"
-                               value="{{ session()->get('stream.name') }}">
+                               value="{{ session()->get('stream.name') ?? $inputStreamName }}">
                     </div>
                     {{--Old descriptions--}}
                     <div class="form-group w-50 m-auto">
                         <label for="streamDescription" class="sr-only">{{ __("Description") }}:</label>
                         <textarea class="form-control text-center" id="streamDescription" name="streamDescription"
-                               placeholder="{{ __("DESCRIPTION") }}">{{ session()->get('stream.description') }}</textarea>
+                               placeholder="{{ __("DESCRIPTION") }}">{{ session()->get('stream.description') ?? $inputStreamDescription }}</textarea>
                     </div>
                     <div class="form-group w-50 m-auto pt-4">
                         {{ __("PLEASE SELECT AN ACTION") }}
@@ -79,13 +79,15 @@ blade for adding a new building/project to a User
                     @csrf
                     <div class="modal-body">
                         <input type="text" name="name">
-                        <input type="file" name="streamImage">
+                        <input type="file" name="streamImage" id="streamImage">
                         <input value="{{ $project->id }}" type="hidden" name="projectId"/>
+                        <input type="hidden" name="streamNameModal" id="streamNameModal"/>
+                        <input type="hidden" name="streamDescriptionModal" id="streamDescriptionModal"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{ __("Close") }}
                         </button>
-                        <input type="submit" value="upload" name="upload"/>
+                        <input type="submit" value="upload" name="upload" id="uploadImage"/>
                     </div>
                 </form>
             </div>
@@ -93,4 +95,12 @@ blade for adding a new building/project to a User
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#secondary-button').click(function(){
+                $('#streamNameModal').val($('#streamName').val());
+                $('#streamDescriptionModal').val($('#streamDescription').val());
+            });
+        });
+    </script>
 @endsection
