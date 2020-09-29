@@ -209,7 +209,82 @@ uses dynamic linking
                                             @break
                                         @endif
                                     @endforeach</p>
+                                <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="true" aria-expanded="false" id="cog-link">
+                                    <img id="cog" src="{{ asset('images/cog-24.png') }}" alt="cog"
+                                         class="align-self-center">
+                                    <div class="dropdown-menu">
+                                        <a data-toggle="modal"
+                                           data-target="#deleteStreamModal_{{ $stream->id }}" class="dropdown-item"
+                                           name="deleteStream">{{ __("Delete")}}
+                                        </a>
+                                        <a data-toggle="modal"
+                                           data-target="#unavailableModal_{{ $stream->id }}" class="dropdown-item"
+                                           name="unavailableStream">{{ __("Set as unavailable")}}
+                                        </a>
+                                    </div>
+                                </a>
+                                <div id="deleteStreamModal_{{ $stream->id }}" class="modal fade" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content text-left">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">X
+                                                </button>
+                                                <h4 class="modal-title">Are you sure you want to delete?</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <form action="{{ route('deleteStream') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="deleteStreamId" value="{{ $stream->id }}">
+                                                    <button type="submit" class="btn btn-primary"
+                                                            name="deleteStream" id="main-button">Yes, delete stream
+                                                    </button>
+                                                </form>
+                                                <button type="button" class="btn btn-default"
+                                                        id="secondary-button-small"
+                                                        data-dismiss="modal">No
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="unavailableModal_{{ $stream->id }}" class="modal fade" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content text-left">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">X
+                                                </button>
+                                                <h4 class="modal-title">Do you want to set this stream as unavailable??</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <form action="{{ route('setStreamUnavailable') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="unavailableStreamId" value="{{ $stream->id }}">
+                                                    <button type="submit" class="btn btn-primary"
+                                                            name="setStreamUnavailable" id="main-button">Yes,set as unavailable
+                                                    </button>
+                                                </form>
+                                                <button type="button" class="btn btn-default"
+                                                        id="secondary-button-small"
+                                                        data-dismiss="modal">No
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
+
                             <hr class="py-0 my-2">
                         @endforeach
                     </ul>
@@ -221,6 +296,9 @@ uses dynamic linking
             </div>
         </div>
     </div>
+
+
+
     {{--    <div class="card-body">
             <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                 @csrf

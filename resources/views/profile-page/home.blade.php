@@ -365,19 +365,6 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
             @endfor
-            {{--                @elseif(session('functionId') !=null )
-                            @for($i=0; $i < count( session('materialLocations') ); $i++)
-                        var location = {
-                                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
-                        locationArray.push(location);
-                        new google.maps.Marker({
-                            position: locationArray['{{$i}}'],
-                            label: labels[labelIndex++ % labels.length],
-                            map: map,
-                            title: "{{$decodedarray[$i]['results'][0]['address_components'][2]['long_name'] }}"
-                        });
-                            @endfor--}}
             @else
             @for($i=0; $i < count( $locations ); $i++)
             var location = {
@@ -391,6 +378,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             new google.maps.Marker({
                 position: locationArray['{{$i}}'],
                 map: map,
+                title: "Own project",
                 icon: icon
             });
             @endfor

@@ -2,14 +2,33 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Stream extends Model
 {
+    use SoftDeletes;
     private $id;
     public $timestamps = false;
     protected $table = "streams";
 
+
+    /**
+     * @return mixed
+     */
+    public function getIsAvailable()
+    {
+        return $this->isAvailable;
+    }
+
+    /**
+     * @param mixed $isAvailable
+     */
+    public function setIsAvailable($isAvailable): void
+    {
+        $this->isAvailable = $isAvailable;
+    }
     /**
      * @return mixed
      */
@@ -157,7 +176,7 @@ class Stream extends Model
 
 
     protected $fillable = [
-        'name', 'description', 'buildid', 'category', 'unit_id', 'quantity', 'valuta_id', 'price', 'action'
+        'name', 'description', 'buildid', 'category', 'unit_id', 'quantity', 'valuta_id', 'price', 'action', 'isAvailable'
     ];
 
     public function Building() {

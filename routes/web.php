@@ -33,8 +33,11 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/deleteBuilding', 'NewBuildingController@deleteBuilding')->name('deleteBuilding');
+Route::post('/deleteStream', 'StreamController@deleteStream')->name('deleteStream');
+Route::post('/setStreamUnavailable', 'StreamController@setStreamUnavailable')->name('setStreamUnavailable');
 Route::post('/saveEdit', 'NewBuildingController@saveEdit')->name('saveEdit');
 
 Route::get('/newBuilding', 'NewBuildingController@step1')->name('building');
