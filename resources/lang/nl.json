@@ -207,5 +207,7 @@
     "Hide Materials" : "Materialen Verbergen",
     "Filter by material" : "Filter op Materiaal",
     "Filter by function" : "Filter op functie",
-    "Category" : "Categorie"
+    "Category" : "Categorie",
+    "UNAVAILABLE": "NIET BESCHIKBAAR",
+    "Set as unavailable": "Instellen als niet beschikbaar"
 }

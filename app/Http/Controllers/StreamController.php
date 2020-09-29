@@ -490,13 +490,13 @@ class StreamController extends Controller
     }
 
     public function deleteStream(Request $request) {
-        $stream = Stream::find($request->input("deleteStreamId"))->first();
+        $stream = Stream::where('id', $request->input("deleteStreamId"))->first();
         $stream->delete();
         return redirect()->back();
     }
 
     public function setStreamUnavailable(Request $request) {
-        $stream = Stream::find($request->input("unavailableStreamId"))->first();
+        $stream = Stream::where('id', $request->input("unavailableStreamId"))->first();
         $stream->setIsAvailable(0);
         $stream->save();
         return redirect()->back();

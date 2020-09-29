@@ -192,8 +192,12 @@ uses dynamic linking
                                     <img id="streamImage"
                                          src="{{\App\Http\Controllers\DashboardController::getStreamImage($stream->id)}}"/>
                                 </div>
-                                <strong class="w-100"><a
-                                        href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a></strong>
+                                <strong class="w-100">@if($stream->isAvailable == 1)
+                                        <a href="{{route('streamView', $stream->id)}}">{{ $stream->name }}</a>
+                                    @else
+                                        <p><del>{{ $stream->name }}</del> {{ __("UNAVAILABLE")}}</p>
+                                @endif
+                                </strong>
 
                                 <p class="w-100">{{$stream->action}}</p>
                                 <p class="w-50">{{$stream->quantity / 1000}}

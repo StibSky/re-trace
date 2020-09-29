@@ -208,5 +208,7 @@
     "Hide Materials" : "Masquer les matériaux",
     "Filter by material" : "Filtrer par matériaux",
     "Filter by function" : "Filtrer par fonction",
-    "Category" : "Catégorie"
+    "Category" : "Catégorie",
+    "UNAVAILABLE": "PAS DISPONIBLE",
+    "Set as unavailable": "Définir comme indisponible"
 }
