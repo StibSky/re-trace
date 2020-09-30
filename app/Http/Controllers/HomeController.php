@@ -47,6 +47,8 @@ class HomeController extends Controller
         //map stuff
         $buildings = Building::where('userid', Auth::user()->id)->get();
 
+        $buildingLocations = $buildings->unique('city');
+
         $locations = [];
 
         foreach ($buildings as $building) {
@@ -88,6 +90,7 @@ class HomeController extends Controller
 
         return view('profile-page.home', [
             'buildings' => $userBuilding,
+            'buildingLocations' => $buildingLocations,
             'substances' => $substances,
             'firstbuilding' => $firstbuilding,
             'locations' => $locations,
@@ -131,7 +134,9 @@ class HomeController extends Controller
 
         $functionInput = $request->input('dbFunction');
 
-        if ($substanceInput == null && $functionInput == null && $inputsearch == null) {
+        $locationInput = $request->input('dbLocation');
+
+        if ($substanceInput == null && $functionInput == null && $inputsearch == null && $locationInput == null) {
             return back()->with('error', __('Please enter a search query'));
         }
 
@@ -152,8 +157,9 @@ class HomeController extends Controller
 
         $materialTagArray = [];
         $functionTagArray = [];
+        $locationTagArray = [];
 
-        if ($substanceInput != null) {
+        if ($substanceInput != null && $locationInput == null) {
             foreach ($substanceInput as $substanceId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
@@ -166,7 +172,22 @@ class HomeController extends Controller
             }
         }
 
-        if ($functionInput != null) {
+        if ($substanceInput != null && $locationInput != null) {
+            foreach ($substanceInput as $substanceId) {
+                foreach ($locationInput as $location) {
+                    $buildings = DB::table('building')
+                        ->whereRaw("city LIKE '%$location%' and id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE material_id = " . $substanceId . "))")->get();
+                    if (count($buildings) == 0) {
+                        return back()->with('error', __('Nothing found'));
+                    } else {
+                        array_push($buildArray, $buildings);
+                    }
+                }
+                array_push($materialTagArray, Substance::where('id', $substanceId)->first()->name);
+            }
+        }
+
+        if ($functionInput != null && $locationInput == null) {
             foreach ($functionInput as $functionId) {
                 $buildings = DB::table('building')
                     ->whereRaw("id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
@@ -179,11 +200,56 @@ class HomeController extends Controller
             }
         }
 
-        if ($inputsearch != null) {
+        if ($functionInput != null && $locationInput != null) {
+            foreach ($functionInput as $functionId) {
+                foreach ($locationInput as $location) {
+                    $buildings = DB::table('building')
+                        ->whereRaw("city LIKE '%$location%' and id IN (SELECT buildid FROM streams WHERE id IN (SELECT stream_id FROM tags WHERE function_id = " . $functionId . "))")->get();
+                    if (count($buildings) == 0) {
+                        return back()->with('error', __('Nothing found'));
+                    } else {
+                        array_push($buildArray, $buildings);
+                    }
+                }
+                array_push($functionTagArray, MaterialFunction::where('id', $functionId)->first()->name);
+            }
+        }
+
+        if ($inputsearch != null && $locationInput == null) {
             $buildings = DB::table('building')
                 ->whereRaw("city LIKE '%$inputsearch%' OR id IN (SELECT buildid FROM streams WHERE name LIKE '%$inputsearch%' OR description LIKE '%$inputsearch%' OR id IN (SELECT stream_id FROM tags WHERE material_id IN
                 (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') ))")->get();
-            array_push($buildArray, $buildings);
+            if (count($buildings) == 0) {
+                return back()->with('error', __('Nothing found'));
+            } else {
+                array_push($buildArray, $buildings);
+            }        }
+
+        if ($inputsearch != null && $locationInput != null) {
+            foreach ($locationInput as $location) {
+                $buildings = DB::table('building')
+                    ->whereRaw("city LIKE '%$location%' and (id IN (SELECT buildid FROM streams WHERE name LIKE '%$inputsearch%' OR description LIKE '%$inputsearch%' OR id IN (SELECT stream_id FROM tags WHERE material_id IN
+                (SELECT id FROM substance WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') OR function_id IN (SELECT id FROM materialFunction WHERE CONCAT(name,name_fr,name_nl) LIKE '%$inputsearch%') )))")->get();
+                array_push($buildArray, $buildings);
+                if (count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                } else {
+                    array_push($buildArray, $buildings);
+                }
+            }
+        }
+
+        if ($locationInput != null && $substanceInput == null && $functionInput == null && $inputsearch == null) {
+            foreach ($locationInput as $location) {
+                $buildings = DB::table('building')
+                    ->whereRaw("city LIKE '%$location%'")->get();
+                if (count($buildings) == 0) {
+                    return back()->with('error', __('Nothing found'));
+                } else {
+                    array_push($buildArray, $buildings);
+                    array_push($locationTagArray, $location);
+                }
+            }
         }
 
         $materialLocations = [];

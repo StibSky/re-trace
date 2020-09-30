@@ -14,13 +14,13 @@
                     <li class="d-flex flex-row justify-content-between pb-2">
                         <p>{{ $file->name }} - {{ $file->id }}</p>
                         <div class="d-flex flex-row justify-content-end">
-                            @if($file->type == "Photos exterior" or $file->type == "Photos interior")
+{{--                            @if($file->type == "Photos exterior" or $file->type == "Photos interior")
                                 <a href="#" class="btn btn-primary" id="secondary-button-medium">{{ __("Set as main image")}}</a>
-                            @endif
+                            @endif--}}
                             @if(Auth::user()->type == 'admin')
                                 <button data-toggle="modal"
                                         data-target="#myModal_{{ $file->id }}" class="btn btn-primary" name="deleteFile"
-                                        id="main-button-medium">Delete
+                                        id="main-button">Delete
                                 </button>
                                 <div id="myModal_{{ $file->id }}" class="modal fade" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -50,8 +50,8 @@
                                 {{--                                    <a href="{{route('deleteFile', $file->id)}}" class="btn btn-primary"
                                                                        id="main-button-medium">Yes, delete file</a>--}}
                             @endif
-                            <a href="{{route('previewFiles', $file->id)}}" class="btn btn-primary" id="secondary-button-medium">{{ __("View")}}</a>
-                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button-medium">{{ __("Download")}}</a>
+                            <a href="{{route('previewFiles', $file->id)}}" class="btn btn-primary" id="secondary-button">{{ __("View")}}</a>
+                            <a href="{{route('downloadFile', $file->id)}}" class="btn btn-primary" id="main-button">{{ __("Download")}}</a>
                         </div>
                     </li>
                     <hr>

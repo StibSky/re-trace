@@ -116,14 +116,14 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
         <div class="col-md-8 col-12 mt-md-0 mt-2 p-2 mx-0 ml-md-3 card d-flex" id="mapAndSearch">
             <div class="card-body d-flex">
                 <div class="col-4">
-{{--                    <div class="d-flex flex-column w-25">
-                                            <button type="button" id="moreMats" class="moreMats"
-                                                    onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('#materialDropdown')
-                                                        .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
-                                            <button type="button" id="moreFuncts" class="moreFuncts"
-                                                    onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('#functionDropdown')
-                                                        .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
-                                        </div>--}}
+                    {{--                    <div class="d-flex flex-column w-25">
+                                                                <button type="button" id="moreMats" class="moreMats"
+                                                                        onclick="$('.materialDrop').toggle(function(){$('#moreMats').html($('#materialDropdown')
+                                                                            .is(':visible')?'{{ __("Hide Materials") }}':'{{ __("Materials") }}');});">{{ __("Materials") }}</button>
+                                                                <button type="button" id="moreFuncts" class="moreFuncts"
+                                                                        onclick="$('.functionDrop').toggle(function(){$('#moreFuncts').html($('#functionDropdown')
+                                                                            .is(':visible')?'{{ __("Hide Functions") }}':'{{ __("Functions") }}');});">{{ __("Functions") }}</button>
+                                                            </div>--}}
                     <div id="newSearch">
                         <form class="form d-flex flex-column justify-content-center"
                               action="{{ route('mysearch') }}" method="post" name="searchForm">
@@ -135,11 +135,15 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                            id="filterCategories"
                                            name="mysearch">
                                 </div>
-                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between" id="toggleMaterial"><div>{{ __("Filter by material")}}</div>
-                                    <div><i class="arrow down"></i></div></a>
+                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between"
+                                   id="toggleMaterial">
+                                    <div>{{ __("Filter by material")}}</div>
+                                    <div><i class="arrow down"></i></div>
+                                </a>
                                 <div class="materialContainer">
                                     <label for="substance[]" class="sr-only">Material</label>
-                                    <select class="js-example-basic-multiple" multiple data-live-search="true" id="materialDropdown"
+                                    <select class="js-example-basic-multiple" multiple data-live-search="true"
+                                            id="materialDropdown"
                                             name="substance[]" data-placeholder="{{ __("Search")}}...">
                                         @foreach($subCategories1 as $subCategory1)
                                             <option value="{{ $subCategory1->id }}">
@@ -156,7 +160,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                 </div>
                                 <a class="btn" id="resetMaterial">{{ __("Clear material filters")}}</a>
 
-                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between" id="toggleFunction"><div>{{ __("Filter by function")}}</div><div><i class="arrow down"></i></div></a>
+                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between"
+                                   id="toggleFunction">
+                                    <div>{{ __("Filter by function")}}</div>
+                                    <div><i class="arrow down"></i></div>
+                                </a>
                                 <div id="functionContainer">
                                     <label for="dbFunction[]" class="sr-only">Function</label>
                                     <select class="js-example-basic-multiple" multiple
@@ -176,6 +184,25 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                     </select>
                                 </div>
                                 <a class="btn" id="resetFunction">{{ __("Clear function filters")}}</a>
+                                <a class="btn btn-primary mt-2 d-flex flex-row justify-content-between"
+                                   id="toggleLocation">
+                                    <div>{{ __("Filter by location")}}</div>
+                                    <div><i class="arrow down"></i></div>
+                                </a>
+                                <div id="locationContainer">
+                                    <label for="dbLocation[]" class="sr-only">Location</label>
+                                    <select class="js-example-basic-multiple" multiple
+                                            data-live-search="true" id="locationDropdown"
+                                            name="dbLocation[]" data-placeholder="{{ __("Search")}}...">
+                                        @foreach($buildingLocations as $buildingLocation)
+                                            <option value="{{ $buildingLocation->city }}" class="dropdown-item">
+                                                {{ $buildingLocation->city }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <a class="btn" id="resetLocation">{{ __("Clear location filters")}}</a>
+
 
                             </div>
                             {{--                            <div class="form-group">
@@ -186,28 +213,38 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                                                                 tag-placeholder="Please select tag"
                                                             ></search-dropdown>
                                                         </div>--}}
-                            <div class="d-flex flex-row justify-content-between" id="bottomFilters"><span>Filters</span><a class="btn text-right" id="resetFilters">{{ __("Clear all")}}</a></div>
+                            <div class="d-flex flex-row justify-content-between" id="bottomFilters"><span>Filters</span><a
+                                    class="btn text-right" id="resetFilters">{{ __("Clear all")}}</a></div>
 
 
-                            <button class="btn btn-primary mt-2 mb-1" type="submit" id="main-button">{{ __("Search") }}</button>
+                            <button class="btn btn-primary mt-2 mb-1" type="submit"
+                                    id="main-button">{{ __("Search") }}</button>
                         </form>
                     </div>
-                    <div class="mt-1 d-flex flex-column" id="prevTags">
+                    <div class="mt-1" id="prevTags">
                         @if(session('materialTagArray'))
                             <p>Material filters:</p>
-                            @for($i=0; $i < (count( session('materialTagArray') )); $i++)
-                                <div class="d-flex">
-                                    <span class="btn btn-primary searchTags inline">{{ session('materialTagArray')[$i] }}</span>
-                                </div>
-                            @endfor
+                            <div>
+                                @for($i=0; $i < (count( session('materialTagArray') )); $i++)
+{{--                                    @foreach($subCategories1 as $subCategory1)--}}
+
+                                    <span
+                                        class="btn btn-primary searchTags">{{ session('materialTagArray')[$i] }}</span>
+{{--                                    @endforeach--}}
+                                @endfor
+
+                            </div>
+
+
                         @endif
-                        @if(session('functionTagArray'))
+                        @if(session('functionTagArray') && session('materialLocations'))
                             <p>Function filters:</p>
-                            @for($i=0; $i < (count( session('functionTagArray') )); $i++)
-                                <div class="d-flex">
-                                    <span class="btn btn-primary searchTags inline">{{ session('functionTagArray')[$i] }}</span>
-                                </div>
-                            @endfor
+                            <div>
+                                @for($i=0; $i < (count( session('functionTagArray') )); $i++)
+                                    <span
+                                        class="btn btn-primary searchTags">{{ session('functionTagArray')[$i] }}</span>
+                                @endfor
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -309,20 +346,26 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
                 $('#functionDropdown').parent().slideToggle();
             });
 
+            $('#locationDropdown').parent().hide();
+            $(document).on('click', '#toggleLocation', function () {
+                $('#locationDropdown').parent().slideToggle();
+            });
+
             $('.js-example-basic-multiple').select2({
                 theme: "material",
             });
+
             $(".select2-selection__arrow")
                 .addClass("material-icons")
                 .html("arrow_drop_down");
 
-            $('#resetMaterial').on('click', function() {
+            $('#resetMaterial').on('click', function () {
                 $('#materialDropdown').val(null).trigger("change");
             });
-            $('#resetFunction').on('click', function() {
+            $('#resetFunction').on('click', function () {
                 $('#functionDropdown').val(null).trigger("change");
             });
-            $('#resetFilters').on('click', function() {
+            $('#resetFilters').on('click', function () {
                 $('.js-example-basic-multiple').val(null).trigger("change");
             });
         });
@@ -338,6 +381,7 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             lat: 51.22,
             lng: 4.4
         };
+
         function initMap() {
             let map = new google.maps.Map(document.getElementById("map"), {
                 center: ANTWERPEN,
@@ -345,11 +389,11 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             });
             let marker;
             let locationArray = [];
-            @if(session('materialLocations'))
-            @for($i=0; $i < (count( session('materialLocations') )); $i++)
+                @if(session('materialLocations'))
+                @for($i=0; $i < (count( session('materialLocations') )); $i++)
             var location = {
-                lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
-                lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
+                    lat: {!! HomeController::getLat(session('materialLocations')[$i]) !!},
+                    lng: {!! HomeController::getLng(session('materialLocations')[$i]) !!}};
             locationArray.push(location);
             var icon = {
                 url: '/images/map_pin_rood.svg', // url
@@ -364,12 +408,12 @@ HOMEPAGE for users, users find their projects here and functionality to upload f
             google.maps.event.addListener(marker, 'click', function () {
                 window.location.href = "overview/{!! session('buildIds')[$i] !!} ";
             });
-            @endfor
-            @else
-            @for($i=0; $i < count( $locations ); $i++)
+                @endfor
+                @else
+                @for($i=0; $i < count( $locations ); $i++)
             var location = {
-                lat: {!! HomeController::getLat($locations[$i]) !!},
-                lng: {!! HomeController::getLng($locations[$i]) !!}};
+                    lat: {!! HomeController::getLat($locations[$i]) !!},
+                    lng: {!! HomeController::getLng($locations[$i]) !!}};
             locationArray.push(location);
             var icon = {
                 url: '/images/map_pin.svg', // url

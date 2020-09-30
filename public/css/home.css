@@ -376,6 +376,8 @@ ul {
 
 #prevTags {
   height: 20vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 select {
@@ -387,7 +389,8 @@ select {
 }
 
 #toggleMaterial,
-#toggleFunction {
+#toggleFunction,
+#toggleLocation {
   width: 16vw;
   background-color: #f3bfba;
   border-color: #f3bfba;

@@ -25,7 +25,8 @@ body ul {
 }
 
 body ul li a {
-  color: #636b6f;
+  color: #7d9ab3;
+  font-weight: bolder;
 }
 
 body ul li a:hover {

@@ -38,8 +38,6 @@ class StreamController extends Controller
             $projectId = $request->session()->get('projectId');
         }
 
-        //dd($request->session()->get('projectId'));
-
         $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
 
         if (is_dir(Storage::path($targetFolder)) && $projectId == $project->id) {
@@ -447,6 +445,28 @@ class StreamController extends Controller
         $valuta = DB::table('valuta')->where('id', $stream->valuta_id)->first()->symbol;
         $price = $stream->price;
 
+        $streamImage = DB::table('stream_images')->where('streamId', $stream->id)->first();
+
+        $filename = $streamImage->name;
+        $project = Building::where('id', $stream->buildid)->first();
+        $projectFolder = $project->projectName;
+        $authid = User::where('id', $project->userid)->first()->id;
+
+        $targetFolder = '/public/userFiles/' . $authid . '/' . $projectFolder;
+
+        if (is_dir(Storage::path($targetFolder))) {
+            $targetFile = $targetFolder . '/' . $filename;
+
+            $fullPath = Storage::path($targetFile);
+
+            $base64 = base64_encode(Storage::get($targetFile));
+            $image_data = 'data:' . mime_content_type($fullPath) . ';base64,' . $base64;
+
+        } else {
+            $targetFile = null;
+            $image_data = null;
+        }
+
         $materialTags = DB::table('tags')->whereRaw('stream_id = ' . $id . ' AND material_id IS NOT NULL')
             ->get();
 
@@ -485,7 +505,10 @@ class StreamController extends Controller
             'valuta' => $valuta,
             'price' => $price,
             'materials' => $materials,
-            'functions' => $functions
+            'functions' => $functions,
+            'targetFile' => $targetFile,
+            'image_data' => $image_data,
+            'streamImage' => $streamImage
         ]);
     }
 

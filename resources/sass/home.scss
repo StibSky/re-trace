@@ -403,7 +403,9 @@ ul {
 }
 
 #prevTags {
-    height: 20vh
+    height: 20vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 select{display: none}
@@ -412,7 +414,7 @@ select{display: none}
     border-bottom: solid darkslategray 1px;
 }
 
-#toggleMaterial, #toggleFunction {
+#toggleMaterial, #toggleFunction, #toggleLocation {
     width: 16vw;
     background-color: $retrace-pink;
     border-color: $retrace-pink;

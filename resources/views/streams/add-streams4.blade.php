@@ -101,9 +101,9 @@ blade for adding a new building/project to a User
                 var ennumber = streamPrice.replace('€', '').replace('&euro; ', '')
                 var globalnumber = ennumber.replace(",", ".")
                 var globalqty = qty.val().replace(",", ".")
-                var number = locale === 'en' ? ennumber : globalnumber
-                var streamquant = locale === 'en' ? qty.val() : globalqty
-                var subtotal= streamquant * number
+                //var number = locale === 'en' ? ennumber : globalnumber
+                //var streamquant = locale === 'en' ? qty.val() : globalqty
+                var subtotal= globalnumber * globalqty
                 var inttotal= (Math.round(subtotal * 100) / 100)
                 var entotal = inttotal.toFixed(2)
                 var globaltotal = entotal.replace(".", ",")
@@ -119,9 +119,9 @@ blade for adding a new building/project to a User
                 var ennumber = streamPrice.replace('€', '').replace('&euro; ', '')
                 var globalnumber = ennumber.replace(",", ".")
                 var globalqty = qty.val().replace(",", ".")
-                var number = locale === 'en' ? ennumber : globalnumber
-                var streamquant = locale === 'en' ? qty.val() : globalqty
-                var subtotal= streamquant * number
+                //var number = locale === 'en' ? ennumber : globalnumber
+                //var streamquant = locale === 'en' ? qty.val() : globalqty
+                var subtotal= globalnumber * globalqty
                 var inttotal= (Math.round(subtotal * 100) / 100)
                 var entotal = inttotal.toFixed(2)
                 var globaltotal = entotal.replace(".", ",")
