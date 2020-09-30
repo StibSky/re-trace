@@ -102,9 +102,11 @@ class UploadController extends Controller
     function downloadFile($id)
     {
 
-        $authid = Auth::user()->id;
+        //$authid = Auth::user()->id;
 
         $file = UploadedFile::where('id', $id)->first();
+        $authid = Building::where('id', $file->projectId)->first()->userid;
+
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
@@ -145,6 +147,7 @@ class UploadController extends Controller
         if ($registeredUser !=null ){
         $file = UploadedFile::where('id', $id)->first();
         $projectFolder = Building::where('id', $file->projectId)->first()->projectName;
+        $authid = Building::where('id', $file->projectId)->first()->userid;
         $firstname = Auth::user()->first_name;
         $lastname = Auth::user()->last_name;
         $filename = $file->name;
